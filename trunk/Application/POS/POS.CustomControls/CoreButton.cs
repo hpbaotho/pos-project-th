@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-namespace Core.Standards.Entity
+using System.Windows.Forms;
+namespace POS.CustomControls
 {
-  public class EntityBase
+    public class CoreButton : Button
     {
     }
 }

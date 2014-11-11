@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -81,6 +84,10 @@
     <ProjectReference Include="..\POS.BL\POS.BL.csproj">
       <Project>{0CF0DA20-E0B3-453D-8A04-E5AC4F09D2A2}</Project>
       <Name>POS.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POS.CustomControls\POS.CustomControls.csproj">
+      <Project>{4C68C2CA-EF32-4A23-8B99-FD942178ED14}</Project>
+      <Name>POS.CustomControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\POS.Service\POS.Service.csproj">
       <Project>{617A9298-12E5-4345-87D7-157216D8ACE9}</Project>
