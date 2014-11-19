@@ -63,7 +63,9 @@
     <Compile Include="GridView\BaseGrid.Designer.cs">
       <DependentUpon>BaseGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="GridView\BaseGridController.cs" />
     <Compile Include="GridView\IDataGrid.cs" />
+    <Compile Include="GridView\UtilityDataGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
