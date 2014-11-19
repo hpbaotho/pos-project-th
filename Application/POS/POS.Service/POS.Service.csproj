@@ -41,13 +41,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\ServiceProvider.cs" />
+    <Compile Include="Services\Service\SystemConfigurationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Standards\Core.Standards.csproj">
       <Project>{65D44B64-7FFE-46A8-B0F4-9F853C3D833A}</Project>
       <Name>Core.Standards</Name>
     </ProjectReference>
+    <ProjectReference Include="..\POS.BL\POS.BL.csproj">
+      <Project>{0CF0DA20-E0B3-453D-8A04-E5AC4F09D2A2}</Project>
+      <Name>POS.BL</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
