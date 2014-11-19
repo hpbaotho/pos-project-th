@@ -57,12 +57,26 @@
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GridView\BaseGrid.cs" />
+    <Compile Include="GridView\BaseGrid.Designer.cs">
+      <DependentUpon>BaseGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GridView\IDataGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CoreMessageBox.resx">
       <DependentUpon>CoreMessageBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GridView\BaseGrid.resx">
+      <DependentUpon>BaseGrid.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Standards\Core.Standards.csproj">
+      <Project>{65D44B64-7FFE-46A8-B0F4-9F853C3D833A}</Project>
+      <Name>Core.Standards</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
