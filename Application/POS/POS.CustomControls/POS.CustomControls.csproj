@@ -57,7 +57,9 @@
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GridView\BaseGrid.cs" />
+    <Compile Include="GridView\BaseGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GridView\BaseGrid.Designer.cs">
       <DependentUpon>BaseGrid.cs</DependentUpon>
     </Compile>
