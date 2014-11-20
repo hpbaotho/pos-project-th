@@ -11,26 +11,27 @@ using Core.Standards.Entity;
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "AFEOnline.BL.Entities.Entity.SystemConfiguration, AFEOnline.BL", TableMapping = "AFE_System_Configuration")]
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.SystemConfiguration, POS.BL", TableMapping = "cbs_system_configuration")]
 
     public class SystemConfiguration : EntityBase
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
-        public int SystemConfigurationId { get; set; }
+        public int system_configuration_id { get; set; }
 
-        public string SystemConfigurationGroupCode { get; set; }
+        public string system_configuration_group_code { get; set; }
 
-        public string SystemConfigurationCode { get; set; }
+        public string system_configuration_code { get; set; }
 
-        public string SystemConfigurationName { get; set; }
+        public string system_configuration_name { get; set; }
 
-        public string Description { get; set; }
-        public string Value { get; set; }
-        public string ValueType { get; set; }
+        public string description { get; set; }
+        public string value { get; set; }
+        public string value_type { get; set; }
+        public bool active { get; set; }
 
         [EntityScalarProperty(PersistenceIgnorance = true)]
         public string Module { get; set; }
-
+        
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         [SelfValidation(Ruleset = ValidationRuleset.Update)]
         public void CheckDuplicateSystemConfiguration(ValidationResults results)
