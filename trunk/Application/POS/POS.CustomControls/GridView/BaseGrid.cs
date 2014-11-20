@@ -13,7 +13,7 @@ namespace POS.CustomControls.GridView
 {
     public partial class BaseGrid : UserControl
     {
-        public DatabaseService<EntityBase> EntityService { get; set; }
+        //public DatabaseService<EntityBase> EntityService { get; set; }
         public BaseGrid()
         {
             InitializeComponent();
@@ -42,23 +42,23 @@ namespace POS.CustomControls.GridView
                 loadEventHandler(null, null);
 
             }
-            DataTable dtSource = UtilityDataGrid.ConvertToDataTable(EntityService.FindAll(false).ToArray());
-            Grid.DataSource = dtSource;
-            Grid.ReadOnly = true;
+            //DataTable dtSource = UtilityDataGrid.ConvertToDataTable(EntityService.FindAll(false).ToArray());
+            //Grid.DataSource = dtSource;
+            //Grid.ReadOnly = true;
 
 
-            Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            if (dtSource.Rows.Count > 0)
-            {
-                tsbtnDelete.Enabled = false;
-                tsbtnSave.Enabled = false;
-            }
-            else
-            {
-                tsbtnDelete.Enabled = true;
-                tsbtnSave.Enabled = true;
-            }
+            //if (dtSource.Rows.Count > 0)
+            //{
+            //    tsbtnDelete.Enabled = false;
+            //    tsbtnSave.Enabled = false;
+            //}
+            //else
+            //{
+            //    tsbtnDelete.Enabled = true;
+            //    tsbtnSave.Enabled = true;
+            //}
         }
         public event EventHandler onAdditionalRecord;
         public event EventHandler onUpdateData;

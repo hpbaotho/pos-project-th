@@ -54,6 +54,7 @@
     <Compile Include="Attributes\AttributeUtility.cs" />
     <Compile Include="Attributes\EntityMappingAttribute.cs" />
     <Compile Include="Attributes\EntityScalarPropertyAttribute.cs" />
+    <Compile Include="Converters\Utility.cs" />
     <Compile Include="Entity\EntityBase.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />

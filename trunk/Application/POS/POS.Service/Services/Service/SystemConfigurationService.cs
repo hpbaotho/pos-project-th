@@ -11,14 +11,14 @@ namespace POS.Service.Services.Service
 {
     public class SystemConfigurationService : ServiceBase<SystemConfiguration>
     {
-        public DataSet GetSystemConfig()
+        public DataSet GetSystemConfig(string Code)
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(@"SELECT * FROM cbs_system_configuration
-                            WHERE system_configuration_code = '0101'  ");
+                            WHERE system_configuration_code = @Code  ");
 
             IList<DbParameter> parameters = new List<DbParameter>();
-            //parameters.Add(base.CreateParameter("@Code", "0101"));
+            parameters.Add(base.CreateParameter("@Code", Code));
 
             return base.ExecuteQuery(sql.ToString(), parameters.ToArray());
         }
