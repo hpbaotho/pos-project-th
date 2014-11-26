@@ -53,7 +53,7 @@ namespace POS
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.ThreadException +=    new ThreadExceptionEventHandler( handler.Application_ThreadException);
-                Application.Run(new TestByBoom());
+                Application.Run(new DragForm());
             
            
         }

@@ -54,6 +54,12 @@
     <Compile Include="CoreTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DragContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DragItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,12 @@
     <Compile Include="GridView\IDataGrid.cs" />
     <Compile Include="GridView\UtilityDataGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResizeBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShaDowControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CoreMessageBox.resx">
