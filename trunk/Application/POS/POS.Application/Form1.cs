@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using POS.CustomControls;
+using POS.Service.Services;
+using POS.CustomControls.GridView;
+using POS.BL.Entities.Entity;
+using Core.Standards.Converters;
 
 namespace POS
 {
@@ -19,7 +23,25 @@ namespace POS
 
         private void coreButton1_Click(object sender, EventArgs e)
         {
-            decimal a = 199 / int.Parse(coreTextBox1.Text);
+            
+                using (TestGridControl Ce = new TestGridControl())
+            {
+                Ce.ShowDialog();
+
+                if (Ce.DialogResult == DialogResult.OK || Ce.DialogResult == DialogResult.Cancel)
+                {
+                    
+                }
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DataTable dt = Converts.ConvertToDataTable(ServiceProvider.SystemConfigurationService.FindAll(true).ToArray<SystemConfiguration>());
+            dataGridView1.DataSource = dt;
+
+            //dataGridView1.AutoGenerateColumns = true;
+
         }
     }
 }

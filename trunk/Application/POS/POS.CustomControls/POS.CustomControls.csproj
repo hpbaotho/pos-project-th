@@ -70,8 +70,13 @@
       <DependentUpon>BaseGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="GridView\BaseGridController.cs" />
+    <Compile Include="GridView\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GridView\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GridView\IDataGrid.cs" />
-    <Compile Include="GridView\UtilityDataGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResizeBox.cs">
       <SubType>UserControl</SubType>
@@ -86,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GridView\BaseGrid.resx">
       <DependentUpon>BaseGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridView\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
