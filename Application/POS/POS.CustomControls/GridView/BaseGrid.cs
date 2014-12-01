@@ -13,65 +13,143 @@ namespace POS.CustomControls.GridView
 {
     public partial class BaseGrid : UserControl
     {
+        public DataTable DataSourceTable { get; set; }
+
         //public DatabaseService<EntityBase> EntityService { get; set; }
         public BaseGrid()
         {
             InitializeComponent();
         }
+        #region :: private function ::
         private void LoadData()
         {
-            // string connectionString = "Data Source=.;Initial Catalog=pubs;Integrated Security=True";
-            //string sql = "SELECT * FROM Stores";
-            //SqlConnection connection = new SqlConnection(connectionString);
-            //connection.Open();
-            //sCommand = new SqlCommand(sql, connection);
-            //sAdapter = new SqlDataAdapter(sCommand);
-            //sBuilder = new SqlCommandBuilder(sAdapter);
-            //sDs = new DataSet();
-            //sAdapter.Fill(sDs, "Stores");
-            //sTable = sDs.Tables["Stores"];
-            //connection.Close();
-            //dataGridView1.DataSource = sDs.Tables["Stores"];
-            //dataGridView1.ReadOnly = true;
-            //save_btn.Enabled = false;
-            //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            EventHandler loadEventHandler = onLoadDataGrid;
-            if (loadEventHandler != null)
+            DataBindArgs LoadArg = new DataBindArgs();
+            if (onLoadDataGrid != null)
             {
-                loadEventHandler(null, null);
+
+                onLoadDataGrid(Grid, LoadArg);
+                Grid.DataSource = LoadArg.DataSource;
+                Grid.Rows[5].Selected = true;
+            }
+        }
+        private void AlertUpdate()
+        {
+
+        }
+        private void ConfirmDelete()
+        {
+
+        }
+        #endregion
+
+
+        #region :: Event Function ::
+        private void BaseGrid_Load(object sender, EventArgs e)
+        {
+
+            LoadData();
+
+        }
+
+
+
+
+        private void tsbtnSave_Click(object sender, EventArgs e)
+        {
+            DataTable tb = Grid.DataSource as DataTable;
+            DataTable tbEdit = tb.GetChanges(DataRowState.Modified);
+            List<DataRow> editRows = tb.Rows.Cast<DataRow>().Where(li => li.RowState == DataRowState.Modified).ToList();
+            List<DataRow> AddRows = tb.Rows.Cast<DataRow>().Where(li => li.RowState == DataRowState.Added).ToList();
+            List<DataRow> DeleteRows = tb.Rows.Cast<DataRow>().Where(li => li.RowState == DataRowState.Deleted).ToList();
+
+        }
+
+        private void tsbtnAddRow_Click(object sender, EventArgs e)
+        {
+            
+            if (onAddNewRow != null)
+            {
+
+                onAddNewRow(null, null);
+
+                LoadData();
+                AlertUpdate();
 
             }
-            //DataTable dtSource = UtilityDataGrid.ConvertToDataTable(EntityService.FindAll(false).ToArray());
-            //Grid.DataSource = dtSource;
-            //Grid.ReadOnly = true;
-
-
-            //Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            //if (dtSource.Rows.Count > 0)
-            //{
-            //    tsbtnDelete.Enabled = false;
-            //    tsbtnSave.Enabled = false;
-            //}
-            //else
-            //{
-            //    tsbtnDelete.Enabled = true;
-            //    tsbtnSave.Enabled = true;
-            //}
         }
-        public event EventHandler onAdditionalRecord;
-        public event EventHandler onUpdateData;
-        public event EventHandler onLoadDataGrid;
+
+        private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            RowEventArgs RowArg = new RowEventArgs() { RowIndex = e.RowIndex };
+            if (onSelectedDataRow != null)
+            {
+
+                onSelectedDataRow(Grid.Rows[e.RowIndex], RowArg);
+
+                LoadData();
+                AlertUpdate();
+                Grid.ClearSelection();
+                //Grid.Rows
+                Grid.Rows[e.RowIndex].Selected = true;
+
+            }
+            
+
+        }
+
+        private void tsbtnDelete_Click(object sender, EventArgs e)
+        {
+            List<DataGridViewRow> SelectedRows = Grid.Rows.Cast<DataGridViewRow>().Where(li => li.Selected).ToList();
+            RowsEventArgs RowArg = new RowsEventArgs() { RowsSelected = SelectedRows };
+            if (onDeleteDataRows != null)
+            {
+
+                onDeleteDataRows(SelectedRows, RowArg);
+                LoadData();
+                AlertUpdate();
+                Grid.ClearSelection();
+            }
+
+        
+           
+        }
+
+
+
+
+        #endregion
+
+        public event EventHandler onAddNewRow;
+        public event EventHandler<RowEventArgs> onSelectedDataRow;
+        public event EventHandler<RowsEventArgs> onDeleteDataRows;
+        public event EventHandler<DataBindArgs> onLoadDataGrid;
+
+     
+
+    
+
+
+
+
+
+
     }
-    public class DataEventArgs : EventArgs
+    public class DataBindArgs : EventArgs
     {
-        public bool IsValidation { get; set; }
+
+        public DataTable DataSource { get; set; }
 
     }
     public class RowEventArgs : EventArgs
     {
-        public bool IsChanged { get; set; }
+        public int RowIndex { get; set; }
+        public string Key { get; set; }
 
+
+    }
+    public class RowsEventArgs : EventArgs
+    {
+        public List<DataGridViewRow> RowsSelected { get; set; }
     }
 }
