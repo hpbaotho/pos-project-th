@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
+using System.Xml.Serialization;
 
-namespace POS.CustomControls
+namespace POS.Control
 {
-    public class DragContainer : Panel
+    public partial class DragContainer : System.Windows.Forms.Panel
     {
-
-
+        public delegate void SelectDragItemHandler(object sender);
+        public event SelectDragItemHandler SelectDragEvent;
 
         private bool isContainsDragItem;
         private Pen gridPen = new Pen(Color.LightGray);
-        private int grid = 10; // Set this to what ever...
-        public List<DragItem> DragItem { get; set; }
+        private int grid = 30; // Set this to what ever...
+
+        public List<DragItem> DragItem;
 
         ResizeBox rTopLeft;
         ResizeBox rTopCenter;
@@ -25,14 +29,25 @@ namespace POS.CustomControls
         ResizeBox rBottomRight;
         ResizeBox rBottomCenter;
         ResizeBox rBottomLeft;
+
         public DragContainer()
         {
+            InitializeComponent();
             this.DragItem = new List<DragItem>();
-
             this.AddResizeControls();
-
         }
-
+        protected void onSelectDragEvent(object sender)
+        {
+            if (SelectDragEvent != null)
+            {
+                SelectDragEvent(sender);
+            }
+        }
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            this.DisplayOrHideGrid(pe.Graphics, this);
+            base.OnPaint(pe);
+        }
         private void AddResizeControls()
         {
             rTopLeft = new ResizeBox(DragHandleAnchor.TopLeft, this);
@@ -58,13 +73,14 @@ namespace POS.CustomControls
             string controlName = string.Format("{0}_DragItem_{1}", this.Name, this.DragItem.Count());
 
             control.Name = controlName;
-            control.SelectDragEvent += new CustomControls.DragItem.SelectDragItemHandler(control_SelectDragEvent);
+            control.SelectDragEvent += new DragItem.SelectDragItemHandler(control_SelectDragEvent);
             this.DragItem.Add(control);
             this.Controls.Add(control);
-        }
 
+        }
         protected void control_SelectDragEvent(string controlNmae)
         {
+
             foreach (DragItem d in this.DragItem)
             {
                 d.IsSelect = false;
@@ -74,11 +90,11 @@ namespace POS.CustomControls
             if (dragItem != null)
             {
                 dragItem.IsSelect = true;
-                this.UpdateLocationBoxResize(dragItem,DragHandleAnchor.None);
+                this.UpdateLocationBoxResize(dragItem, DragHandleAnchor.None);
+                this.onSelectDragEvent(dragItem);
 
             }
         }
-
         private void HideBoxResize()
         {
             rTopLeft.UnRegisterDragActive();
@@ -119,7 +135,9 @@ namespace POS.CustomControls
         }
         protected override void OnClick(EventArgs e)
         {
-            if (!isContainsDragItem) {
+            this.onSelectDragEvent(this);
+            if (!isContainsDragItem)
+            {
                 rTopLeft.UnRegisterDragActive();
                 rTopCenter.UnRegisterDragActive();
                 rTopRight.UnRegisterDragActive();
@@ -131,11 +149,7 @@ namespace POS.CustomControls
             }
             base.OnClick(e);
         }
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            this.DisplayOrHideGrid(e.Graphics, this);
-        }
+
         // Recalculate the coordinates to snap to grid
         // Note! Used by the MyUserControl object when positioning
         public Point SnapToGrid(Point dropPoint)
@@ -148,9 +162,9 @@ namespace POS.CustomControls
             if (Y_snap < 0) Y_snap = 0;
             return new Point(X_snap, Y_snap);
         }
-
+        
         // Draw the grid or not
-        private void DisplayOrHideGrid(Graphics gridGraphics, Control control)
+        private void DisplayOrHideGrid(Graphics gridGraphics, System.Windows.Forms.Control control)
         {
             Point pControl = control.PointToScreen(new Point(control.Location.X, control.Location.Y));
             // Dispose the current grid
@@ -176,15 +190,23 @@ namespace POS.CustomControls
             }
 
         }
+
+        // Handle key pressed; Used to perform a local move with the arrow keys
+        protected override bool IsInputKey(System.Windows.Forms.Keys keys)
+        {
+            if (keys == Keys.Right) this.Left++;
+            else if (keys == Keys.Left) this.Left--;
+            else if (keys == Keys.Down) this.Top++;
+            else if (keys == Keys.Up) this.Top--;
+            return base.IsInputKey(keys);
+        }
         // Is the cursor outside of the parent container?
         public bool IsCursorOutside(Point Minlocation, Point MaxLocation)
         {
 
-
-
             Point areaPoint = this.Parent.PointToScreen(new Point(this.Location.X, this.Location.Y));
             bool isContains = false;
-            Rectangle rectangle = new Rectangle(areaPoint.X, areaPoint.Y, this.Width, this.Height);
+            Rectangle rectangle = new Rectangle(areaPoint.X, areaPoint.Y, this.Width + 10, this.Height + 10);
 
             //  Point pointCheck = this.PointToScreen(location);
 

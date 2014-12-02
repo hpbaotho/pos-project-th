@@ -5,9 +5,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace POS.CustomControls
+namespace POS.Control
 {
-    public class ShaDowControl : FormBase
+    public class ShaDowControl : System.Windows.Forms.Form
     {
         private static ShaDowControl shaDow = null;
 
@@ -49,7 +49,7 @@ namespace POS.CustomControls
         new static public void SetBackColor(Color c)
         {
             if (shaDow != null) {
-                (shaDow as Control).BackColor = c;
+                (shaDow as System.Windows.Forms.Control).BackColor = c;
             }
         }
         // Hide
@@ -58,7 +58,7 @@ namespace POS.CustomControls
             if (shaDow != null)
             {
                 // Since we hide the original Hide() method we need to do this...
-                (shaDow as Control).Hide();
+                (shaDow as System.Windows.Forms.Control).Hide();
             }
         }
 
@@ -67,7 +67,7 @@ namespace POS.CustomControls
         {
             if (shaDow != null)
             {
-                (shaDow as Control).Size = size;
+                (shaDow as System.Windows.Forms.Control).Size = size;
             }
         }
 
@@ -76,7 +76,7 @@ namespace POS.CustomControls
         {
             if (shaDow != null)
             {
-                (shaDow as Control).Location = point;
+                (shaDow as System.Windows.Forms.Control).Location = point;
             }
         }
     }

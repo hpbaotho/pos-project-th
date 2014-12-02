@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 
-namespace POS.CustomControls
+namespace POS.Control
 {
-    public class ResizeBox : UserControl
+    public partial class ResizeBox : System.Windows.Forms.UserControl
     {
+
         private Point startPoint;
         public Point MouseDownStartPoint
         {
@@ -17,7 +20,7 @@ namespace POS.CustomControls
         }
         public DragHandleAnchor PositionAnchor;
         public DragItem dragActive { get; set; }
-        public ResizeBox(DragHandleAnchor positionAnchor, Control parent)
+        public ResizeBox(DragHandleAnchor positionAnchor, System.Windows.Forms.Control parent)
         {
             this.Name = string.Format("{0}_resize_{1}", parent.Name, positionAnchor.ToString());
             this.Width = 8;
@@ -28,17 +31,23 @@ namespace POS.CustomControls
         }
         protected override void OnMouseDown(MouseEventArgs mouseEventArgs)
         {
-            if (mouseEventArgs.Button != MouseButtons.Left) return;
-
-            startPoint = mouseEventArgs.Location;
-            this.MouseMove -= new MouseEventHandler(ResizeBox_MouseMove);
-            this.MouseMove += new MouseEventHandler(ResizeBox_MouseMove);
+            if (mouseEventArgs.Button == MouseButtons.Left) {
+                startPoint = mouseEventArgs.Location;
+                this.MouseMove -= new MouseEventHandler(ResizeBox_MouseMove);
+                this.MouseMove += new MouseEventHandler(ResizeBox_MouseMove);
+            }
+            
+           
             base.OnMouseDown(mouseEventArgs);
         }
         protected override void OnMouseUp(MouseEventArgs mouseEventArgs)
         {
-            if (mouseEventArgs.Button != MouseButtons.Left) return;
-            this.MouseMove -= new MouseEventHandler(ResizeBox_MouseMove);
+            if (mouseEventArgs.Button == MouseButtons.Left)
+            {
+
+                this.MouseMove -= new MouseEventHandler(ResizeBox_MouseMove);
+                this.dragActive.Refresh();
+            }
 
             base.OnMouseUp(mouseEventArgs);
         }
@@ -51,15 +60,6 @@ namespace POS.CustomControls
 
             if (this.Visible && this.dragActive != null)
             {
-                Point pMin = new Point((mouseEventArgs.X - startPoint.X), (mouseEventArgs.Y - startPoint.Y));
-                Point pMax = new Point(mouseEventArgs.X + this.Width, mouseEventArgs.Y + this.Height);
-
-                Point minPoint = this.PointToScreen(pMin);
-
-                Point maxPoint = new Point(minPoint.X + this.Width, minPoint.Y + this.Height);
-
-                bool IsOutSide = (Parent as DragContainer).IsCursorOutside(minPoint, maxPoint);
-                if (IsOutSide) return;
 
                 int orgLeft = this.Left;
                 int orgTop = this.Top;
@@ -67,6 +67,11 @@ namespace POS.CustomControls
                 int moveTop = mouseEventArgs.Y + orgTop - startPoint.Y;
                 int newDragW = 0;
                 int newDragH = 0;
+                int newDragL = 0;
+                int newDragT = 0;
+
+                int maxDragW = this.dragActive.Parent.Width - this.dragActive.Left;
+                int maxDragH = this.dragActive.Parent.Height - this.dragActive.Top;
 
                 switch (PositionAnchor)
                 {
@@ -77,15 +82,31 @@ namespace POS.CustomControls
                         if (newDragW > this.Width)
                         {
                             this.Left = moveLeft;
-                            this.dragActive.Width = newDragW;
-                            this.dragActive.Left = mouseEventArgs.X + this.dragActive.Left - startPoint.X;
+                            newDragL = mouseEventArgs.X + this.dragActive.Left - startPoint.X;
+                            if (newDragL > 0)
+                            {
+                                this.dragActive.Left = newDragL;
+                                this.dragActive.Width = newDragW;
+                            }
+                            else
+                            {
+                                this.dragActive.Left = 0;
+                            }
                         }
 
                         if (newDragH > this.Height)
                         {
                             this.Top = moveTop;
-                            this.dragActive.Height = newDragH;
-                            this.dragActive.Top = mouseEventArgs.Y + this.dragActive.Top - startPoint.Y;
+                            newDragT = mouseEventArgs.Y + this.dragActive.Top - startPoint.Y;
+                            if (newDragT > 0)
+                            {
+                                this.dragActive.Height = newDragH;
+                                this.dragActive.Top = newDragT;
+                            }
+                            else
+                            {
+                                this.dragActive.Top = 0;
+                            }
                         }
                         break;
                     case DragHandleAnchor.TopCenter:
@@ -93,37 +114,56 @@ namespace POS.CustomControls
                         if (newDragH > this.Height)
                         {
                             this.Top = moveTop;
-                            this.dragActive.Height = newDragH;
-                            this.dragActive.Top = mouseEventArgs.Y + this.dragActive.Top - startPoint.Y;
+                            newDragT = mouseEventArgs.Y + this.dragActive.Top - startPoint.Y;
+                            if (newDragT > 0)
+                            {
+                                this.dragActive.Height = newDragH;
+                                this.dragActive.Top = newDragT;
+                            }
+                            else
+                            {
+                                this.dragActive.Top = 0;
+                            }
                         }
                         break;
                     case DragHandleAnchor.TopRight:
                         newDragW = this.dragActive.Width - (orgLeft - moveLeft);
                         newDragH = this.dragActive.Height + (orgTop - moveTop);
+
+                        newDragT = mouseEventArgs.Y + this.dragActive.Top - startPoint.Y;
                         if (newDragW > this.Width)
                         {
                             this.Left = moveLeft;
                             this.dragActive.Width = newDragW;
                         }
 
-                        if (newDragH > this.Height)
+                        if (newDragH > this.Height && newDragT > 0)
                         {
                             this.Top = moveTop;
                             this.dragActive.Height = newDragH;
-                            this.dragActive.Top = mouseEventArgs.Y + this.dragActive.Top - startPoint.Y;
+                            this.dragActive.Top = newDragT;
+                        }
+                        else if (newDragT <= 0)
+                        {
+                            this.dragActive.Top = 0;
                         }
                         break;
                     case DragHandleAnchor.MiddleLeft:
 
                         newDragW = this.dragActive.Width + (orgLeft - moveLeft);
                         newDragH = this.dragActive.Height + (orgTop - moveTop);
-                        if (newDragW > this.Width)
+                        newDragL = mouseEventArgs.X + this.dragActive.Left - startPoint.X;
+                        if (newDragW > this.Width && newDragL > 0)
                         {
                             this.Left = moveLeft;
                             this.dragActive.Width = newDragW;
-                            this.dragActive.Left = mouseEventArgs.X + this.dragActive.Left - startPoint.X;
+                            this.dragActive.Left = newDragL;
                         }
-                      
+                        else if (newDragL <= 0)
+                        {
+                            this.dragActive.Left = 0;
+                        }
+
                         break;
                     case DragHandleAnchor.MiddleRight:
                         newDragW = this.dragActive.Width - (orgLeft - moveLeft);
@@ -133,16 +173,21 @@ namespace POS.CustomControls
                             this.Left = moveLeft;
                             this.dragActive.Width = newDragW;
                         }
-                        
+
                         break;
                     case DragHandleAnchor.BottomLeft:
                         newDragW = this.dragActive.Width + (orgLeft - moveLeft);
                         newDragH = this.dragActive.Height - (orgTop - moveTop);
-                        if (newDragW > this.Width)
+                        newDragL = mouseEventArgs.X + this.dragActive.Left - startPoint.X;
+                        if (newDragW > this.Width && newDragL > 0)
                         {
                             this.Left = moveLeft;
                             this.dragActive.Width = newDragW;
-                            this.dragActive.Left = mouseEventArgs.X + this.dragActive.Left - startPoint.X;
+                            this.dragActive.Left = newDragL;
+                        }
+                        else if (newDragL <= 0)
+                        {
+                            this.dragActive.Left = 0;
                         }
 
                         if (newDragH > this.Height)
@@ -176,6 +221,36 @@ namespace POS.CustomControls
                         }
                         break;
 
+                }
+                if (this.dragActive.Width > maxDragW)
+                {
+                    this.dragActive.Width = maxDragW;
+                }
+                if (this.dragActive.Height > maxDragH)
+                {
+                    this.dragActive.Height = maxDragH;
+                }
+
+                int maxLeft = this.dragActive.Left + this.dragActive.Width;
+                int maxTop = this.dragActive.Top + this.dragActive.Height;
+
+                int minLeft = this.dragActive.Left - this.Width;
+                int minTop = this.dragActive.Top - this.Height;
+
+                if (this.Left > maxLeft)
+                {
+                    this.Left = maxLeft;
+                }
+                else if (this.Left <= minLeft) {
+                    this.Left = minLeft;
+                }
+
+                if (this.Top > maxTop)
+                {
+                    this.Top = maxTop;
+                }
+                else if (this.Top <= minTop) {
+                    this.Top = minTop;
                 }
                 dragContainer.UpdateLocationBoxResize(this.dragActive, this.PositionAnchor);
 
@@ -284,6 +359,11 @@ namespace POS.CustomControls
                     break;
             }
         }
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+        }
+
     }
     public enum DragHandleAnchor
     {
