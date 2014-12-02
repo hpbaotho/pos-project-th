@@ -1,27 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 
-namespace POS.CustomControls
+namespace POS.Control
 {
-    public class DragItem : UserControl
+
+    public partial class DragItem : System.Windows.Forms.UserControl
     {
         public delegate void SelectDragItemHandler(string controlNmae);
         public event SelectDragItemHandler SelectDragEvent;
 
-        public bool IsSelect { get; set; }
+
+        public ControPropertiesDTO CustomProperties { get; set; }
+
+
+        public bool IsSelect;
         private bool IsFirstClickDrag;
         private bool IsOutSide;
         private Point OrignalLocation;
+
         public DragItem(Point location)
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.Location = location;
             this.OrignalLocation = location;
+            this.CustomProperties = new ControPropertiesDTO(this);
+        }
 
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            this.DrawText(pe.Graphics);
+            // this.DrawLetter();
+            base.OnPaint(pe);
         }
 
         protected void onSelectDragEvent(string controlName)
@@ -61,7 +76,7 @@ namespace POS.CustomControls
             startPoint = new Point(mouseEventArgs.X, mouseEventArgs.Y);
             this.IsFirstClickDrag = true;
             // Show the outline object
-            ShaDowControl.Show(this.PointToScreen(new Point(mouseEventArgs.X - startPoint.X - 1, mouseEventArgs.Y - startPoint.Y - 1)), this.Size);
+            ShaDowControl.Show(this.PointToScreen(new Point(mouseEventArgs.X - startPoint.X - 2, mouseEventArgs.Y - startPoint.Y - 2)), this.Size);
             // Register the mouse move handler
             this.MouseMove -= new MouseEventHandler(DragItem_MouseMove);
             this.MouseMove += new MouseEventHandler(DragItem_MouseMove);
@@ -121,10 +136,11 @@ namespace POS.CustomControls
                 // Unregister this event
                 this.MouseMove -= new MouseEventHandler(DragItem_MouseMove);
                 ShaDowControl.Hide();
-                // Hide the outline object
-               // ShaDowControl.SetBackColor(Color.Red);
 
-               // ShaDowControl.Move(this.PointToScreen(new Point(mouseEventArgs.X - startPoint.X, mouseEventArgs.Y - startPoint.Y)));
+                // Hide the outline object
+                // ShaDowControl.SetBackColor(Color.Red);
+
+                // ShaDowControl.Move(this.PointToScreen(new Point(mouseEventArgs.X - startPoint.X, mouseEventArgs.Y - startPoint.Y)));
 
                 // Do start the drag-drop action
                 this.DoDragDrop(this, DragDropEffects.Move);
@@ -137,19 +153,18 @@ namespace POS.CustomControls
             }
 
         }
-
-        private void InitializeComponent()
+        public override void Refresh()
         {
-            this.SuspendLayout();
-            // 
-            // DragItem
-            // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Name = "DragItem";
-            this.ResumeLayout(false);
-
+            base.Refresh();
+            this.onSelectDragEvent(this.Name);
         }
-
+        public void DrawText(Graphics g)
+        {
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Alignment = StringAlignment.Center;
+            g.DrawString(this.CustomProperties.Text, this.CustomProperties.Font, new SolidBrush(this.CustomProperties.ForeColor), ClientRectangle, sf);
+        }
 
     }
 }

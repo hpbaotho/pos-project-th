@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("POS.CustomControls")]
+[assembly: AssemblyTitle("POS.Control")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("POS.CustomControls")]
+[assembly: AssemblyProduct("POS.Control")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ab5e3e6e-4639-49ee-8278-247f25dcbfb2")]
+[assembly: Guid("e3be0daf-fc56-4a37-a47e-36e4f7d59cbc")]
 
 // Version information for an assembly consists of the following four values:
 //

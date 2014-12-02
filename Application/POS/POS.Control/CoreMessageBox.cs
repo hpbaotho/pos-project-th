@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-namespace POS.CustomControls
+
+namespace POS.Control
 {
     /// <summary>
     /// The form internally used by <see cref="CustomMessageBox"/> class.
     /// </summary>
-    internal partial class CoreMessageBox : Form
+    internal partial class CoreMessageBox : System.Windows.Forms.Form
     {
-        private Button btnSeeMore;
-        private Label lblDescription;
-        private Panel pnlErroeDetail;
-        private Panel panel1;
-        private Label lblError;
+        private System.Windows.Forms.Button btnSeeMore;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Panel pnlErroeDetail;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblError;
         /// <summary>
         /// This constructor is required for designer support.
         /// </summary>

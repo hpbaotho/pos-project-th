@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.grdBase = new POS.CustomControls.GridView.BaseGrid();
+            this.grdBase = new POS.Control.GridView.BaseGrid();
             this.SuspendLayout();
             // 
             // grdBase
@@ -41,7 +41,7 @@
             this.grdBase.Name = "grdBase";
             this.grdBase.Size = new System.Drawing.Size(690, 293);
             this.grdBase.TabIndex = 0;
-            this.grdBase.onLoadDataGrid += new System.EventHandler<POS.CustomControls.GridView.DataBindArgs>(this.grdBase_onLoadDataGrid);
+            this.grdBase.onLoadDataGrid += new System.EventHandler<POS.Control.GridView.DataBindArgs>(this.grdBase_onLoadDataGrid);
             // 
             // TestGridControl
             // 
@@ -58,7 +58,7 @@
 
         #endregion
 
-        private CustomControls.GridView.BaseGrid grdBase;
+        private POS.Control.GridView.BaseGrid grdBase;
 
     }
 }

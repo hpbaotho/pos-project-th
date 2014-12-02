@@ -47,20 +47,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DragForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DragForm.Designer.cs">
-      <DependentUpon>DragForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SO\SceenSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\SceenSetup.Designer.cs">
+      <DependentUpon>SceenSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SO\ShopLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\ShopLogin.Designer.cs">
+      <DependentUpon>ShopLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestByBoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,12 +73,6 @@
     <Compile Include="TestGridControl.Designer.cs">
       <DependentUpon>TestGridControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DragForm.resx">
-      <DependentUpon>DragForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -89,6 +83,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SO\SceenSetup.resx">
+      <DependentUpon>SceenSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\ShopLogin.resx">
+      <DependentUpon>ShopLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestByBoom.resx">
       <DependentUpon>TestByBoom.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,9 +115,9 @@
       <Project>{0CF0DA20-E0B3-453D-8A04-E5AC4F09D2A2}</Project>
       <Name>POS.BL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\POS.CustomControls\POS.CustomControls.csproj">
-      <Project>{4C68C2CA-EF32-4A23-8B99-FD942178ED14}</Project>
-      <Name>POS.CustomControls</Name>
+    <ProjectReference Include="..\POS.Control\POS.Control.csproj">
+      <Project>{71E695B2-4AE0-462C-819A-41D146D231F4}</Project>
+      <Name>POS.Control</Name>
     </ProjectReference>
     <ProjectReference Include="..\POS.Service\POS.Service.csproj">
       <Project>{617A9298-12E5-4345-87D7-157216D8ACE9}</Project>

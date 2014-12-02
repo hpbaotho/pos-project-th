@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POS.CustomControls.GridView;
 using POS.Service.Services;
 using POS.BL.Entities.Entity;
 using Core.Standards.Converters;
@@ -24,7 +23,7 @@ namespace POS
         {
         }
 
-        public void grdBase_onLoadDataGrid(object sender, CustomControls.GridView.DataBindArgs e)
+        public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
             DataTable dt = Converts.ConvertToDataTable(ServiceProvider.SystemConfigurationService.FindAll(true).ToArray<SystemConfiguration>());
             e.DataSource = dt;
