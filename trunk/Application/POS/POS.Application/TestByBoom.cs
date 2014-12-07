@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POS.Service.Services;
+using POS.BL.Service.SU;
 using POS.BL.Entities.Entity;
 using Core.Standards.Validations;
 using Core.Standards.Converters;
+using POS.BL;
 
 namespace POS
 {

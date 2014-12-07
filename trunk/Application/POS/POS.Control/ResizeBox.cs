@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using POS.BL.Utilities;
 
 namespace POS.Control
 {
@@ -23,8 +24,8 @@ namespace POS.Control
         public ResizeBox(DragHandleAnchor positionAnchor, System.Windows.Forms.Control parent)
         {
             this.Name = string.Format("{0}_resize_{1}", parent.Name, positionAnchor.ToString());
-            this.Width = 8;
-            this.Height = 8;
+            this.Width = CustomControl.ResizeBox;
+            this.Height = CustomControl.ResizeBox;
             this.Location = new System.Drawing.Point(0, 0);
             this.BackColor = SystemColors.MenuHighlight;
             this.PositionAnchor = positionAnchor;
