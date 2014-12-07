@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="InputSimulator">
+      <HintPath>..\..\REF.DLL\InputSimulator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +52,12 @@
     </Compile>
     <Compile Include="BaseButton.Designer.cs">
       <DependentUpon>BaseButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BaseTextBox.Designer.cs">
+      <DependentUpon>BaseTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ColorTable.cs" />
     <Compile Include="ControPropertiesDTO.cs" />
