@@ -22,7 +22,6 @@ namespace POS.BL
                 return systemConfigurationService;
             }
         }
-
         private static ScreenConfigService _ScreenConfigService;
         public static ScreenConfigService ScreenConfigService
         {
@@ -32,6 +31,30 @@ namespace POS.BL
                 return _ScreenConfigService;
             }
 
+        }
+        private static EmployeeService employeeService;
+        public static EmployeeService EmployeeService
+        {
+            get
+            {
+                if (employeeService == null)
+                {
+                    employeeService = new EmployeeService();
+                }
+                return employeeService;
+            }
+        }
+        private static RoleService roleService;
+        public static RoleService RoleService
+        {
+            get
+            {
+                if (roleService == null)
+                {
+                    roleService = new RoleService();
+                }
+                return roleService;
+            }
         }
     }
 }

@@ -5,11 +5,13 @@ using System.Text;
 
 namespace POS.BL.Utilities
 {
+    #region :: System ::
     public struct ConnectionStringName
     {
         public const string POSConnection = "POS";
     }
-    public struct ControlCode {
+    public struct ControlCode
+    {
         public const string Login = "LN001";
     }
     public struct ControlType
@@ -25,7 +27,8 @@ namespace POS.BL.Utilities
         public const string Delete = "D";
         public const string Add = "A";
     }
-    public struct GeneralMessage {
+    public struct GeneralMessage
+    {
 
         public const string MessageBoxTitle = "System Message";
 
@@ -54,13 +57,32 @@ namespace POS.BL.Utilities
         public const string ConfirmUpdateChanged = "The data has been changed, do you want to replace?";
 
     }
-    public struct ErrorMessage { 
-    // For SO 
+    public struct ErrorMessage
+    {
+        // For SO 
         public const string ScreenCodeIsRequire = "Screen Code is require.";
         public const string IsDuplicate = "{0} is duplicate in system.";
     }
-    public struct CustomControl {
+    public struct CustomControl
+    {
         public const int GridSize = 20;
         public const int ResizeBox = 8;
     }
+    public struct ModuleName
+    {
+        public const string Setting = "Setting";
+        public const string Inventory = "Inventory";
+    }
+    public struct ProgramName
+    {
+        public const string SetupEmployee = "Setup Employee";
+        public const string SetupRole = "Setup Role";
+        public const string AssignEmployeeRole = "Assign Employee Role";
+        public const string SystemConfiguration = "SystemConfiguration";
+    }
+    #endregion
+
+    #region :: POS ::
+
+    #endregion
 }
