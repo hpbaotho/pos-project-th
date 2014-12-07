@@ -12,7 +12,7 @@ namespace POS.Control
     public class FormBase : Form
     {
 
-        protected string ControlCode;
+       
         public void ShowMessage(string message)
         {
             MessageBox.Show(message, GeneralMessage.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -31,6 +31,9 @@ namespace POS.Control
             }
             MessageBox.Show(template, GeneralMessage.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+        }
+        protected void BindConfigScreen(Panel contanner,string screenCode){
+        
         }
     }
 }
