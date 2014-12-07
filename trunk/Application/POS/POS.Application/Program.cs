@@ -4,11 +4,12 @@ using System.Linq;
 using System.Windows.Forms;
 using POS.Control;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace POS
 {/// 
-/// Handles a thread (unhandled) exception.
-/// 
+    /// Handles a thread (unhandled) exception.
+    /// 
     internal class ThreadExceptionHandler
     {
         /// 
@@ -46,18 +47,21 @@ namespace POS
         [STAThread]
         static void Main()
         {
-            
-                 // Subscribe to thread (unhandled) exception events
-                ThreadExceptionHandler handler =      new ThreadExceptionHandler();
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.ThreadException +=    new ThreadExceptionEventHandler( handler.Application_ThreadException);
-               Application.Run(new SU.SetupMaster());
-              //  Application.Run(new TestGridControl());
-            
-           
+            // Subscribe to thread (unhandled) exception events
+            ThreadExceptionHandler handler = new ThreadExceptionHandler();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
+            Application.Run(new Login());
+          
+            //  Application.Run(new TestGridControl());
+
+
+
         }
 
     }
+
 }

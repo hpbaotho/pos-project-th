@@ -40,6 +40,15 @@ namespace POS.BL.Service.SO
             string sql = @" DELETE sc_screen_config where control_parent_id=@control_parent_id ";
             this.ExecuteNonQuery(sql, this.CreateParameter("control_parent_id", parentId));
         }
+        public ScreenConfig getScreenByCode(string screenCode)
+        {
+            string sql = @"
+                            SELECT * 
+                            FROM sc_screen_config WITH(NOLOCK) 
+                            WHERE ISNULL(control_code,'')=@control_code
+                        ";
+            return this.ExecuteQueryOne<ScreenConfig>(sql, this.CreateParameter("@control_code", screenCode));
+        }
         public List<ScreenConfig> getParentScreen()
         {
             string sql = @"
