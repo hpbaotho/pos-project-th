@@ -10,10 +10,14 @@ namespace POS.Control
     /// </summary>
     internal partial class CoreMessageBox : System.Windows.Forms.Form
     {
-        private System.Windows.Forms.Button btnSeeMore;
+        private POS.Control.BaseButton btnSeeMore;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Panel pnlErroeDetail;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.SplitContainer spMessage;
+        private System.Windows.Forms.Panel panel2;
+        private POS.Control.BaseButton btnClose;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblError;
         /// <summary>
         /// This constructor is required for designer support.
@@ -34,28 +38,40 @@ namespace POS.Control
         private void InitializeComponent()
         {
             this.lblError = new System.Windows.Forms.Label();
-            this.btnSeeMore = new System.Windows.Forms.Button();
+            this.btnSeeMore = new POS.Control.BaseButton();
             this.lblDescription = new System.Windows.Forms.Label();
             this.pnlErroeDetail = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.spMessage = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnClose = new POS.Control.BaseButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlErroeDetail.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spMessage)).BeginInit();
+            this.spMessage.Panel1.SuspendLayout();
+            this.spMessage.Panel2.SuspendLayout();
+            this.spMessage.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblError
             // 
-            this.lblError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblError.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblError.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lblError.Location = new System.Drawing.Point(0, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.lblError.Size = new System.Drawing.Size(553, 81);
+            this.lblError.Padding = new System.Windows.Forms.Padding(10, 20, 10, 0);
+            this.lblError.Size = new System.Drawing.Size(455, 93);
             this.lblError.TabIndex = 0;
-            this.lblError.Text = "ErroeMessage";
+            this.lblError.Tag = "";
+            this.lblError.Text = "Message";
             // 
             // btnSeeMore
             // 
-            this.btnSeeMore.Location = new System.Drawing.Point(466, 10);
+            this.btnSeeMore.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSeeMore.Location = new System.Drawing.Point(394, 3);
             this.btnSeeMore.Name = "btnSeeMore";
             this.btnSeeMore.Size = new System.Drawing.Size(75, 23);
             this.btnSeeMore.TabIndex = 1;
@@ -81,7 +97,7 @@ namespace POS.Control
             this.pnlErroeDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlErroeDetail.Controls.Add(this.lblDescription);
             this.pnlErroeDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlErroeDetail.Location = new System.Drawing.Point(0, -11);
+            this.pnlErroeDetail.Location = new System.Drawing.Point(0, -15);
             this.pnlErroeDetail.Name = "pnlErroeDetail";
             this.pnlErroeDetail.Size = new System.Drawing.Size(553, 139);
             this.pnlErroeDetail.TabIndex = 3;
@@ -89,23 +105,83 @@ namespace POS.Control
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnSeeMore);
+            this.panel1.Controls.Add(this.spMessage);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 81);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(553, 45);
+            this.panel1.Size = new System.Drawing.Size(553, 93);
             this.panel1.TabIndex = 4;
+            // 
+            // spMessage
+            // 
+            this.spMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spMessage.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.spMessage.IsSplitterFixed = true;
+            this.spMessage.Location = new System.Drawing.Point(0, 0);
+            this.spMessage.Name = "spMessage";
+            // 
+            // spMessage.Panel1
+            // 
+            this.spMessage.Panel1.Controls.Add(this.pictureBox1);
+            // 
+            // spMessage.Panel2
+            // 
+            this.spMessage.Panel2.Controls.Add(this.lblError);
+            this.spMessage.Size = new System.Drawing.Size(553, 93);
+            this.spMessage.SplitterDistance = 94;
+            this.spMessage.TabIndex = 2;
+            this.spMessage.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnClose);
+            this.panel2.Controls.Add(this.btnSeeMore);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 93);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(553, 30);
+            this.panel2.TabIndex = 5;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(475, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::POS.Control.Properties.Resources.error;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.ErrorImage = global::POS.Control.Properties.Resources.error;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 84);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // CoreMessageBox
             // 
-            this.ClientSize = new System.Drawing.Size(553, 128);
+            this.ClientSize = new System.Drawing.Size(553, 124);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblError);
             this.Controls.Add(this.pnlErroeDetail);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CoreMessageBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.pnlErroeDetail.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.spMessage.Panel1.ResumeLayout(false);
+            this.spMessage.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spMessage)).EndInit();
+            this.spMessage.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -127,6 +203,11 @@ namespace POS.Control
 
                 this.Height = 167;
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose(true);
         }
     }
 

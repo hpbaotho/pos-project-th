@@ -41,6 +41,7 @@ namespace POS.Control
             set
             {
                 _backgroupnPath = value;
+                if (string.IsNullOrEmpty(_backgroupnPath)) return;
                 this.dragItem.BackgroundImage = Image.FromFile(_backgroupnPath);
                 this.dragItem.Refresh();
             }
@@ -61,6 +62,7 @@ namespace POS.Control
             // TODO: Complete member initialization
             this.dragItem = dragItem;
 
+            /*
             //Get Font Text
             Font font1 = new Font("Arial", 12, FontStyle.Italic);
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
@@ -73,7 +75,7 @@ namespace POS.Control
             //Get Color Int 
             int bC = this.dragItem.BackColor.ToArgb();
             Color tBc = Color.FromArgb(bC);
-
+            */
         }
 
     }

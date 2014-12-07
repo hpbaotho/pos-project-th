@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using POS.BL.DTO.SO;
+using System.Reflection;
 namespace POS.Control
 {
 
@@ -15,9 +16,50 @@ namespace POS.Control
         public delegate void SelectDragItemHandler(string controlNmae);
         public event SelectDragItemHandler SelectDragEvent;
 
+        /// <proprty for map Entities>
 
+        public string FontStr
+        {
+            get
+            {
+                TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
+                // Saving Font object as a string
+                return converter.ConvertToString(this.Font);
+                // Load an instance of Font from a string
+                //   Font font = (Font)converter.ConvertFromString(fontString);
+
+            }
+            set
+            {
+                TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
+                Font font = (Font)converter.ConvertFromString(value);
+                this.Font = font;
+            }
+        }
+        /// </proprty for map Entities>
+
+        public CustromControlPropertyDTO ControlCommand { get; set; }
         public ControPropertiesDTO CustomProperties { get; set; }
-
+        public decimal PercenyWidth
+        {
+            get
+            {
+                decimal result = 0;
+                if (this.Parent != null)
+                    result = this.Width / this.Parent.Width;
+                return result;
+            }
+        }
+        public decimal PercenyHeight
+        {
+            get
+            {
+                decimal result = 0;
+                if (this.Parent != null)
+                    result = this.Height / this.Parent.Height;
+                return result;
+            }
+        }
 
         public bool IsSelect;
         private bool IsFirstClickDrag;
@@ -30,8 +72,47 @@ namespace POS.Control
             this.Location = location;
             this.OrignalLocation = location;
             this.CustomProperties = new ControPropertiesDTO(this);
+            this.ControlCommand = new CustromControlPropertyDTO();
         }
+        public DragItem CloneTo(DragItem cloneItem)
+        {
 
+
+            cloneItem.Parent = null;
+            cloneItem.SelectDragEvent = null;
+            cloneItem.ControlCommand.control_type = this.ControlCommand.control_type;
+            cloneItem.Width = this.Width;
+            cloneItem.Height = this.Height;
+            cloneItem.Top = this.Top;
+            cloneItem.Left = this.Left;
+            cloneItem.BackColor = this.BackColor;
+            cloneItem.ForeColor = this.ForeColor;
+            cloneItem.Font = this.Font;
+            cloneItem.CustomProperties.BackGroundImage = this.CustomProperties.BackGroundImage;
+            cloneItem.CustomProperties.BackGroundLayout = this.CustomProperties.BackGroundLayout;
+            cloneItem.BorderStyle = this.BorderStyle;
+            cloneItem.CustomProperties.Text = this.CustomProperties.Text;
+            return cloneItem;
+        }
+        //private void copyControl(DragItem sourceControl, DragItem targetControl)
+        //{
+        //    // make sure these are the same
+        //    if (sourceControl.GetType() != targetControl.GetType())
+        //    {
+        //        throw new Exception("Incorrect control types");
+        //    }
+
+        //    foreach (PropertyInfo sourceProperty in sourceControl.GetType().GetProperties())
+        //    {
+        //        object newValue = sourceProperty.GetValue(sourceControl, null);
+
+        //        MethodInfo mi = sourceProperty.GetSetMethod(true);
+        //        if (mi != null)
+        //        {
+        //            sourceProperty.SetValue(targetControl, newValue, null);
+        //        }
+        //    }
+        //}
         protected override void OnPaint(PaintEventArgs pe)
         {
             this.DrawText(pe.Graphics);

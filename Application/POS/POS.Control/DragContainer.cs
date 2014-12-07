@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using POS.BL.Utilities;
+using POS.BL.DTO.SO;
 
 namespace POS.Control
 {
@@ -15,9 +17,12 @@ namespace POS.Control
         public delegate void SelectDragItemHandler(object sender);
         public event SelectDragItemHandler SelectDragEvent;
 
+        private CustromControlPropertyDTO _ControlCommand;
+        public CustromControlPropertyDTO ControlCommand { get { return _ControlCommand; } set { _ControlCommand = value; } }
+
         private bool isContainsDragItem;
         private Pen gridPen = new Pen(Color.LightGray);
-        private int grid = 30; // Set this to what ever...
+        private int grid = CustomControl.GridSize; // Set this to what ever...
 
         public List<DragItem> DragItem;
 
@@ -34,6 +39,7 @@ namespace POS.Control
         {
             InitializeComponent();
             this.DragItem = new List<DragItem>();
+            this._ControlCommand = new CustromControlPropertyDTO();
             this.AddResizeControls();
         }
         protected void onSelectDragEvent(object sender)
@@ -78,15 +84,23 @@ namespace POS.Control
             this.Controls.Add(control);
 
         }
+        public void DuplicateDragItem()
+        {
+            DragItem dragItem = this.DragItem.Find(a => a.IsSelect == true && a.ControlCommand.ControlState != ObjectState.Delete);
+            if (dragItem != null)
+            {
+                DragItem duplicate = new Control.DragItem(new Point(0, 0));
+                duplicate = dragItem.CloneTo(duplicate);
+                duplicate.ControlCommand.ControlState = ObjectState.Add;
+                this.AddDragControl(duplicate);
+
+            }
+        }
         protected void control_SelectDragEvent(string controlNmae)
         {
 
-            foreach (DragItem d in this.DragItem)
-            {
-                d.IsSelect = false;
-                this.HideBoxResize();
-            }
-            DragItem dragItem = this.DragItem.Find(a => a.Name == controlNmae);
+            this.HideBoxResize();
+            DragItem dragItem = this.DragItem.Find(a => a.Name == controlNmae && a.ControlCommand.ControlState != ObjectState.Delete);
             if (dragItem != null)
             {
                 dragItem.IsSelect = true;
@@ -95,7 +109,48 @@ namespace POS.Control
 
             }
         }
-        private void HideBoxResize()
+        public void ClearDragItem()
+        {
+
+            List<DragItem> dragItem = this.DragItem.Where(a => a.ControlCommand.ControlState != ObjectState.Delete).ToList();
+            if (dragItem != null && dragItem.Count > 0)
+            {
+                foreach (DragItem item in dragItem)
+                {
+                    this.Controls.Remove(item);
+                }
+
+            }
+
+            this.DragItem = new List<DragItem>();
+
+        }
+        public void DeletCurrentItem()
+        {
+            DragItem dragItem = this.DragItem.Find(a => a.IsSelect == true && a.ControlCommand.ControlState != ObjectState.Delete);
+            if (dragItem != null)
+            {
+                if (dragItem.ControlCommand.ControlState == ObjectState.Add)
+                {
+                    this.DragItem.Remove(dragItem);
+                }
+                else
+                {
+                    dragItem.ControlCommand.ControlState = ObjectState.Delete;
+                }
+                this.Controls.Remove(dragItem);
+                this.HideBoxResize();
+            }
+        }
+        public void UpdateCurrentDragItem(CustromControlPropertyDTO prorpty)
+        {
+            DragItem dragItem = this.DragItem.Find(a => a.IsSelect == true && a.ControlCommand.ControlState != ObjectState.Delete);
+            if (dragItem != null)
+            {
+                dragItem.ControlCommand = prorpty;
+            }
+        }
+        public void HideBoxResize()
         {
             rTopLeft.UnRegisterDragActive();
             rTopCenter.UnRegisterDragActive();
@@ -105,6 +160,10 @@ namespace POS.Control
             rBottomLeft.UnRegisterDragActive();
             rBottomRight.UnRegisterDragActive();
             rBottomCenter.UnRegisterDragActive();
+            foreach (DragItem d in this.DragItem)
+            {
+                d.IsSelect = false;
+            }
         }
         public void UpdateLocationBoxResize(DragItem dragItem, DragHandleAnchor excludePositionAnchor)
         {
@@ -124,7 +183,7 @@ namespace POS.Control
             Point minPoint = this.PointToScreen(pMin);
 
             isContainsDragItem = true;
-            foreach (DragItem d in this.DragItem)
+            foreach (DragItem d in this.DragItem.Where(a => a.ControlCommand.ControlState != ObjectState.Delete))
             {
                 Point areaPoint = this.Parent.PointToScreen(new Point(d.Location.X, d.Location.Y));
                 Rectangle rectangle = new Rectangle(areaPoint.X, areaPoint.Y, d.Width, d.Height);
@@ -162,7 +221,7 @@ namespace POS.Control
             if (Y_snap < 0) Y_snap = 0;
             return new Point(X_snap, Y_snap);
         }
-        
+
         // Draw the grid or not
         private void DisplayOrHideGrid(Graphics gridGraphics, System.Windows.Forms.Control control)
         {
@@ -191,15 +250,6 @@ namespace POS.Control
 
         }
 
-        // Handle key pressed; Used to perform a local move with the arrow keys
-        protected override bool IsInputKey(System.Windows.Forms.Keys keys)
-        {
-            if (keys == Keys.Right) this.Left++;
-            else if (keys == Keys.Left) this.Left--;
-            else if (keys == Keys.Down) this.Top++;
-            else if (keys == Keys.Up) this.Top--;
-            return base.IsInputKey(keys);
-        }
         // Is the cursor outside of the parent container?
         public bool IsCursorOutside(Point Minlocation, Point MaxLocation)
         {

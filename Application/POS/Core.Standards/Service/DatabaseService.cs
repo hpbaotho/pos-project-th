@@ -563,8 +563,8 @@ namespace Core.Standards.Service
 
             //System.Diagnostics.Debug.WriteLine("Enter Insert : " + DateTime.Now.ToString());
             // Validate Entity.
-            //ValidationResults validationResults = Validation.Validate<TEntity>(entity, rulesets);
-            //if (!validationResults.IsValid) throw new ValidationException(validationResults);
+            ValidationResults validationResults = Validation.Validate<TEntity>(entity, rulesets);
+            if (!validationResults.IsValid) throw new ValidationException(validationResults);
 
             // Get Insert Command.
             DbCommand command = this.GetSqlInsertCommand(entity, false);
@@ -580,8 +580,8 @@ namespace Core.Standards.Service
         {
 
             // Validate Entity.
-            //ValidationResults validationResults = Validation.Validate<TEntity>((TEntity)entity, rulesets);
-            //if (!validationResults.IsValid) throw new ValidationException(validationResults);
+            ValidationResults validationResults = Validation.Validate<TEntity>((TEntity)entity, rulesets);
+            if (!validationResults.IsValid) throw new ValidationException(validationResults);
 
             //string sqlStatement = string.Concat(CreateInsertSql(objEntity), " SELECT SCOPE_IDENTITY(); ");
             DbCommand command = this.GetSqlInsertCommand(entity, true);
@@ -598,8 +598,8 @@ namespace Core.Standards.Service
 
 
             // Validate Entity.
-            //ValidationResults validationResults = Validation.Validate<TEntity>(entity, rulesets);
-            //if (!validationResults.IsValid) throw new ValidationException(validationResults);
+            ValidationResults validationResults = Validation.Validate<TEntity>(entity, rulesets);
+            if (!validationResults.IsValid) throw new ValidationException(validationResults);
 
             // Get Update Command.
             DbCommand command = this.GetSqlUpdateCommand(entity);
@@ -705,8 +705,8 @@ namespace Core.Standards.Service
         public int Delete(TEntity entity, params string[] rulesets)
         {
             // Validate Entity.
-            //ValidationResults validationResults = Validation.Validate<TEntity>(entity, rulesets);
-            //if (!validationResults.IsValid) throw new ValidationException(validationResults);
+            ValidationResults validationResults = Validation.Validate<TEntity>(entity, rulesets);
+            if (!validationResults.IsValid) throw new ValidationException(validationResults);
 
             // Get Update Command.
             DbCommand command = this.GetSqlDeleteCommand(entity);
