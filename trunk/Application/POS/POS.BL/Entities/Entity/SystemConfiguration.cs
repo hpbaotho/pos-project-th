@@ -11,7 +11,7 @@ using Core.Standards.Entity;
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.SystemConfiguration, POS.BL", TableMapping = "cbs_system_configuration")]
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.SystemConfiguration, POS.BL", TableMapping = "db_system_configuration")]
 
     public class SystemConfiguration : EntityBase
     {

@@ -423,7 +423,19 @@ namespace Core.Standards.Service
                 return null;
             }
         }
-
+        public DataSet FindAllDataSet(bool locked)
+        {
+            DbCommand command = this.GetSqlQueryCommand(null, locked);
+            DataSet ds = dbManager.ExecuteDataSet(command);
+            if ((ds != null) && (ds.Tables.Count > 0) && (ds.Tables[0] != null))
+            {
+                return ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
         private DbCommand GetSqlQueryCommand(TEntity objKeyCriteria, bool locked)
         {
             StringBuilder sql = new StringBuilder();
