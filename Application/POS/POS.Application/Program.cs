@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using POS.Control;
 using System.Threading;
 using System.Runtime.InteropServices;
+using POS.SU;
 
 namespace POS
 {/// 
@@ -55,11 +56,8 @@ namespace POS
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
             Application.Run(new Login());
-          
-            //  Application.Run(new TestGridControl());
-
-
-
+            //Application.Run(new SetupMaster());
+            //Application.Run(new TestGridControl());
         }
 
     }
