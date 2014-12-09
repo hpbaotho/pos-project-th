@@ -8,7 +8,19 @@ namespace POS.BL
 {
     public static class ServiceProvider
     {
+        private static SystemConfigGroupService systemConfigGroupService;
+        public static SystemConfigGroupService SystemConfigGroupService
+        {
+            get
+            {
+                if (systemConfigGroupService == null)
+                {
+                    systemConfigGroupService = new SystemConfigGroupService();
+                }
 
+                return systemConfigGroupService;
+            }
+        }
         private static SystemConfigurationService systemConfigurationService;
         public static SystemConfigurationService SystemConfigurationService
         {
@@ -32,6 +44,7 @@ namespace POS.BL
             }
 
         }
+
         private static EmployeeService employeeService;
         public static EmployeeService EmployeeService
         {

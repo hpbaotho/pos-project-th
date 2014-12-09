@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditSystemConfigGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditSystemConfigGroup.Designer.cs">
+      <DependentUpon>AddEditSystemConfigGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,12 +80,15 @@
     <Compile Include="TestByBoom.Designer.cs">
       <DependentUpon>TestByBoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestGridControl.cs">
+    <Compile Include="SetupSystemConfigGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestGridControl.Designer.cs">
-      <DependentUpon>TestGridControl.cs</DependentUpon>
+    <Compile Include="SetupSystemConfigGroup.Designer.cs">
+      <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddEditSystemConfigGroup.resx">
+      <DependentUpon>AddEditSystemConfigGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,8 +111,8 @@
     <EmbeddedResource Include="TestByBoom.resx">
       <DependentUpon>TestByBoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestGridControl.resx">
-      <DependentUpon>TestGridControl.cs</DependentUpon>
+    <EmbeddedResource Include="SetupSystemConfigGroup.resx">
+      <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>

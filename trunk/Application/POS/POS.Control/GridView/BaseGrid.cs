@@ -16,7 +16,7 @@ namespace POS.Control.GridView
     public partial class BaseGrid : UserControl
     {
         public IEnumerable<object> DataSourceTable { get; set; }
-
+        public string[] DataKeyName { get; set; }
         //public DatabaseService<EntityBase> EntityService { get; set; }
         public BaseGrid()
         {
@@ -36,6 +36,8 @@ namespace POS.Control.GridView
         }
         private void UpdateDataRow(DataGridViewRow rowSelected)
         {
+            
+            RowEventArgs RowArg = new RowEventArgs();
             //Grid.Rows[rowIndex]
             if (rowSelected.IsNewRow)
             {
@@ -44,11 +46,13 @@ namespace POS.Control.GridView
             else
             {
                 
-                RowEventArgs RowArg = new RowEventArgs() { RowSelected = rowSelected };
+                
+
                 if (onSelectedDataRow != null && UtilityMessage.Confirm(GeneralMessage.ConfirmUpdate, GeneralMessage.MessageBoxTitle))
                 {
-
-                    onSelectedDataRow(rowSelected, RowArg);
+                    RowArg.RowSelected = rowSelected;
+                    
+                    onSelectedDataRow(GetUpdateDataKey(rowSelected), RowArg);
 
                     LoadData();
 
@@ -65,14 +69,15 @@ namespace POS.Control.GridView
             
             if (selectedRows.Count > 0)
             {
-                
+
                 if (UtilityMessage.Confirm(GeneralMessage.ConfirmDelete, GeneralMessage.MessageBoxTitle))
                 {
                     RowsEventArgs RowArg = new RowsEventArgs() { RowsSelected = selectedRows };
                     if (onDeleteDataRows != null)
                     {
+                        
 
-                        onDeleteDataRows(selectedRows, RowArg);
+                        onDeleteDataRows(GetDeleteDataKey(selectedRows), RowArg);
                         LoadData();
                         Grid.ClearSelection();
                         UtilityMessage.Alert(GeneralMessage.DeleteComplete, GeneralMessage.MessageBoxTitle);
@@ -85,6 +90,30 @@ namespace POS.Control.GridView
                 UtilityMessage.Warning(GeneralMessage.NoSelectedData, GeneralMessage.MessageBoxTitle);
 
             }
+        }
+        private Dictionary<string, object> GetUpdateDataKey(DataGridViewRow rowSelected)
+        {
+            Dictionary<string, object> DataKeys = new Dictionary<string, object>();
+            foreach (string name in this.DataKeyName)
+            {
+                DataKeys.Add(name, rowSelected.Cells[name].Value);
+            }
+            return DataKeys;
+        }
+        private IEnumerable<Dictionary<string, object>> GetDeleteDataKey(List<DataGridViewRow> selectedRows)
+        {
+            List<Dictionary<string, object>> DataKeys = new List<Dictionary<string, object>>();
+            foreach (DataGridViewRow rowSelected in selectedRows)
+            {
+
+                Dictionary<string, object> dicRow = new Dictionary<string, object>();
+                foreach (string name in this.DataKeyName)
+                {
+                    dicRow.Add(name, rowSelected.Cells[name].Value);
+                }
+                DataKeys.Add(dicRow);
+            }
+            return DataKeys;
         }
         #endregion
 
@@ -118,7 +147,7 @@ namespace POS.Control.GridView
         private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            
+
             UpdateDataRow(Grid.Rows[rowIndex]);
 
 
@@ -165,7 +194,7 @@ namespace POS.Control.GridView
         public event EventHandler<DataGridViewCellFormattingEventArgs> onCellFormatting;
         #endregion
 
-        
+
     }
     public class DataBindArgs : EventArgs
     {
