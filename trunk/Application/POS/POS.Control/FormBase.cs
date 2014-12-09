@@ -13,8 +13,9 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using WindowsInput;
+//using WindowsInput;
 using System.Threading;
+using POS.Control.BaseMessageBox;
 
 namespace POS.Control
 {
@@ -30,11 +31,11 @@ namespace POS.Control
         }
         public void ShowMessage(string message)
         {
-            MessageBox.Show(message, GeneralMessage.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UtilityMessage.Alert(message, GeneralMessage.MessageBoxTitle);
         }
         public void ShowErrorMessage(string message)
         {
-            MessageBox.Show(message, GeneralMessage.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            UtilityMessage.ErrorMessage(message, GeneralMessage.MessageBoxTitle);
         }
         public void ShowErrorMessage(ValidationException error)
         {
@@ -44,8 +45,12 @@ namespace POS.Control
             {
                 template += "  - " + message.ErrorMessage + Environment.NewLine;
             }
-            MessageBox.Show(template, GeneralMessage.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            UtilityMessage.ErrorMessage(template, GeneralMessage.MessageBoxTitle);
 
+        }
+        public bool ShowConfirmMessage(string message, string title)
+        {
+          return  UtilityMessage.Confirm(message, title);
         }
         protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
         {

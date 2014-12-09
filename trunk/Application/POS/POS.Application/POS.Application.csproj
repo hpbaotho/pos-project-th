@@ -62,12 +62,6 @@
     <Compile Include="SO\SceenSetup.Designer.cs">
       <DependentUpon>SceenSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="SU\SetupMaster.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SU\SetupMaster.Designer.cs">
-      <DependentUpon>SetupMaster.cs</DependentUpon>
-    </Compile>
     <Compile Include="TestByBoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +89,6 @@
     </Compile>
     <EmbeddedResource Include="SO\SceenSetup.resx">
       <DependentUpon>SceenSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SU\SetupMaster.resx">
-      <DependentUpon>SetupMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestByBoom.resx">
       <DependentUpon>TestByBoom.cs</DependentUpon>
@@ -130,7 +121,9 @@
       <Name>POS.Control</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SU\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Volume.png" />
   </ItemGroup>
