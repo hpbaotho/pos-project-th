@@ -11,11 +11,11 @@ namespace POS.Control.GridView
     public interface IDataGrid
     {
         //void SetController(DatabaseService<EntityBase> service);
-        void ClearGrid();
-        void AddDataToGrid(ServiceBase<EntityBase> service);
-        void UpdateGridWithChangedUser(ServiceBase<EntityBase> service);
-        void RemoveFromGrid(ServiceBase<EntityBase> service);
-        string GetIdOfSelectedGrid();
-        void SetSelectedGrid(ServiceBase<EntityBase> service);
+        //void ClearGrid();
+        //void AddDataToGrid(ServiceBase<EntityBase> service);
+        //void UpdateGridWithChangedUser(ServiceBase<EntityBase> service);
+        //void RemoveFromGrid(ServiceBase<EntityBase> service);
+        //string GetIdOfSelectedGrid();
+        //void SetSelectedGrid(ServiceBase<EntityBase> service);
     }
 }

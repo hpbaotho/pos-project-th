@@ -11,25 +11,25 @@ namespace POS.Control.GridView
         #region :: Interface Method ::
 
 
-        public void AddDataToGrid(BL.Service.ServiceBase<EntityBase> service)
-        {
-            throw new NotImplementedException();
-        }
+        //public void AddDataToGrid(BL.Service.ServiceBase<EntityBase> service)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void UpdateGridWithChangedUser(BL.Service.ServiceBase<EntityBase> service)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateGridWithChangedUser(BL.Service.ServiceBase<EntityBase> service)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void RemoveFromGrid(BL.Service.ServiceBase<EntityBase> service)
-        {
-            throw new NotImplementedException();
-        }
+        //public void RemoveFromGrid(BL.Service.ServiceBase<EntityBase> service)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void SetSelectedGrid(BL.Service.ServiceBase<EntityBase> service)
-        {
-            throw new NotImplementedException();
-        }
+        //public void SetSelectedGrid(BL.Service.ServiceBase<EntityBase> service)
+        //{
+        //    throw new NotImplementedException();
+        //}
         #endregion
     
 
