@@ -13,7 +13,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-//using WindowsInput;
+using WindowsInput;
 using System.Threading;
 using POS.Control.BaseMessageBox;
 
