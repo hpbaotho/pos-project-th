@@ -277,6 +277,8 @@ namespace Core.Standards.Service
 
 
         #endregion
+
+     
     }
     public class DatabaseService<TEntity> : DatabaseService where TEntity : EntityBase, new()
     {

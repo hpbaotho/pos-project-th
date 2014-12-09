@@ -36,12 +36,14 @@
             this.grdBase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdBase.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdBase.DataSourceTable = null;
             this.grdBase.Location = new System.Drawing.Point(13, 13);
             this.grdBase.Name = "grdBase";
             this.grdBase.Size = new System.Drawing.Size(690, 293);
             this.grdBase.TabIndex = 0;
             this.grdBase.onLoadDataGrid += new System.EventHandler<POS.Control.GridView.DataBindArgs>(this.grdBase_onLoadDataGrid);
+            this.grdBase.onCellFormatting += new System.EventHandler<System.Windows.Forms.DataGridViewCellFormattingEventArgs>(this.grdBase_onCellFormatting);
             // 
             // TestGridControl
             // 

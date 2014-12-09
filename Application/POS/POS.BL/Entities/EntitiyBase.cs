@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Core.Standards.Attributes;
+using System.Reflection;
 
 namespace POS.BL.Entities
 {
@@ -64,6 +65,11 @@ namespace POS.BL.Entities
             this.updated_by = "SYSTEM";
             this.UpdateByEntity = "SYSTEM";
 
+        }
+        public Type[] GetTypesInNamespace()
+        {
+            Type[] allNamespace = Assembly.GetExecutingAssembly().GetTypes();
+            return Assembly.GetExecutingAssembly().GetTypes().Where(t => t.Namespace.Equals("POS.BL.Entities.Entity")).ToArray();
         }
     }
 }

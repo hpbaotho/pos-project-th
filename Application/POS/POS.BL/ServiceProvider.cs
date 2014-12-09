@@ -32,29 +32,29 @@ namespace POS.BL
             }
 
         }
-        private static EmployeeService employeeService;
-        public static EmployeeService EmployeeService
-        {
-            get
-            {
-                if (employeeService == null)
-                {
-                    employeeService = new EmployeeService();
-                }
-                return employeeService;
-            }
-        }
-        private static RoleService roleService;
-        public static RoleService RoleService
-        {
-            get
-            {
-                if (roleService == null)
-                {
-                    roleService = new RoleService();
-                }
-                return roleService;
-            }
-        }
+        //private static EmployeeService employeeService;
+        //public static EmployeeService EmployeeService
+        //{
+        //    get
+        //    {
+        //        if (employeeService == null)
+        //        {
+        //            employeeService = new EmployeeService();
+        //        }
+        //        return employeeService;
+        //    }
+        //}
+        //private static RoleService roleService;
+        //public static RoleService RoleService
+        //{
+        //    get
+        //    {
+        //        if (roleService == null)
+        //        {
+        //            roleService = new RoleService();
+        //        }
+        //        return roleService;
+        //    }
+        //}
     }
 }

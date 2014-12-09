@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Core.Standards.Entity;
+using POS.BL.Service;
 
 
 namespace POS.Control.GridView
@@ -11,10 +12,10 @@ namespace POS.Control.GridView
     {
         //void SetController(DatabaseService<EntityBase> service);
         void ClearGrid();
-        void AddDataToGrid(EntityBase entity);
-        void UpdateGridWithChangedUser(EntityBase entity);
-        void RemoveFromGrid(EntityBase entity);
+        void AddDataToGrid(ServiceBase<EntityBase> service);
+        void UpdateGridWithChangedUser(ServiceBase<EntityBase> service);
+        void RemoveFromGrid(ServiceBase<EntityBase> service);
         string GetIdOfSelectedGrid();
-        void SetSelectedGrid(EntityBase entity);
+        void SetSelectedGrid(ServiceBase<EntityBase> service);
     }
 }

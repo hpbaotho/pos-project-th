@@ -440,13 +440,15 @@ namespace Core.Standards.Converters
         public static DataTable ConvertToDataTable(Object[] array)
         {
             PropertyInfo[] properties = array.GetType().GetElementType().GetProperties();
+            DataSet ds = new DataSet();
             DataTable dt = CreateDataTable(properties);
             if (array.Length != 0)
             {
                 foreach (object o in array)
                     FillData(properties, dt, o);
             }
-            return dt;
+            ds.Tables.Add(dt);
+            return ds.Tables[0];
         }
 
         private static DataTable CreateDataTable(PropertyInfo[] properties)

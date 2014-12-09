@@ -27,6 +27,15 @@ namespace POS
         {
             if (e.KeyCode == Keys.Enter) {
                 base.ShowMessage("You press OK");
+                using (TestGridControl form = new TestGridControl())
+                {
+                    DialogResult result =  form.ShowDialog();
+
+                    if (result == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                    }
+                }
             }
         }
 

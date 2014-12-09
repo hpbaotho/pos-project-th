@@ -80,6 +80,12 @@ namespace POS.BL.Utilities
         public const string AssignEmployeeRole = "Assign Employee Role";
         public const string SystemConfiguration = "SystemConfiguration";
     }
+    public struct FormatString {
+        public const string TotalRowsGrid = "Total {0} Rows";
+        public const string SelectedRowsGrid = "Selected {0} Rows";
+        public const string FormatDate = "dd-MMM-yyyy";
+     
+    }
     #endregion
 
     #region :: POS ::
