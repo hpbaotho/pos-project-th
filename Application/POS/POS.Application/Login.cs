@@ -27,7 +27,7 @@ namespace POS
         {
             if (e.KeyCode == Keys.Enter) {
                 base.ShowMessage("You press OK");
-                using (TestGridControl form = new TestGridControl())
+                using (SetupSystemConfigGroup form = new SetupSystemConfigGroup())
                 {
                     DialogResult result =  form.ShowDialog();
 

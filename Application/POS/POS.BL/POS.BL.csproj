@@ -64,6 +64,7 @@
     <Compile Include="Entities\Entity\Employee.cs" />
     <Compile Include="Entities\Entity\Role.cs" />
     <Compile Include="Entities\Entity\ScreenConfig.cs" />
+    <Compile Include="Entities\Entity\SystemConfigGroup.cs" />
     <Compile Include="Entities\Entity\SystemConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProvider.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Service\SO\ScreenConfigService.cs" />
     <Compile Include="Service\SU\EmployeeService.cs" />
     <Compile Include="Service\SU\RoleService.cs" />
+    <Compile Include="Service\SU\SystemConfigGroupService.cs" />
     <Compile Include="Service\SU\SystemConfigurationService.cs" />
     <Compile Include="Utilities\Enum.cs" />
   </ItemGroup>
