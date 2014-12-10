@@ -95,6 +95,11 @@ namespace POS.BL.Utilities
         public const string Add = "Add {0}";
         public const string Edit = "Edit {0}";
     }
+    public struct DefaultFontControl {
+        public const string FontName = "Arial";
+        public const int FontSize = 14;
+        public const int FontStyle = 0;
+    }
     #endregion
 
     #region :: POS ::

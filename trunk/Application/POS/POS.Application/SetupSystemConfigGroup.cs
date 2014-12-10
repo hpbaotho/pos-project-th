@@ -16,9 +16,9 @@ using POS.Control;
 
 namespace POS
 {
-    public partial class SetupSystemConfigGroup : Control.FormBase
+    public partial class SetupSystemConfigGroup : FormBase
     {
-        TabPage tabPageAddEdit = null;
+        TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "system_configuration_group_code";
 
         public SetupSystemConfigGroup()
@@ -100,7 +100,7 @@ namespace POS
         {
             if (tabControl1.TabPages.Count == 1 || (tabControl1.TabPages.Count > 1 && base.ShowConfirmMessage(GeneralMessage.ConfirmNewTab, "Confirm")))
             {
-                controlAddEdit.NotifyReturnEvent += new Control.BaseUserContorl.NotifyReturnHandler(NotifyReturnEvent);
+                controlAddEdit.NotifyReturnEvent += new Control.BaseUserControl.NotifyReturnHandler(NotifyReturnEvent);
                 tabPageAddEdit = new TabPage();
                 tabPageAddEdit.Controls.Clear();
                 tabPageAddEdit.Controls.Add(controlAddEdit);

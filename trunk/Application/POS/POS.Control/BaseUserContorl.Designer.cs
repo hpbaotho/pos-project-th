@@ -1,6 +1,6 @@
 ﻿namespace POS.Control
 {
-    partial class BaseUserContorl
+    partial class BaseUserControl
     {
         /// <summary>
         /// Required designer variable.

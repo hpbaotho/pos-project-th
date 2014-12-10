@@ -12,6 +12,7 @@ using POS.BL.Service.SU;
 using POS.BL;
 using Core.Standards.Converters;
 using POS.BL.Entities.Entity;
+using POS.SU.SetupEmployee;
 
 namespace POS.SU
 {
@@ -54,7 +55,7 @@ namespace POS.SU
             }
 
             listMenu.ClearSelected();
-            toolStripGridview.Visible = false;
+           // toolStripGridview.Visible = false;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -65,29 +66,24 @@ namespace POS.SU
         private void listMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox listMenu = sender as ListBox;
-            gridContent.DataSource = null;
-            gridContent.AutoGenerateColumns = true;
-            gridContent.DataMember = "Table";
-            toolStripGridview.Visible = true;
 
             string selected = listMenu.SelectedItem == null ? null : listMenu.SelectedItem.ToString();
 
+            pnlContent.Controls.Clear();
+
             if (selected == ProgramName.SetupEmployee)
             {
-                gridContent.DataSource = ServiceProvider.EmployeeService.FindAllDataSet(false);
+                pnlContent.Controls.Add(new ucEmployee());
             }
             else if (selected == ProgramName.SetupRole)
             {
-                gridContent.DataSource = ServiceProvider.RoleService.FindAllDataSet(false);
             }
             else if (selected == ProgramName.SystemConfiguration)
             {
-                gridContent.DataSource = ServiceProvider.SystemConfigurationService.FindAllDataSet(false);
             }
             else
             {
-                toolStripGridview.Visible = false;
-                gridContent.DataSource = null;
+                
             }
         }
 

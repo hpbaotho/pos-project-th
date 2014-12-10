@@ -74,11 +74,23 @@
     <Compile Include="SO\SceenSetup.Designer.cs">
       <DependentUpon>SceenSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="SU\SetupEmployee\AddEditEmployee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SU\SetupEmployee\AddEditEmployee.Designer.cs">
+      <DependentUpon>AddEditEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="SU\SetupMaster.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SU\SetupMaster.designer.cs">
       <DependentUpon>SetupMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SU\SetupEmployee\ucEmployee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SU\SetupEmployee\ucEmployee.Designer.cs">
+      <DependentUpon>ucEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="TestByBoom.cs">
       <SubType>Form</SubType>
@@ -108,8 +120,14 @@
     <EmbeddedResource Include="SO\SceenSetup.resx">
       <DependentUpon>SceenSetup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SU\SetupEmployee\AddEditEmployee.resx">
+      <DependentUpon>AddEditEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SU\SetupMaster.resx">
       <DependentUpon>SetupMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SU\SetupEmployee\ucEmployee.resx">
+      <DependentUpon>ucEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestByBoom.resx">
       <DependentUpon>TestByBoom.cs</DependentUpon>

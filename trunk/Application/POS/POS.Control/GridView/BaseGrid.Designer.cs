@@ -28,52 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseGrid));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtnAddRow = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnDelete = new System.Windows.Forms.ToolStripButton();
             this.Grid = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslblTotalRows = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslblSelectedRows = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.AllowMerge = false;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnAddRow,
-            this.tsbtnDelete,
-            this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(427, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsbtnAddRow
-            // 
-            this.tsbtnAddRow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbtnAddRow.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAddRow.Name = "tsbtnAddRow";
-            this.tsbtnAddRow.Size = new System.Drawing.Size(59, 22);
-            this.tsbtnAddRow.Text = "Add Row";
-            this.tsbtnAddRow.Click += new System.EventHandler(this.tsbtnAddRow_Click);
-            // 
-            // tsbtnDelete
-            // 
-            this.tsbtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDelete.Image")));
-            this.tsbtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnDelete.Name = "tsbtnDelete";
-            this.tsbtnDelete.Size = new System.Drawing.Size(44, 22);
-            this.tsbtnDelete.Text = "Delete";
-            this.tsbtnDelete.Click += new System.EventHandler(this.tsbtnDelete_Click);
             // 
             // Grid
             // 
@@ -85,13 +54,13 @@
             this.Grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grid.EnableHeadersVisualStyles = false;
-            this.Grid.Location = new System.Drawing.Point(0, 28);
+            this.Grid.Location = new System.Drawing.Point(0, 53);
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Grid.ShowCellErrors = false;
             this.Grid.ShowRowErrors = false;
-            this.Grid.Size = new System.Drawing.Size(424, 247);
+            this.Grid.Size = new System.Drawing.Size(431, 228);
             this.Grid.TabIndex = 2;
             this.Grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellDoubleClick);
             this.Grid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.Grid_CellFormatting);
@@ -103,9 +72,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslblTotalRows,
             this.tsslblSelectedRows});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 276);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 280);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(427, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(431, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
@@ -124,31 +93,78 @@
             this.tsslblSelectedRows.Size = new System.Drawing.Size(101, 19);
             this.tsslblSelectedRows.Text = "No selected rows";
             // 
-            // toolStripButton1
+            // contextMenuStrip1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(431, 53);
+            this.panel1.TabIndex = 5;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRefresh.Location = new System.Drawing.Point(104, 1);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(54, 50);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDelete.Location = new System.Drawing.Point(53, 1);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(54, 50);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.tsbtnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAdd.Location = new System.Drawing.Point(0, 1);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(54, 50);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.tsbtnAddRow_Click);
             // 
             // BaseGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Grid);
-            this.Controls.Add(this.toolStrip1);
             this.Name = "BaseGrid";
-            this.Size = new System.Drawing.Size(427, 300);
+            this.Size = new System.Drawing.Size(431, 304);
             this.Load += new System.EventHandler(this.BaseGrid_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,13 +172,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsbtnAddRow;
-        private System.Windows.Forms.ToolStripButton tsbtnDelete;
         private System.Windows.Forms.DataGridView Grid;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsslblTotalRows;
         private System.Windows.Forms.ToolStripStatusLabel tsslblSelectedRows;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

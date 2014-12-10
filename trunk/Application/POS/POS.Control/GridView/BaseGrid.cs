@@ -22,10 +22,19 @@ namespace POS.Control.GridView
         public BaseGrid()
         {
             InitializeComponent();
+            this.Grid.DefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Regular);
+            
+           
         }
         #region :: private function ::
         public void LoadData()
         {
+            Form form = this.FindForm();
+            if (form != null)
+            {
+                Grid.Font = form.Font;
+            }
+
             DataBindArgs LoadArg = new DataBindArgs();
             if (onLoadDataGrid != null)
             {
@@ -44,6 +53,11 @@ namespace POS.Control.GridView
                     tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceTable.Count());
                 }
                
+            }
+            foreach (DataGridViewColumn header in Grid.Columns)
+            {
+                header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
             }
         }
         private void UpdateDataRow(DataGridViewRow rowSelected)
@@ -194,7 +208,10 @@ namespace POS.Control.GridView
         public event EventHandler<DataGridViewCellFormattingEventArgs> onCellFormatting;
         #endregion
 
-
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.LoadData();
+        }
     }
     public class DataBindArgs : EventArgs
     {

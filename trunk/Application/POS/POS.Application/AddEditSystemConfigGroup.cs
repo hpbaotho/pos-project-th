@@ -14,7 +14,7 @@ using POS.BL;
 
 namespace POS
 {
-    public partial class AddEditSystemConfigGroup : BaseUserContorl
+    public partial class AddEditSystemConfigGroup : BaseUserControl
     {
         #region :: Properties ::
         private string mode { get; set; }
@@ -98,7 +98,7 @@ namespace POS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            base.onNotifyReturnEvent(ControlMode.Cancel);
+            base.onNotifyReturnEvent(ControlMode.Back);
         }
 
         private void AddEditSystemConfigGroup_Load(object sender, EventArgs e)
