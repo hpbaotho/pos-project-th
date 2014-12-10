@@ -15,6 +15,7 @@ namespace POS.Control.GridView
 {
     public partial class BaseGrid : UserControl
     {
+        public DataSet DataSourceDataSet { get; set; }
         public IEnumerable<object> DataSourceTable { get; set; }
         public string[] DataKeyName { get; set; }
         //public DatabaseService<EntityBase> EntityService { get; set; }
@@ -23,20 +24,30 @@ namespace POS.Control.GridView
             InitializeComponent();
         }
         #region :: private function ::
-        private void LoadData()
+        public void LoadData()
         {
             DataBindArgs LoadArg = new DataBindArgs();
             if (onLoadDataGrid != null)
             {
-
                 onLoadDataGrid(Grid, LoadArg);
-                Grid.DataSource = DataSourceTable.ToList();
-                tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceTable.Count());
+                if (DataSourceTable == null)
+                {
+                    Grid.DataSource = DataSourceDataSet;
+                    Grid.DataMember = "Table";
+                    Grid.AllowUserToAddRows = false;
+                    Grid.AllowUserToDeleteRows = false;
+                    tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceDataSet.Tables[0].Rows.Count);
+                }
+                else
+                {
+                    Grid.DataSource = DataSourceTable.ToList();
+                    tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceTable.Count());
+                }
+               
             }
         }
         private void UpdateDataRow(DataGridViewRow rowSelected)
         {
-            
             RowEventArgs RowArg = new RowEventArgs();
             //Grid.Rows[rowIndex]
             if (rowSelected.IsNewRow)
@@ -45,28 +56,21 @@ namespace POS.Control.GridView
             }
             else
             {
-                
-                
-
-                if (onSelectedDataRow != null && UtilityMessage.Confirm(GeneralMessage.ConfirmUpdate, GeneralMessage.MessageBoxTitle))
+                //if (onSelectedDataRow != null && UtilityMessage.Confirm(GeneralMessage.ConfirmUpdate, GeneralMessage.MessageBoxTitle))
+                if (onSelectedDataRow != null)
                 {
                     RowArg.RowSelected = rowSelected;
-                    
                     onSelectedDataRow(GetUpdateDataKey(rowSelected), RowArg);
-
                     LoadData();
-
                     Grid.ClearSelection();
                     //Grid.Rows
                     //Grid.Rows[rowIndex].Selected = true;
-
                 }
-
             }
         }
         private void DeleteData(List<DataGridViewRow> selectedRows)
         {
-            
+
             if (selectedRows.Count > 0)
             {
 
@@ -75,8 +79,6 @@ namespace POS.Control.GridView
                     RowsEventArgs RowArg = new RowsEventArgs() { RowsSelected = selectedRows };
                     if (onDeleteDataRows != null)
                     {
-                        
-
                         onDeleteDataRows(GetDeleteDataKey(selectedRows), RowArg);
                         LoadData();
                         Grid.ClearSelection();
@@ -86,9 +88,7 @@ namespace POS.Control.GridView
             }
             else
             {
-
                 UtilityMessage.Warning(GeneralMessage.NoSelectedData, GeneralMessage.MessageBoxTitle);
-
             }
         }
         private Dictionary<string, object> GetUpdateDataKey(DataGridViewRow rowSelected)

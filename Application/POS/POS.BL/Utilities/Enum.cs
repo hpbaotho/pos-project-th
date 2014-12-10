@@ -47,6 +47,7 @@ namespace POS.BL.Utilities
         public const string NoDataComplete = "Completed {0} rows(s)";
 
         //------------ Confirm
+        public const string ConfirmNewTab = "Are you sure to new tab";
         public const string ConfirmComplete = "Are you sure to complete?";
         public const string ConfirmIncomplete = "Are you sure to Incomplete?";
         public const string ConfirmUpdate = "Are you sure to update data?";
@@ -76,16 +77,23 @@ namespace POS.BL.Utilities
     }
     public struct ProgramName
     {
+        public const string SetupSystemConfigGroup = "System Config Group";
         public const string SetupEmployee = "Setup Employee";
         public const string SetupRole = "Setup Role";
         public const string AssignEmployeeRole = "Assign Employee Role";
         public const string SystemConfiguration = "SystemConfiguration";
     }
-    public struct FormatString {
+    public struct FormatString
+    {
         public const string TotalRowsGrid = "Total {0} Rows";
         public const string SelectedRowsGrid = "Selected {0} Rows";
         public const string FormatDate = "dd-MMM-yyyy";
-     
+    }
+    public struct TabName
+    {
+        public const string Setup = "Setup {0}";
+        public const string Add = "Add {0}";
+        public const string Edit = "Edit {0}";
     }
     #endregion
 
