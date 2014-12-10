@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionStrings>
+    <!--<add name="POS" connectionString="Data Source=mssql-2012.chaiyohosting.com;Initial Catalog=POS;Integrated Security=False;User ID=pos_user;Password=p@ssw0rd;Connect Timeout=0;"
+     providerName="System.Data.SqlClient" />-->
+   <add name="POS" connectionString="Data Source=.;Initial Catalog=POS;Integrated Security=False;User ID=sa;Password=1234;Connect Timeout=0;"
+     providerName="System.Data.SqlClient" />
+  </connectionStrings>
+</configuration>
