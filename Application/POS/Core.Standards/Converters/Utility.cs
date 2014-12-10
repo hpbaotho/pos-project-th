@@ -6,6 +6,8 @@ using System.IO;
 using System.Globalization;
 using System.Data;
 using System.Reflection;
+using System.Drawing;
+using System.ComponentModel;
 
 namespace Core.Standards.Converters
 {
@@ -476,6 +478,12 @@ namespace Core.Standards.Converters
         }
 
         #endregion
-    
+        public static Font ConvertStringToFont(string fontStr)
+        {
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
+            Font font = (Font)converter.ConvertFromString(fontStr);
+            return font;
+
+        }
     }
 }

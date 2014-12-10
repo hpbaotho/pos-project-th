@@ -24,6 +24,7 @@ namespace POS.SO
             cmdForm.ValueMember = "control_id";
             cmdForm.DisplayMember = "control_code";
             this.LoadScreenConfig();
+          
             dragContainer2.SelectDragEvent += new Control.DragContainer.SelectDragItemHandler(dragContainer2_SelectDragEvent);
         }
 
@@ -67,7 +68,7 @@ namespace POS.SO
             if (keyData == Keys.Delete)
             {
                 dragContainer2.DeletCurrentItem();
-                return true;
+                spComtrolCommand.Panel2.Enabled = false;
             }
             else if (keyData == (Keys.Control | Keys.A))
             {
@@ -80,10 +81,29 @@ namespace POS.SO
             else if (keyData == (Keys.Control | Keys.D))
             {
                 dragContainer2.DuplicateDragItem();
+               
+            }
+            else if (keyData == (Keys.Control | Keys.N))
+            {
+                this.NewScreenSetup();
+
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        private void NewScreenSetup()
+        {
+            if (base.ShowConfirmMessage(GeneralMessage.ConfirmSaveDate, "")) {
+                this.SaveScreen();
+            }
+            cmdForm.SelectedIndex = -1;
+            spComtrolCommand.Panel2.Enabled = false;
 
+            txtHeight.Text = "500";
+            txtWidth.Text = "300";
+            dragContainer2.Width = 300;
+            dragContainer2.Height = 500;
+            dragContainer2.ClearDragItem();
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             this.SaveScreen();
@@ -151,6 +171,9 @@ namespace POS.SO
         private void LoadScreenConfig()
         {
             ScreenConfig mainScreen = new ScreenConfig();
+            if (cmdForm.SelectedValue == null) return;
+
+            spComtrolCommand.Panel2.Enabled = false;
             mainScreen.control_id = Converts.ParseLongNullable(cmdForm.SelectedValue.ToString());
             mainScreen = ServiceProvider.ScreenConfigService.FindByKeys(mainScreen, false);
             if (mainScreen != null)
@@ -212,6 +235,11 @@ namespace POS.SO
                 txtWidth.Text = dragContainer2.Width.ToString();
             }
 
+        }
+
+        private void btnNewScreen_Click(object sender, EventArgs e)
+        {
+            this.NewScreenSetup();
         }
 
 

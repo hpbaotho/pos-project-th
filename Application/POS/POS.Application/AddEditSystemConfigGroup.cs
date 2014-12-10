@@ -13,7 +13,7 @@ using POS.BL.Entities.Entity;
 
 namespace POS
 {
-    public partial class AddEditSystemConfigGroup : FormBase
+    public partial class AddEditSystemConfigGroup : BaseUserContorl
     {
         #region :: Local Attribute ::
         SystemConfigGroupService service = new SystemConfigGroupService();
@@ -97,13 +97,18 @@ namespace POS
             {
                 service.Update(entity);
             }
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            TabPage tp = this.Parent as TabPage;
+            TabControl tc = tp.Parent as TabControl;
+            tc.SelectedIndex = 0;
+            base.onNotifyReturnEvent(true);
+        
 
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            base.onNotifyReturnEvent(false);
+           
         }
 
         private void AddEditSystemConfigGroup_Load(object sender, EventArgs e)

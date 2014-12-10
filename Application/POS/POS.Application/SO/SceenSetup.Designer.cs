@@ -46,6 +46,8 @@
             this.cmdForm = new System.Windows.Forms.ComboBox();
             this.dragContainer2 = new POS.Control.DragContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNewScreen = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
@@ -272,6 +274,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNewScreen,
+            this.toolStripSeparator2,
             this.btnAdd,
             this.btnDelete,
             this.btnCopy,
@@ -282,6 +286,22 @@
             this.toolStrip1.Size = new System.Drawing.Size(504, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnNewScreen
+            // 
+            this.btnNewScreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNewScreen.Image = global::POS.Properties.Resources.New_document;
+            this.btnNewScreen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNewScreen.Name = "btnNewScreen";
+            this.btnNewScreen.Size = new System.Drawing.Size(23, 22);
+            this.btnNewScreen.Text = "toolStripButton1";
+            this.btnNewScreen.ToolTipText = "Ctrl + N";
+            this.btnNewScreen.Click += new System.EventHandler(this.btnNewScreen_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAdd
             // 
@@ -389,5 +409,7 @@
         private System.Windows.Forms.TextBox txtWidth;
         private System.Windows.Forms.ComboBox cmdForm;
         private System.Windows.Forms.ToolStripButton btnCopy;
+        private System.Windows.Forms.ToolStripButton btnNewScreen;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

@@ -17,7 +17,7 @@ namespace POS
 {
     public partial class SetupSystemConfigGroup : Control.FormBase
     {
-        SystemConfigGroupService service = new SystemConfigGroupService(); 
+        SystemConfigGroupService service = new SystemConfigGroupService();
         public SetupSystemConfigGroup()
         {
             InitializeComponent();
@@ -35,21 +35,28 @@ namespace POS
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            using (AddEditSystemConfigGroup f = new AddEditSystemConfigGroup(dataKey["system_configuration_group_code"].ToString()))
-            {
-                DialogResult result = f.ShowDialog();
+            AddEditSystemConfigGroup f = new AddEditSystemConfigGroup(dataKey["system_configuration_group_code"].ToString());
+            f.NotifyReturnEvent += new Control.BaseUserContorl.NotifyReturnHandler(NotifyReturnEvent);
+            tabPage2.Controls.Clear();
+            tabPage2.Controls.Add(f);
+            tabControl1.SelectedTab = tabPage2;
 
-            }
 
+        }
+
+        protected void NotifyReturnEvent(object param)
+        {
+            tabControl1.SelectedTab = tabPage1;
         }
 
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {
-            using (AddEditSystemConfigGroup f = new AddEditSystemConfigGroup())
-            {
-                DialogResult result = f.ShowDialog();
+            AddEditSystemConfigGroup f = new AddEditSystemConfigGroup();
+            f.NotifyReturnEvent += new Control.BaseUserContorl.NotifyReturnHandler(NotifyReturnEvent);
+            tabPage2.Controls.Clear();
+            tabPage2.Controls.Add(f);
+            tabControl1.SelectedTab = tabPage2;
 
-            }
         }
 
         public void grdBase_onCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -60,7 +67,8 @@ namespace POS
             {
                 e.CellStyle.Alignment = DataGridViewContentAlignment.TopCenter;
             }
-            else {
+            else
+            {
                 e.CellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
             }
 
