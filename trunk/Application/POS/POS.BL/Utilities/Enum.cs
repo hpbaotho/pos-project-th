@@ -55,6 +55,7 @@ namespace POS.BL.Utilities
         public const string ConfirmProcess = "Are you sure to process?";
         public const string ConfirmOverWrite = "The data already existed in system, Are you sure to overwrite?";
         public const string ConfirmUpdateChanged = "The data has been changed, do you want to replace?";
+        public const string ConfirmSaveDate = "Do you want to Save the data?";
 
     }
     public struct ErrorMessage

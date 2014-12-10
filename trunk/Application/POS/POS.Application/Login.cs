@@ -27,15 +27,15 @@ namespace POS
         {
             if (e.KeyCode == Keys.Enter) {
                 base.ShowMessage("You press OK");
-                using (SetupSystemConfigGroup form = new SetupSystemConfigGroup())
-                {
-                    DialogResult result =  form.ShowDialog();
+                //using (SetupSystemConfigGroup form = new SetupSystemConfigGroup())
+                //{
+                //    DialogResult result =  form.ShowDialog();
 
-                    if (result == System.Windows.Forms.DialogResult.Cancel)
-                    {
-                        Application.Exit();
-                    }
-                }
+                //    if (result == System.Windows.Forms.DialogResult.Cancel)
+                //    {
+                //        Application.Exit();
+                //    }
+                //}
             }
         }
 

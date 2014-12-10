@@ -57,6 +57,12 @@
     <Compile Include="BaseTextBox.Designer.cs">
       <DependentUpon>BaseTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseUserContorl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseUserContorl.Designer.cs">
+      <DependentUpon>BaseUserContorl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ColorTable.cs" />
     <Compile Include="ControPropertiesDTO.cs" />
     <Compile Include="CoreMessageBox.cs">

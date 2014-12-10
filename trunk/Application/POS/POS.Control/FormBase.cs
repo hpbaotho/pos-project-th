@@ -13,7 +13,6 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using WindowsInput;
 using System.Threading;
 using POS.Control.BaseMessageBox;
 
@@ -22,13 +21,7 @@ namespace POS.Control
     public class FormBase : Form
     {
         private BaseTextBox txtProcress = null;
-        public Font ConvertStringToFont(string fontStr)
-        {
-            TypeConverter converter = TypeDescriptor.GetConverter(typeof(Font));
-            Font font = (Font)converter.ConvertFromString(fontStr);
-            return font;
 
-        }
         public void ShowMessage(string message)
         {
             UtilityMessage.Alert(message, GeneralMessage.MessageBoxTitle);
@@ -50,7 +43,7 @@ namespace POS.Control
         }
         public bool ShowConfirmMessage(string message, string title)
         {
-          return  UtilityMessage.Confirm(message, title);
+            return UtilityMessage.Confirm(message, title);
         }
         protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
         {
@@ -77,7 +70,7 @@ namespace POS.Control
                             btn.Width = item.control_width;
                             btn.Height = item.control_height;
                             btn.Text = item.text;
-                            btn.Font = this.ConvertStringToFont(item.font);
+                            btn.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
                             btn.Click += new EventHandler(btn_Click);
                             contanner.Controls.Add(btn);
                             break;
@@ -105,10 +98,12 @@ namespace POS.Control
         }
         public void sendKey(string key)
         {
-            if (key == "C") {
+            if (key == "C")
+            {
                 key = "{BACKSPACE}";
             }
-            else if (key == "OK") {
+            else if (key == "OK")
+            {
                 key = "{ENTER}";
             }
             System.Windows.Forms.SendKeys.SendWait(key);
