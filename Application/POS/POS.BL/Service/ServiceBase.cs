@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Core.Standards.Entity;
+using Core.Standards.Validations;
 
 namespace POS.BL.Service
 {
@@ -15,7 +16,6 @@ namespace POS.BL.Service
             {
                 return POS.BL.Utilities.ConnectionStringName.POSConnection;
             }
-
         }
     }
 }

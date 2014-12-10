@@ -81,9 +81,6 @@ namespace POS.Control
 
             }
         }
-
-
-
         protected void btn_Click(object sender, EventArgs e)
         {
             BaseButton btn = sender as BaseButton;
@@ -109,6 +106,37 @@ namespace POS.Control
             System.Windows.Forms.SendKeys.SendWait(key);
         }
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormBase
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "FormBase";
+            this.ResumeLayout(false);
+
+        }
+        private void FindControlAll(System.Windows.Forms.Control c)
+        {
+            foreach (System.Windows.Forms.Control item in c.Controls)
+            {
+                item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
+                FindControlAll(item);
+            }
+        }
+       
+        protected override void OnValidated(EventArgs e)
+        {
+            FindControlAll(this);
+            base.Refresh();
+            base.OnValidated(e);
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            FindControlAll(this);
+            base.OnPaint(e);
+        }
         /*
             * Key  | Code
             -----------
@@ -166,6 +194,7 @@ namespace POS.Control
         Edit,
         Delete,
         Save,
-        Cancel
+        Back
     }
+ 
 }

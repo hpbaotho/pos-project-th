@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseAddEditMaster.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseAddEditMaster.Designer.cs">
+      <DependentUpon>BaseAddEditMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -116,8 +122,14 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BaseAddEditMaster.resx">
+      <DependentUpon>BaseAddEditMaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CoreMessageBox.resx">
       <DependentUpon>CoreMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GridView\BaseGrid.resx">
       <DependentUpon>BaseGrid.cs</DependentUpon>

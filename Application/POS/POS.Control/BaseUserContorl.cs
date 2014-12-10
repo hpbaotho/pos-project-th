@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace POS.Control
 {
-    public partial class BaseUserContorl : UserControl
+    public partial class BaseUserControl : UserControl
     {
         public delegate void NotifyReturnHandler(object param);
         public event NotifyReturnHandler NotifyReturnEvent;
         public FormBase formBase { get { return this.FindForm() as FormBase; } }
-        public BaseUserContorl()
+        public BaseUserControl()
         {
             InitializeComponent();
         }

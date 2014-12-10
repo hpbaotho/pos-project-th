@@ -55,7 +55,7 @@ namespace POS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
-            Application.Run(new SetupSystemConfigGroup());
+            Application.Run(new SU.SetupMaster());
             //Application.Run(new SetupMaster());
             //Application.Run(new TestGridControl());
         }
