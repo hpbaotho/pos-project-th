@@ -10,14 +10,12 @@ using POS.Control;
 using POS.BL.Utilities;
 using POS.BL.Service.SU;
 using POS.BL.Entities.Entity;
+using POS.BL;
 
 namespace POS
 {
     public partial class AddEditSystemConfigGroup : BaseUserContorl
     {
-        #region :: Local Attribute ::
-        SystemConfigGroupService service = new SystemConfigGroupService();
-        #endregion
         #region :: Properties ::
         private string mode { get; set; }
         private string keyCode { get; set; }
@@ -35,8 +33,6 @@ namespace POS
 
         }
         #endregion
-
-
         #region :: Private Function ::
         private void LoadData()
         {
@@ -44,7 +40,7 @@ namespace POS
             if (mode == ObjectState.Update && !string.IsNullOrEmpty(keyCode))
             {
                 entity.system_configuration_group_code = keyCode;
-                entity = service.FindByKeys(entity, true);
+                entity = ServiceProvider.SystemConfigGroupService.FindByKeys(entity, true);
 
                 txtCode.Text = entity.system_configuration_group_code;
                 txtName.Text = entity.system_configuration_group_name;
@@ -88,27 +84,21 @@ namespace POS
         {
             SystemConfigGroup entity = GetData();
 
-
             if (mode == ObjectState.Add)
             {
-                service.Insert(entity);
+                ServiceProvider.SystemConfigGroupService.Insert(entity);
             }
             else
             {
-                service.Update(entity);
+                ServiceProvider.SystemConfigGroupService.Update(entity);
             }
-            TabPage tp = this.Parent as TabPage;
-            TabControl tc = tp.Parent as TabControl;
-            tc.SelectedIndex = 0;
-            base.onNotifyReturnEvent(true);
-        
-
+            base.formBase.ShowMessage(GeneralMessage.SaveComplete);
+            base.onNotifyReturnEvent(ControlMode.Save);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            base.onNotifyReturnEvent(false);
-           
+            base.onNotifyReturnEvent(ControlMode.Cancel);
         }
 
         private void AddEditSystemConfigGroup_Load(object sender, EventArgs e)

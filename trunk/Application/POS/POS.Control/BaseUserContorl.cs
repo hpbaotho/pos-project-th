@@ -13,7 +13,7 @@ namespace POS.Control
     {
         public delegate void NotifyReturnHandler(object param);
         public event NotifyReturnHandler NotifyReturnEvent;
-
+        public FormBase formBase { get { return this.FindForm() as FormBase; } }
         public BaseUserContorl()
         {
             InitializeComponent();

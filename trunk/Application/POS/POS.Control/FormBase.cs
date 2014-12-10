@@ -160,4 +160,12 @@ namespace POS.Control
          */
 
     }
+    public enum ControlMode
+    {
+        Add,
+        Edit,
+        Delete,
+        Save,
+        Cancel
+    }
 }

@@ -36,6 +36,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslblTotalRows = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslblSelectedRows = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -46,7 +47,8 @@
             this.toolStrip1.AllowMerge = false;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnAddRow,
-            this.tsbtnDelete});
+            this.tsbtnDelete,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -57,7 +59,6 @@
             // tsbtnAddRow
             // 
             this.tsbtnAddRow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbtnAddRow.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAddRow.Image")));
             this.tsbtnAddRow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnAddRow.Name = "tsbtnAddRow";
             this.tsbtnAddRow.Size = new System.Drawing.Size(59, 22);
@@ -123,6 +124,15 @@
             this.tsslblSelectedRows.Size = new System.Drawing.Size(101, 19);
             this.tsslblSelectedRows.Text = "No selected rows";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
             // BaseGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,5 +163,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsslblTotalRows;
         private System.Windows.Forms.ToolStripStatusLabel tsslblSelectedRows;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
