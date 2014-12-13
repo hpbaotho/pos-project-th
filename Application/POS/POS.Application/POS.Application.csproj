@@ -168,7 +168,9 @@
       <Name>POS.Control</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Volume.png" />
   </ItemGroup>

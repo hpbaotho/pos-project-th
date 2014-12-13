@@ -89,6 +89,7 @@ namespace POS.Control
                 if (result == System.Windows.Forms.DialogResult.Abort)
                 {
                     this.Show();
+                    this.Activate();
                 }
                 else
                 {
@@ -97,6 +98,9 @@ namespace POS.Control
 
             }
         }
+        public void UpdateFontDefault() {
+            this.FindControlAll(this);
+        }
         // Private function
         private void FindControlAll(System.Windows.Forms.Control c)
         {
@@ -104,12 +108,16 @@ namespace POS.Control
             {
                 foreach (System.Windows.Forms.Control item in c.Controls)
                 {
-                    item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
-                    FindControlAll(item);
+                    if (item.Font.Size < DefaultFontControl.FontSize)
+                    {
+                        item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
+                    }
+                    this.FindControlAll(item);
+
                 }
             }
         }
-        private void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
+        protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
         {
             ScreenConfig mainScreen = ServiceProvider.ScreenConfigService.getScreenByCode(screenCode);
             txtProcress = txt;
@@ -184,7 +192,7 @@ namespace POS.Control
             }
 
         }
-     
+
         #endregion
         //====================================================================
         #region :: Override Method ::
@@ -207,11 +215,11 @@ namespace POS.Control
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            this.FindControlAll(this);
             base.OnPaint(e);
         }
-        #endregion
         
+        #endregion
+
         /*
             * Key  | Code
             -----------
