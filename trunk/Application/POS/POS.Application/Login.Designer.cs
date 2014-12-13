@@ -31,29 +31,32 @@
             this.pnlSetup = new System.Windows.Forms.Panel();
             this.txtPassword = new POS.Control.BaseTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSetup
             // 
             this.pnlSetup.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pnlSetup.Font = new System.Drawing.Font("Arial", 14F);
-            this.pnlSetup.Location = new System.Drawing.Point(25, 55);
+            this.pnlSetup.Location = new System.Drawing.Point(25, 77);
             this.pnlSetup.Name = "pnlSetup";
-            this.pnlSetup.Size = new System.Drawing.Size(340, 400);
+            this.pnlSetup.Size = new System.Drawing.Size(363, 400);
             this.pnlSetup.TabIndex = 0;
             // 
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPassword.Font = new System.Drawing.Font("Arial", 14F);
+            this.txtPassword.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(25, 18);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(340, 29);
+            this.txtPassword.Size = new System.Drawing.Size(363, 48);
             this.txtPassword.TabIndex = 0;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
@@ -69,6 +72,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Font = new System.Drawing.Font("Arial", 14F);
             // 
             // splitContainer1.Panel2
@@ -77,22 +81,35 @@
             this.splitContainer1.Panel2.Controls.Add(this.pnlSetup);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("Arial", 14F);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
-            this.splitContainer1.Size = new System.Drawing.Size(812, 608);
-            this.splitContainer1.SplitterDistance = 379;
+            this.splitContainer1.Size = new System.Drawing.Size(1038, 608);
+            this.splitContainer1.SplitterDistance = 605;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::POS.Properties.Resources.logo;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Font = new System.Drawing.Font("Arial", 14F);
+            this.pictureBox1.Location = new System.Drawing.Point(89, 55);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(344, 171);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 608);
+            this.ClientSize = new System.Drawing.Size(1038, 608);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Login";
             this.Text = "Login";
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -102,5 +119,6 @@
         private System.Windows.Forms.Panel pnlSetup;
         private Control.BaseTextBox txtPassword;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
