@@ -1,10 +1,12 @@
 USE POS
 GO
 
-ALTER TABLE sc_screen_sonfig
+ALTER TABLE sc_screen_config
 ADD border_style int
 GO
 
-ALTER TABLE sc_screen_sonfig
-ADD text nvarchar(5)
+ALTER TABLE sc_screen_config
+ADD display_text nvarchar(5)
 GO
+
+
