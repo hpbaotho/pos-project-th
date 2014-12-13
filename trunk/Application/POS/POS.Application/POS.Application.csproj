@@ -68,6 +68,12 @@
     <Compile Include="SetupSystemConfigGroup.Designer.cs">
       <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="SO\SaleProtal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\SaleProtal.Designer.cs">
+      <DependentUpon>SaleProtal.cs</DependentUpon>
+    </Compile>
     <Compile Include="SO\SceenSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <EmbeddedResource Include="SetupSystemConfigGroup.resx">
       <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\SaleProtal.resx">
+      <DependentUpon>SaleProtal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\SceenSetup.resx">
       <DependentUpon>SceenSetup.cs</DependentUpon>

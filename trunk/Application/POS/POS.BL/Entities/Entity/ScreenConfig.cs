@@ -24,7 +24,7 @@ namespace POS.BL.Entities.Entity
         public int background_color { get; set; }
         public string background_image_path { get; set; }
         public int border_style { get; set; }
-        public string text { get; set; }
+        public string display_text { get; set; }
         public int fore_color { get; set; }
         public string font { get; set; }
         public int position_top { get; set; }
