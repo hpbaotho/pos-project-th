@@ -12,31 +12,30 @@ namespace POS
 {
     public partial class Login : Control.FormBase
     {
-        public Login()
+        public Login(bool ignoreFontStyle)
         {
-          
+            base.IngoreFontDefault = ignoreFontStyle;
             InitializeComponent();
-            base.BindConfigScreen(pnlSetup, ControlCode.Login, textBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            base.BindConfigScreen(pnlSetup, ControlCode.Login, txtPassword);
+            txtPassword.Focus();
         }
 
-     
-      
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) {
-                base.ShowMessage("You press OK");
-                //using (SetupSystemConfigGroup form = new SetupSystemConfigGroup())
-                //{
-                //    DialogResult result =  form.ShowDialog();
-
-                //    if (result == System.Windows.Forms.DialogResult.Cancel)
-                //    {
-                //        Application.Exit();
-                //    }
-                //}
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassword.Text = string.Empty;
+                base.OpernNewScreen<SO.SaleProtal>();
+               
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
 

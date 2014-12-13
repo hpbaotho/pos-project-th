@@ -20,7 +20,30 @@ namespace POS.Control
 {
     public class FormBase : Form
     {
+        #region :: Property ::
+        private bool _IngoreFontDefault = false;
+        public bool IngoreFontDefault { get { return _IngoreFontDefault; } set { _IngoreFontDefault = value; } }
         private BaseTextBox txtProcress = null;
+        #endregion
+        //====================================================================
+        #region :: Construtor ::
+        public FormBase(bool ignordDefaulstFont)
+        {
+            this._IngoreFontDefault = ignordDefaulstFont;
+
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+        }
+
+        public FormBase()
+        {
+
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+        }
+        #endregion
+        //====================================================================
+        #region :: Message Control
 
         public void ShowMessage(string message)
         {
@@ -45,7 +68,48 @@ namespace POS.Control
         {
             return UtilityMessage.Confirm(message, title);
         }
-        protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
+
+        #endregion
+        //====================================================================
+        #region :: Custom Function ::
+
+        // Public function
+        public void CloseScreen()
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+        }
+        public void OpernNewScreen<T>() where T : FormBase
+        {
+
+            Type type = typeof(T);
+            using (FormBase form = (FormBase)Activator.CreateInstance(type))
+            {
+                this.Hide();
+                DialogResult result = form.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.Abort)
+                {
+                    this.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+
+            }
+        }
+        // Private function
+        private void FindControlAll(System.Windows.Forms.Control c)
+        {
+            if (!IngoreFontDefault)
+            {
+                foreach (System.Windows.Forms.Control item in c.Controls)
+                {
+                    item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
+                    FindControlAll(item);
+                }
+            }
+        }
+        private void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
         {
             ScreenConfig mainScreen = ServiceProvider.ScreenConfigService.getScreenByCode(screenCode);
             txtProcress = txt;
@@ -69,7 +133,7 @@ namespace POS.Control
                             btn.Top = item.position_top;
                             btn.Width = item.control_width;
                             btn.Height = item.control_height;
-                            btn.Text = item.text;
+                            btn.Text = item.display_text;
                             btn.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
                             btn.Click += new EventHandler(btn_Click);
                             contanner.Controls.Add(btn);
@@ -81,31 +145,49 @@ namespace POS.Control
 
             }
         }
-        protected void btn_Click(object sender, EventArgs e)
+        private void sendKey(string key, object sender)
         {
-            BaseButton btn = sender as BaseButton;
-            if (txtProcress != null)
-            {
-                txtProcress.Focus();
-                Thread t1 = new Thread(() => sendKey(btn.Text));
-                t1.Start();
-
-            }
-
-        }
-        public void sendKey(string key)
-        {
-            if (key == "C")
+            //BaseButton btn = sender as BaseButton;
+            //btn.Invoke((MethodInvoker)(() => btn.ColorTable = Colortable.Office2010Red));
+            if (key.ToUpper() == "C")
             {
                 key = "{BACKSPACE}";
             }
-            else if (key == "OK")
+            else if (key.ToUpper() == "OK")
             {
                 key = "{ENTER}";
             }
-            System.Windows.Forms.SendKeys.SendWait(key);
-        }
 
+            System.Windows.Forms.SendKeys.SendWait(key);
+            // btn.Invoke((MethodInvoker)(() => btn.ColorTable = Colortable.Office2010White));
+
+        }
+        #endregion
+        //====================================================================
+        #region :: Custom Events ::
+        protected void btn_Click(object sender, EventArgs e)
+        {
+            BaseButton btn = sender as BaseButton;
+            if (btn.Text.ToUpper() == "EXIT")
+            {
+                Application.Exit();
+            }
+            else
+            {
+                if (txtProcress != null)
+                {
+                    txtProcress.Focus();
+                    Thread t1 = new Thread(() => sendKey(btn.Text, sender));
+                    t1.Start();
+
+                }
+            }
+
+        }
+     
+        #endregion
+        //====================================================================
+        #region :: Override Method ::
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -117,26 +199,19 @@ namespace POS.Control
             this.ResumeLayout(false);
 
         }
-        private void FindControlAll(System.Windows.Forms.Control c)
-        {
-            foreach (System.Windows.Forms.Control item in c.Controls)
-            {
-                item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
-                FindControlAll(item);
-            }
-        }
-       
         protected override void OnValidated(EventArgs e)
         {
-            FindControlAll(this);
+
             base.Refresh();
             base.OnValidated(e);
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            FindControlAll(this);
+            this.FindControlAll(this);
             base.OnPaint(e);
         }
+        #endregion
+        
         /*
             * Key  | Code
             -----------
@@ -188,6 +263,7 @@ namespace POS.Control
          */
 
     }
+
     public enum ControlMode
     {
         Add,
@@ -196,5 +272,5 @@ namespace POS.Control
         Save,
         Back
     }
- 
+
 }

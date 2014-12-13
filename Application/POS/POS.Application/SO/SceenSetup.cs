@@ -138,7 +138,7 @@ namespace POS.SO
                     dragItem.control_parent_id = mainScreen.control_id;
                     dragItem.control_type = item.ControlCommand.control_type;
                     dragItem.border_style = (int)item.BorderStyle;
-                    dragItem.text = item.CustomProperties.Text;
+                    dragItem.display_text = item.CustomProperties.Text;
                     dragItem.control_width = item.Width;
                     dragItem.control_height = item.Height;
                     dragItem.background_color = item.BackColor.ToArgb();
@@ -192,7 +192,7 @@ namespace POS.SO
                 foreach (ScreenConfig item in dragItem)
                 {
                     Control.DragItem d = new Control.DragItem(new Point(0, 0));
-                    d.CustomProperties.Text = item.text;
+                    d.CustomProperties.Text = item.display_text;
                     d.CustomProperties.BorderStyle = (BorderStyle)item.border_style;
                     d.ControlCommand.ControlState = ObjectState.Nothing;
                     d.ControlCommand.control_type = string.IsNullOrEmpty(item.control_type) ? ControlType.Button : item.control_type;
@@ -241,6 +241,8 @@ namespace POS.SO
         {
             this.NewScreenSetup();
         }
+
+        
 
 
 
