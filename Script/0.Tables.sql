@@ -1,6 +1,6 @@
 USE [POS]
 GO
-/****** Object:  Table [dbo].[sc_export_activity]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_export_activity]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -20,7 +20,7 @@ CREATE TABLE [dbo].[sc_export_activity](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_dining_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_dining_type]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -41,7 +41,7 @@ CREATE TABLE [dbo].[db_dining_type](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_screen_config]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_screen_config]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -73,7 +73,7 @@ CREATE TABLE [dbo].[sc_screen_config](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_role]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_role]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +92,7 @@ CREATE TABLE [dbo].[sc_role](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_function_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_function_group]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +110,7 @@ CREATE TABLE [dbo].[sc_function_group](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_command_script]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_command_script]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[sc_command_script](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_activity_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_activity_type]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -152,7 +152,32 @@ CREATE TABLE [dbo].[sc_activity_type](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_employee_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_period]    Script Date: 12/14/2014 22:53:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[db_period](
+	[period_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[period_code] [nvarchar](20) NULL,
+	[period_name] [nvarchar](300) NULL,
+	[period_description] [nvarchar](max) NULL,
+	[open_period_by] [nvarchar](100) NULL,
+	[open_period_date] [datetime] NULL,
+	[close_period_by] [nvarchar](100) NULL,
+	[close_period_date] [datetime] NULL,
+	[active] [bit] NOT NULL,
+	[created_by] [nvarchar](50) NULL,
+	[created_date] [datetime] NULL,
+	[updated_by] [nvarchar](50) NULL,
+	[updated_date] [datetime] NULL,
+ CONSTRAINT [PK_db_period] PRIMARY KEY CLUSTERED 
+(
+	[period_id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[db_employee_group]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -171,7 +196,7 @@ CREATE TABLE [dbo].[db_employee_group](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_company]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_company]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,7 +220,7 @@ CREATE TABLE [dbo].[db_company](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_branch]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +246,7 @@ CREATE TABLE [dbo].[db_branch](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ap_vat_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[ap_vat_type]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -240,7 +265,7 @@ CREATE TABLE [dbo].[ap_vat_type](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ap_payment_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[ap_payment_type]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -264,7 +289,7 @@ INSERT [dbo].[ap_payment_type] ([payment_type_id], [payment_type_name], [active]
 INSERT [dbo].[ap_payment_type] ([payment_type_id], [payment_type_name], [active], [created_by], [created_date], [updated_by], [updated_date]) VALUES (2, N'Credit Card', 1, N'SYSTEM', CAST(0x0000A3F900000000 AS DateTime), N'SYSTEM', CAST(0x0000A3F900000000 AS DateTime))
 INSERT [dbo].[ap_payment_type] ([payment_type_id], [payment_type_name], [active], [created_by], [created_date], [updated_by], [updated_date]) VALUES (3, N'Voucher', 1, N'SYSTEM', CAST(0x0000A3F900000000 AS DateTime), N'SYSTEM', CAST(0x0000A3F900000000 AS DateTime))
 SET IDENTITY_INSERT [dbo].[ap_payment_type] OFF
-/****** Object:  Table [dbo].[in_bill_of_material_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_bill_of_material_group]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -284,7 +309,7 @@ CREATE TABLE [dbo].[in_bill_of_material_group](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_supplier]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_supplier]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -308,7 +333,7 @@ CREATE TABLE [dbo].[db_supplier](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_service_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_service_type]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -327,7 +352,7 @@ CREATE TABLE [dbo].[db_service_type](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_uom]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_uom]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +373,7 @@ CREATE TABLE [dbo].[db_uom](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_system_configuration_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_system_configuration_group]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -367,7 +392,7 @@ CREATE TABLE [dbo].[db_system_configuration_group](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_system_configuration]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_system_configuration]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -388,7 +413,7 @@ CREATE TABLE [dbo].[db_system_configuration](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_material]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_material]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -412,7 +437,7 @@ CREATE TABLE [dbo].[in_material](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_bill_of_material_head]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_bill_of_material_head]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -433,7 +458,7 @@ CREATE TABLE [dbo].[in_bill_of_material_head](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_company_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_company_branch]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -452,7 +477,7 @@ CREATE TABLE [dbo].[db_company_branch](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_employee]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_employee]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -477,7 +502,7 @@ CREATE TABLE [dbo].[db_employee](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_activity_log]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_activity_log]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -498,7 +523,7 @@ CREATE TABLE [dbo].[sc_activity_log](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_function]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_function]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -517,7 +542,7 @@ CREATE TABLE [dbo].[sc_function](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_command_script_param]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_command_script_param]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -538,7 +563,7 @@ CREATE TABLE [dbo].[sc_command_script_param](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_uom_ratio]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_uom_ratio]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -560,7 +585,7 @@ CREATE TABLE [dbo].[db_uom_ratio](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[sc_user_permission]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[sc_user_permission]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -578,7 +603,7 @@ CREATE TABLE [dbo].[sc_user_permission](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_device]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_device]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -599,7 +624,7 @@ CREATE TABLE [dbo].[db_device](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_document_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_document_type]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -620,7 +645,7 @@ CREATE TABLE [dbo].[db_document_type](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_bill_of_material_detail]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_bill_of_material_detail]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -642,7 +667,7 @@ CREATE TABLE [dbo].[in_bill_of_material_detail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_warehouse]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_warehouse]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -664,7 +689,7 @@ CREATE TABLE [dbo].[db_warehouse](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_reason]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_reason]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -686,7 +711,7 @@ CREATE TABLE [dbo].[db_reason](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_document_number_format]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_document_number_format]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -707,7 +732,7 @@ CREATE TABLE [dbo].[db_document_number_format](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[db_document_last_running_number]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[db_document_last_running_number]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -727,7 +752,7 @@ CREATE TABLE [dbo].[db_document_last_running_number](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_send_material_head]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_send_material_head]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -748,7 +773,7 @@ CREATE TABLE [dbo].[in_send_material_head](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_receive_material_head]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_receive_material_head]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -773,7 +798,7 @@ CREATE TABLE [dbo].[in_receive_material_head](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_receive_material_detail]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_receive_material_detail]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -793,7 +818,7 @@ CREATE TABLE [dbo].[in_receive_material_detail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[in_send_material_detail]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  Table [dbo].[in_send_material_detail]    Script Date: 12/14/2014 22:53:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -814,205 +839,205 @@ CREATE TABLE [dbo].[in_send_material_detail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  ForeignKey [fk_db_company_branch_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_company_branch_branch]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_company_branch]  WITH CHECK ADD  CONSTRAINT [fk_db_company_branch_branch] FOREIGN KEY([branch_id])
 REFERENCES [dbo].[db_branch] ([branch_id])
 GO
 ALTER TABLE [dbo].[db_company_branch] CHECK CONSTRAINT [fk_db_company_branch_branch]
 GO
-/****** Object:  ForeignKey [fk_db_company_branch_company]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_company_branch_company]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_company_branch]  WITH CHECK ADD  CONSTRAINT [fk_db_company_branch_company] FOREIGN KEY([company_id])
 REFERENCES [dbo].[db_company] ([company_id])
 GO
 ALTER TABLE [dbo].[db_company_branch] CHECK CONSTRAINT [fk_db_company_branch_company]
 GO
-/****** Object:  ForeignKey [fk_db_device_company_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_device_company_branch]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_device]  WITH CHECK ADD  CONSTRAINT [fk_db_device_company_branch] FOREIGN KEY([company_branch_id])
 REFERENCES [dbo].[db_company_branch] ([company_branch_id])
 GO
 ALTER TABLE [dbo].[db_device] CHECK CONSTRAINT [fk_db_device_company_branch]
 GO
-/****** Object:  ForeignKey [fk_db_document_last_running_number_document_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_document_last_running_number_document_type]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_document_last_running_number]  WITH CHECK ADD  CONSTRAINT [fk_db_document_last_running_number_document_type] FOREIGN KEY([document_type_id])
 REFERENCES [dbo].[db_document_type] ([document_type_id])
 GO
 ALTER TABLE [dbo].[db_document_last_running_number] CHECK CONSTRAINT [fk_db_document_last_running_number_document_type]
 GO
-/****** Object:  ForeignKey [fk_db_document_number_format_document_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_document_number_format_document_type]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_document_number_format]  WITH CHECK ADD  CONSTRAINT [fk_db_document_number_format_document_type] FOREIGN KEY([document_type_id])
 REFERENCES [dbo].[db_document_type] ([document_type_id])
 GO
 ALTER TABLE [dbo].[db_document_number_format] CHECK CONSTRAINT [fk_db_document_number_format_document_type]
 GO
-/****** Object:  ForeignKey [fk_db_document_type_company_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_document_type_company_branch]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_document_type]  WITH CHECK ADD  CONSTRAINT [fk_db_document_type_company_branch] FOREIGN KEY([company_branch_id])
 REFERENCES [dbo].[db_company_branch] ([company_branch_id])
 GO
 ALTER TABLE [dbo].[db_document_type] CHECK CONSTRAINT [fk_db_document_type_company_branch]
 GO
-/****** Object:  ForeignKey [fk_db_employee_employee_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_employee_employee_group]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_employee]  WITH CHECK ADD  CONSTRAINT [fk_db_employee_employee_group] FOREIGN KEY([employee_group_id])
 REFERENCES [dbo].[db_employee_group] ([employee_group_id])
 GO
 ALTER TABLE [dbo].[db_employee] CHECK CONSTRAINT [fk_db_employee_employee_group]
 GO
-/****** Object:  ForeignKey [fk_db_reason_document_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_reason_document_type]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_reason]  WITH CHECK ADD  CONSTRAINT [fk_db_reason_document_type] FOREIGN KEY([document_type_id])
 REFERENCES [dbo].[db_document_type] ([document_type_id])
 GO
 ALTER TABLE [dbo].[db_reason] CHECK CONSTRAINT [fk_db_reason_document_type]
 GO
-/****** Object:  ForeignKey [fk_db_system_configuration_configuration_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_system_configuration_configuration_group]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_system_configuration]  WITH CHECK ADD  CONSTRAINT [fk_db_system_configuration_configuration_group] FOREIGN KEY([system_configuration_group_code])
 REFERENCES [dbo].[db_system_configuration_group] ([system_configuration_group_code])
 GO
 ALTER TABLE [dbo].[db_system_configuration] CHECK CONSTRAINT [fk_db_system_configuration_configuration_group]
 GO
-/****** Object:  ForeignKey [fk_db_uom_ratio_uom_from]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_uom_ratio_uom_from]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_uom_ratio]  WITH CHECK ADD  CONSTRAINT [fk_db_uom_ratio_uom_from] FOREIGN KEY([uom_id_from])
 REFERENCES [dbo].[db_uom] ([uom_id])
 GO
 ALTER TABLE [dbo].[db_uom_ratio] CHECK CONSTRAINT [fk_db_uom_ratio_uom_from]
 GO
-/****** Object:  ForeignKey [fk_db_uom_ratio_uom_to]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_uom_ratio_uom_to]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_uom_ratio]  WITH CHECK ADD  CONSTRAINT [fk_db_uom_ratio_uom_to] FOREIGN KEY([uom_id_to])
 REFERENCES [dbo].[db_uom] ([uom_id])
 GO
 ALTER TABLE [dbo].[db_uom_ratio] CHECK CONSTRAINT [fk_db_uom_ratio_uom_to]
 GO
-/****** Object:  ForeignKey [fk_db_warehouse_company_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_db_warehouse_company_branch]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[db_warehouse]  WITH CHECK ADD  CONSTRAINT [fk_db_warehouse_company_branch] FOREIGN KEY([company_branch_id])
 REFERENCES [dbo].[db_company_branch] ([company_branch_id])
 GO
 ALTER TABLE [dbo].[db_warehouse] CHECK CONSTRAINT [fk_db_warehouse_company_branch]
 GO
-/****** Object:  ForeignKey [fk_in_bill_of_material_detail_in_bill_of_material_head]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_bill_of_material_detail_in_bill_of_material_head]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_bill_of_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_bill_of_material_detail_in_bill_of_material_head] FOREIGN KEY([bill_of_material_head_id])
 REFERENCES [dbo].[in_bill_of_material_head] ([bill_of_material_head_id])
 GO
 ALTER TABLE [dbo].[in_bill_of_material_detail] CHECK CONSTRAINT [fk_in_bill_of_material_detail_in_bill_of_material_head]
 GO
-/****** Object:  ForeignKey [fk_in_bill_of_material_detail_in_bill_of_material_head_sub]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_bill_of_material_detail_in_bill_of_material_head_sub]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_bill_of_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_bill_of_material_detail_in_bill_of_material_head_sub] FOREIGN KEY([bill_of_material_head_id_sub])
 REFERENCES [dbo].[in_bill_of_material_head] ([bill_of_material_head_id])
 GO
 ALTER TABLE [dbo].[in_bill_of_material_detail] CHECK CONSTRAINT [fk_in_bill_of_material_detail_in_bill_of_material_head_sub]
 GO
-/****** Object:  ForeignKey [fk_in_bill_of_material_detail_in_material]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_bill_of_material_detail_in_material]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_bill_of_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_bill_of_material_detail_in_material] FOREIGN KEY([material_id])
 REFERENCES [dbo].[in_material] ([material_id])
 GO
 ALTER TABLE [dbo].[in_bill_of_material_detail] CHECK CONSTRAINT [fk_in_bill_of_material_detail_in_material]
 GO
-/****** Object:  ForeignKey [fk_in_bill_of_material_head_in_bill_of_material_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_bill_of_material_head_in_bill_of_material_group]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_bill_of_material_head]  WITH CHECK ADD  CONSTRAINT [fk_in_bill_of_material_head_in_bill_of_material_group] FOREIGN KEY([bill_of_material_group_id])
 REFERENCES [dbo].[in_bill_of_material_group] ([bill_of_material_group_id])
 GO
 ALTER TABLE [dbo].[in_bill_of_material_head] CHECK CONSTRAINT [fk_in_bill_of_material_head_in_bill_of_material_group]
 GO
-/****** Object:  ForeignKey [fk_in_material_db_uom_count]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_material_db_uom_count]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_material]  WITH CHECK ADD  CONSTRAINT [fk_in_material_db_uom_count] FOREIGN KEY([uom_id_count])
 REFERENCES [dbo].[db_uom] ([uom_id])
 GO
 ALTER TABLE [dbo].[in_material] CHECK CONSTRAINT [fk_in_material_db_uom_count]
 GO
-/****** Object:  ForeignKey [fk_in_material_db_uom_receive]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_material_db_uom_receive]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_material]  WITH CHECK ADD  CONSTRAINT [fk_in_material_db_uom_receive] FOREIGN KEY([uom_id_receive])
 REFERENCES [dbo].[db_uom] ([uom_id])
 GO
 ALTER TABLE [dbo].[in_material] CHECK CONSTRAINT [fk_in_material_db_uom_receive]
 GO
-/****** Object:  ForeignKey [fk_in_material_db_uom_use]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_material_db_uom_use]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_material]  WITH CHECK ADD  CONSTRAINT [fk_in_material_db_uom_use] FOREIGN KEY([uom_id_use])
 REFERENCES [dbo].[db_uom] ([uom_id])
 GO
 ALTER TABLE [dbo].[in_material] CHECK CONSTRAINT [fk_in_material_db_uom_use]
 GO
-/****** Object:  ForeignKey [fk_in_receive_material_detail_db_warehouse]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_receive_material_detail_db_warehouse]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_receive_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_receive_material_detail_db_warehouse] FOREIGN KEY([warehouse_id_destination])
 REFERENCES [dbo].[db_warehouse] ([warehouse_id])
 GO
 ALTER TABLE [dbo].[in_receive_material_detail] CHECK CONSTRAINT [fk_in_receive_material_detail_db_warehouse]
 GO
-/****** Object:  ForeignKey [fk_in_receive_material_detail_in_material]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_receive_material_detail_in_material]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_receive_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_receive_material_detail_in_material] FOREIGN KEY([material_id])
 REFERENCES [dbo].[in_material] ([material_id])
 GO
 ALTER TABLE [dbo].[in_receive_material_detail] CHECK CONSTRAINT [fk_in_receive_material_detail_in_material]
 GO
-/****** Object:  ForeignKey [fk_in_receive_material_detail_in_receive_material_head]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_receive_material_detail_in_receive_material_head]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_receive_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_receive_material_detail_in_receive_material_head] FOREIGN KEY([receive_material_head_id])
 REFERENCES [dbo].[in_receive_material_head] ([receive_material_head_id])
 GO
 ALTER TABLE [dbo].[in_receive_material_detail] CHECK CONSTRAINT [fk_in_receive_material_detail_in_receive_material_head]
 GO
-/****** Object:  ForeignKey [fk_in_receive_material_head_db_reason]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_receive_material_head_db_reason]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_receive_material_head]  WITH CHECK ADD  CONSTRAINT [fk_in_receive_material_head_db_reason] FOREIGN KEY([reason_id])
 REFERENCES [dbo].[db_reason] ([reason_id])
 GO
 ALTER TABLE [dbo].[in_receive_material_head] CHECK CONSTRAINT [fk_in_receive_material_head_db_reason]
 GO
-/****** Object:  ForeignKey [fk_in_receive_material_head_db_supplier]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_receive_material_head_db_supplier]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_receive_material_head]  WITH CHECK ADD  CONSTRAINT [fk_in_receive_material_head_db_supplier] FOREIGN KEY([supplier_id])
 REFERENCES [dbo].[db_supplier] ([supplier_id])
 GO
 ALTER TABLE [dbo].[in_receive_material_head] CHECK CONSTRAINT [fk_in_receive_material_head_db_supplier]
 GO
-/****** Object:  ForeignKey [fk_in_receive_material_head_db_warehouse]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_receive_material_head_db_warehouse]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_receive_material_head]  WITH CHECK ADD  CONSTRAINT [fk_in_receive_material_head_db_warehouse] FOREIGN KEY([warehouse_id_source])
 REFERENCES [dbo].[db_warehouse] ([warehouse_id])
 GO
 ALTER TABLE [dbo].[in_receive_material_head] CHECK CONSTRAINT [fk_in_receive_material_head_db_warehouse]
 GO
-/****** Object:  ForeignKey [fk_in_send_material_detail_db_warehouse_destination]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_send_material_detail_db_warehouse_destination]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_send_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_send_material_detail_db_warehouse_destination] FOREIGN KEY([warehouse_id_destination])
 REFERENCES [dbo].[db_warehouse] ([warehouse_id])
 GO
 ALTER TABLE [dbo].[in_send_material_detail] CHECK CONSTRAINT [fk_in_send_material_detail_db_warehouse_destination]
 GO
-/****** Object:  ForeignKey [fk_in_send_material_detail_db_warehouse_source]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_send_material_detail_db_warehouse_source]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_send_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_send_material_detail_db_warehouse_source] FOREIGN KEY([warehouse_id_source])
 REFERENCES [dbo].[db_warehouse] ([warehouse_id])
 GO
 ALTER TABLE [dbo].[in_send_material_detail] CHECK CONSTRAINT [fk_in_send_material_detail_db_warehouse_source]
 GO
-/****** Object:  ForeignKey [fk_in_send_material_detail_in_in_material]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_send_material_detail_in_in_material]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_send_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_send_material_detail_in_in_material] FOREIGN KEY([material_id])
 REFERENCES [dbo].[in_material] ([material_id])
 GO
 ALTER TABLE [dbo].[in_send_material_detail] CHECK CONSTRAINT [fk_in_send_material_detail_in_in_material]
 GO
-/****** Object:  ForeignKey [fk_in_send_material_detail_in_send_material_head]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_send_material_detail_in_send_material_head]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_send_material_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_send_material_detail_in_send_material_head] FOREIGN KEY([send_material_head_id])
 REFERENCES [dbo].[in_send_material_head] ([send_material_head_id])
 GO
 ALTER TABLE [dbo].[in_send_material_detail] CHECK CONSTRAINT [fk_in_send_material_detail_in_send_material_head]
 GO
-/****** Object:  ForeignKey [fk_in_send_material_head_db_reason]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_in_send_material_head_db_reason]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[in_send_material_head]  WITH CHECK ADD  CONSTRAINT [fk_in_send_material_head_db_reason] FOREIGN KEY([reason_id])
 REFERENCES [dbo].[db_reason] ([reason_id])
 GO
 ALTER TABLE [dbo].[in_send_material_head] CHECK CONSTRAINT [fk_in_send_material_head_db_reason]
 GO
-/****** Object:  ForeignKey [fk_sc_activity_log_sc_activity_type]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_sc_activity_log_sc_activity_type]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[sc_activity_log]  WITH CHECK ADD  CONSTRAINT [fk_sc_activity_log_sc_activity_type] FOREIGN KEY([activity_type_id])
 REFERENCES [dbo].[sc_activity_type] ([activity_type_id])
 GO
 ALTER TABLE [dbo].[sc_activity_log] CHECK CONSTRAINT [fk_sc_activity_log_sc_activity_type]
 GO
-/****** Object:  ForeignKey [fk_sc_command_script_param_command_script]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_sc_command_script_param_command_script]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[sc_command_script_param]  WITH CHECK ADD  CONSTRAINT [fk_sc_command_script_param_command_script] FOREIGN KEY([command_script_id])
 REFERENCES [dbo].[sc_command_script] ([command_script_id])
 GO
 ALTER TABLE [dbo].[sc_command_script_param] CHECK CONSTRAINT [fk_sc_command_script_param_command_script]
 GO
-/****** Object:  ForeignKey [fk_sc_function_function_group]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_sc_function_function_group]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[sc_function]  WITH CHECK ADD  CONSTRAINT [fk_sc_function_function_group] FOREIGN KEY([function_group_code])
 REFERENCES [dbo].[sc_function_group] ([function_group_code])
 GO
 ALTER TABLE [dbo].[sc_function] CHECK CONSTRAINT [fk_sc_function_function_group]
 GO
-/****** Object:  ForeignKey [fk_sc_user_permission_company_branch]    Script Date: 12/14/2014 22:29:33 ******/
+/****** Object:  ForeignKey [fk_sc_user_permission_company_branch]    Script Date: 12/14/2014 22:53:50 ******/
 ALTER TABLE [dbo].[sc_user_permission]  WITH CHECK ADD  CONSTRAINT [fk_sc_user_permission_company_branch] FOREIGN KEY([company_branch_id])
 REFERENCES [dbo].[db_company_branch] ([company_branch_id])
 GO
