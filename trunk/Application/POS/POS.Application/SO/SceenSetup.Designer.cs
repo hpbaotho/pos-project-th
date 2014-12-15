@@ -33,7 +33,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.spComtrolCommand = new System.Windows.Forms.SplitContainer();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ddlScreen = new System.Windows.Forms.ComboBox();
+            this.txtTableName = new POS.Control.BaseTextBox();
             this.ddlControlType = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
@@ -129,16 +133,44 @@
             // 
             // spComtrolCommand.Panel1
             // 
+            this.spComtrolCommand.Panel1.Controls.Add(this.label6);
+            this.spComtrolCommand.Panel1.Controls.Add(this.label5);
             this.spComtrolCommand.Panel1.Controls.Add(this.label1);
             this.spComtrolCommand.Panel1.Font = new System.Drawing.Font("Arial", 14F);
             // 
             // spComtrolCommand.Panel2
             // 
+            this.spComtrolCommand.Panel2.Controls.Add(this.ddlScreen);
+            this.spComtrolCommand.Panel2.Controls.Add(this.txtTableName);
             this.spComtrolCommand.Panel2.Controls.Add(this.ddlControlType);
             this.spComtrolCommand.Panel2.Font = new System.Drawing.Font("Arial", 14F);
             this.spComtrolCommand.Size = new System.Drawing.Size(237, 493);
             this.spComtrolCommand.SplitterDistance = 82;
             this.spComtrolCommand.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label6.Font = new System.Drawing.Font("Arial", 14F);
+            this.label6.Location = new System.Drawing.Point(0, 58);
+            this.label6.Name = "label6";
+            this.label6.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label6.Size = new System.Drawing.Size(114, 29);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Next Screen";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label5.Font = new System.Drawing.Font("Arial", 14F);
+            this.label5.Location = new System.Drawing.Point(0, 29);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label5.Size = new System.Drawing.Size(106, 29);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "TableName";
             // 
             // label1
             // 
@@ -152,18 +184,46 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Control Type";
             // 
+            // ddlScreen
+            // 
+            this.ddlScreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ddlScreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlScreen.Font = new System.Drawing.Font("Arial", 14F);
+            this.ddlScreen.FormattingEnabled = true;
+            this.ddlScreen.Items.AddRange(new object[] {
+            "Button",
+            "Table",
+            "Object"});
+            this.ddlScreen.Location = new System.Drawing.Point(0, 59);
+            this.ddlScreen.Name = "ddlScreen";
+            this.ddlScreen.Size = new System.Drawing.Size(151, 30);
+            this.ddlScreen.TabIndex = 2;
+            this.ddlScreen.SelectedIndexChanged += new System.EventHandler(this.ddlScreen_SelectedIndexChanged);
+            // 
+            // txtTableName
+            // 
+            this.txtTableName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtTableName.Enabled = false;
+            this.txtTableName.Location = new System.Drawing.Point(0, 30);
+            this.txtTableName.Name = "txtTableName";
+            this.txtTableName.Size = new System.Drawing.Size(151, 29);
+            this.txtTableName.TabIndex = 1;
+            this.txtTableName.TextChanged += new System.EventHandler(this.txtTableName_TextChanged);
+            // 
             // ddlControlType
             // 
             this.ddlControlType.Dock = System.Windows.Forms.DockStyle.Top;
             this.ddlControlType.Font = new System.Drawing.Font("Arial", 14F);
             this.ddlControlType.FormattingEnabled = true;
             this.ddlControlType.Items.AddRange(new object[] {
+            "Button",
             "Table",
-            "Button"});
+            "Object"});
             this.ddlControlType.Location = new System.Drawing.Point(0, 0);
             this.ddlControlType.Name = "ddlControlType";
             this.ddlControlType.Size = new System.Drawing.Size(151, 30);
             this.ddlControlType.TabIndex = 0;
+            this.ddlControlType.SelectedIndexChanged += new System.EventHandler(this.ddlControlType_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -271,6 +331,7 @@
             // 
             // cmdForm
             // 
+            this.cmdForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdForm.Font = new System.Drawing.Font("Arial", 14F);
             this.cmdForm.FormattingEnabled = true;
             this.cmdForm.Location = new System.Drawing.Point(128, 9);
@@ -286,6 +347,8 @@
             custromControlPropertyDTO1.control_parent_id = null;
             custromControlPropertyDTO1.control_type = null;
             custromControlPropertyDTO1.ControlState = null;
+            custromControlPropertyDTO1.NextScreen = null;
+            custromControlPropertyDTO1.TableName = null;
             this.dragContainer2.ControlCommand = custromControlPropertyDTO1;
             this.dragContainer2.Font = new System.Drawing.Font("Arial", 14F);
             this.dragContainer2.Location = new System.Drawing.Point(3, 3);
@@ -394,6 +457,7 @@
             this.spComtrolCommand.Panel1.ResumeLayout(false);
             this.spComtrolCommand.Panel1.PerformLayout();
             this.spComtrolCommand.Panel2.ResumeLayout(false);
+            this.spComtrolCommand.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spComtrolCommand)).EndInit();
             this.spComtrolCommand.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -434,5 +498,9 @@
         private System.Windows.Forms.ToolStripButton btnCopy;
         private System.Windows.Forms.ToolStripButton btnNewScreen;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Label label5;
+        private Control.BaseTextBox txtTableName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox ddlScreen;
     }
 }

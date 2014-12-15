@@ -55,9 +55,13 @@ namespace POS.BL.Service.SO
                             SELECT * 
                             FROM sc_screen_config WITH(NOLOCK) 
                             WHERE ISNULL(control_code,'')<>''
+                            
                         ";
+            List<ScreenConfig> result = new List<ScreenConfig>();
+            result = this.ExecuteQuery<ScreenConfig>(sql).ToList();
+            result.Insert(0, new ScreenConfig());
 
-            return this.ExecuteQuery<ScreenConfig>(sql).ToList();
+            return result;
         }
         public List<ScreenConfig> getChildScreenByParent(long? parentId)
         {

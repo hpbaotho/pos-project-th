@@ -374,7 +374,7 @@ namespace POS.Control
         #region Properties
 
         #region ColorTable
-
+        public string CommandArg { get; set; }
         Colortable colorTable = null;
 
         [DefaultValue(typeof(Colortable), "Office2010White")]

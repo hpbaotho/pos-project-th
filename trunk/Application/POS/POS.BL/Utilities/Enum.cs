@@ -13,12 +13,18 @@ namespace POS.BL.Utilities
     public struct ControlCode
     {
         public const string Login = "LN001";
+        public const string POS = "POS01";
     }
     public struct ControlType
     {
         public const string Form = "Form";
         public const string Button = "Button";
         public const string Table = "Table";
+        public const string Object = "Object";
+    }
+    public struct CommandGroup {
+        public const string Event = "Event";
+        public const string OpenNextScreen = "OpenNextScreen";
     }
     public struct ObjectState
     {
