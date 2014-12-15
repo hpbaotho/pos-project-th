@@ -142,12 +142,22 @@ namespace POS.Control
                 this.HideBoxResize();
             }
         }
-        public void UpdateCurrentDragItem(CustromControlPropertyDTO prorpty)
+        public void setCurentSelectDragItemProprty(CustromControlPropertyDTO prorpty)
         {
             DragItem dragItem = this.DragItem.Find(a => a.IsSelect == true && a.ControlCommand.ControlState != ObjectState.Delete);
             if (dragItem != null)
             {
                 dragItem.ControlCommand = prorpty;
+            }
+        }
+        public CustromControlPropertyDTO getCurentSelectDragItemProprty() {
+            DragItem dragItem = this.DragItem.Find(a => a.IsSelect == true && a.ControlCommand.ControlState != ObjectState.Delete);
+            if (dragItem != null)
+            {
+                return dragItem.ControlCommand;
+            }
+            else {
+                return null;
             }
         }
         public void HideBoxResize()

@@ -22,8 +22,10 @@ namespace POS.Control
     {
         #region :: Property ::
         private bool _IngoreFontDefault = false;
+
         public bool IngoreFontDefault { get { return _IngoreFontDefault; } set { _IngoreFontDefault = value; } }
         private BaseTextBox txtProcress = null;
+        private Panel Control_contanner = null;
         #endregion
         //====================================================================
         #region :: Construtor ::
@@ -98,7 +100,8 @@ namespace POS.Control
 
             }
         }
-        public void UpdateFontDefault() {
+        public void UpdateFontDefault()
+        {
             this.FindControlAll(this);
         }
         // Private function
@@ -117,14 +120,23 @@ namespace POS.Control
                 }
             }
         }
+        protected void BindConfigScreen(string screenCode, BaseTextBox txt)
+        {
+            if (this.Control_contanner != null && !string.IsNullOrEmpty(screenCode))
+            {
+                this.BindConfigScreen(this.Control_contanner, screenCode, txt);
+            }
+        }
         protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
         {
+            Control_contanner = contanner;
+            Control_contanner.Controls.Clear();
             ScreenConfig mainScreen = ServiceProvider.ScreenConfigService.getScreenByCode(screenCode);
             txtProcress = txt;
             if (mainScreen != null)
             {
-                contanner.Width = mainScreen.control_width;
-                contanner.Height = mainScreen.control_height;
+                Control_contanner.Width = mainScreen.control_width;
+                Control_contanner.Height = mainScreen.control_height;
 
                 List<ScreenConfig> dragItem = new List<ScreenConfig>();
                 dragItem = ServiceProvider.ScreenConfigService.getChildScreenByParent(mainScreen.control_id);
@@ -143,10 +155,43 @@ namespace POS.Control
                             btn.Height = item.control_height;
                             btn.Text = item.display_text;
                             btn.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
-                            btn.Click += new EventHandler(btn_Click);
-                            contanner.Controls.Add(btn);
+
+                            if (item.control_command_group == CommandGroup.OpenNextScreen)
+                            {
+                                btn.CommandArg = item.control_command;
+                                btn.Click += new EventHandler(btn_NextScreen);
+                            }
+                            else
+                            {
+                                btn.Click += new EventHandler(btn_Click);
+                            }
+                            Control_contanner.Controls.Add(btn);
+                            break;
+                        case ControlType.Table:
+                            Button btnTable = new Button();
+                            btnTable.Location = new System.Drawing.Point(0, 0);
+                            btnTable.Left = item.position_left;
+                            btnTable.Top = item.position_top;
+                            btnTable.Width = item.control_width;
+                            btnTable.Height = item.control_height;
+                            btnTable.Text = item.display_text;
+                            btnTable.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
+                            btnTable.BackColor = Color.FromArgb(item.background_color);
+                            btnTable.Click += new EventHandler(btn_TableClick);
+                            btnTable.FlatStyle = FlatStyle.Popup;
+                            Control_contanner.Controls.Add(btnTable);
                             break;
                         default:
+                            Panel pnlObj = new Panel();
+                            pnlObj.Location = new System.Drawing.Point(0, 0);
+                            pnlObj.Left = item.position_left;
+                            pnlObj.Top = item.position_top;
+                            pnlObj.Width = item.control_width;
+                            pnlObj.Height = item.control_height;
+                            pnlObj.Text = item.display_text;
+                            pnlObj.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
+                            pnlObj.BackColor = Color.FromArgb(item.background_color);
+                            Control_contanner.Controls.Add(pnlObj);
                             break;
                     }
                 }
@@ -173,6 +218,16 @@ namespace POS.Control
         #endregion
         //====================================================================
         #region :: Custom Events ::
+        protected void btn_TableClick(object sender, EventArgs e)
+        {
+
+        }
+        protected void btn_NextScreen(object sender, EventArgs e)
+        {
+            BaseButton btn = sender as BaseButton;
+            this.BindConfigScreen(btn.CommandArg, null);
+
+        }
         protected void btn_Click(object sender, EventArgs e)
         {
             BaseButton btn = sender as BaseButton;
@@ -202,7 +257,7 @@ namespace POS.Control
             // 
             // FormBase
             // 
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(286, 262);
             this.Name = "FormBase";
             this.ResumeLayout(false);
 
@@ -217,7 +272,7 @@ namespace POS.Control
         {
             base.OnPaint(e);
         }
-        
+
         #endregion
 
         /*

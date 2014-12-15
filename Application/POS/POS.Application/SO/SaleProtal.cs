@@ -23,7 +23,7 @@ namespace POS.SO
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
-
+            base.OpernNewScreen<SO.POSScreen>();
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace POS.SO
 
         private void btnManage_Click(object sender, EventArgs e)
         {
-
+            base.OpernNewScreen<SO.SceenSetup>();
         }
 
         private void btnSecurity_Click(object sender, EventArgs e)

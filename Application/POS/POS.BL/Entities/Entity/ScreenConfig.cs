@@ -21,6 +21,8 @@ namespace POS.BL.Entities.Entity
         public long? control_id { get; set; }
         public string control_code { get; set; }
         public string control_type { get; set; }
+        public string control_command { get; set; }
+        public string control_command_group { get; set; }
         public int background_color { get; set; }
         public string background_image_path { get; set; }
         public int border_style { get; set; }

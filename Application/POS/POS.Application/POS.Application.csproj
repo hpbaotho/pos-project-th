@@ -68,6 +68,12 @@
     <Compile Include="SetupSystemConfigGroup.Designer.cs">
       <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="SO\POSScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\POSScreen.Designer.cs">
+      <DependentUpon>POSScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="SO\SaleProtal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </Compile>
     <EmbeddedResource Include="SetupSystemConfigGroup.resx">
       <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\POSScreen.resx">
+      <DependentUpon>POSScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\SaleProtal.resx">
       <DependentUpon>SaleProtal.cs</DependentUpon>
