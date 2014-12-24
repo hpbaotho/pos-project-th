@@ -147,3 +147,9 @@ GO
 ALTER TABLE [dbo].[in_log_lot_detail]  WITH CHECK ADD  CONSTRAINT [fk_in_log_lot_detail_in_phy_log_lot_head] FOREIGN KEY([phy_log_lot_head_id])
 REFERENCES [dbo].[in_phy_log_lot_head] ([phy_log_lot_head_id])
 GO
+
+ALTER TABLE [in_material]
+DROP CONSTRAINT [fk_in_material_db_document_type]
+
+ALTER TABLE [in_material]
+DROP COLUMN [document_type_id]
