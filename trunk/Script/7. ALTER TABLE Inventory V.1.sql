@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[in_tran_head](
 	[supplier_id] [bigint] NULL,
 	[warehouse_id] [bigint] NULL,
 	[other_source] [nvarchar](1000) NULL,
+	[remark] [nvarchar](1000) NULL,
 	
 	[created_by] [nvarchar](50) NULL,
 	[created_date] [datetime] NULL,
@@ -50,7 +51,7 @@ CREATE TABLE [dbo].[in_tran_detail](
 	[material_id] [bigint] NOT NULL,
 	[warehouse_id_dest] [bigint] NOT NULL,
 	[quantity] [numeric] (11,4) NULL,
-	
+	[remark] [nvarchar](1000) NULL,
 	[created_by] [nvarchar](50) NULL,
 	[created_date] [datetime] NULL,
 	[updated_by] [nvarchar](50) NULL,
@@ -153,3 +154,19 @@ DROP CONSTRAINT [fk_in_material_db_document_type]
 
 ALTER TABLE [in_material]
 DROP COLUMN [document_type_id]
+
+ALTER TABLE [in_stock_detail]
+DROP COLUMN [period_id]
+
+ALTER TABLE [in_stock_head]
+DROP COLUMN [period_group_id]
+
+ALTER TABLE [dbo].[in_stock_head]  WITH CHECK ADD  CONSTRAINT [fk_in_stock_head_in_period] FOREIGN KEY([period_id])
+REFERENCES [dbo].[in_period] ([period_id])
+GO
+
+ALTER TABLE [in_stock_head]
+ADD [remark] [nvarchar](1000) NULL
+
+ALTER TABLE [in_stock_detail]
+ADD [remark] [nvarchar](1000) NULL
