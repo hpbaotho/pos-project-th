@@ -76,13 +76,16 @@ namespace POS.Control
         }
         public void AddDragControl(DragItem control)
         {
-            string controlName = string.Format("{0}_DragItem_{1}", this.Name, this.DragItem.Count());
+            control = this.CheckIsContainOtherObj(control);
+            if (control != null)
+            {
+                string controlName = string.Format("{0}_DragItem_{1}", this.Name, this.DragItem.Count());
 
-            control.Name = controlName;
-            control.SelectDragEvent += new DragItem.SelectDragItemHandler(control_SelectDragEvent);
-            this.DragItem.Add(control);
-            this.Controls.Add(control);
-
+                control.Name = controlName;
+                control.SelectDragEvent += new DragItem.SelectDragItemHandler(control_SelectDragEvent);
+                this.DragItem.Add(control);
+                this.Controls.Add(control);
+            }
         }
         public void DuplicateDragItem()
         {
@@ -150,13 +153,15 @@ namespace POS.Control
                 dragItem.ControlCommand = prorpty;
             }
         }
-        public CustromControlPropertyDTO getCurentSelectDragItemProprty() {
+        public CustromControlPropertyDTO getCurentSelectDragItemProprty()
+        {
             DragItem dragItem = this.DragItem.Find(a => a.IsSelect == true && a.ControlCommand.ControlState != ObjectState.Delete);
             if (dragItem != null)
             {
                 return dragItem.ControlCommand;
             }
-            else {
+            else
+            {
                 return null;
             }
         }
@@ -259,6 +264,69 @@ namespace POS.Control
             }
 
         }
+        public DragItem CheckIsContainOtherObj(DragItem control)
+        {
+            control.CustomProperties.Top = 0;
+            bool isCanPast = false;
+            for (int Y = 0; Y <= this.Height; Y += grid)
+            {
+                control.CustomProperties.Left = 0;
+                for (int X = 0; X <= this.Width; X += grid)
+                {
+
+                    #region :: Create Rectangrl Check ::
+                    Rectangle rectangle1 = new Rectangle(control.CustomProperties.Left, control.CustomProperties.Top, 1, 1);
+                    Rectangle rectangle2 = new Rectangle(control.CustomProperties.Left + control.Width - 1, control.CustomProperties.Top, 1, 1);
+                    Rectangle rectangle3 = new Rectangle(control.CustomProperties.Left + control.Width - 1, control.CustomProperties.Top + control.Height - 1, 1, 1);
+                    Rectangle rectangle4 = new Rectangle(control.CustomProperties.Left, control.CustomProperties.Top + control.Height - 1, 1, 1);
+                    #endregion
+
+                    bool isContains = false;
+                    #region :: Check Contain Other obj ::
+
+                    foreach (DragItem OtherObj in this.DragItem)
+                    {
+
+                        Rectangle recOtherObj = new Rectangle(OtherObj.CustomProperties.Left, OtherObj.CustomProperties.Top, OtherObj.Width, OtherObj.Height);
+                        isContains = recOtherObj.Contains(rectangle1) || recOtherObj.Contains(rectangle2) || recOtherObj.Contains(rectangle3) || recOtherObj.Contains(rectangle4);
+                        if (isContains)
+                        {
+                            break;
+                        }
+
+                    }
+                    #endregion
+
+                    if (!isContains && this.Width >= control.CustomProperties.Left + control.Width-1 && this.Height >= control.CustomProperties.Top + control.Height-1)
+                    {
+                        isCanPast = true;
+                        break;
+                    }
+
+                    control.CustomProperties.Left += grid;
+                }
+
+                if (isCanPast)
+                {
+                    break;
+                }
+                control.CustomProperties.Top += grid;
+
+            }
+
+            #region :: Result ::
+
+            if (isCanPast)
+            {
+                return control;
+            }
+            else
+            {
+                return null;
+            }
+            #endregion
+        }
+
 
         // Is the cursor outside of the parent container?
         public bool IsCursorOutside(Point Minlocation, Point MaxLocation)
