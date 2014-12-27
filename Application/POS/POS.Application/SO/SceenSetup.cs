@@ -89,6 +89,8 @@ namespace POS.SO
             Control.DragItem d = new Control.DragItem(new Point(0, 0));
             d.ControlCommand.ControlState = ObjectState.Add;
             d.ControlCommand.control_type = ControlType.Button;
+            d.Width = 60;
+            d.Height = 60;
             dragContainer2.AddDragControl(d);
         }
         //For Hot Key
@@ -294,6 +296,7 @@ namespace POS.SO
 
         private void btnNewScreen_Click(object sender, EventArgs e)
         {
+            dragContainer2.HideBoxResize();
             this.NewScreenSetup();
         }
 
