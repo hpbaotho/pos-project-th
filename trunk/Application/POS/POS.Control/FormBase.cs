@@ -23,6 +23,9 @@ namespace POS.Control
         #region :: Property ::
         private bool _IngoreFontDefault = false;
 
+        public delegate void TableClickHandler(string tableCode);
+        public event TableClickHandler TableClickEvent;
+
         public bool IngoreFontDefault { get { return _IngoreFontDefault; } set { _IngoreFontDefault = value; } }
         private BaseTextBox txtProcress = null;
         private Panel Control_contanner = null;
@@ -177,6 +180,7 @@ namespace POS.Control
                             btnTable.Text = item.display_text;
                             btnTable.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
                             btnTable.BackColor = Color.FromArgb(item.background_color);
+                            btnTable.Tag = item.control_command;
                             btnTable.Click += new EventHandler(btn_TableClick);
                             btnTable.FlatStyle = FlatStyle.Popup;
                             Control_contanner.Controls.Add(btnTable);
@@ -220,8 +224,12 @@ namespace POS.Control
         #region :: Custom Events ::
         protected void btn_TableClick(object sender, EventArgs e)
         {
-
+            if (TableClickEvent != null)
+            {
+                TableClickEvent(((Button)sender).Tag.ToString());
+            }
         }
+
         protected void btn_NextScreen(object sender, EventArgs e)
         {
             BaseButton btn = sender as BaseButton;

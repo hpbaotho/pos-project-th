@@ -58,8 +58,8 @@ namespace POS
           //  Application.Run(new SU.SetupMaster());
             //Application.Run(new SetupMaster());
             //Application.Run(new TestGridControl());
-         //  Application.Run(new Login(true));
-              Application.Run(new SO.SceenSetup());
+          Application.Run(new Login(true));
+             // Application.Run(new SO.SceenSetup());
         }
 
     }
