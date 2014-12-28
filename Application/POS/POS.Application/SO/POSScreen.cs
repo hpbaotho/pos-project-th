@@ -15,7 +15,13 @@ namespace POS.SO
         public POSScreen()
         {
             InitializeComponent();
-            base.BindConfigScreen(pnlTableView, ControlCode.POS,null);
+            base.BindConfigScreen(pnlTableView, ControlCode.POS, null);
+            this.TableClickEvent += new TableClickHandler(POSScreen_TableClickEvent);
+        }
+
+        protected void POSScreen_TableClickEvent(string tableCode)
+        {
+            base.OpernNewScreen<OpenOrder>();
         }
     }
 }

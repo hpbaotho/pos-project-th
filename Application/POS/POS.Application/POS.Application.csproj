@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +68,12 @@
     </Compile>
     <Compile Include="SetupSystemConfigGroup.Designer.cs">
       <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SO\OpenOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\OpenOrder.Designer.cs">
+      <DependentUpon>OpenOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="SO\POSScreen.cs">
       <SubType>Form</SubType>
@@ -128,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="SetupSystemConfigGroup.resx">
       <DependentUpon>SetupSystemConfigGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\OpenOrder.resx">
+      <DependentUpon>OpenOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\POSScreen.resx">
       <DependentUpon>POSScreen.cs</DependentUpon>
