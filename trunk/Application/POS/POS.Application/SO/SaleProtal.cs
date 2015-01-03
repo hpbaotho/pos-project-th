@@ -38,7 +38,7 @@ namespace POS.SO
 
         private void btnWarehouse_Click(object sender, EventArgs e)
         {
-
+            base.OpernNewScreen<IN.SetupIN>();
         }
 
         private void btnManage_Click(object sender, EventArgs e)
