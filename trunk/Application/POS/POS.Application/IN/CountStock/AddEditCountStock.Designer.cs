@@ -42,7 +42,6 @@
             this.txtPeriod = new POS.Control.BaseTextBox();
             this.txtWarehouse = new POS.Control.BaseTextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -182,13 +181,6 @@
             this.listBox1.Size = new System.Drawing.Size(873, 43);
             this.listBox1.TabIndex = 14;
             // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1195, 52);
-            this.panel1.TabIndex = 15;
-            // 
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -248,7 +240,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.baseGrid1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txtWarehouse);
             this.Controls.Add(this.txtPeriod);
@@ -280,7 +271,6 @@
             this.Controls.SetChildIndex(this.txtPeriod, 0);
             this.Controls.SetChildIndex(this.txtWarehouse, 0);
             this.Controls.SetChildIndex(this.listBox1, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.baseGrid1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,7 +293,6 @@
         private Control.BaseTextBox txtPeriod;
         private Control.BaseTextBox txtWarehouse;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnReset;
