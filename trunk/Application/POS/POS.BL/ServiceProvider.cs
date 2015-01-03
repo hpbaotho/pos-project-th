@@ -69,5 +69,18 @@ namespace POS.BL
                 return roleService;
             }
         }
+
+        private static MenuService menuService;
+        public static MenuService MenuService
+        {
+            get
+            {
+                if (menuService == null)
+                {
+                    menuService = new MenuService();
+                }
+                return menuService;
+            }
+        }
     }
 }

@@ -45,6 +45,7 @@ namespace POS.Control.GridView
                     Grid.DataMember = "Table";
                     Grid.AllowUserToAddRows = false;
                     Grid.AllowUserToDeleteRows = false;
+                  
                     tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceDataSet.Tables[0].Rows.Count);
                 }
                 else

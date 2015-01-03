@@ -14,6 +14,7 @@ namespace POS.BL.Utilities
     {
         public const string Login = "LN001";
         public const string POS = "POS01";
+        public const string OpenOrder = "SO01";
     }
     public struct ControlType
     {

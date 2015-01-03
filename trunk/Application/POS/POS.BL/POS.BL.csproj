@@ -59,16 +59,19 @@
   <ItemGroup>
     <Compile Include="DTO\DuplicateItemDTO.cs" />
     <Compile Include="DTO\SO\CustromControlPropertyDTO.cs" />
+    <Compile Include="DTO\SO\OrderDTO.cs" />
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
     <Compile Include="Entities\EntitiyBase.cs" />
     <Compile Include="Entities\Entity\Employee.cs" />
     <Compile Include="Entities\Entity\Role.cs" />
     <Compile Include="Entities\Entity\ScreenConfig.cs" />
+    <Compile Include="Entities\Entity\Menu.cs" />
     <Compile Include="Entities\Entity\SystemConfigGroup.cs" />
     <Compile Include="Entities\Entity\SystemConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProvider.cs" />
     <Compile Include="Service\ServiceBase.cs" />
+    <Compile Include="Service\SO\MenuService.cs" />
     <Compile Include="Service\SO\ScreenConfigService.cs" />
     <Compile Include="Service\SU\EmployeeService.cs" />
     <Compile Include="Service\SU\RoleService.cs" />
