@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
 using POS.Control.BaseMessageBox;
+using System.Drawing.Drawing2D;
 
 namespace POS.Control
 {
@@ -278,7 +279,19 @@ namespace POS.Control
         }
         protected override void OnPaint(PaintEventArgs e)
         {
+            Color color1 = Color.FromArgb(30, 87, 153);
+            Color color2 = Color.FromArgb(125, 185, 232);
             base.OnPaint(e);
+            //using (var brush = new LinearGradientBrush
+            //  (DisplayRectangle, color1, Color.DarkGray, LinearGradientMode.Vertical))
+            //{
+            //    e.Graphics.FillRectangle(brush, DisplayRectangle);
+            //}
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            Invalidate(); // Force repainting on resize
         }
 
         #endregion

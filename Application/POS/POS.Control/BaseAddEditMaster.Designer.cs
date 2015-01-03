@@ -91,6 +91,7 @@
             // 
             // BaseAddEditMaster
             // 
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
             this.Name = "BaseAddEditMaster";
             this.Size = new System.Drawing.Size(498, 339);

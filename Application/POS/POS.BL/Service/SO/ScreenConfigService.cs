@@ -19,7 +19,7 @@ namespace POS.BL.Service.SO
         {
             StringBuilder strSql = new StringBuilder();
             strSql.AppendLine(@"  SELECT  'Code' as ColumnName
-                                , CASE WHEN COUNT(*) > 0 THEN CAST(1 as BIT) 
+                                , CASE WHEN COUNT(1) > 0 THEN CAST(1 as BIT) 
                                        ELSE CAST(0 as BIT)
                                   END AS isDuplicate
                                  FROM    [sc_screen_config]  WITH(NOLOCK)

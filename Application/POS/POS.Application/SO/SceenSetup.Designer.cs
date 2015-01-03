@@ -77,6 +77,7 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
@@ -258,6 +259,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer2.Panel1.Controls.Add(this.label4);
             this.splitContainer2.Panel1.Controls.Add(this.label3);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
@@ -270,6 +272,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.AutoScroll = true;
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer2.Panel2.Controls.Add(this.dragContainer2);
             this.splitContainer2.Panel2.Font = new System.Drawing.Font("Arial", 14F);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(5);
@@ -342,6 +345,7 @@
             // 
             // dragContainer2
             // 
+            this.dragContainer2.BackColor = System.Drawing.SystemColors.Control;
             custromControlPropertyDTO1.control_code = null;
             custromControlPropertyDTO1.control_id = null;
             custromControlPropertyDTO1.control_parent_id = null;

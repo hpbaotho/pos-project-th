@@ -19,6 +19,7 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
         public long? control_id { get; set; }
+        
         public string control_code { get; set; }
         public string control_type { get; set; }
         public string control_command { get; set; }

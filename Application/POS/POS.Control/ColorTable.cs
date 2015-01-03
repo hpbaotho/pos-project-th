@@ -28,7 +28,7 @@ namespace POS.Control
     {
         #region Static Color Tables
 
-        static Office2010White office2010wt = new Office2010White();
+        private static Office2010White office2010wt = new Office2010White();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010White
@@ -36,7 +36,7 @@ namespace POS.Control
             get { return office2010wt; }
         }
 
-        static Office2010Blue office2010blu = new Office2010Blue();
+        private static Office2010Blue office2010blu = new Office2010Blue();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010Blue
@@ -44,7 +44,7 @@ namespace POS.Control
             get { return office2010blu; }
         }
 
-        static Office2010Green office2010gr = new Office2010Green();
+        private static Office2010Green office2010gr = new Office2010Green();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010Green
@@ -52,7 +52,7 @@ namespace POS.Control
             get { return office2010gr; }
         }
 
-        static Office2010Red office2010rd = new Office2010Red();
+        private static Office2010Red office2010rd = new Office2010Red();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010Red
@@ -60,7 +60,7 @@ namespace POS.Control
             get { return office2010rd; }
         }
 
-        static Office2010Pink office2010pk = new Office2010Pink();
+        private static Office2010Pink office2010pk = new Office2010Pink();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010Pink
@@ -68,7 +68,7 @@ namespace POS.Control
             get { return office2010pk; }
         }
 
-        static Office2010Yellow office2010yl = new Office2010Yellow();
+        private static Office2010Yellow office2010yl = new Office2010Yellow();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010Yellow
@@ -79,7 +79,7 @@ namespace POS.Control
 
 
 
-        static Office2010Publisher office2010pb = new Office2010Publisher();
+        private static Office2010Publisher office2010pb = new Office2010Publisher();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public static Colortable Office2010Publisher
