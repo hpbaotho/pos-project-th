@@ -234,7 +234,7 @@
             this.listBox1.Size = new System.Drawing.Size(873, 43);
             this.listBox1.TabIndex = 25;
             // 
-            // Receive
+            // AddEditReceiveMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -258,7 +258,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ddlReason);
-            this.Name = "Receive";
+            this.Name = "AddEditReceiveMaterial";
             this.Size = new System.Drawing.Size(1024, 617);
             this.Controls.SetChildIndex(this.ddlReason, 0);
             this.Controls.SetChildIndex(this.label1, 0);
