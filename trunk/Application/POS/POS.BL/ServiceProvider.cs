@@ -82,5 +82,17 @@ namespace POS.BL
                 return menuService;
             }
         }
+        private static WorkPeriodService workPeriodService;
+        public static WorkPeriodService WorkPeriodService
+        {
+            get
+            {
+                if (workPeriodService == null)
+                {
+                    workPeriodService = new WorkPeriodService();
+                }
+                return workPeriodService;
+            }
+        }
     }
 }

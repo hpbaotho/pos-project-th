@@ -68,11 +68,13 @@
     <Compile Include="Entities\Entity\Menu.cs" />
     <Compile Include="Entities\Entity\SystemConfigGroup.cs" />
     <Compile Include="Entities\Entity\SystemConfiguration.cs" />
+    <Compile Include="Entities\Entity\WorkPeriod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProvider.cs" />
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Service\SO\MenuService.cs" />
     <Compile Include="Service\SO\ScreenConfigService.cs" />
+    <Compile Include="Service\SO\WorkPeriodService.cs" />
     <Compile Include="Service\SU\EmployeeService.cs" />
     <Compile Include="Service\SU\RoleService.cs" />
     <Compile Include="Service\SU\SystemConfigGroupService.cs" />

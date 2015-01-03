@@ -111,6 +111,12 @@
     <Compile Include="SO\SceenSetup.Designer.cs">
       <DependentUpon>SceenSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="SO\WorkPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\WorkPeriod.Designer.cs">
+      <DependentUpon>WorkPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="SU\SetupEmployee\AddEditEmployee.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SO\SceenSetup.resx">
       <DependentUpon>SceenSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\WorkPeriod.resx">
+      <DependentUpon>WorkPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SU\SetupEmployee\AddEditEmployee.resx">
       <DependentUpon>AddEditEmployee.cs</DependentUpon>
