@@ -94,7 +94,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.ColorTable = office2010White1;
+            //this.btnClear.ColorTable = office2010White1;
             this.btnClear.CommandArg = null;
             this.btnClear.Location = new System.Drawing.Point(337, 470);
             this.btnClear.Name = "btnClear";
