@@ -62,6 +62,8 @@
     <Compile Include="DTO\SO\OrderDTO.cs" />
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
     <Compile Include="Entities\EntitiyBase.cs" />
+    <Compile Include="Entities\Entity\TranDetail.cs" />
+    <Compile Include="Entities\Entity\TranHead.cs" />
     <Compile Include="Entities\Entity\Employee.cs" />
     <Compile Include="Entities\Entity\Role.cs" />
     <Compile Include="Entities\Entity\ScreenConfig.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="Entities\Entity\WorkPeriod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProvider.cs" />
+    <Compile Include="Service\IN\TranDetailService.cs" />
+    <Compile Include="Service\IN\TranHeadService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Service\SO\MenuService.cs" />
     <Compile Include="Service\SO\ScreenConfigService.cs" />

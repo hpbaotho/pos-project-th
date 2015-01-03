@@ -23,7 +23,8 @@ namespace POS.BL.Utilities
         public const string Table = "Table";
         public const string Object = "Object";
     }
-    public struct CommandGroup {
+    public struct CommandGroup
+    {
         public const string Event = "Event";
         public const string OpenNextScreen = "OpenNextScreen";
     }
@@ -89,6 +90,11 @@ namespace POS.BL.Utilities
         public const string SetupRole = "Setup Role";
         public const string AssignEmployeeRole = "Assign Employee Role";
         public const string SystemConfiguration = "SystemConfiguration";
+
+        public const string SetupINReceiveMaterial = "Receive Material";
+        public const string SetupINSendMaterial = "Send Material";
+        public const string SetupINCountStock = "Count Stock";
+
     }
     public struct FormatString
     {
@@ -102,7 +108,8 @@ namespace POS.BL.Utilities
         public const string Add = "Add {0}";
         public const string Edit = "Edit {0}";
     }
-    public struct DefaultFontControl {
+    public struct DefaultFontControl
+    {
         public const string FontName = "Arial";
         public const int FontSize = 14;
         public const int FontStyle = 0;

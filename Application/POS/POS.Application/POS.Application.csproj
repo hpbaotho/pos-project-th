@@ -61,17 +61,29 @@
     <Compile Include="IN\CountStock.Designer.cs">
       <DependentUpon>CountStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\Receive.cs">
+    <Compile Include="IN\ReceiveMaterial\AddEditReceiveMaterial.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\Receive.Designer.cs">
-      <DependentUpon>Receive.cs</DependentUpon>
+    <Compile Include="IN\ReceiveMaterial\AddEditReceiveMaterial.Designer.cs">
+      <DependentUpon>AddEditReceiveMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\ReceiveMaterial\ucReceiveMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\ReceiveMaterial\ucReceiveMaterial.Designer.cs">
+      <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
     </Compile>
     <Compile Include="IN\Send.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="IN\Send.Designer.cs">
       <DependentUpon>Send.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\SetupIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IN\SetupIN.Designer.cs">
+      <DependentUpon>SetupIN.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -147,11 +159,17 @@
     <EmbeddedResource Include="IN\CountStock.resx">
       <DependentUpon>CountStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\Receive.resx">
-      <DependentUpon>Receive.cs</DependentUpon>
+    <EmbeddedResource Include="IN\ReceiveMaterial\AddEditReceiveMaterial.resx">
+      <DependentUpon>AddEditReceiveMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\ReceiveMaterial\ucReceiveMaterial.resx">
+      <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\Send.resx">
       <DependentUpon>Send.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\SetupIN.resx">
+      <DependentUpon>SetupIN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

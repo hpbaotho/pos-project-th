@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using POS.BL.Service.SO;
 using POS.BL.Service.SU;
+using POS.BL.Service.IN;
 namespace POS.BL
 {
     public static class ServiceProvider
@@ -67,6 +68,32 @@ namespace POS.BL
                     roleService = new RoleService();
                 }
                 return roleService;
+            }
+        }
+
+        private static TranHeadService tranHeadService;
+        public static TranHeadService TranHeadService
+        {
+            get
+            {
+                if (tranHeadService == null)
+                {
+                    tranHeadService = new TranHeadService();
+                }
+                return tranHeadService;
+            }
+        }
+
+        private static TranDetailService tranDetailService;
+        public static TranDetailService TranDetailService
+        {
+            get
+            {
+                if (tranDetailService == null)
+                {
+                    tranDetailService = new TranDetailService();
+                }
+                return tranDetailService;
             }
         }
 
