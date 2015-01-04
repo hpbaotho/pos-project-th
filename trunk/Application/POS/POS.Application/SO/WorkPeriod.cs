@@ -18,7 +18,30 @@ namespace POS.SO
             InitializeComponent();
         }
 
+        private void loadData(object sender, EventArgs e)
+        {
+            //Enable/ Visible start period and end period
+            bool isPeriodStart = ServiceProvider.WorkPeriodService.IsPeriodStart();
+            btnStartPeriod.Enabled = !isPeriodStart;
+            btnEndPeriod.Enabled = isPeriodStart;
+
+            //Find detail to current period
+            WorkPeriod workPeriod = ServiceProvider.WorkPeriodService.findActiveWorkPeriod();
+            txtDateOfWorkPeriod.Text = workPeriod.open_period_date.ToString();
+            txtCurrentPeriodCode.Text = workPeriod.period_code.ToString();
+            txtCurrentPeriodName.Text = workPeriod.period_name.ToString();
+            txtCurrentOpenPeriodBy.Text = workPeriod.open_period_by.ToString();
+            txtCurrentOpenPeriodDate.Text = workPeriod.open_period_date.ToString();
+
+            this.bindData();
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
+        {
+            this.bindData();
+        }
+
+        private void bindData()
         {
             WorkPeriod workPeriod = new WorkPeriod();
             workPeriod.period_code = txtPeriodCode.Text.Trim();
@@ -29,20 +52,12 @@ namespace POS.SO
 
             grdWorkPeriod.AutoGenerateColumns = false;
             grdWorkPeriod.DataSource = ServiceProvider.WorkPeriodService.FindWorkPeriod(workPeriod);
-            
+
             grdWorkPeriod.DataMember = "Table";
             grdWorkPeriod.AllowUserToAddRows = false;
             grdWorkPeriod.AllowUserToDeleteRows = false;
             grdWorkPeriod.ReadOnly = true;
-            //grdWorkPeriod.ColumnCount = 2;
-            //grdWorkPeriod.EditMode = 
-            //grdWorkPeriod.AllowUserToAddRowsChanged = false;
-
         }
-
-
-
-      
 
     }
 }

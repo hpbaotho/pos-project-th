@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            POS.Control.Office2010White office2010White3 = new POS.Control.Office2010White();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            POS.Control.Office2010Green office2010Green1 = new POS.Control.Office2010Green();
-            POS.Control.Office2010Red office2010Red1 = new POS.Control.Office2010Red();
+            POS.Control.Office2010White office2010White2 = new POS.Control.Office2010White();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            POS.Control.Office2010Green office2010Green2 = new POS.Control.Office2010Green();
+            POS.Control.Office2010Red office2010Red2 = new POS.Control.Office2010Red();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Search = new System.Windows.Forms.GroupBox();
             this.btnSearch = new POS.Control.BaseButton();
@@ -58,18 +58,18 @@
             this.btnStartPeriod = new POS.Control.BaseButton();
             this.btnEndPeriod = new POS.Control.BaseButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.baseTextBox4 = new POS.Control.BaseTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.baseTextBox3 = new POS.Control.BaseTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.baseTextBox2 = new POS.Control.BaseTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.baseTextBox1 = new POS.Control.BaseTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.baseTextBox5 = new POS.Control.BaseTextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.baseTextBox6 = new POS.Control.BaseTextBox();
+            this.txtCurrentOpenPeriodDate = new POS.Control.BaseTextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtCurrentOpenPeriodBy = new POS.Control.BaseTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCurrentPeriodName = new POS.Control.BaseTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtCurrentPeriodCode = new POS.Control.BaseTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTimeOfWorkPeriod = new POS.Control.BaseTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDateOfWorkPeriod = new POS.Control.BaseTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.Search.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdWorkPeriod)).BeginInit();
@@ -118,24 +118,24 @@
             // 
             // btnSearch
             // 
-            office2010White3.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010White3.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010White3.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010White3.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010White3.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010White3.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010White3.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
-            office2010White3.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            office2010White3.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            office2010White3.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            office2010White3.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010White3.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010White3.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010White3.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010White3.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010White3.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010White3.TextColor = System.Drawing.Color.Black;
-            this.btnSearch.ColorTable = office2010White3;
+            office2010White2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
+            office2010White2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
+            office2010White2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
+            office2010White2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
+            office2010White2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
+            office2010White2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
+            office2010White2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
+            office2010White2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            office2010White2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            office2010White2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            office2010White2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
+            office2010White2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
+            office2010White2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
+            office2010White2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
+            office2010White2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            office2010White2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            office2010White2.TextColor = System.Drawing.Color.Black;
+            this.btnSearch.ColorTable = office2010White2;
             this.btnSearch.CommandArg = null;
             this.btnSearch.Location = new System.Drawing.Point(331, 141);
             this.btnSearch.Name = "btnSearch";
@@ -228,14 +228,14 @@
             // 
             // grdWorkPeriod
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdWorkPeriod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdWorkPeriod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdWorkPeriod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdWorkPeriod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.period_code,
@@ -262,9 +262,9 @@
             // period_name
             // 
             this.period_name.DataPropertyName = "period_name";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.period_name.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.period_name.DefaultCellStyle = dataGridViewCellStyle4;
             this.period_name.Frozen = true;
             this.period_name.HeaderText = "Period Name";
             this.period_name.Name = "period_name";
@@ -317,24 +317,24 @@
             // 
             // btnStartPeriod
             // 
-            office2010Green1.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Green1.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Green1.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Green1.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Green1.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Green1.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Green1.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(126)))), ((int)(((byte)(43)))));
-            office2010Green1.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(184)))), ((int)(((byte)(67)))));
-            office2010Green1.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(126)))), ((int)(((byte)(43)))));
-            office2010Green1.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(184)))), ((int)(((byte)(67)))));
-            office2010Green1.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Green1.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Green1.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Green1.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Green1.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Green1.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Green1.TextColor = System.Drawing.Color.White;
-            this.btnStartPeriod.ColorTable = office2010Green1;
+            office2010Green2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
+            office2010Green2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
+            office2010Green2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
+            office2010Green2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
+            office2010Green2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
+            office2010Green2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
+            office2010Green2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(126)))), ((int)(((byte)(43)))));
+            office2010Green2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(184)))), ((int)(((byte)(67)))));
+            office2010Green2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(126)))), ((int)(((byte)(43)))));
+            office2010Green2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(184)))), ((int)(((byte)(67)))));
+            office2010Green2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
+            office2010Green2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
+            office2010Green2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
+            office2010Green2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
+            office2010Green2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            office2010Green2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            office2010Green2.TextColor = System.Drawing.Color.White;
+            this.btnStartPeriod.ColorTable = office2010Green2;
             this.btnStartPeriod.CommandArg = null;
             this.btnStartPeriod.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStartPeriod.Location = new System.Drawing.Point(3, 5);
@@ -348,24 +348,24 @@
             // 
             // btnEndPeriod
             // 
-            office2010Red1.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Red1.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Red1.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Red1.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Red1.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Red1.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Red1.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(77)))), ((int)(((byte)(45)))));
-            office2010Red1.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(148)))), ((int)(((byte)(64)))));
-            office2010Red1.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(77)))), ((int)(((byte)(45)))));
-            office2010Red1.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(148)))), ((int)(((byte)(64)))));
-            office2010Red1.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Red1.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Red1.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Red1.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Red1.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Red1.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Red1.TextColor = System.Drawing.Color.White;
-            this.btnEndPeriod.ColorTable = office2010Red1;
+            office2010Red2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
+            office2010Red2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
+            office2010Red2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
+            office2010Red2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
+            office2010Red2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
+            office2010Red2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
+            office2010Red2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(77)))), ((int)(((byte)(45)))));
+            office2010Red2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(148)))), ((int)(((byte)(64)))));
+            office2010Red2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(77)))), ((int)(((byte)(45)))));
+            office2010Red2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(148)))), ((int)(((byte)(64)))));
+            office2010Red2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
+            office2010Red2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
+            office2010Red2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
+            office2010Red2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
+            office2010Red2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            office2010Red2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            office2010Red2.TextColor = System.Drawing.Color.White;
+            this.btnEndPeriod.ColorTable = office2010Red2;
             this.btnEndPeriod.CommandArg = null;
             this.btnEndPeriod.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnEndPeriod.Location = new System.Drawing.Point(3, 105);
@@ -379,17 +379,17 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.baseTextBox6);
+            this.panel1.Controls.Add(this.txtCurrentOpenPeriodDate);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.baseTextBox5);
+            this.panel1.Controls.Add(this.txtCurrentOpenPeriodBy);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.baseTextBox4);
+            this.panel1.Controls.Add(this.txtCurrentPeriodName);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.baseTextBox3);
+            this.panel1.Controls.Add(this.txtCurrentPeriodCode);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.baseTextBox2);
+            this.panel1.Controls.Add(this.txtTimeOfWorkPeriod);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.baseTextBox1);
+            this.panel1.Controls.Add(this.txtDateOfWorkPeriod);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(759, 197);
@@ -397,92 +397,12 @@
             this.panel1.Size = new System.Drawing.Size(246, 530);
             this.panel1.TabIndex = 4;
             // 
-            // baseTextBox4
+            // txtCurrentOpenPeriodDate
             // 
-            this.baseTextBox4.Location = new System.Drawing.Point(99, 162);
-            this.baseTextBox4.Name = "baseTextBox4";
-            this.baseTextBox4.Size = new System.Drawing.Size(141, 20);
-            this.baseTextBox4.TabIndex = 7;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 165);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Period Name";
-            // 
-            // baseTextBox3
-            // 
-            this.baseTextBox3.Location = new System.Drawing.Point(99, 130);
-            this.baseTextBox3.Name = "baseTextBox3";
-            this.baseTextBox3.Size = new System.Drawing.Size(141, 20);
-            this.baseTextBox3.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 133);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Period Code";
-            // 
-            // baseTextBox2
-            // 
-            this.baseTextBox2.Location = new System.Drawing.Point(3, 83);
-            this.baseTextBox2.Name = "baseTextBox2";
-            this.baseTextBox2.Size = new System.Drawing.Size(130, 20);
-            this.baseTextBox2.TabIndex = 3;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 67);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Time of Work Period";
-            // 
-            // baseTextBox1
-            // 
-            this.baseTextBox1.Location = new System.Drawing.Point(3, 27);
-            this.baseTextBox1.Name = "baseTextBox1";
-            this.baseTextBox1.Size = new System.Drawing.Size(130, 20);
-            this.baseTextBox1.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Date of Work Period";
-            // 
-            // baseTextBox5
-            // 
-            this.baseTextBox5.Location = new System.Drawing.Point(99, 195);
-            this.baseTextBox5.Name = "baseTextBox5";
-            this.baseTextBox5.Size = new System.Drawing.Size(141, 20);
-            this.baseTextBox5.TabIndex = 9;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 198);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 13);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Open Period By";
-            // 
-            // baseTextBox6
-            // 
-            this.baseTextBox6.Location = new System.Drawing.Point(99, 226);
-            this.baseTextBox6.Name = "baseTextBox6";
-            this.baseTextBox6.Size = new System.Drawing.Size(141, 20);
-            this.baseTextBox6.TabIndex = 11;
+            this.txtCurrentOpenPeriodDate.Location = new System.Drawing.Point(99, 226);
+            this.txtCurrentOpenPeriodDate.Name = "txtCurrentOpenPeriodDate";
+            this.txtCurrentOpenPeriodDate.Size = new System.Drawing.Size(141, 20);
+            this.txtCurrentOpenPeriodDate.TabIndex = 11;
             // 
             // label10
             // 
@@ -493,6 +413,86 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "Open Period Date";
             // 
+            // txtCurrentOpenPeriodBy
+            // 
+            this.txtCurrentOpenPeriodBy.Location = new System.Drawing.Point(99, 195);
+            this.txtCurrentOpenPeriodBy.Name = "txtCurrentOpenPeriodBy";
+            this.txtCurrentOpenPeriodBy.Size = new System.Drawing.Size(141, 20);
+            this.txtCurrentOpenPeriodBy.TabIndex = 9;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 198);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Open Period By";
+            // 
+            // txtCurrentPeriodName
+            // 
+            this.txtCurrentPeriodName.Location = new System.Drawing.Point(99, 162);
+            this.txtCurrentPeriodName.Name = "txtCurrentPeriodName";
+            this.txtCurrentPeriodName.Size = new System.Drawing.Size(141, 20);
+            this.txtCurrentPeriodName.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 165);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Period Name";
+            // 
+            // txtCurrentPeriodCode
+            // 
+            this.txtCurrentPeriodCode.Location = new System.Drawing.Point(99, 130);
+            this.txtCurrentPeriodCode.Name = "txtCurrentPeriodCode";
+            this.txtCurrentPeriodCode.Size = new System.Drawing.Size(141, 20);
+            this.txtCurrentPeriodCode.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Period Code";
+            // 
+            // txtTimeOfWorkPeriod
+            // 
+            this.txtTimeOfWorkPeriod.Location = new System.Drawing.Point(3, 83);
+            this.txtTimeOfWorkPeriod.Name = "txtTimeOfWorkPeriod";
+            this.txtTimeOfWorkPeriod.Size = new System.Drawing.Size(130, 20);
+            this.txtTimeOfWorkPeriod.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(104, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Time of Work Period";
+            // 
+            // txtDateOfWorkPeriod
+            // 
+            this.txtDateOfWorkPeriod.Location = new System.Drawing.Point(3, 27);
+            this.txtDateOfWorkPeriod.Name = "txtDateOfWorkPeriod";
+            this.txtDateOfWorkPeriod.Size = new System.Drawing.Size(130, 20);
+            this.txtDateOfWorkPeriod.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Date of Work Period";
+            // 
             // WorkPeriodSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,7 +501,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "WorkPeriodSetup";
             this.Text = "WorkPeriod";
-            this.Shown += new System.EventHandler(this.btnSearch_Click);
+            this.Shown += new System.EventHandler(this.loadData);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.Search.ResumeLayout(false);
             this.Search.PerformLayout();
@@ -540,17 +540,17 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private Control.BaseButton btnEndPeriod;
         private System.Windows.Forms.Panel panel1;
-        private Control.BaseTextBox baseTextBox4;
+        private Control.BaseTextBox txtCurrentPeriodName;
         private System.Windows.Forms.Label label8;
-        private Control.BaseTextBox baseTextBox3;
+        private Control.BaseTextBox txtCurrentPeriodCode;
         private System.Windows.Forms.Label label7;
-        private Control.BaseTextBox baseTextBox2;
+        private Control.BaseTextBox txtTimeOfWorkPeriod;
         private System.Windows.Forms.Label label6;
-        private Control.BaseTextBox baseTextBox1;
+        private Control.BaseTextBox txtDateOfWorkPeriod;
         private System.Windows.Forms.Label label5;
-        private Control.BaseTextBox baseTextBox6;
+        private Control.BaseTextBox txtCurrentOpenPeriodDate;
         private System.Windows.Forms.Label label10;
-        private Control.BaseTextBox baseTextBox5;
+        private Control.BaseTextBox txtCurrentOpenPeriodBy;
         private System.Windows.Forms.Label label9;
     }
 }
