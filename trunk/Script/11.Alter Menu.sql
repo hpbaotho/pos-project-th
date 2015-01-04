@@ -1,7 +1,15 @@
 USE POS
 
---ALTER TABLE dbo.so_menu_dining_type
---ADD menu_price decimal null
+ALTER TABLE dbo.so_menu_dining_type
+ADD menu_price decimal null
+
+
+ALTER TABLE so_sales_order_head
+ADD start_date_time [datetime] null
+
+ALTER TABLE so_sales_order_head
+ADD [number_of_customer] [int] null
+
 
 GO
 
