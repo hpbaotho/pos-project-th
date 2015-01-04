@@ -6,6 +6,7 @@ using POS.BL.Entities.Entity;
 using POS.BL.DTO;
 using System.Data.Common;
 using System.Data;
+using Core.Standards.Converters;
 
 namespace POS.BL.Service.SO
 {
@@ -57,6 +58,27 @@ namespace POS.BL.Service.SO
             param.Add(base.CreateParameter("@open_period_by", "%" + workPeriod.open_period_by + "%"));
             param.Add(base.CreateParameter("@close_period_by", "%" + workPeriod.close_period_by + "%"));
             return this.ExecuteQuery(strSql.ToString(), param.ToArray());
+        }
+
+        public bool IsPeriodStart()
+        {
+            string sql = @"
+                            SELECT COUNT(1) as IsPeriodStart FROM db_period WITH(NOLOCK) WHERE active = 1
+                          ";
+
+            return (Converts.ParseLong(this.ExecuteScalar(sql).ToString()) > 0);
+
+        }
+
+        public WorkPeriod findActiveWorkPeriod()
+        {
+            string sql = @"
+                            SELECT * 
+                            FROM db_period WITH(NOLOCK) 
+                            WHERE active = 1
+                        ";
+
+            return this.ExecuteQuery<WorkPeriod>(sql).FirstOrDefault();
         }
     }
 }
