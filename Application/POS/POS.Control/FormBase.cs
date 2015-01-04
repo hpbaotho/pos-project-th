@@ -104,6 +104,7 @@ namespace POS.Control
 
             }
         }
+    
         public void UpdateFontDefault()
         {
             this.FindControlAll(this);

@@ -10,8 +10,8 @@ namespace POS.Control
 
     public enum Theme
     {
-        MSOffice2010_WHITE = 2,
         MSOffice2010_BLUE = 1,
+        MSOffice2010_WHITE = 2,
         MSOffice2010_RED = 3,
         MSOffice2010_Green = 4,
         MSOffice2010_Pink = 5,

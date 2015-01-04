@@ -375,11 +375,19 @@ namespace POS.Control
 
         #region ColorTable
         public string CommandArg { get; set; }
+        private object dataObj;
+        public object DataObject
+        {
+            get {
+                return dataObj;
+        }
+            set { dataObj = value; }
+        }
         Colortable colorTable = null;
 
         [DefaultValue(typeof(Colortable), "Office2010White")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public Colortable ColorTable
+        protected Colortable ColorTable
         {
             get
             {
@@ -429,6 +437,10 @@ namespace POS.Control
                 {
                     return POS.Control.Theme.MSOffice2010_Publisher;
                 }
+                else if (this.colorTable == Colortable.Office2010Blue)
+                {
+                    return POS.Control.Theme.MSOffice2010_BLUE;
+                }
 
                 return POS.Control.Theme.MSOffice2010_WHITE;
             }
@@ -460,6 +472,10 @@ namespace POS.Control
                 else if (thm == POS.Control.Theme.MSOffice2010_Publisher)
                 {
                     this.colorTable = Colortable.Office2010Publisher;
+                }
+                else if (thm == POS.Control.Theme.MSOffice2010_BLUE)
+                {
+                    this.colorTable = Colortable.Office2010Blue;
                 }
                 else
                 {

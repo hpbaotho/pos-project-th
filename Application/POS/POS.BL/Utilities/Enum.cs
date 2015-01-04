@@ -28,13 +28,6 @@ namespace POS.BL.Utilities
         public const string Event = "Event";
         public const string OpenNextScreen = "OpenNextScreen";
     }
-    public struct ObjectState
-    {
-        public const string Nothing = "N";
-        public const string Update = "U";
-        public const string Delete = "D";
-        public const string Add = "A";
-    }
     public struct GeneralMessage
     {
 
@@ -65,6 +58,33 @@ namespace POS.BL.Utilities
         public const string ConfirmOverWrite = "The data already existed in system, Are you sure to overwrite?";
         public const string ConfirmUpdateChanged = "The data has been changed, do you want to replace?";
         public const string ConfirmSaveDate = "Do you want to Save the data?";
+
+    }
+    public struct Format
+    {
+        public const string OneDecimalNumberFormat = "{0:#,##0.0}";
+        public const string DecimalNumberFormat = "{0:#,##0.00}";
+        public const string DecimalNumberFormat4DZero = "{0:#,##0.0000}";
+        public const string DecimalNumberFormat2DZero = "{0:#,##0.00}";
+        public const string DecimalNumberFormat4DNonZero = "{0:#,##0.####}";
+        //public const string DecimalNumberFormatNoZero = "{0:#,###.####;}";
+        public const string DecimalNumberFormat4D = "{0:#,##0.####;(#,##0.####);#}";
+        public const string DecimalNumberFormat4DNoZero = "{0:#,##0.####;-#,##0.####;#}";
+        public const string PercentFormat = "{0:P2}";
+        public const string ServiceYear = "{0} Yr, {1} Mo, {2} Days";
+        public const string NumberTwoFractionFormat = "#,##0.#0";
+        public const string DecimalFormat = "#,###.##;(#,###.##);#";
+        public const string NumberFormat = "{0:#,##0}";
+        public const string FinanceNumberFormat = "{0:#,##0;(#,##0);-}";
+        public const string IntegerNumberFormatComma = "{0:#,##0}";
+        public const string IntegerFormat = "#,##0";
+        public const string IntegerNumberFormat = "{0:##0}";
+        public const string IntegerNumberFormatNoZero = "{0:#,###}";
+        public const string CalendarFormat = "d-M-yy";
+        public const string DateFormat = "d-MMM-yyyy";
+        public const string DateFormatShowEmail = "{0:dd-Mon-yyyy }";
+        public const string DateTimeFormat = "d-MMM-yyyy HH:mm:ss";
+        public const string TimeFormat = "HH:mm:ss";
 
     }
     public struct ErrorMessage
@@ -119,4 +139,12 @@ namespace POS.BL.Utilities
     #region :: POS ::
 
     #endregion
+
+
+}
+public enum ObjectState
+{
+    Add = 1,
+    Edit = 2,
+    Delete = 3,
 }

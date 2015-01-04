@@ -19,5 +19,10 @@ namespace POS.BL.Entities.Entity
         public string menu_description { get; set; }
         public long? menu_reference_id { get; set; }
         public bool active { get; set; }
+
+        [EntityScalarProperty(PersistenceIgnorance = true)]
+        public decimal menu_price { get; set; }
+        [EntityScalarProperty(PersistenceIgnorance = true)]
+        public long? menu_dining_type_id { get; set; }
     }
 }

@@ -29,31 +29,36 @@ namespace POS.SO
         /// </summary>
         private void InitializeComponent()
         {
-            POS.Control.Office2010Red office2010Red2 = new POS.Control.Office2010Red();
-            POS.Control.Office2010Green office2010Green2 = new POS.Control.Office2010Green();
-            POS.Control.Office2010Publisher office2010Publisher2 = new POS.Control.Office2010Publisher();
-            POS.Control.Office2010Pink office2010Pink2 = new POS.Control.Office2010Pink();
-            POS.Control.Office2010Yellow office2010Yellow2 = new POS.Control.Office2010Yellow();
+            this.components = new System.ComponentModel.Container();
             this.fPnlMenuItem = new System.Windows.Forms.FlowLayoutPanel();
-            this.baseButton2 = new POS.Control.BaseButton();
+            this.btnClose = new POS.Control.BaseButton();
             this.baseButton1 = new POS.Control.BaseButton();
             this.pnlNumScreen = new System.Windows.Forms.Panel();
             this.txtCommand = new POS.Control.BaseTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.baseButton7 = new POS.Control.BaseButton();
+            this.btnStartTime = new POS.Control.BaseButton();
+            this.btnPerson = new POS.Control.BaseButton();
             this.baseButton6 = new POS.Control.BaseButton();
-            this.baseButton5 = new POS.Control.BaseButton();
+            this.btnDelete = new POS.Control.BaseButton();
+            this.btnAdd = new POS.Control.BaseButton();
+            this.btnPrint = new POS.Control.BaseButton();
             this.baseButton4 = new POS.Control.BaseButton();
             this.baseButton3 = new POS.Control.BaseButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labPersonCount = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbltablrdesc = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labTotalPrice = new System.Windows.Forms.Label();
             this.fPnlMainMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.lisMenuOrder = new System.Windows.Forms.ListView();
+            this.fPnlDiningType = new System.Windows.Forms.FlowLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labEatingTime = new System.Windows.Forms.Label();
+            this.timeEating = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -66,61 +71,30 @@ namespace POS.SO
             this.fPnlMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.fPnlMenuItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fPnlMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.fPnlMenuItem.Location = new System.Drawing.Point(526, 0);
+            this.fPnlMenuItem.Location = new System.Drawing.Point(526, 80);
             this.fPnlMenuItem.Name = "fPnlMenuItem";
-            this.fPnlMenuItem.Size = new System.Drawing.Size(305, 460);
+            this.fPnlMenuItem.Size = new System.Drawing.Size(305, 380);
             this.fPnlMenuItem.TabIndex = 1;
             // 
-            // baseButton2
+            // btnClose
             // 
-            office2010Red2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Red2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Red2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Red2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Red2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Red2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Red2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(77)))), ((int)(((byte)(45)))));
-            office2010Red2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(148)))), ((int)(((byte)(64)))));
-            office2010Red2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(77)))), ((int)(((byte)(45)))));
-            office2010Red2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(148)))), ((int)(((byte)(64)))));
-            office2010Red2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Red2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Red2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Red2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Red2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Red2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Red2.TextColor = System.Drawing.Color.White;
-            this.baseButton2.ColorTable = office2010Red2;
-            this.baseButton2.CommandArg = null;
-            this.baseButton2.Location = new System.Drawing.Point(120, 694);
-            this.baseButton2.Name = "baseButton2";
-            this.baseButton2.Size = new System.Drawing.Size(139, 62);
-            this.baseButton2.TabIndex = 4;
-            this.baseButton2.Text = "CANCLE";
-            this.baseButton2.Theme = POS.Control.Theme.MSOffice2010_RED;
-            this.baseButton2.UseVisualStyleBackColor = true;
+            this.btnClose.CommandArg = null;
+            this.btnClose.DataObject = null;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnClose.Location = new System.Drawing.Point(120, 694);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(139, 62);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.Theme = POS.Control.Theme.MSOffice2010_RED;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // baseButton1
             // 
-            office2010Green2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Green2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Green2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Green2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Green2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Green2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Green2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(126)))), ((int)(((byte)(43)))));
-            office2010Green2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(184)))), ((int)(((byte)(67)))));
-            office2010Green2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(126)))), ((int)(((byte)(43)))));
-            office2010Green2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(184)))), ((int)(((byte)(67)))));
-            office2010Green2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Green2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Green2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Green2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Green2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Green2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Green2.TextColor = System.Drawing.Color.White;
-            this.baseButton1.ColorTable = office2010Green2;
             this.baseButton1.CommandArg = null;
+            this.baseButton1.DataObject = null;
+            this.baseButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.baseButton1.Location = new System.Drawing.Point(381, 694);
             this.baseButton1.Name = "baseButton1";
             this.baseButton1.Size = new System.Drawing.Size(139, 62);
@@ -153,9 +127,12 @@ namespace POS.SO
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.baseButton7);
+            this.panel3.Controls.Add(this.btnStartTime);
+            this.panel3.Controls.Add(this.btnPerson);
             this.panel3.Controls.Add(this.baseButton6);
-            this.panel3.Controls.Add(this.baseButton5);
+            this.panel3.Controls.Add(this.btnDelete);
+            this.panel3.Controls.Add(this.btnAdd);
+            this.panel3.Controls.Add(this.btnPrint);
             this.panel3.Controls.Add(this.baseButton4);
             this.panel3.Controls.Add(this.baseButton3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -164,79 +141,97 @@ namespace POS.SO
             this.panel3.Size = new System.Drawing.Size(116, 768);
             this.panel3.TabIndex = 8;
             // 
-            // baseButton7
+            // btnStartTime
             // 
-            this.baseButton7.CommandArg = null;
-            this.baseButton7.Location = new System.Drawing.Point(3, 311);
-            this.baseButton7.Name = "baseButton7";
-            this.baseButton7.Size = new System.Drawing.Size(110, 71);
-            this.baseButton7.TabIndex = 4;
-            this.baseButton7.Text = "baseButton7";
-            this.baseButton7.Theme = POS.Control.Theme.MSOffice2010_RED;
-            this.baseButton7.UseVisualStyleBackColor = true;
+            this.btnStartTime.CommandArg = null;
+            this.btnStartTime.DataObject = null;
+            this.btnStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnStartTime.Location = new System.Drawing.Point(3, 157);
+            this.btnStartTime.Name = "btnStartTime";
+            this.btnStartTime.Size = new System.Drawing.Size(110, 71);
+            this.btnStartTime.TabIndex = 7;
+            this.btnStartTime.Text = "Start Time";
+            this.btnStartTime.Theme = POS.Control.Theme.MSOffice2010_RED;
+            this.btnStartTime.UseVisualStyleBackColor = true;
+            this.btnStartTime.Click += new System.EventHandler(this.btnStartTime_Click);
+            // 
+            // btnPerson
+            // 
+            this.btnPerson.CommandArg = null;
+            this.btnPerson.DataObject = null;
+            this.btnPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnPerson.Location = new System.Drawing.Point(3, 80);
+            this.btnPerson.Name = "btnPerson";
+            this.btnPerson.Size = new System.Drawing.Size(110, 71);
+            this.btnPerson.TabIndex = 6;
+            this.btnPerson.Text = "Update Person";
+            this.btnPerson.Theme = POS.Control.Theme.MSOffice2010_Yellow;
+            this.btnPerson.UseVisualStyleBackColor = true;
+            this.btnPerson.Click += new System.EventHandler(this.btnPerson_Click);
             // 
             // baseButton6
             // 
             this.baseButton6.CommandArg = null;
-            this.baseButton6.Location = new System.Drawing.Point(3, 234);
+            this.baseButton6.DataObject = null;
+            this.baseButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.baseButton6.Location = new System.Drawing.Point(3, 543);
             this.baseButton6.Name = "baseButton6";
             this.baseButton6.Size = new System.Drawing.Size(110, 71);
-            this.baseButton6.TabIndex = 3;
-            this.baseButton6.Text = "baseButton6";
-            this.baseButton6.Theme = POS.Control.Theme.MSOffice2010_Green;
+            this.baseButton6.TabIndex = 5;
+            this.baseButton6.Text = "Cancel Bill";
+            this.baseButton6.Theme = POS.Control.Theme.MSOffice2010_RED;
             this.baseButton6.UseVisualStyleBackColor = true;
             // 
-            // baseButton5
+            // btnDelete
             // 
-            office2010Publisher2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Publisher2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Publisher2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Publisher2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Publisher2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Publisher2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Publisher2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(126)))));
-            office2010Publisher2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(173)))), ((int)(((byte)(167)))));
-            office2010Publisher2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(126)))));
-            office2010Publisher2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(173)))), ((int)(((byte)(167)))));
-            office2010Publisher2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Publisher2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Publisher2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Publisher2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Publisher2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Publisher2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Publisher2.TextColor = System.Drawing.Color.White;
-            this.baseButton5.ColorTable = office2010Publisher2;
-            this.baseButton5.CommandArg = null;
-            this.baseButton5.Location = new System.Drawing.Point(3, 157);
-            this.baseButton5.Name = "baseButton5";
-            this.baseButton5.Size = new System.Drawing.Size(110, 71);
-            this.baseButton5.TabIndex = 2;
-            this.baseButton5.Text = "Print Bill";
-            this.baseButton5.Theme = POS.Control.Theme.MSOffice2010_Publisher;
-            this.baseButton5.UseVisualStyleBackColor = true;
+            this.btnDelete.CommandArg = null;
+            this.btnDelete.DataObject = null;
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnDelete.Location = new System.Drawing.Point(3, 466);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(110, 71);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "-";
+            this.btnDelete.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.CommandArg = null;
+            this.btnAdd.DataObject = null;
+            this.btnAdd.Enabled = false;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnAdd.Location = new System.Drawing.Point(3, 389);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(110, 71);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "+";
+            this.btnAdd.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.CommandArg = null;
+            this.btnPrint.DataObject = null;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnPrint.Location = new System.Drawing.Point(3, 312);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(110, 71);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = "Print Bill";
+            this.btnPrint.Theme = POS.Control.Theme.MSOffice2010_Green;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // baseButton4
             // 
-            office2010Pink2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Pink2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Pink2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Pink2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Pink2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Pink2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Pink2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(6)))), ((int)(((byte)(77)))));
-            office2010Pink2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(52)))), ((int)(((byte)(119)))));
-            office2010Pink2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(6)))), ((int)(((byte)(77)))));
-            office2010Pink2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(52)))), ((int)(((byte)(119)))));
-            office2010Pink2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Pink2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Pink2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Pink2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Pink2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Pink2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Pink2.TextColor = System.Drawing.Color.White;
-            this.baseButton4.ColorTable = office2010Pink2;
             this.baseButton4.CommandArg = null;
-            this.baseButton4.Location = new System.Drawing.Point(3, 80);
+            this.baseButton4.DataObject = null;
+            this.baseButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.baseButton4.Location = new System.Drawing.Point(3, 235);
             this.baseButton4.Name = "baseButton4";
             this.baseButton4.Size = new System.Drawing.Size(110, 71);
             this.baseButton4.TabIndex = 1;
@@ -246,36 +241,24 @@ namespace POS.SO
             // 
             // baseButton3
             // 
-            office2010Yellow2.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Yellow2.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Yellow2.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Yellow2.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Yellow2.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Yellow2.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Yellow2.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(161)))), ((int)(((byte)(8)))));
-            office2010Yellow2.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(45)))));
-            office2010Yellow2.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(161)))), ((int)(((byte)(8)))));
-            office2010Yellow2.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(45)))));
-            office2010Yellow2.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Yellow2.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Yellow2.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Yellow2.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Yellow2.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Yellow2.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Yellow2.TextColor = System.Drawing.Color.White;
-            this.baseButton3.ColorTable = office2010Yellow2;
             this.baseButton3.CommandArg = null;
+            this.baseButton3.DataObject = null;
+            this.baseButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.baseButton3.Location = new System.Drawing.Point(3, 3);
             this.baseButton3.Name = "baseButton3";
             this.baseButton3.Size = new System.Drawing.Size(110, 71);
             this.baseButton3.TabIndex = 0;
             this.baseButton3.Text = "Change Table";
-            this.baseButton3.Theme = POS.Control.Theme.MSOffice2010_Yellow;
+            this.baseButton3.Theme = POS.Control.Theme.MSOffice2010_BLUE;
             this.baseButton3.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel4.Controls.Add(this.labEatingTime);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.labPersonCount);
+            this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.label1);
@@ -284,6 +267,26 @@ namespace POS.SO
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(399, 71);
             this.panel4.TabIndex = 9;
+            // 
+            // labPersonCount
+            // 
+            this.labPersonCount.AutoSize = true;
+            this.labPersonCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.labPersonCount.Location = new System.Drawing.Point(318, 39);
+            this.labPersonCount.Name = "labPersonCount";
+            this.labPersonCount.Size = new System.Drawing.Size(18, 20);
+            this.labPersonCount.TabIndex = 5;
+            this.labPersonCount.Text = "1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label5.Location = new System.Drawing.Point(257, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Person:";
             // 
             // label3
             // 
@@ -337,18 +340,17 @@ namespace POS.SO
             this.label4.TabIndex = 10;
             this.label4.Text = "Balance:";
             // 
-            // label5
+            // labTotalPrice
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(462, 660);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 25);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "0.00";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labTotalPrice.BackColor = System.Drawing.Color.Transparent;
+            this.labTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.labTotalPrice.ForeColor = System.Drawing.Color.Red;
+            this.labTotalPrice.Location = new System.Drawing.Point(238, 660);
+            this.labTotalPrice.Name = "labTotalPrice";
+            this.labTotalPrice.Size = new System.Drawing.Size(282, 25);
+            this.labTotalPrice.TabIndex = 11;
+            this.labTotalPrice.Text = "0.00";
+            this.labTotalPrice.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // fPnlMainMenu
             // 
@@ -364,27 +366,66 @@ namespace POS.SO
             // lisMenuOrder
             // 
             this.lisMenuOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lisMenuOrder.FullRowSelect = true;
             this.lisMenuOrder.Location = new System.Drawing.Point(120, 80);
+            this.lisMenuOrder.MultiSelect = false;
             this.lisMenuOrder.Name = "lisMenuOrder";
             this.lisMenuOrder.Size = new System.Drawing.Size(400, 577);
             this.lisMenuOrder.TabIndex = 13;
             this.lisMenuOrder.UseCompatibleStateImageBehavior = false;
+            this.lisMenuOrder.SelectedIndexChanged += new System.EventHandler(this.lisMenuOrder_SelectedIndexChanged);
+            // 
+            // fPnlDiningType
+            // 
+            this.fPnlDiningType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.fPnlDiningType.Location = new System.Drawing.Point(526, 3);
+            this.fPnlDiningType.Name = "fPnlDiningType";
+            this.fPnlDiningType.Size = new System.Drawing.Size(305, 71);
+            this.fPnlDiningType.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label6.Location = new System.Drawing.Point(225, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Eating time:";
+            // 
+            // labEatingTime
+            // 
+            this.labEatingTime.AutoSize = true;
+            this.labEatingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.labEatingTime.ForeColor = System.Drawing.Color.Lime;
+            this.labEatingTime.Location = new System.Drawing.Point(316, 6);
+            this.labEatingTime.Name = "labEatingTime";
+            this.labEatingTime.Size = new System.Drawing.Size(79, 20);
+            this.labEatingTime.TabIndex = 7;
+            this.labEatingTime.Text = "00:00:00";
+            // 
+            // timeEating
+            // 
+            this.timeEating.Interval = 1000;
+            this.timeEating.Tick += new System.EventHandler(this.timeEating_Tick);
             // 
             // OpenOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.fPnlDiningType);
             this.Controls.Add(this.lisMenuOrder);
             this.Controls.Add(this.fPnlMainMenu);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labTotalPrice);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.txtCommand);
             this.Controls.Add(this.pnlNumScreen);
             this.Controls.Add(this.baseButton1);
-            this.Controls.Add(this.baseButton2);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.fPnlMenuItem);
             this.Name = "OpenOrder";
             this.Text = "OpenOrder";
@@ -399,14 +440,14 @@ namespace POS.SO
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel fPnlMenuItem;
-        private Control.BaseButton baseButton2;
+        private Control.BaseButton btnClose;
         private Control.BaseButton baseButton1;
         private System.Windows.Forms.Panel pnlNumScreen;
         private Control.BaseTextBox txtCommand;
         private System.Windows.Forms.Panel panel3;
-        private Control.BaseButton baseButton7;
-        private Control.BaseButton baseButton6;
-        private Control.BaseButton baseButton5;
+        private Control.BaseButton btnDelete;
+        private Control.BaseButton btnAdd;
+        private Control.BaseButton btnPrint;
         private Control.BaseButton baseButton3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
@@ -414,9 +455,18 @@ namespace POS.SO
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbltablrdesc;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labTotalPrice;
         private Control.BaseButton baseButton4;
         private System.Windows.Forms.FlowLayoutPanel fPnlMainMenu;
         private System.Windows.Forms.ListView lisMenuOrder;
+        private System.Windows.Forms.FlowLayoutPanel fPnlDiningType;
+        private BaseButton baseButton6;
+        private BaseButton btnPerson;
+        private System.Windows.Forms.Label labPersonCount;
+        private System.Windows.Forms.Label label5;
+        private BaseButton btnStartTime;
+        private System.Windows.Forms.Label labEatingTime;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer timeEating;
     }
 }

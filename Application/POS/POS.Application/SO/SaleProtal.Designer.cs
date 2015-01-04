@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            POS.Control.Office2010White office2010White1 = new POS.Control.Office2010White();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLogOut = new POS.Control.BaseButton();
             this.btnDriver = new POS.Control.BaseButton();
@@ -70,86 +69,74 @@
             // 
             // btnLogOut
             // 
-            office2010White1.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010White1.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010White1.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010White1.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010White1.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010White1.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010White1.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
-            office2010White1.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            office2010White1.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            office2010White1.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            office2010White1.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010White1.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010White1.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010White1.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010White1.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010White1.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010White1.TextColor = System.Drawing.Color.Black;
-            this.btnLogOut.ColorTable = office2010White1;
+            this.btnLogOut.CommandArg = null;
+            this.btnLogOut.DataObject = null;
             this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLogOut.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnLogOut.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.Location = new System.Drawing.Point(584, 318);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(269, 134);
             this.btnLogOut.TabIndex = 8;
             this.btnLogOut.Text = "Log out";
-            this.btnLogOut.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnLogOut.Theme = POS.Control.Theme.MSOffice2010_RED;
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnDriver
             // 
-            this.btnDriver.ColorTable = office2010White1;
+            this.btnDriver.CommandArg = null;
+            this.btnDriver.DataObject = null;
             this.btnDriver.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDriver.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnDriver.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDriver.Location = new System.Drawing.Point(297, 318);
             this.btnDriver.Margin = new System.Windows.Forms.Padding(10);
             this.btnDriver.Name = "btnDriver";
             this.btnDriver.Size = new System.Drawing.Size(267, 134);
             this.btnDriver.TabIndex = 7;
             this.btnDriver.Text = "Driver Control";
-            this.btnDriver.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnDriver.Theme = POS.Control.Theme.MSOffice2010_Yellow;
             this.btnDriver.UseVisualStyleBackColor = true;
             this.btnDriver.Click += new System.EventHandler(this.btnDriver_Click);
             // 
             // btnSecurity
             // 
-            this.btnSecurity.ColorTable = office2010White1;
+            this.btnSecurity.CommandArg = null;
+            this.btnSecurity.DataObject = null;
             this.btnSecurity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSecurity.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnSecurity.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSecurity.Location = new System.Drawing.Point(10, 318);
             this.btnSecurity.Margin = new System.Windows.Forms.Padding(10);
             this.btnSecurity.Name = "btnSecurity";
             this.btnSecurity.Size = new System.Drawing.Size(267, 134);
             this.btnSecurity.TabIndex = 6;
             this.btnSecurity.Text = "Security";
-            this.btnSecurity.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnSecurity.Theme = POS.Control.Theme.MSOffice2010_RED;
             this.btnSecurity.UseVisualStyleBackColor = true;
             this.btnSecurity.Click += new System.EventHandler(this.btnSecurity_Click);
             // 
             // btnManage
             // 
-            this.btnManage.ColorTable = office2010White1;
+            this.btnManage.CommandArg = null;
+            this.btnManage.DataObject = null;
             this.btnManage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnManage.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnManage.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManage.Location = new System.Drawing.Point(584, 164);
             this.btnManage.Margin = new System.Windows.Forms.Padding(10);
             this.btnManage.Name = "btnManage";
             this.btnManage.Size = new System.Drawing.Size(269, 134);
             this.btnManage.TabIndex = 5;
             this.btnManage.Text = "Manage";
-            this.btnManage.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnManage.Theme = POS.Control.Theme.MSOffice2010_BLUE;
             this.btnManage.UseVisualStyleBackColor = true;
             this.btnManage.Click += new System.EventHandler(this.btnManage_Click);
             // 
             // btnWarehouse
             // 
-            this.btnWarehouse.ColorTable = office2010White1;
+            this.btnWarehouse.CommandArg = null;
+            this.btnWarehouse.DataObject = null;
             this.btnWarehouse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWarehouse.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnWarehouse.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWarehouse.Location = new System.Drawing.Point(297, 164);
             this.btnWarehouse.Margin = new System.Windows.Forms.Padding(10);
             this.btnWarehouse.Name = "btnWarehouse";
@@ -162,61 +149,65 @@
             // 
             // btnReport
             // 
-            this.btnReport.ColorTable = office2010White1;
+            this.btnReport.CommandArg = null;
+            this.btnReport.DataObject = null;
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReport.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnReport.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.Location = new System.Drawing.Point(10, 164);
             this.btnReport.Margin = new System.Windows.Forms.Padding(10);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(267, 134);
             this.btnReport.TabIndex = 3;
             this.btnReport.Text = "Report";
-            this.btnReport.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnReport.Theme = POS.Control.Theme.MSOffice2010_Publisher;
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnAccount
             // 
-            this.btnAccount.ColorTable = office2010White1;
+            this.btnAccount.CommandArg = null;
+            this.btnAccount.DataObject = null;
             this.btnAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAccount.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnAccount.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccount.Location = new System.Drawing.Point(584, 10);
             this.btnAccount.Margin = new System.Windows.Forms.Padding(10);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(269, 134);
             this.btnAccount.TabIndex = 2;
             this.btnAccount.Text = "Account";
-            this.btnAccount.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnAccount.Theme = POS.Control.Theme.MSOffice2010_Pink;
             this.btnAccount.UseVisualStyleBackColor = true;
             this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
             // btnPOS
             // 
-            this.btnPOS.ColorTable = office2010White1;
+            this.btnPOS.CommandArg = null;
+            this.btnPOS.DataObject = null;
             this.btnPOS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPOS.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnPOS.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPOS.Location = new System.Drawing.Point(297, 10);
             this.btnPOS.Margin = new System.Windows.Forms.Padding(10);
             this.btnPOS.Name = "btnPOS";
             this.btnPOS.Size = new System.Drawing.Size(267, 134);
             this.btnPOS.TabIndex = 1;
             this.btnPOS.Text = "POS";
-            this.btnPOS.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnPOS.Theme = POS.Control.Theme.MSOffice2010_Green;
             this.btnPOS.UseVisualStyleBackColor = true;
             this.btnPOS.Click += new System.EventHandler(this.btnPOS_Click);
             // 
             // btnPeriod
             // 
-            this.btnPeriod.ColorTable = office2010White1;
+            this.btnPeriod.CommandArg = null;
+            this.btnPeriod.DataObject = null;
             this.btnPeriod.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPeriod.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnPeriod.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPeriod.Location = new System.Drawing.Point(10, 10);
             this.btnPeriod.Margin = new System.Windows.Forms.Padding(10);
             this.btnPeriod.Name = "btnPeriod";
             this.btnPeriod.Size = new System.Drawing.Size(267, 134);
             this.btnPeriod.TabIndex = 0;
             this.btnPeriod.Text = "Work Period";
-            this.btnPeriod.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnPeriod.Theme = POS.Control.Theme.MSOffice2010_RED;
             this.btnPeriod.UseVisualStyleBackColor = true;
             this.btnPeriod.Click += new System.EventHandler(this.btnPeriod_Click);
             // 

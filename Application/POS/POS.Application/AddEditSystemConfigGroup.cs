@@ -17,7 +17,7 @@ namespace POS
     public partial class AddEditSystemConfigGroup : BaseUserControl
     {
         #region :: Properties ::
-        private string mode { get; set; }
+        private ObjectState mode { get; set; }
         private string keyCode { get; set; }
         public AddEditSystemConfigGroup()
         {
@@ -27,7 +27,7 @@ namespace POS
         }
         public AddEditSystemConfigGroup(string Code)
         {
-            mode = ObjectState.Update;
+            mode = ObjectState.Edit;
             keyCode = Code;
             InitializeComponent();
 
@@ -37,7 +37,7 @@ namespace POS
         private void LoadData()
         {
             SystemConfigGroup entity = new SystemConfigGroup();
-            if (mode == ObjectState.Update && !string.IsNullOrEmpty(keyCode))
+            if (mode == ObjectState.Edit && !string.IsNullOrEmpty(keyCode))
             {
                 entity.system_configuration_group_code = keyCode;
                 entity = ServiceProvider.SystemConfigGroupService.FindByKeys(entity, true);
@@ -56,7 +56,7 @@ namespace POS
         }
         private void EnableMode()
         {
-            if (mode == ObjectState.Update)
+            if (mode == ObjectState.Edit)
             {
                 txtCode.Enabled = false;
             }
