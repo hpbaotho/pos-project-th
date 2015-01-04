@@ -23,5 +23,10 @@ namespace POS.SO
         {
             base.OpernNewScreen<OpenOrder>();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.CloseScreen();
+        }
     }
 }

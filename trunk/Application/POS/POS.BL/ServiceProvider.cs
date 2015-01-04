@@ -5,6 +5,7 @@ using System.Text;
 using POS.BL.Service.SO;
 using POS.BL.Service.SU;
 using POS.BL.Service.IN;
+using POS.BL.Service.DB;
 namespace POS.BL
 {
     public static class ServiceProvider
@@ -119,6 +120,43 @@ namespace POS.BL
                     workPeriodService = new WorkPeriodService();
                 }
                 return workPeriodService;
+            }
+        }
+
+        private static SaleOrderHeaderService saleOrderHeaderService;
+        public static SaleOrderHeaderService SaleOrderHeaderService
+        {
+            get
+            {
+                if (saleOrderHeaderService == null)
+                {
+                    saleOrderHeaderService = new SaleOrderHeaderService();
+                }
+                return saleOrderHeaderService;
+            }
+        }
+        private static SaleOrderDetailService saleOrderDetailService;
+        public static SaleOrderDetailService SaleOrderDetailService
+        {
+            get
+            {
+                if (saleOrderDetailService == null)
+                {
+                    saleOrderDetailService = new SaleOrderDetailService();
+                }
+                return saleOrderDetailService;
+            }
+        }
+        private static DiningTypeService diningTypeService;
+        public static DiningTypeService DiningTypeService
+        {
+            get
+            {
+                if (diningTypeService == null)
+                {
+                    diningTypeService = new DiningTypeService();
+                }
+                return diningTypeService;
             }
         }
     }

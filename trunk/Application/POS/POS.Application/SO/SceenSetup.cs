@@ -243,7 +243,7 @@ namespace POS.SO
                     Control.DragItem d = new Control.DragItem(new Point(0, 0));
                     d.CustomProperties.Text = item.display_text;
                     d.CustomProperties.BorderStyle = (BorderStyle)item.border_style;
-                    d.ControlCommand.ControlState = ObjectState.Nothing;
+                    d.ControlCommand.ControlState = ObjectState.Add;
                     d.ControlCommand.control_type = string.IsNullOrEmpty(item.control_type) ? ControlType.Button : item.control_type;
                     if (d.ControlCommand.control_type == ControlType.Table)
                     {

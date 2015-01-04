@@ -14,7 +14,7 @@ namespace POS.IN.ReceiveMaterial
     public partial class AddEditReceiveMaterial : BaseAddEditMaster
     {
          #region :: Properties ::
-        private string mode { get; set; }
+        private ObjectState mode { get; set; }
         private string keyCode { get; set; }
         public AddEditReceiveMaterial()
         {
@@ -24,7 +24,7 @@ namespace POS.IN.ReceiveMaterial
         }
         public AddEditReceiveMaterial(string Code)
         {
-            mode = ObjectState.Update;
+            mode = ObjectState.Edit;
             keyCode = Code;
             InitializeComponent();
             this.Load += new EventHandler(AddEditEmployee_Load);

@@ -39,7 +39,7 @@ namespace POS.BL.Entities.Entity
         public decimal percent_height { get; set; }
 
         [EntityScalarProperty(PersistenceIgnorance = true)]
-        public string ObjectState { get; set; }
+        public ObjectState ObjectState { get; set; }
 
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         [SelfValidation(Ruleset = ValidationRuleset.Update)]

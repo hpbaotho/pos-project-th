@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            POS.BL.DTO.SO.CustromControlPropertyDTO custromControlPropertyDTO1 = new POS.BL.DTO.SO.CustromControlPropertyDTO();
+            POS.BL.DTO.SO.CustromControlPropertyDTO custromControlPropertyDTO43 = new POS.BL.DTO.SO.CustromControlPropertyDTO();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -346,14 +346,13 @@
             // dragContainer2
             // 
             this.dragContainer2.BackColor = System.Drawing.SystemColors.Control;
-            custromControlPropertyDTO1.control_code = null;
-            custromControlPropertyDTO1.control_id = null;
-            custromControlPropertyDTO1.control_parent_id = null;
-            custromControlPropertyDTO1.control_type = null;
-            custromControlPropertyDTO1.ControlState = null;
-            custromControlPropertyDTO1.NextScreen = null;
-            custromControlPropertyDTO1.TableName = null;
-            this.dragContainer2.ControlCommand = custromControlPropertyDTO1;
+            custromControlPropertyDTO43.control_code = null;
+            custromControlPropertyDTO43.control_id = null;
+            custromControlPropertyDTO43.control_parent_id = null;
+            custromControlPropertyDTO43.control_type = null;
+            custromControlPropertyDTO43.NextScreen = null;
+            custromControlPropertyDTO43.TableName = null;
+            this.dragContainer2.ControlCommand = custromControlPropertyDTO43;
             this.dragContainer2.Font = new System.Drawing.Font("Arial", 14F);
             this.dragContainer2.Location = new System.Drawing.Point(3, 3);
             this.dragContainer2.Name = "dragContainer2";

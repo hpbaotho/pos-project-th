@@ -17,7 +17,7 @@ namespace POS.BL.DTO.SO
 
         public string control_type { get; set; }
         public string control_code { get; set; }
-        public string ControlState { get; set; }
+        public ObjectState ControlState { get; set; }
         public string TableName { get; set; }
         public string NextScreen { get; set; }
     }

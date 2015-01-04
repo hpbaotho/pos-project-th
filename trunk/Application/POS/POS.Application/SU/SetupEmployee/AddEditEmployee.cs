@@ -17,7 +17,7 @@ namespace POS.SU.SetupEmployee
     public partial class AddEditEmployee : BaseAddEditMaster
     {
         #region :: Properties ::
-        private string mode { get; set; }
+        private ObjectState mode { get; set; }
         private string keyCode { get; set; }
         public AddEditEmployee()
         {
@@ -27,7 +27,7 @@ namespace POS.SU.SetupEmployee
         }
         public AddEditEmployee(string Code)
         {
-            mode = ObjectState.Update;
+            mode = ObjectState.Edit;
             keyCode = Code;
             InitializeComponent();
             this.Load += new EventHandler(AddEditEmployee_Load);
@@ -42,7 +42,7 @@ namespace POS.SU.SetupEmployee
         private void LoadData()
         {
             Employee entity = new Employee();
-            if (mode == ObjectState.Update && !string.IsNullOrEmpty(keyCode))
+            if (mode == ObjectState.Edit && !string.IsNullOrEmpty(keyCode))
             {
                 entity.employee_id = Converts.ParseLong(keyCode);
                 entity = ServiceProvider.EmployeeService.FindByKeys(entity, true);
@@ -63,7 +63,7 @@ namespace POS.SU.SetupEmployee
         }
         private void EnableMode()
         {
-            if (mode == ObjectState.Update)
+            if (mode == ObjectState.Edit)
             {
                 txtEmployeeNo.Enabled = false;
             }
