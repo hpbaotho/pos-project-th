@@ -55,11 +55,17 @@
     <Compile Include="AddEditSystemConfigGroup.Designer.cs">
       <DependentUpon>AddEditSystemConfigGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\CountStock.cs">
+    <Compile Include="IN\CountStock\AddEditCountStock.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\CountStock.Designer.cs">
-      <DependentUpon>CountStock.cs</DependentUpon>
+    <Compile Include="IN\CountStock\AddEditCountStock.Designer.cs">
+      <DependentUpon>AddEditCountStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\CountStock\ucCountStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\CountStock\ucCountStock.Designer.cs">
+      <DependentUpon>ucCountStock.cs</DependentUpon>
     </Compile>
     <Compile Include="IN\ReceiveMaterial\AddEditReceiveMaterial.cs">
       <SubType>UserControl</SubType>
@@ -73,11 +79,17 @@
     <Compile Include="IN\ReceiveMaterial\ucReceiveMaterial.Designer.cs">
       <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\Send.cs">
+    <Compile Include="IN\SendMaterial\AddEditSendMaterial.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\Send.Designer.cs">
-      <DependentUpon>Send.cs</DependentUpon>
+    <Compile Include="IN\SendMaterial\AddEditSendMaterial.Designer.cs">
+      <DependentUpon>AddEditSendMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\SendMaterial\ucSendMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\SendMaterial\ucSendMaterial.Designer.cs">
+      <DependentUpon>ucSendMaterial.cs</DependentUpon>
     </Compile>
     <Compile Include="IN\SetupIN.cs">
       <SubType>Form</SubType>
@@ -162,8 +174,11 @@
     <EmbeddedResource Include="AddEditSystemConfigGroup.resx">
       <DependentUpon>AddEditSystemConfigGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\CountStock.resx">
-      <DependentUpon>CountStock.cs</DependentUpon>
+    <EmbeddedResource Include="IN\CountStock\AddEditCountStock.resx">
+      <DependentUpon>AddEditCountStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\CountStock\ucCountStock.resx">
+      <DependentUpon>ucCountStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveMaterial\AddEditReceiveMaterial.resx">
       <DependentUpon>AddEditReceiveMaterial.cs</DependentUpon>
@@ -171,8 +186,11 @@
     <EmbeddedResource Include="IN\ReceiveMaterial\ucReceiveMaterial.resx">
       <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\Send.resx">
-      <DependentUpon>Send.cs</DependentUpon>
+    <EmbeddedResource Include="IN\SendMaterial\AddEditSendMaterial.resx">
+      <DependentUpon>AddEditSendMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\SendMaterial\ucSendMaterial.resx">
+      <DependentUpon>ucSendMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\SetupIN.resx">
       <DependentUpon>SetupIN.cs</DependentUpon>

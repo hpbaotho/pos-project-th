@@ -18,10 +18,10 @@ namespace POS.IN.SendMaterial
     public partial class ucSendMaterial : BaseUserControl
    {
         TabPage tabPageAddEdit = new TabPage();
-        string DataKeyName = "employee_id";
+        string DataKeyName = "in_tran_head_id";
         AddEditSendMaterial addEditSendMaterial = new AddEditSendMaterial();
         string programName = ProgramName.SetupINSendMaterial;
-        string tabName = "List Receive Material";
+        string tabName = "List Send Material";
 
         public ucSendMaterial()
         {
