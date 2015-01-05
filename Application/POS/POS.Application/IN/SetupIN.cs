@@ -13,6 +13,8 @@ using POS.BL;
 using Core.Standards.Converters;
 using POS.BL.Entities.Entity;
 using POS.IN.ReceiveMaterial;
+using POS.IN.SendMaterial;
+using POS.IN.CountStock;
 
 namespace POS.IN
 {
@@ -53,11 +55,11 @@ namespace POS.IN
             }
             else if (selected == ProgramName.SetupINSendMaterial)
             {
-                //pnlContent.Controls.Add(new ucSendMaterial());
+                pnlContent.Controls.Add(new ucSendMaterial());
             }
             else if (selected == ProgramName.SetupINCountStock)
             {
-                //pnlContent.Controls.Add(new ucCountStock());
+                pnlContent.Controls.Add(new ucCountStock());
             }
         }
     }
