@@ -20,8 +20,9 @@ namespace POS.BL.Entities.Entity
         public long transaction_status { get; set; }
         public string reference_no { get; set; }
         public long reason_id { get; set; }
-        public long supplier_id { get; set; }
-        public long warehouse_id { get; set; }
+        public long? supplier_id { get; set; }
+        public long? warehouse_id { get; set; }
         public string other_source { get; set; }
+        public string remark { get; set; }
     }
 }

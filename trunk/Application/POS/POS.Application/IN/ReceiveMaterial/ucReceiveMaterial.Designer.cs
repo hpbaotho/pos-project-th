@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.grdBase = new POS.Control.GridView.BaseGrid();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -45,17 +45,6 @@
             this.tabControl1.Size = new System.Drawing.Size(588, 354);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.grdBase);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(580, 328);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // grdBase
             // 
             this.grdBase.DataKeyName = null;
@@ -67,12 +56,23 @@
             this.grdBase.Size = new System.Drawing.Size(574, 322);
             this.grdBase.TabIndex = 0;
             // 
-            // ucEmployee
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.grdBase);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(580, 328);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ucReceiveMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Name = "ucEmployee";
+            this.Name = "ucReceiveMaterial";
             this.Size = new System.Drawing.Size(588, 354);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

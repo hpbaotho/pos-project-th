@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using POS.Control;
 using POS.BL.Utilities;
+using POS.BL.Entities.Entity;
+using POS.BL;
+using Core.Standards.Converters;
 
 namespace POS.IN.ReceiveMaterial
 {
@@ -34,77 +37,99 @@ namespace POS.IN.ReceiveMaterial
         #region :: Private Function ::
         private void AddEditEmployee_Load(object sender, EventArgs e)
         {
-            //LoadData();
+            LoadData();
         }
-        //private void LoadData()
-        //{
-        //    Employee entity = new Employee();
-        //    if (mode == ObjectState.Update && !string.IsNullOrEmpty(keyCode))
-        //    {
-        //        entity.employee_id = Converts.ParseLong(keyCode);
-        //        entity = ServiceProvider.EmployeeService.FindByKeys(entity, true);
+        private void LoadData()
+        {
 
-        //        txtEmployeeNo.Text = entity.employee_no;
-        //        txtFirstName.Text = entity.first_name;
-        //        txtMidName.Text = entity.mid_name;
-        //        txtLastName.Text = entity.last_name;
-        //    }
-        //    else
-        //    {
-        //        txtEmployeeNo.Text = string.Empty;
-        //        txtFirstName.Text = string.Empty;
-        //        txtMidName.Text = string.Empty;
-        //        txtLastName.Text = string.Empty;
-        //    }
-        //    EnableMode();
-        //}
-        //private void EnableMode()
-        //{
-        //    if (mode == ObjectState.Update)
-        //    {
-        //        txtEmployeeNo.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        txtEmployeeNo.Enabled = true;
-        //    }
-        //}
-        //private Employee GetData()
-        //{
-        //    Employee entity = new Employee();
-        //    entity.employee_id = Converts.ParseLong(keyCode);
-        //    entity.employee_group_id = 1;
-        //    entity.employee_no = txtEmployeeNo.Text;
-        //    entity.first_name = txtFirstName.Text;
-        //    entity.mid_name = txtMidName.Text;
-        //    entity.last_name = txtLastName.Text;
-        //    entity.created_by = "SYSTEM";
-        //    entity.created_date = DateTime.Now;
-        //    entity.updated_by = "SYSTEM";
-        //    entity.updated_date = DateTime.Now;
-        //    return entity;
-        //}
-        //#endregion
+            TranHead entity = new TranHead();
+            if (mode == ObjectState.Edit && !string.IsNullOrEmpty(keyCode))
+            {
+                entity.tran_head_id = Converts.ParseLong(keyCode);
+                entity = ServiceProvider.TranHeadService.FindByKeys(entity, true);
 
-        //#region :: Event Action ::
-        //private void AddEditEmployee_saveHandler()
-        //{
-        //    Employee entity = GetData();
-        //    if (mode == ObjectState.Add)
-        //    {
-        //        ServiceProvider.EmployeeService.Insert(entity);
-        //    }
-        //    else
-        //    {
-        //        ServiceProvider.EmployeeService.Update(entity);
-        //    }
-        //    base.formBase.ShowMessage(GeneralMessage.SaveComplete);
-        //}
+                txtReferenceNo.Text = entity.reference_no;
+                ddlReason.SelectedValue = entity.reason_id;
 
-        //private void AddEditEmployee_resetHandler()
-        //{
-        //    LoadData();
-        //}
+                if (entity.supplier_id != null) { rdoSupplier.Checked = true; }
+                else if (entity.warehouse_id != null) { rdoWarehouse.Checked = true; }
+                else if (!string.IsNullOrEmpty(entity.other_source)) { rdoOther.Checked = true; }
+
+                txtRemark.Text = entity.remark;
+
+                lblStatus.Text = "";
+                lblDocumentNo.Text = "";
+                lblDocumentDate.Text = "";
+            }
+            else
+            {
+                txtReferenceNo.Text = string.Empty;
+                //ddlReason.SelectedIndex = 0;
+
+                rdoSupplier.Checked = false;
+                rdoWarehouse.Checked = false;
+                rdoOther.Checked = false;
+
+                txtReferenceNo.Text = string.Empty;
+
+                lblStatus.Text = "";
+                lblDocumentNo.Text = "";
+                lblDocumentDate.Text = "";
+            }
+            EnableMode();
+        }
+        private void EnableMode()
+        {
+            if (mode == ObjectState.Edit)
+            {
+                //txtEmployeeNo.Enabled = false;
+            }
+            else
+            {
+                //txtEmployeeNo.Enabled = true;
+            }
+        }
+        private TranHead GetData()
+        {
+            TranHead entity = new TranHead();
+
+
+            entity.reference_no = txtReferenceNo.Text;
+            
+            entity.reason_id = Converts.ParseLong(ddlReason.SelectedValue.ToString());
+
+            if (rdoSupplier.Checked) {  }
+            else if (rdoWarehouse.Checked ) {  }
+            else if (rdoOther.Checked) {  }
+
+            entity.remark = txtRemark.Text;
+            entity.created_by = "SYSTEM";
+            entity.created_date = DateTime.Now;
+            entity.updated_by = "SYSTEM";
+            entity.updated_date = DateTime.Now;
+            return entity;
+        }
+        #endregion
+
+        #region :: Event Action ::
+        private void AddEditEmployee_saveHandler()
+        {
+            TranHead entity = GetData();
+            if (mode == ObjectState.Add)
+            {
+                ServiceProvider.TranHeadService.Insert(entity);
+            }
+            else
+            {
+                ServiceProvider.TranHeadService.Update(entity);
+            }
+            base.formBase.ShowMessage(GeneralMessage.SaveComplete);
+        }
+
+        private void AddEditEmployee_resetHandler()
+        {
+            LoadData();
+        }
         #endregion
     }
 }
