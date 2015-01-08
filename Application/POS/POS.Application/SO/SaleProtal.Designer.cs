@@ -79,7 +79,7 @@
             this.btnLogOut.Size = new System.Drawing.Size(269, 134);
             this.btnLogOut.TabIndex = 8;
             this.btnLogOut.Text = "Log out";
-            this.btnLogOut.Theme = POS.Control.Theme.MSOffice2010_RED;
+            this.btnLogOut.Theme = POS.Control.Theme.MSOffice2010_WHITE;
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
@@ -111,7 +111,7 @@
             this.btnSecurity.Size = new System.Drawing.Size(267, 134);
             this.btnSecurity.TabIndex = 6;
             this.btnSecurity.Text = "Security";
-            this.btnSecurity.Theme = POS.Control.Theme.MSOffice2010_RED;
+            this.btnSecurity.Theme = POS.Control.Theme.MSOffice2010_Pink;
             this.btnSecurity.UseVisualStyleBackColor = true;
             this.btnSecurity.Click += new System.EventHandler(this.btnSecurity_Click);
             // 
@@ -143,7 +143,7 @@
             this.btnWarehouse.Size = new System.Drawing.Size(267, 134);
             this.btnWarehouse.TabIndex = 4;
             this.btnWarehouse.Text = "Warehouse";
-            this.btnWarehouse.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnWarehouse.Theme = POS.Control.Theme.MSOffice2010_Brown;
             this.btnWarehouse.UseVisualStyleBackColor = true;
             this.btnWarehouse.Click += new System.EventHandler(this.btnWarehouse_Click);
             // 
@@ -175,7 +175,7 @@
             this.btnAccount.Size = new System.Drawing.Size(269, 134);
             this.btnAccount.TabIndex = 2;
             this.btnAccount.Text = "Account";
-            this.btnAccount.Theme = POS.Control.Theme.MSOffice2010_Pink;
+            this.btnAccount.Theme = POS.Control.Theme.MSOffice2010_Violet;
             this.btnAccount.UseVisualStyleBackColor = true;
             this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 

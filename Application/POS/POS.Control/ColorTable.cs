@@ -16,7 +16,9 @@ namespace POS.Control
         MSOffice2010_Green = 4,
         MSOffice2010_Pink = 5,
         MSOffice2010_Yellow = 6,
-        MSOffice2010_Publisher = 7
+        MSOffice2010_Publisher = 7,
+        MSOffice2010_Violet = 8,
+        MSOffice2010_Brown = 9,
     }
 
     #endregion
@@ -87,6 +89,21 @@ namespace POS.Control
             get { return office2010pb; }
         }
 
+        private static Office2010Violet office2010vo = new Office2010Violet();
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public static Colortable Office2010Violet
+        {
+            get { return office2010vo; }
+        }
+
+        private static Office2010Brown office2010bw = new Office2010Brown();
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public static Colortable Office2010Brown
+        {
+            get { return office2010bw; }
+        }
 
         #endregion
 
@@ -351,33 +368,33 @@ namespace POS.Control
         {
             // Border Color
 
-            this.BorderColor1 = Color.FromArgb(31, 72, 161);
-            this.BorderColor2 = Color.FromArgb(68, 135, 228);
+            this.BorderColor1 = Color.FromArgb(36, 72, 161);
+            this.BorderColor2 = Color.FromArgb(73, 135, 228);
 
             // Button Text Color
 
             this.TextColor = Color.White;
-            this.SelectedTextColor = Color.FromArgb(30, 57, 91);
-            this.HoverTextColor = Color.FromArgb(30, 57, 91);
+            this.SelectedTextColor = Color.FromArgb(35, 57, 91);
+            this.HoverTextColor = Color.FromArgb(35, 57, 91);
 
             // Button normal color
 
-            this.ButtonNormalColor1 = Color.FromArgb(227, 77, 45);
-            this.ButtonNormalColor2 = Color.FromArgb(245, 148, 64);
-            this.ButtonNormalColor3 = Color.FromArgb(227, 77, 45);
-            this.ButtonNormalColor4 = Color.FromArgb(245, 148, 64);
+            this.ButtonNormalColor1 = Color.FromArgb(232, 0, 0);
+            this.ButtonNormalColor2 = Color.FromArgb(250, 148, 64);
+            this.ButtonNormalColor3 = Color.FromArgb(232, 0, 0);
+            this.ButtonNormalColor4 = Color.FromArgb(250, 148, 64);
 
             // Button mouseover color
 
-            this.ButtonMouseOverColor1 = Color.FromArgb(236, 199, 87);
-            this.ButtonMouseOverColor2 = Color.FromArgb(252, 243, 215);
-            this.ButtonMouseOverColor3 = Color.FromArgb(249, 225, 137);
-            this.ButtonMouseOverColor4 = Color.FromArgb(251, 249, 224);
+            this.ButtonMouseOverColor1 = Color.FromArgb(241, 199, 87);
+            this.ButtonMouseOverColor2 = Color.FromArgb(255, 243, 215);
+            this.ButtonMouseOverColor3 = Color.FromArgb(254, 225, 137);
+            this.ButtonMouseOverColor4 = Color.FromArgb(255, 249, 224);
 
             // Button selected color
 
-            this.ButtonSelectedColor1 = Color.FromArgb(236, 199, 87);
-            this.ButtonSelectedColor2 = Color.FromArgb(252, 243, 215);
+            this.ButtonSelectedColor1 = Color.FromArgb(241, 199, 87);
+            this.ButtonSelectedColor2 = Color.FromArgb(255, 243, 215);
             this.ButtonSelectedColor3 = Color.FromArgb(255, 229, 117);
             this.ButtonSelectedColor4 = Color.FromArgb(255, 216, 107);
         }
@@ -409,9 +426,9 @@ namespace POS.Control
 
             // Button normal color
 
-            this.ButtonNormalColor1 = Color.FromArgb(175, 6, 77);
+            this.ButtonNormalColor1 = Color.FromArgb(250, 95, 149);
             this.ButtonNormalColor2 = Color.FromArgb(222, 52, 119);
-            this.ButtonNormalColor3 = Color.FromArgb(175, 6, 77);
+            this.ButtonNormalColor3 = Color.FromArgb(250, 95, 149);
             this.ButtonNormalColor4 = Color.FromArgb(222, 52, 119);
 
             // Button mouseover color
@@ -573,6 +590,100 @@ namespace POS.Control
         public override string ToString()
         {
             return "Office2010Publisher";
+        }
+    }
+
+    #endregion
+
+    #region Office 2010 Violet
+
+    public class Office2010Violet : Colortable
+    {
+        public Office2010Violet()
+        {
+            // Border Color
+
+            this.BorderColor1 = Color.FromArgb(31, 72, 161);
+            this.BorderColor2 = Color.FromArgb(68, 135, 228);
+
+            // Button Text Color
+
+            this.TextColor = Color.White;
+            this.SelectedTextColor = Color.FromArgb(30, 57, 91);
+            this.HoverTextColor = Color.FromArgb(30, 57, 91);
+
+            // Button normal color
+
+            this.ButtonNormalColor1 = Color.FromArgb(140, 15, 136);
+            this.ButtonNormalColor2 = Color.FromArgb(230, 131, 247);
+            this.ButtonNormalColor3 = Color.FromArgb(140, 15, 136);
+            this.ButtonNormalColor4 = Color.FromArgb(230, 131, 247);
+
+            // Button mouseover color
+
+            this.ButtonMouseOverColor1 = Color.FromArgb(236, 199, 87);
+            this.ButtonMouseOverColor2 = Color.FromArgb(252, 243, 215);
+            this.ButtonMouseOverColor3 = Color.FromArgb(249, 225, 137);
+            this.ButtonMouseOverColor4 = Color.FromArgb(251, 249, 224);
+
+            // Button selected color
+
+            this.ButtonSelectedColor1 = Color.FromArgb(236, 199, 87);
+            this.ButtonSelectedColor2 = Color.FromArgb(252, 243, 215);
+            this.ButtonSelectedColor3 = Color.FromArgb(255, 229, 117);
+            this.ButtonSelectedColor4 = Color.FromArgb(255, 216, 107);
+        }
+
+        public override string ToString()
+        {
+            return "Office2010Violet";
+        }
+    }
+
+    #endregion
+
+    #region Office 2010 Brown
+
+    public class Office2010Brown : Colortable
+    {
+        public Office2010Brown()
+        {
+            // Border Color
+
+            this.BorderColor1 = Color.FromArgb(31, 72, 161);
+            this.BorderColor2 = Color.FromArgb(68, 135, 228);
+
+            // Button Text Color
+
+            this.TextColor = Color.Black;
+            this.SelectedTextColor = Color.FromArgb(30, 57, 91);
+            this.HoverTextColor = Color.FromArgb(30, 57, 91);
+
+            // Button normal color
+
+            this.ButtonNormalColor1 = Color.FromArgb(181, 76, 11);
+            this.ButtonNormalColor2 = Color.FromArgb(245, 148, 88);
+            this.ButtonNormalColor3 = Color.FromArgb(181, 76, 11);
+            this.ButtonNormalColor4 = Color.FromArgb(245, 148, 88);
+
+            // Button mouseover color
+
+            this.ButtonMouseOverColor1 = Color.FromArgb(236, 199, 87);
+            this.ButtonMouseOverColor2 = Color.FromArgb(252, 243, 215);
+            this.ButtonMouseOverColor3 = Color.FromArgb(249, 225, 137);
+            this.ButtonMouseOverColor4 = Color.FromArgb(251, 249, 224);
+
+            // Button selected color
+
+            this.ButtonSelectedColor1 = Color.FromArgb(236, 199, 87);
+            this.ButtonSelectedColor2 = Color.FromArgb(252, 243, 215);
+            this.ButtonSelectedColor3 = Color.FromArgb(255, 229, 117);
+            this.ButtonSelectedColor4 = Color.FromArgb(255, 216, 107);
+        }
+
+        public override string ToString()
+        {
+            return "Office2010Brown";
         }
     }
 

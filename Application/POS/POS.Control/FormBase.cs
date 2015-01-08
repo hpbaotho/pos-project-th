@@ -21,11 +21,13 @@ namespace POS.Control
 {
     public class FormBase : Form
     {
+        #region :: Custem delegate Event ::
+        public delegate void TableClickHandler(string tableCode);
+        public event TableClickHandler TableClickEvent;
+        #endregion
         #region :: Property ::
         private bool _IngoreFontDefault = false;
 
-        public delegate void TableClickHandler(string tableCode);
-        public event TableClickHandler TableClickEvent;
 
         public bool IngoreFontDefault { get { return _IngoreFontDefault; } set { _IngoreFontDefault = value; } }
         private BaseTextBox txtProcress = null;
@@ -47,6 +49,49 @@ namespace POS.Control
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
+        #endregion
+
+        #region :: Popup Function ::
+
+
+        public delegate void ClosePopupHandler(object obj);
+        public event ClosePopupHandler closePopupHandler;
+
+        public delegate object OpenPupupHandler();
+        public event OpenPupupHandler openPopupHandler;
+
+        public object PageObjrct
+        {
+            get
+            {
+                if (openPopupHandler != null && _PageObjrct == null)
+                {
+                    _PageObjrct = openPopupHandler();
+                }
+                return _PageObjrct;
+
+            }
+        }
+        private object _PageObjrct = null;
+
+
+        protected void CloseScreen(object result)
+        {
+            if (closePopupHandler != null)
+            {
+                closePopupHandler(result);
+            }
+            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+        }
+
+        public void CloseScreen()
+        {
+
+            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+        }
+
+
+
         #endregion
         //====================================================================
         #region :: Message Control
@@ -80,10 +125,7 @@ namespace POS.Control
         #region :: Custom Function ::
 
         // Public function
-        public void CloseScreen()
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-        }
+
         public void OpernNewScreen<T>() where T : FormBase
         {
 
@@ -104,7 +146,7 @@ namespace POS.Control
 
             }
         }
-    
+
         public void UpdateFontDefault()
         {
             this.FindControlAll(this);
@@ -348,7 +390,16 @@ namespace POS.Control
          */
 
     }
+    public class PopupBase : FormBase
+    {
+        public PopupBase()
+        {
+            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
 
+        }
+
+
+    }
     public enum ControlMode
     {
         Add,
