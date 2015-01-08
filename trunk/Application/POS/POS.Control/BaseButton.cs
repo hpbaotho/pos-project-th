@@ -202,7 +202,8 @@ namespace POS.Control
             #region Theme 2010
 
             if (thm == POS.Control.Theme.MSOffice2010_BLUE || thm == POS.Control.Theme.MSOffice2010_Green || thm == POS.Control.Theme.MSOffice2010_Yellow || thm == POS.Control.Theme.MSOffice2010_Publisher ||
-                thm == POS.Control.Theme.MSOffice2010_RED || thm == POS.Control.Theme.MSOffice2010_WHITE || thm == POS.Control.Theme.MSOffice2010_Pink)
+                thm == POS.Control.Theme.MSOffice2010_RED || thm == POS.Control.Theme.MSOffice2010_WHITE || thm == POS.Control.Theme.MSOffice2010_Pink || thm == POS.Control.Theme.MSOffice2010_Violet
+                || thm == POS.Control.Theme.MSOffice2010_Brown)
             {
                 Paint2010Background(e, g, tTopColorBegin, tTopColorEnd, tBottomColorBegin, tBottomColorEnd);
                 TEXTandIMAGE(this.ClientRectangle, g, Textcol);
@@ -441,6 +442,14 @@ namespace POS.Control
                 {
                     return POS.Control.Theme.MSOffice2010_BLUE;
                 }
+                else if (this.colorTable == Colortable.Office2010Violet)
+                {
+                    return POS.Control.Theme.MSOffice2010_Violet;
+                }
+                else if (this.colorTable == Colortable.Office2010Brown)
+                {
+                    return POS.Control.Theme.MSOffice2010_Brown;
+                }
 
                 return POS.Control.Theme.MSOffice2010_WHITE;
             }
@@ -476,6 +485,14 @@ namespace POS.Control
                 else if (thm == POS.Control.Theme.MSOffice2010_BLUE)
                 {
                     this.colorTable = Colortable.Office2010Blue;
+                }
+                else if (thm == POS.Control.Theme.MSOffice2010_Violet)
+                {
+                    this.colorTable = Colortable.Office2010Violet;
+                }
+                else if (thm == POS.Control.Theme.MSOffice2010_Brown)
+                {
+                    this.colorTable = Colortable.Office2010Brown;
                 }
                 else
                 {

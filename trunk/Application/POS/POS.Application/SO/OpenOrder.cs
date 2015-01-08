@@ -301,14 +301,15 @@ namespace POS.SO
         private void btnStartTime_Click(object sender, EventArgs e)
         {
             this.OrderHeads.IsStartTime = true;
-            btnStartTime.Theme = Theme.MSOffice2010_WHITE;
+            btnStartTime.Theme = Theme.MSOffice2010_Green;
+            btnStartTime.Text = "Re-New";
             btnStartTime.Invalidate();
-            btnStartTime.Enabled = false;
+            timeEating.Stop();
             timeEating.Start();
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
-          
+            this.CloseScreen();
         }
         #endregion
 
@@ -316,21 +317,17 @@ namespace POS.SO
         {
             using (PopUpPerson form = new PopUpPerson())
             {
-                form.openPopupHandler += new PopUpPerson.OpenPupupHandler(form_openPopupHandler);
+                form.openPopupHandler += new PopupBase.OpenPupupHandler(form_openPopupHandler);
                 form.closePopupHandler += new PopUpPerson.ClosePopupHandler(form_closePopupHandler);
                 DialogResult result = form.ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.Cancel)
-                {
-                    this.Show();
-                    this.Activate();
-                }
+                this.Activate();
 
             }
         }
 
-        protected void form_closePopupHandler(OrderHeadDTO orderHead)
+        protected void form_closePopupHandler(object orderHead)
         {
-            this.OrderHeads = orderHead;
+            this.OrderHeads = orderHead as OrderHeadDTO;
             labPersonCount.Text = this.OrderHeads.Person.ToString();
         }
 
@@ -341,7 +338,19 @@ namespace POS.SO
 
         private void timeEating_Tick(object sender, EventArgs e)
         {
-            if (this.OrderHeads.IsStartTime) {
+            if (this.OrderHeads.IsStartTime)
+            {
+                if (btnStartTime.Theme == Theme.MSOffice2010_Green)
+                {
+                    btnStartTime.Theme = Theme.MSOffice2010_RED;
+
+                }
+                else
+                {
+                    btnStartTime.Theme = Theme.MSOffice2010_Green;
+                }
+                btnStartTime.Invalidate();
+
                 TimeSpan dateDiff = (DateTime.Now - this.OrderHeads.StartTimeEating.Value);
                 labEatingTime.Text = dateDiff.ToString(@"hh\:mm\:ss");//string.Format("{0:c}", dateDiff);
             }

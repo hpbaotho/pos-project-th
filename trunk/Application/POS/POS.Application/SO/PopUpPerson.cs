@@ -7,18 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using POS.BL.DTO.SO;
+using POS.Control;
 
 namespace POS.SO
 {
-    public partial class PopUpPerson : Form
+    public partial class PopUpPerson : PopupBase
     {
         OrderHeadDTO OrderHeads;
-
-        public delegate void ClosePopupHandler(OrderHeadDTO orderHead);
-        public event ClosePopupHandler closePopupHandler;
-
-        public delegate OrderHeadDTO OpenPupupHandler();
-        public event OpenPupupHandler openPopupHandler;
 
         public PopUpPerson()
         {
@@ -28,9 +23,9 @@ namespace POS.SO
         }
         protected override void OnShown(EventArgs e)
         {
-            if (openPopupHandler != null)
+            if (this.PageObjrct != null)
             {
-                this.OrderHeads = openPopupHandler();
+                this.OrderHeads = this.PageObjrct as OrderHeadDTO;
 
                 if (this.OrderHeads != null)
                 {
@@ -59,11 +54,7 @@ namespace POS.SO
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (closePopupHandler != null)
-            {
-                closePopupHandler(this.OrderHeads);
-            }
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CloseScreen(this.OrderHeads);
         }
 
         private void btnDelPeson_Click(object sender, EventArgs e)
@@ -72,7 +63,9 @@ namespace POS.SO
             {
 
                 this.OrderHeads.Person -= 1;
-
+                if (this.OrderHeads.Person < 1) {
+                    this.OrderHeads.Person = 1;
+                }
                 btnPerson.Text = string.Format("+ ลูกค้า ({0})", this.OrderHeads.Person);
             }
         }
