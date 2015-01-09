@@ -58,5 +58,9 @@ namespace POS.Control
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        protected bool btnSaveEnable { get { return btnSave.Enabled; } set { btnSave.Enabled = value; } }
+        protected bool btnResetEnable { get { return btnReset.Enabled; } set { btnReset.Enabled = value; } }
+        protected bool btnBackEnable { get { return btnBack.Enabled; } set { btnBack.Enabled = value; } }
     }
 }
