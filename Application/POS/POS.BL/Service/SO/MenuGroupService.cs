@@ -11,7 +11,7 @@ namespace POS.BL.Service.SO
     {
         public List<MenuGroup> FindByDiningType(long DiningTypeId)
         {
-            string sql = @"
+            string sql = @" SELECT * FROM(
                          SELECT DISTINCT menuGroup.* ,dining.dining_type_id
                         FROM so_menu_group menuGroup WITH(NOLOCK)
                         LEFT JOIN so_menu menu WITH(NOLOCK) ON menu.menu_group_id=menuGroup.menu_group_id
@@ -19,6 +19,8 @@ namespace POS.BL.Service.SO
                         WHERE menuGroup.active=1
                         AND ISNULL(dining.menu_id,0)<>0
                         AND ISNULL(dining.dining_type_id,0)=@dining_type_id
+                        ) A
+                        ORDER BY ISNULL(A.priorityValue,0) DESC,A.menu_group_code
                     ";
 
             List<DbParameter> param = new List<DbParameter>();

@@ -57,7 +57,7 @@ namespace POS.Control
         public delegate void ClosePopupHandler(object obj);
         public event ClosePopupHandler closePopupHandler;
 
-        public delegate object OpenPupupHandler();
+        public delegate object OpenPupupHandler(object sender);
         public event OpenPupupHandler openPopupHandler;
 
         public object PageObjrct
@@ -66,7 +66,7 @@ namespace POS.Control
             {
                 if (openPopupHandler != null && _PageObjrct == null)
                 {
-                    _PageObjrct = openPopupHandler();
+                    _PageObjrct = openPopupHandler(this);
                 }
                 return _PageObjrct;
 
@@ -392,9 +392,11 @@ namespace POS.Control
     }
     public class PopupBase : FormBase
     {
+        public object popupDataSource = null;
         public PopupBase()
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            this.StartPosition = FormStartPosition.CenterScreen;
 
         }
 

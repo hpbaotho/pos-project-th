@@ -37,6 +37,20 @@ namespace POS.SO
                 _OrderHeads = value;
             }
         }
+        private long GetOrderMenuId()
+        {
+            long orderDetailId = -1;
+            long minId = this.OrderList.Count > 0 ? this.OrderList.Min(a => a.sales_order_detail_id).Value : 0;
+            if (minId > 0)
+            {
+                orderDetailId = -1;
+            }
+            else
+            {
+                orderDetailId = minId - 1;
+            }
+            return orderDetailId;
+        }
 
         public OpenOrder()
         {
@@ -76,7 +90,7 @@ namespace POS.SO
 
 
 
-        private void LoadMenuToContaner(long? diningTypeId,long? menuGroupId,long? menuCategoryId)
+        private void LoadMenuToContaner(int diningTypeId, long? menuGroupId, long? menuCategoryId)
         {
             List<OrderDTO> mainMenu = ServiceProvider.MenuService.LoadMainMenu(null, diningTypeId, menuGroupId, menuCategoryId);
             this.BindMenu(mainMenu, fPnlMenuItem, Theme.MSOffice2010_RED);
@@ -95,7 +109,7 @@ namespace POS.SO
                     btnMenu.Text = Menuitem.menu_name;
                     btnMenu.CommandArg = Menuitem.menu_id.ToString();
                     btnMenu.DataObject = Menuitem;
-                    if (ServiceProvider.MenuService.HaveMinuItem(Menuitem.menu_id, Menuitem.menu_dining_type_id, Menuitem.menu_group_id, Menuitem.menu_category_id))
+                    if (ServiceProvider.MenuService.HaveMinuItem(Menuitem.menu_id, Menuitem.dining_type_id, Menuitem.menu_group_id, Menuitem.menu_category_id))
                     {
                         btnMenu.Click += new EventHandler(btnMenu_Click);
                         btnMenu.Theme = t;
@@ -176,27 +190,32 @@ namespace POS.SO
             if (btnDining != null)
             {
                 DiningType diningSelect = btnDining.DataObject as DiningType;
-                List<MenuGroup> menuGroup = ServiceProvider.MenuGroupService.FindByDiningType(diningSelect.dining_type_id.Value);
-                if (menuGroup != null && menuGroup.Count > 0)
+                this.LoadMenuGroupByDiningType(diningSelect);
+            }
+
+        }
+
+        private void LoadMenuGroupByDiningType(DiningType diningSelect)
+        {
+            List<MenuGroup> menuGroup = ServiceProvider.MenuGroupService.FindByDiningType(diningSelect.dining_type_id.Value);
+            if (menuGroup != null && menuGroup.Count > 0)
+            {
+
+
+                foreach (MenuGroup MenuGroupitem in menuGroup)
                 {
+                    BaseButton btnMenuGroup = new BaseButton();
+                    btnMenuGroup.Width = 150;
+                    btnMenuGroup.Height = 70;
+                    btnMenuGroup.Theme = Theme.MSOffice2010_Violet;
+                    btnMenuGroup.Text = MenuGroupitem.menu_group_name;
+                    btnMenuGroup.DataObject = MenuGroupitem;
+                    btnMenuGroup.Click += new EventHandler(btnMenuGroup_Click);
+                    btnMenuGroup.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
 
-
-                    foreach (MenuGroup MenuGroupitem in menuGroup)
-                    {
-                        BaseButton btnMenuGroup = new BaseButton();
-                        btnMenuGroup.Width = 150;
-                        btnMenuGroup.Height = 70;
-                        btnMenuGroup.Theme = Theme.MSOffice2010_Violet;
-                        btnMenuGroup.Text = MenuGroupitem.menu_group_name;
-                        btnMenuGroup.DataObject = MenuGroupitem;
-                        btnMenuGroup.Click += new EventHandler(btnMenuGroup_Click);
-                        btnMenuGroup.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
-
-                        fPnlMainMenu.Controls.Add(btnMenuGroup);
-                    }
+                    fPnlMainMenu.Controls.Add(btnMenuGroup);
                 }
             }
-          
         }
 
         protected void btnMenuGroup_Click(object sender, EventArgs e)
@@ -214,7 +233,7 @@ namespace POS.SO
                     {
                         MenuCategoryitem.menu_group_id = MenuGroupSelect.menu_group_id;
                         BaseButton btnCategory = new BaseButton();
-                        btnCategory.Theme=Theme.MSOffice2010_Yellow;
+                        btnCategory.Theme = Theme.MSOffice2010_Yellow;
                         btnCategory.Width = 150;
                         btnCategory.Height = 70;
                         btnCategory.Text = MenuCategoryitem.menu_category_name;
@@ -231,13 +250,17 @@ namespace POS.SO
         protected void btnCategory_Click(object sender, EventArgs e)
         {
             BaseButton btnCategory = sender as BaseButton;
-            fPnlMenuItem.Controls.Clear();
-            fPnlMainMenu.Controls.Clear();
+
             if (btnCategory != null)
             {
+                fPnlMenuItem.Controls.Clear();
+                fPnlMainMenu.Controls.Clear();
                 MenuCategory MenuCategorySelect = btnCategory.DataObject as MenuCategory;
                 this.LoadMenuToContaner(MenuCategorySelect.dining_type_id, MenuCategorySelect.menu_group_id, MenuCategorySelect.menu_category_id);
+                this.LoadMenuGroupByDiningType(new DiningType() { dining_type_id = MenuCategorySelect.dining_type_id });
             }
+
+
         }
         protected void btnMenu_Click(object sender, EventArgs e)
         {
@@ -246,7 +269,7 @@ namespace POS.SO
             OrderDTO orderSelect = btnMenu.DataObject as OrderDTO;
             if (orderSelect != null)
             {
-                List<OrderDTO> mainMenuList = ServiceProvider.MenuService.LoadMainMenu(orderSelect.menu_id, orderSelect.menu_dining_type_id, orderSelect.menu_group_id, orderSelect.menu_category_id);
+                List<OrderDTO> mainMenuList = ServiceProvider.MenuService.LoadMainMenu(orderSelect.menu_id, orderSelect.dining_type_id, orderSelect.menu_group_id, orderSelect.menu_category_id);
                 this.BindMenu(mainMenuList, fPnlMenuItem, Theme.MSOffice2010_BLUE);
             }
         }
@@ -270,16 +293,7 @@ namespace POS.SO
             }
 
 
-            long orderDetailId = -1;
-            long minId = this.OrderList.Count > 0 ? this.OrderList.Min(a => a.sales_order_detail_id).Value : 0;
-            if (minId > 0)
-            {
-                orderDetailId = -1;
-            }
-            else
-            {
-                orderDetailId = minId - 1;
-            }
+            long orderDetailId = this.GetOrderMenuId();
 
 
 
@@ -312,6 +326,8 @@ namespace POS.SO
             this.BindListOrder();
             txtCommand.Text = string.Empty;
         }
+
+ 
         private void BindListOrder()
         {
             lisMenuOrder.Items.Clear();
@@ -349,11 +365,44 @@ namespace POS.SO
         {
             if (lisMenuOrder.SelectedItems.Count > 0)
             {
+
                 fPnlMenuItem.Controls.Clear();
 
                 ListViewItem addItem = lisMenuOrder.SelectedItems[0];
                 long sales_order_detail_id = Converts.ParseLong(addItem.Name);
                 OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
+                if (updateItem!=null && !updateItem.IsCondiment)
+                {
+                    List<OrderDTO> CondimetMenu = ServiceProvider.MenuService.LoadCondiMentMenu(updateItem.menu_dining_type_id);
+                    if (CondimetMenu != null)
+                    {
+                        
+                        foreach (OrderDTO Condimentitem in CondimetMenu)
+                        {
+                            Condimentitem.IsCondiment = true;
+                            Condimentitem.sales_order_detail_id = sales_order_detail_id;
+                            BaseButton btnCondiment = new BaseButton();
+                            btnCondiment.Theme = Theme.MSOffice2010_Yellow;
+                            btnCondiment.Width = 150;
+                            btnCondiment.Height = 70;
+                            btnCondiment.Text = Condimentitem.menu_name;
+
+                            if (Condimentitem.menu_id.HasValue)
+                            {
+                                btnCondiment.Click += new EventHandler(btnCondiment_Click);
+                            }
+                            else
+                            {
+                                Condimentitem.menu_dining_type_id = updateItem.menu_dining_type_id;
+                                btnCondiment.Click += new EventHandler(btnOpenCondiment_Click);
+                            }
+                            btnCondiment.DataObject = Condimentitem;
+                            btnCondiment.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
+
+                            fPnlMenuItem.Controls.Add(btnCondiment);
+                        }
+                    }
+                }
 
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
@@ -370,6 +419,48 @@ namespace POS.SO
             }
             btnAdd.Invalidate();
             btnDelete.Invalidate();
+        }
+
+        protected void btnCondiment_Click(object sender, EventArgs e)
+        {
+
+
+        }
+        protected void btnOpenCondiment_Click(object sender, EventArgs e)
+        {
+            BaseButton btnCondiment = sender as BaseButton;
+            using (PopupCondiment formCodniment = new PopupCondiment())
+            {
+                formCodniment.popupDataSource = btnCondiment.DataObject;
+                formCodniment.openPopupHandler += new PopupBase.OpenPupupHandler(formCodniment_openPopupHandler);
+                formCodniment.closePopupHandler += new PopUpPerson.ClosePopupHandler(formCodniment_closePopupHandler);
+                DialogResult result = formCodniment.ShowDialog();
+                this.Activate();
+
+            }
+        }
+        protected object formCodniment_openPopupHandler(object sender)
+        {
+            PopupBase pupup = sender as PopupBase;
+            if (pupup.popupDataSource != null)
+            {
+                return pupup.popupDataSource;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        protected void formCodniment_closePopupHandler(object returnObj)
+        {
+            if (returnObj != null)
+            {
+                OrderDTO menuCondiment = returnObj as OrderDTO;
+                long orderDetailId = this.GetOrderMenuId();
+                menuCondiment.sales_order_detail_id = orderDetailId;
+                this.OrderList.Add(returnObj as OrderDTO);
+                this.BindListOrder();
+            }
         }
         private void btnStartTime_Click(object sender, EventArgs e)
         {
@@ -404,7 +495,7 @@ namespace POS.SO
             labPersonCount.Text = this.OrderHeads.Person.ToString();
         }
 
-        protected OrderHeadDTO form_openPopupHandler()
+        protected OrderHeadDTO form_openPopupHandler(object sender)
         {
             return this.OrderHeads;
         }
@@ -433,6 +524,7 @@ namespace POS.SO
         {
             this.CloseScreen();
         }
+
 
 
 
