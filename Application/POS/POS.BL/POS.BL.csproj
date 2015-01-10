@@ -63,6 +63,8 @@
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
     <Compile Include="Entities\EntitiyBase.cs" />
     <Compile Include="Entities\Entity\DiningType.cs" />
+    <Compile Include="Entities\Entity\MenuCategory.cs" />
+    <Compile Include="Entities\Entity\MenuGroup.cs" />
     <Compile Include="Entities\Entity\SaleOrderDetail.cs" />
     <Compile Include="Entities\Entity\SaleOrderHeader.cs" />
     <Compile Include="Entities\Entity\TranDetail.cs" />
@@ -80,6 +82,8 @@
     <Compile Include="Service\IN\TranDetailService.cs" />
     <Compile Include="Service\IN\TranHeadService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
+    <Compile Include="Service\SO\MenuCategoryService.cs" />
+    <Compile Include="Service\SO\MenuGroupService.cs" />
     <Compile Include="Service\SO\MenuService.cs" />
     <Compile Include="Service\SO\SaleOrderDetailService.cs" />
     <Compile Include="Service\SO\SaleOrderHeaderService.cs" />

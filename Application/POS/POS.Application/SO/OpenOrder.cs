@@ -64,6 +64,7 @@ namespace POS.SO
                     btnDining.Height = 60;
                     btnDining.Text = Diningitem.dining_type_name;
                     btnDining.CommandArg = Diningitem.dining_type_id.Value.ToString();
+                    btnDining.DataObject = Diningitem;
                     btnDining.Theme = Theme.MSOffice2010_BLUE;
                     btnDining.Click += new EventHandler(btnDiningi_Click);
                     btnDining.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
@@ -75,10 +76,10 @@ namespace POS.SO
 
 
 
-        private void LoadMenuToContaner(long diningTypeId)
+        private void LoadMenuToContaner(long? diningTypeId,long? menuGroupId,long? menuCategoryId)
         {
-            List<OrderDTO> mainMenu = ServiceProvider.MenuService.LoadMainMenu(new SOMenu(), diningTypeId);
-            this.BindMenu(mainMenu, fPnlMainMenu, Theme.MSOffice2010_RED);
+            List<OrderDTO> mainMenu = ServiceProvider.MenuService.LoadMainMenu(null, diningTypeId, menuGroupId, menuCategoryId);
+            this.BindMenu(mainMenu, fPnlMenuItem, Theme.MSOffice2010_RED);
         }
 
         private void BindMenu(List<OrderDTO> mainMenu, FlowLayoutPanel flowPanel, POS.Control.Theme t)
@@ -94,7 +95,7 @@ namespace POS.SO
                     btnMenu.Text = Menuitem.menu_name;
                     btnMenu.CommandArg = Menuitem.menu_id.ToString();
                     btnMenu.DataObject = Menuitem;
-                    if (ServiceProvider.MenuService.HaveMinuItem(Menuitem.menu_id))
+                    if (ServiceProvider.MenuService.HaveMinuItem(Menuitem.menu_id, Menuitem.menu_dining_type_id, Menuitem.menu_group_id, Menuitem.menu_category_id))
                     {
                         btnMenu.Click += new EventHandler(btnMenu_Click);
                         btnMenu.Theme = t;
@@ -171,16 +172,83 @@ namespace POS.SO
             BaseButton btnDining = sender as BaseButton;
             fPnlMenuItem.Controls.Clear();
             fPnlMainMenu.Controls.Clear();
-            this.LoadMenuToContaner(Converts.ParseLong(btnDining.CommandArg));
+
+            if (btnDining != null)
+            {
+                DiningType diningSelect = btnDining.DataObject as DiningType;
+                List<MenuGroup> menuGroup = ServiceProvider.MenuGroupService.FindByDiningType(diningSelect.dining_type_id.Value);
+                if (menuGroup != null && menuGroup.Count > 0)
+                {
+
+
+                    foreach (MenuGroup MenuGroupitem in menuGroup)
+                    {
+                        BaseButton btnMenuGroup = new BaseButton();
+                        btnMenuGroup.Width = 150;
+                        btnMenuGroup.Height = 70;
+                        btnMenuGroup.Theme = Theme.MSOffice2010_Violet;
+                        btnMenuGroup.Text = MenuGroupitem.menu_group_name;
+                        btnMenuGroup.DataObject = MenuGroupitem;
+                        btnMenuGroup.Click += new EventHandler(btnMenuGroup_Click);
+                        btnMenuGroup.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
+
+                        fPnlMainMenu.Controls.Add(btnMenuGroup);
+                    }
+                }
+            }
+          
+        }
+
+        protected void btnMenuGroup_Click(object sender, EventArgs e)
+        {
+            BaseButton btnMenuGroup = sender as BaseButton;
+            fPnlMenuItem.Controls.Clear();
+            fPnlMainMenu.Controls.Clear();
+            if (btnMenuGroup != null)
+            {
+                MenuGroup MenuGroupSelect = btnMenuGroup.DataObject as MenuGroup;
+                List<MenuCategory> menuCatagory = ServiceProvider.MenuCategoryService.FindByMenuGroup(MenuGroupSelect.menu_group_id.Value, MenuGroupSelect.dining_type_id.Value);
+                if (menuCatagory != null && menuCatagory.Count > 0)
+                {
+                    foreach (MenuCategory MenuCategoryitem in menuCatagory)
+                    {
+                        MenuCategoryitem.menu_group_id = MenuGroupSelect.menu_group_id;
+                        BaseButton btnCategory = new BaseButton();
+                        btnCategory.Theme=Theme.MSOffice2010_Yellow;
+                        btnCategory.Width = 150;
+                        btnCategory.Height = 70;
+                        btnCategory.Text = MenuCategoryitem.menu_category_name;
+                        btnCategory.DataObject = MenuCategoryitem;
+                        btnCategory.Click += new EventHandler(btnCategory_Click);
+                        btnCategory.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
+
+                        fPnlMainMenu.Controls.Add(btnCategory);
+                    }
+                }
+            }
+        }
+
+        protected void btnCategory_Click(object sender, EventArgs e)
+        {
+            BaseButton btnCategory = sender as BaseButton;
+            fPnlMenuItem.Controls.Clear();
+            fPnlMainMenu.Controls.Clear();
+            if (btnCategory != null)
+            {
+                MenuCategory MenuCategorySelect = btnCategory.DataObject as MenuCategory;
+                this.LoadMenuToContaner(MenuCategorySelect.dining_type_id, MenuCategorySelect.menu_group_id, MenuCategorySelect.menu_category_id);
+            }
         }
         protected void btnMenu_Click(object sender, EventArgs e)
         {
             BaseButton btnMenu = sender as BaseButton;
-            SOMenu mainMenu = new SOMenu();
-            mainMenu.menu_reference_id = Converts.ParseLongNullable(btnMenu.CommandArg);
 
-            List<OrderDTO> mainMenuList = ServiceProvider.MenuService.LoadMainMenu(mainMenu);
-            this.BindMenu(mainMenuList, fPnlMenuItem, Theme.MSOffice2010_BLUE);
+            OrderDTO orderSelect = btnMenu.DataObject as OrderDTO;
+            if (orderSelect != null)
+            {
+                List<OrderDTO> mainMenuList = ServiceProvider.MenuService.LoadMainMenu(orderSelect.menu_id, orderSelect.menu_dining_type_id, orderSelect.menu_group_id, orderSelect.menu_category_id);
+                this.BindMenu(mainMenuList, fPnlMenuItem, Theme.MSOffice2010_BLUE);
+            }
         }
 
         protected void btnMenuItem_Click(object sender, EventArgs e)
@@ -279,9 +347,14 @@ namespace POS.SO
 
         private void lisMenuOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (lisMenuOrder.SelectedItems.Count > 0)
             {
+                fPnlMenuItem.Controls.Clear();
+
+                ListViewItem addItem = lisMenuOrder.SelectedItems[0];
+                long sales_order_detail_id = Converts.ParseLong(addItem.Name);
+                OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
+
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnAdd.Theme = Theme.MSOffice2010_Green;

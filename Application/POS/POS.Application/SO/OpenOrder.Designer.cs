@@ -45,6 +45,8 @@ namespace POS.SO
             this.baseButton4 = new POS.Control.BaseButton();
             this.baseButton3 = new POS.Control.BaseButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labEatingTime = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.labPersonCount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,8 +58,6 @@ namespace POS.SO
             this.fPnlMainMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.lisMenuOrder = new System.Windows.Forms.ListView();
             this.fPnlDiningType = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.labEatingTime = new System.Windows.Forms.Label();
             this.timeEating = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -268,6 +268,27 @@ namespace POS.SO
             this.panel4.Size = new System.Drawing.Size(399, 71);
             this.panel4.TabIndex = 9;
             // 
+            // labEatingTime
+            // 
+            this.labEatingTime.AutoSize = true;
+            this.labEatingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.labEatingTime.ForeColor = System.Drawing.Color.Lime;
+            this.labEatingTime.Location = new System.Drawing.Point(316, 6);
+            this.labEatingTime.Name = "labEatingTime";
+            this.labEatingTime.Size = new System.Drawing.Size(79, 20);
+            this.labEatingTime.TabIndex = 7;
+            this.labEatingTime.Text = "00:00:00";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label6.Location = new System.Drawing.Point(225, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Eating time:";
+            // 
             // labPersonCount
             // 
             this.labPersonCount.AutoSize = true;
@@ -365,7 +386,7 @@ namespace POS.SO
             // 
             // lisMenuOrder
             // 
-            this.lisMenuOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lisMenuOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lisMenuOrder.FullRowSelect = true;
             this.lisMenuOrder.Location = new System.Drawing.Point(120, 80);
             this.lisMenuOrder.MultiSelect = false;
@@ -383,27 +404,6 @@ namespace POS.SO
             this.fPnlDiningType.Name = "fPnlDiningType";
             this.fPnlDiningType.Size = new System.Drawing.Size(305, 71);
             this.fPnlDiningType.TabIndex = 14;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label6.Location = new System.Drawing.Point(225, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Eating time:";
-            // 
-            // labEatingTime
-            // 
-            this.labEatingTime.AutoSize = true;
-            this.labEatingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labEatingTime.ForeColor = System.Drawing.Color.Lime;
-            this.labEatingTime.Location = new System.Drawing.Point(316, 6);
-            this.labEatingTime.Name = "labEatingTime";
-            this.labEatingTime.Size = new System.Drawing.Size(79, 20);
-            this.labEatingTime.TabIndex = 7;
-            this.labEatingTime.Text = "00:00:00";
             // 
             // timeEating
             // 

@@ -159,5 +159,33 @@ namespace POS.BL
                 return diningTypeService;
             }
         }
+
+        private static MenuGroupService menuGroupService;
+        public static MenuGroupService MenuGroupService
+        {
+            get
+            {
+                if (menuGroupService == null)
+                {
+                    menuGroupService = new MenuGroupService();
+                }
+                return menuGroupService;
+            }
+        }
+
+        private static MenuCategoryService menuCategoryService;
+        public static MenuCategoryService MenuCategoryService
+        {
+            get
+            {
+                if (menuCategoryService == null)
+                {
+                    menuCategoryService = new MenuCategoryService();
+                }
+                return menuCategoryService;
+            }
+        }
+
+
     }
 }

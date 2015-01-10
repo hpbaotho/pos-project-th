@@ -19,7 +19,8 @@ namespace POS.BL.Entities.Entity
         public string menu_description { get; set; }
         public long? menu_reference_id { get; set; }
         public bool active { get; set; }
-
+        public int priorityValue { get; set; }
+        public bool isInventoryItem { get; set; }
         [EntityScalarProperty(PersistenceIgnorance = true)]
         public decimal menu_price { get; set; }
         [EntityScalarProperty(PersistenceIgnorance = true)]
