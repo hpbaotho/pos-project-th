@@ -46,7 +46,7 @@ namespace POS.BL.DTO.SO
         public bool is_cancel { get; set; }
         public bool isInventoryItem { get; set; }
 
-        public long menu_id { get; set; }
+        public long? menu_id { get; set; }
         public bool IsActiveMenu { get; set; }
         public bool? isCombo { get; set; }
         public int maxComboFreeItemQTY { get; set; }
@@ -59,6 +59,8 @@ namespace POS.BL.DTO.SO
         public long? menu_dining_type_id { get; set; }
         public long? menu_group_id { get; set; }
         public long? menu_category_id { get; set; }
+        public int dining_type_id { get; set; }
+        public bool IsCondiment { get; set; }
         public bool Selected { get; set; }
     }
 }

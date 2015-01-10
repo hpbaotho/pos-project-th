@@ -11,7 +11,7 @@ namespace POS.BL.Service.SO
 {
     public class MenuService : ServiceBase<SOMenu>
     {
-        public List<OrderDTO> LoadMainMenu(long? menu_reference_id, long? dining_type_id, long? menu_group_id, long? menu_category_id)
+        public List<OrderDTO> LoadMainMenu(long? menu_reference_id, int dining_type_id, long? menu_group_id, long? menu_category_id)
         {
             string sql = @"
                         SELECT 
@@ -24,6 +24,8 @@ namespace POS.BL.Service.SO
 						 ,Menu.isInventoryItem
                          ,Menu.menu_group_id
                          ,Menu.menu_category_id
+                         ,DiningType.menu_dining_type_id
+                         ,DiningType.dining_type_id
                           FROM so_menu Menu WITH(NOLOCK)
                           LEFT JOIN so_menu_dining_type DiningType WITH(NOLOCK) ON Menu.menu_id=DiningType.menu_id
 						  LEFT JOIN so_menu_group MenuGroup WITH(NOLOCK) ON MenuGroup.menu_group_id =Menu.menu_group_id
@@ -36,6 +38,7 @@ namespace POS.BL.Service.SO
                            
                            AND ISNULL(Menu.menu_group_id,0)=ISNULL(@menu_group_id,0)
                            AND ISNULL(Menu.menu_category_id,0)=ISNULL(@menu_category_id,0)
+                            ORDER BY ISNULL(Menu.priorityValue,0) DESC ,Menu.menu_code
                          ";
             List<DbParameter> param = new List<DbParameter>();
             param.Add(base.CreateParameter("menu_reference_id", menu_reference_id));
@@ -44,7 +47,39 @@ namespace POS.BL.Service.SO
             param.Add(base.CreateParameter("menu_category_id", menu_category_id));
             return this.ExecuteQuery<OrderDTO>(sql, param.ToArray()).ToList();
         }
-        public bool HaveMinuItem(long? menu_id,long? diningTypeId,long? menuGroupId,long? menuCategoryId)
+        public List<OrderDTO> LoadCondiMentMenu(long? ref_menu_dining_type_id)
+        {
+            string sql = @"SELECT 
+                 Menu.menu_id
+                 ,Menu.menu_name
+                 ,ISNULL(DiningType.menu_price,0) menu_price
+                 ,MenuCat.isCombo
+                 ,CASE WHEN CAST(ISNULL(DiningType.menu_effective_date ,GETDATE()) AS DATE ) >= CAST( GETDATE() AS DATE) THEN 1  ELSE 0 END IsActiveMenu
+                 ,Menu.isInventoryItem
+                 ,Menu.menu_group_id
+                 ,Menu.menu_category_id
+                 ,DiningType.menu_dining_type_id
+                 ,DiningType.dining_type_id
+                  FROM so_menu Menu WITH(NOLOCK)
+                  LEFT JOIN so_menu_dining_type DiningType WITH(NOLOCK) ON Menu.menu_id=DiningType.menu_id
+                  LEFT JOIN so_menu_group MenuGroup WITH(NOLOCK) ON MenuGroup.menu_group_id =Menu.menu_group_id
+                  LEFT JOIN so_menu_category MenuCat WITH(NOLOCK) ON MenuCat.menu_category_id =Menu.menu_category_id
+
+                  WHERE  Menu.active=1
+                   AND ISNULL(DiningType.menu_id,0) >0
+                   AND DiningType.ref_menu_dining_type_id=@ref_menu_dining_type_id
+";
+            List<DbParameter> param = new List<DbParameter>();
+            param.Add(base.CreateParameter("ref_menu_dining_type_id", ref_menu_dining_type_id));
+            List<OrderDTO> result = new List<OrderDTO>();
+            result = this.ExecuteQuery<OrderDTO>(sql, param.ToArray()).ToList();
+            if (result == null) {
+                result = new List<OrderDTO>();
+            }
+            result.Add(new OrderDTO() { menu_name = "Open Condiment" });
+            return result;
+        }
+        public bool HaveMinuItem(long? menu_id, int diningTypeId, long? menuGroupId, long? menuCategoryId)
         {
             string sql = @"
                 SELECT COUNT(1) MenuItem 

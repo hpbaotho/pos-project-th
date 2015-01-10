@@ -23,7 +23,7 @@ namespace POS.BL.Entities.Entity
         public bool isCondiment { get; set; }
 
         [EntityScalarProperty(PersistenceIgnorance = true)]
-        public long? dining_type_id { get; set; }
+        public int dining_type_id { get; set; }
 
         [EntityScalarProperty(PersistenceIgnorance = true)]
         public long? menu_group_id { get; set; }

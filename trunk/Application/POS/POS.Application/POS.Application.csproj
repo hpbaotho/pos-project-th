@@ -117,6 +117,12 @@
     <Compile Include="SO\OpenOrder.Designer.cs">
       <DependentUpon>OpenOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="SO\PopupCondiment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\PopupCondiment.Designer.cs">
+      <DependentUpon>PopupCondiment.cs</DependentUpon>
+    </Compile>
     <Compile Include="SO\PopUpPerson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SO\OpenOrder.resx">
       <DependentUpon>OpenOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\PopupCondiment.resx">
+      <DependentUpon>PopupCondiment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\PopUpPerson.resx">
       <DependentUpon>PopUpPerson.cs</DependentUpon>
