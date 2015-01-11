@@ -51,7 +51,6 @@ namespace POS.SO
             }
             return orderDetailId;
         }
-
         public OpenOrder()
         {
             InitializeComponent();
@@ -171,6 +170,7 @@ namespace POS.SO
                     {
                         updateItem.OrderState = ObjectState.Delete;
                     }
+                    fPnlMenuItem.Controls.Clear();
                 }
                 else
                 {
@@ -327,11 +327,13 @@ namespace POS.SO
             txtCommand.Text = string.Empty;
         }
 
- 
+
         private void BindListOrder()
         {
             lisMenuOrder.Items.Clear();
-            foreach (OrderDTO Orderitem in this.OrderList.Where(o => o.OrderState != ObjectState.Delete))
+            lisMenuOrder.Focus();
+
+            foreach (OrderDTO Orderitem in this.OrderList.Where(o => o.OrderState != ObjectState.Delete && !o.parent_sales_order_detail_id.HasValue))
             {
                 ListViewItem item = new ListViewItem(Orderitem.menu_name);
                 item.SubItems.Add(Orderitem.order_amount.ToString());
@@ -339,11 +341,24 @@ namespace POS.SO
                 item.Name = Orderitem.sales_order_detail_id.ToString();
                 item.Selected = Orderitem.Selected;
                 lisMenuOrder.Items.Add(item);
-                if (Orderitem.Selected)
+
+                foreach (OrderDTO Condimentitem in this.OrderList.Where(o => o.OrderState != ObjectState.Delete && o.parent_sales_order_detail_id == Orderitem.sales_order_detail_id))
                 {
-                    lisMenuOrder.Select();
+                    ListViewItem CondimentListitem = new ListViewItem("  - " + Condimentitem.menu_name);
+                    CondimentListitem.SubItems.Add(Condimentitem.order_amount.ToString());
+                    CondimentListitem.SubItems.Add(Condimentitem.TotalAmount.ToString());
+                    CondimentListitem.Name = Condimentitem.sales_order_detail_id.ToString();
+                    CondimentListitem.Selected = Condimentitem.Selected;
+                    lisMenuOrder.Items.Add(CondimentListitem);
+                   
+                    
                 }
+
+             
+
             }
+           
+           
             labTotalPrice.Text = string.Format(Format.DecimalNumberFormat2DZero, this.OrderList.Sum(a => a.TotalAmount));
         }
 
@@ -370,36 +385,41 @@ namespace POS.SO
 
                 ListViewItem addItem = lisMenuOrder.SelectedItems[0];
                 long sales_order_detail_id = Converts.ParseLong(addItem.Name);
-                OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
-                if (updateItem!=null && !updateItem.IsCondiment)
+                OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id && !a.parent_sales_order_detail_id.HasValue).FirstOrDefault();
+                if (updateItem != null)
                 {
-                    List<OrderDTO> CondimetMenu = ServiceProvider.MenuService.LoadCondiMentMenu(updateItem.menu_dining_type_id);
-                    if (CondimetMenu != null)
+                    this.OrderList.ForEach(s => s.Selected = false);
+                    updateItem.Selected = true;
+                    if (!updateItem.IsCondiment)
                     {
-                        
-                        foreach (OrderDTO Condimentitem in CondimetMenu)
+                        List<OrderDTO> CondimetMenu = ServiceProvider.MenuService.LoadCondiMentMenu(updateItem.menu_dining_type_id);
+                        if (CondimetMenu != null)
                         {
-                            Condimentitem.IsCondiment = true;
-                            Condimentitem.sales_order_detail_id = sales_order_detail_id;
-                            BaseButton btnCondiment = new BaseButton();
-                            btnCondiment.Theme = Theme.MSOffice2010_Yellow;
-                            btnCondiment.Width = 150;
-                            btnCondiment.Height = 70;
-                            btnCondiment.Text = Condimentitem.menu_name;
 
-                            if (Condimentitem.menu_id.HasValue)
+                            foreach (OrderDTO Condimentitem in CondimetMenu)
                             {
-                                btnCondiment.Click += new EventHandler(btnCondiment_Click);
-                            }
-                            else
-                            {
-                                Condimentitem.menu_dining_type_id = updateItem.menu_dining_type_id;
-                                btnCondiment.Click += new EventHandler(btnOpenCondiment_Click);
-                            }
-                            btnCondiment.DataObject = Condimentitem;
-                            btnCondiment.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
+                                Condimentitem.IsCondiment = true;
+                                Condimentitem.sales_order_detail_id = sales_order_detail_id;
+                                BaseButton btnCondiment = new BaseButton();
+                                btnCondiment.Theme = Theme.MSOffice2010_Yellow;
+                                btnCondiment.Width = 150;
+                                btnCondiment.Height = 70;
+                                btnCondiment.Text = Condimentitem.menu_name;
 
-                            fPnlMenuItem.Controls.Add(btnCondiment);
+                                if (Condimentitem.menu_id.HasValue)
+                                {
+                                    btnCondiment.Click += new EventHandler(btnCondiment_Click);
+                                }
+                                else
+                                {
+                                    Condimentitem.menu_dining_type_id = updateItem.menu_dining_type_id;
+                                    btnCondiment.Click += new EventHandler(btnOpenCondiment_Click);
+                                }
+                                btnCondiment.DataObject = Condimentitem;
+                                btnCondiment.Font = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, FontStyle.Bold);
+
+                                fPnlMenuItem.Controls.Add(btnCondiment);
+                            }
                         }
                     }
                 }
@@ -423,11 +443,12 @@ namespace POS.SO
 
         protected void btnCondiment_Click(object sender, EventArgs e)
         {
-
+            fPnlMenuItem.Controls.Clear();
 
         }
         protected void btnOpenCondiment_Click(object sender, EventArgs e)
         {
+            fPnlMenuItem.Controls.Clear();
             BaseButton btnCondiment = sender as BaseButton;
             using (PopupCondiment formCodniment = new PopupCondiment())
             {
@@ -456,10 +477,20 @@ namespace POS.SO
             if (returnObj != null)
             {
                 OrderDTO menuCondiment = returnObj as OrderDTO;
-                long orderDetailId = this.GetOrderMenuId();
-                menuCondiment.sales_order_detail_id = orderDetailId;
-                this.OrderList.Add(returnObj as OrderDTO);
-                this.BindListOrder();
+
+                OrderDTO condimentResult = this.OrderList.Find(a => a.sales_order_detail_id == menuCondiment.parent_sales_order_detail_id);
+                if (condimentResult != null)
+                {
+                    this.OrderList.ForEach(s => s.Selected = false);
+                    condimentResult.Selected = true;
+
+                    long orderDetailId = this.GetOrderMenuId();
+                    menuCondiment.sales_order_detail_id = orderDetailId;
+                    this.OrderList.Add(menuCondiment);
+                    this.BindListOrder();
+
+                }
+
             }
         }
         private void btnStartTime_Click(object sender, EventArgs e)

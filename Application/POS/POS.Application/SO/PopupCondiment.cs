@@ -32,6 +32,7 @@ namespace POS.SO
             openCondiment.order_amount = 1;
             openCondiment.menu_price = Core.Standards.Converters.Converts.ParseDecimal(txtPrice.Text);
             openCondiment.ref_menu_dining_type_id = parentMenu.menu_dining_type_id;
+            openCondiment.parent_sales_order_detail_id = parentMenu.sales_order_detail_id;
             openCondiment.IsCondiment = true;
             this.CloseScreen(openCondiment);
         }
