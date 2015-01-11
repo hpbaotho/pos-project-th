@@ -33,9 +33,6 @@
             this.lblReason = new System.Windows.Forms.Label();
             this.lblSource = new System.Windows.Forms.Label();
             this.txtReferenceNo = new POS.Control.BaseTextBox();
-            this.txtSupplier = new POS.Control.BaseTextBox();
-            this.txtWarehouse = new POS.Control.BaseTextBox();
-            this.txtOther = new POS.Control.BaseTextBox();
             this.baseGrid1 = new POS.Control.GridView.BaseGrid();
             this.rdoSupplier = new System.Windows.Forms.RadioButton();
             this.rdoWarehouse = new System.Windows.Forms.RadioButton();
@@ -48,6 +45,9 @@
             this.lblDocumentNo = new System.Windows.Forms.Label();
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
+            this.ddlSupplier = new System.Windows.Forms.ComboBox();
+            this.ddlWarehouse = new System.Windows.Forms.ComboBox();
+            this.txtOther = new POS.Control.BaseTextBox();
             this.SuspendLayout();
             // 
             // ddlReason
@@ -56,7 +56,7 @@
             this.ddlReason.Location = new System.Drawing.Point(126, 91);
             this.ddlReason.Name = "ddlReason";
             this.ddlReason.Size = new System.Drawing.Size(541, 21);
-            this.ddlReason.TabIndex = 0;
+            this.ddlReason.TabIndex = 1;
             // 
             // lblReferenceNo
             // 
@@ -93,28 +93,7 @@
             this.txtReferenceNo.Location = new System.Drawing.Point(126, 64);
             this.txtReferenceNo.Name = "txtReferenceNo";
             this.txtReferenceNo.Size = new System.Drawing.Size(541, 20);
-            this.txtReferenceNo.TabIndex = 4;
-            // 
-            // txtSupplier
-            // 
-            this.txtSupplier.Location = new System.Drawing.Point(204, 117);
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(463, 20);
-            this.txtSupplier.TabIndex = 5;
-            // 
-            // txtWarehouse
-            // 
-            this.txtWarehouse.Location = new System.Drawing.Point(204, 140);
-            this.txtWarehouse.Name = "txtWarehouse";
-            this.txtWarehouse.Size = new System.Drawing.Size(463, 20);
-            this.txtWarehouse.TabIndex = 6;
-            // 
-            // txtOther
-            // 
-            this.txtOther.Location = new System.Drawing.Point(204, 163);
-            this.txtOther.Name = "txtOther";
-            this.txtOther.Size = new System.Drawing.Size(463, 20);
-            this.txtOther.TabIndex = 7;
+            this.txtReferenceNo.TabIndex = 0;
             // 
             // baseGrid1
             // 
@@ -132,7 +111,7 @@
             this.rdoSupplier.Location = new System.Drawing.Point(126, 118);
             this.rdoSupplier.Name = "rdoSupplier";
             this.rdoSupplier.Size = new System.Drawing.Size(63, 17);
-            this.rdoSupplier.TabIndex = 14;
+            this.rdoSupplier.TabIndex = 2;
             this.rdoSupplier.TabStop = true;
             this.rdoSupplier.Text = "Supplier";
             this.rdoSupplier.UseVisualStyleBackColor = true;
@@ -143,7 +122,7 @@
             this.rdoWarehouse.Location = new System.Drawing.Point(126, 141);
             this.rdoWarehouse.Name = "rdoWarehouse";
             this.rdoWarehouse.Size = new System.Drawing.Size(80, 17);
-            this.rdoWarehouse.TabIndex = 15;
+            this.rdoWarehouse.TabIndex = 4;
             this.rdoWarehouse.TabStop = true;
             this.rdoWarehouse.Text = "Warehouse";
             this.rdoWarehouse.UseVisualStyleBackColor = true;
@@ -154,7 +133,7 @@
             this.rdoOther.Location = new System.Drawing.Point(126, 164);
             this.rdoOther.Name = "rdoOther";
             this.rdoOther.Size = new System.Drawing.Size(51, 17);
-            this.rdoOther.TabIndex = 16;
+            this.rdoOther.TabIndex = 6;
             this.rdoOther.TabStop = true;
             this.rdoOther.Text = "Other";
             this.rdoOther.UseVisualStyleBackColor = true;
@@ -232,12 +211,38 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(877, 43);
-            this.txtRemark.TabIndex = 25;
+            this.txtRemark.TabIndex = 8;
+            // 
+            // ddlSupplier
+            // 
+            this.ddlSupplier.FormattingEnabled = true;
+            this.ddlSupplier.Location = new System.Drawing.Point(212, 115);
+            this.ddlSupplier.Name = "ddlSupplier";
+            this.ddlSupplier.Size = new System.Drawing.Size(455, 21);
+            this.ddlSupplier.TabIndex = 25;
+            // 
+            // ddlWarehouse
+            // 
+            this.ddlWarehouse.FormattingEnabled = true;
+            this.ddlWarehouse.Location = new System.Drawing.Point(212, 140);
+            this.ddlWarehouse.Name = "ddlWarehouse";
+            this.ddlWarehouse.Size = new System.Drawing.Size(455, 21);
+            this.ddlWarehouse.TabIndex = 26;
+            // 
+            // txtOther
+            // 
+            this.txtOther.Location = new System.Drawing.Point(212, 164);
+            this.txtOther.Name = "txtOther";
+            this.txtOther.Size = new System.Drawing.Size(455, 20);
+            this.txtOther.TabIndex = 27;
             // 
             // AddEditReceiveMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtOther);
+            this.Controls.Add(this.ddlWarehouse);
+            this.Controls.Add(this.ddlSupplier);
             this.Controls.Add(this.txtRemark);
             this.Controls.Add(this.lblDocumentDate);
             this.Controls.Add(this.lblDocumentNo);
@@ -250,9 +255,6 @@
             this.Controls.Add(this.rdoWarehouse);
             this.Controls.Add(this.rdoSupplier);
             this.Controls.Add(this.baseGrid1);
-            this.Controls.Add(this.txtOther);
-            this.Controls.Add(this.txtWarehouse);
-            this.Controls.Add(this.txtSupplier);
             this.Controls.Add(this.txtReferenceNo);
             this.Controls.Add(this.lblSource);
             this.Controls.Add(this.lblReason);
@@ -265,9 +267,6 @@
             this.Controls.SetChildIndex(this.lblReason, 0);
             this.Controls.SetChildIndex(this.lblSource, 0);
             this.Controls.SetChildIndex(this.txtReferenceNo, 0);
-            this.Controls.SetChildIndex(this.txtSupplier, 0);
-            this.Controls.SetChildIndex(this.txtWarehouse, 0);
-            this.Controls.SetChildIndex(this.txtOther, 0);
             this.Controls.SetChildIndex(this.baseGrid1, 0);
             this.Controls.SetChildIndex(this.rdoSupplier, 0);
             this.Controls.SetChildIndex(this.rdoWarehouse, 0);
@@ -280,6 +279,9 @@
             this.Controls.SetChildIndex(this.lblDocumentNo, 0);
             this.Controls.SetChildIndex(this.lblDocumentDate, 0);
             this.Controls.SetChildIndex(this.txtRemark, 0);
+            this.Controls.SetChildIndex(this.ddlSupplier, 0);
+            this.Controls.SetChildIndex(this.ddlWarehouse, 0);
+            this.Controls.SetChildIndex(this.txtOther, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,9 +294,6 @@
         private System.Windows.Forms.Label lblReason;
         private System.Windows.Forms.Label lblSource;
         private Control.BaseTextBox txtReferenceNo;
-        private Control.BaseTextBox txtSupplier;
-        private Control.BaseTextBox txtWarehouse;
-        private Control.BaseTextBox txtOther;
         private Control.GridView.BaseGrid baseGrid1;
         private System.Windows.Forms.RadioButton rdoSupplier;
         private System.Windows.Forms.RadioButton rdoWarehouse;
@@ -307,6 +306,9 @@
         private System.Windows.Forms.Label lblDocumentNo;
         private System.Windows.Forms.Label lblDocumentDate;
         private System.Windows.Forms.TextBox txtRemark;
+        private System.Windows.Forms.ComboBox ddlSupplier;
+        private System.Windows.Forms.ComboBox ddlWarehouse;
+        private Control.BaseTextBox txtOther;
 
     }
 }

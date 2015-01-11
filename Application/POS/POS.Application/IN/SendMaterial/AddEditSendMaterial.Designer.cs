@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.baseGrid1 = new POS.Control.GridView.BaseGrid();
-            this.baseTextBox1 = new POS.Control.BaseTextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtReferenceNo = new POS.Control.BaseTextBox();
+            this.ddlWarehouse = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblDocumentNo = new System.Windows.Forms.Label();
+            this.lblDocumentDate = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.txtRemark = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // baseGrid1
@@ -57,28 +57,20 @@
             this.baseGrid1.Size = new System.Drawing.Size(975, 304);
             this.baseGrid1.TabIndex = 0;
             // 
-            // baseTextBox1
+            // txtReferenceNo
             // 
-            this.baseTextBox1.Location = new System.Drawing.Point(126, 71);
-            this.baseTextBox1.Name = "baseTextBox1";
-            this.baseTextBox1.Size = new System.Drawing.Size(541, 20);
-            this.baseTextBox1.TabIndex = 1;
+            this.txtReferenceNo.Location = new System.Drawing.Point(126, 71);
+            this.txtReferenceNo.Name = "txtReferenceNo";
+            this.txtReferenceNo.Size = new System.Drawing.Size(541, 20);
+            this.txtReferenceNo.TabIndex = 1;
             // 
-            // listBox1
+            // ddlWarehouse
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(126, 127);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(541, 43);
-            this.listBox1.TabIndex = 2;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(126, 97);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(541, 21);
-            this.comboBox1.TabIndex = 3;
+            this.ddlWarehouse.FormattingEnabled = true;
+            this.ddlWarehouse.Location = new System.Drawing.Point(126, 97);
+            this.ddlWarehouse.Name = "ddlWarehouse";
+            this.ddlWarehouse.Size = new System.Drawing.Size(541, 21);
+            this.ddlWarehouse.TabIndex = 3;
             // 
             // label1
             // 
@@ -140,32 +132,32 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "Document Date :";
             // 
-            // label7
+            // lblStatus
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(798, 71);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "label7";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(798, 71);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(35, 13);
+            this.lblStatus.TabIndex = 10;
+            this.lblStatus.Text = "label7";
             // 
-            // label8
+            // lblDocumentNo
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(798, 97);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "label8";
+            this.lblDocumentNo.AutoSize = true;
+            this.lblDocumentNo.Location = new System.Drawing.Point(798, 97);
+            this.lblDocumentNo.Name = "lblDocumentNo";
+            this.lblDocumentNo.Size = new System.Drawing.Size(35, 13);
+            this.lblDocumentNo.TabIndex = 11;
+            this.lblDocumentNo.Text = "label8";
             // 
-            // label9
+            // lblDocumentDate
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(798, 127);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "label9";
+            this.lblDocumentDate.AutoSize = true;
+            this.lblDocumentDate.Location = new System.Drawing.Point(798, 127);
+            this.lblDocumentDate.Name = "lblDocumentDate";
+            this.lblDocumentDate.Size = new System.Drawing.Size(35, 13);
+            this.lblDocumentDate.TabIndex = 12;
+            this.lblDocumentDate.Text = "label9";
             // 
             // panel1
             // 
@@ -213,39 +205,47 @@
             this.btnBack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBack.UseVisualStyleBackColor = true;
             // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(126, 127);
+            this.txtRemark.Multiline = true;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(541, 43);
+            this.txtRemark.TabIndex = 13;
+            // 
             // AddEditSendMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtRemark);
+            this.Controls.Add(this.lblDocumentDate);
+            this.Controls.Add(this.lblDocumentNo);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.baseTextBox1);
+            this.Controls.Add(this.ddlWarehouse);
+            this.Controls.Add(this.txtReferenceNo);
             this.Controls.Add(this.baseGrid1);
             this.Name = "AddEditSendMaterial";
             this.Size = new System.Drawing.Size(1024, 506);
             this.Controls.SetChildIndex(this.baseGrid1, 0);
-            this.Controls.SetChildIndex(this.baseTextBox1, 0);
-            this.Controls.SetChildIndex(this.listBox1, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
+            this.Controls.SetChildIndex(this.txtReferenceNo, 0);
+            this.Controls.SetChildIndex(this.ddlWarehouse, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.label7, 0);
-            this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.label9, 0);
+            this.Controls.SetChildIndex(this.lblStatus, 0);
+            this.Controls.SetChildIndex(this.lblDocumentNo, 0);
+            this.Controls.SetChildIndex(this.lblDocumentDate, 0);
+            this.Controls.SetChildIndex(this.txtRemark, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,21 +254,21 @@
         #endregion
 
         private Control.GridView.BaseGrid baseGrid1;
-        private Control.BaseTextBox baseTextBox1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private Control.BaseTextBox txtReferenceNo;
+        private System.Windows.Forms.ComboBox ddlWarehouse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblDocumentNo;
+        private System.Windows.Forms.Label lblDocumentDate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.TextBox txtRemark;
     }
 }
