@@ -84,6 +84,32 @@ namespace POS.BL
                 return tranHeadService;
             }
         }
+        
+        private static WareHouseService wareHouseService;
+        public static WareHouseService WareHouseService
+        {
+            get
+            {
+                if (wareHouseService == null)
+                {
+                    wareHouseService = new WareHouseService();
+                }
+                return wareHouseService;
+            }
+        }
+
+        private static SupplierService supplierService;
+        public static SupplierService SupplierService 
+        {
+            get
+            {
+                if (supplierService == null)
+                {
+                    supplierService = new SupplierService();
+                }
+                return supplierService;
+            }
+        }
 
         private static TranDetailService tranDetailService;
         public static TranDetailService TranDetailService

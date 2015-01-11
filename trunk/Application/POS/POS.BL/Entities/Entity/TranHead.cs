@@ -14,12 +14,12 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
         public long tran_head_id { get; set; }
-        public long document_type_id { get; set; }
+        public long? document_type_id { get; set; }
         public string transaction_no { get; set; }
         public DateTime transaction_date { get; set; }
         public long transaction_status { get; set; }
         public string reference_no { get; set; }
-        public long reason_id { get; set; }
+        public long? reason_id { get; set; }
         public long? supplier_id { get; set; }
         public long? warehouse_id { get; set; }
         public string other_source { get; set; }

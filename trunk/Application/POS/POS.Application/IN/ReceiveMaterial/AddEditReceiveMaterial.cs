@@ -21,36 +21,51 @@ namespace POS.IN.ReceiveMaterial
         private string keyCode { get; set; }
         public AddEditReceiveMaterial()
         {
+
             mode = ObjectState.Add;
             InitializeComponent();
-            this.Load += new EventHandler(AddEditEmployee_Load);
+            this.Load += new EventHandler(AddEditReceiveMaterial_Load);
+            
         }
         public AddEditReceiveMaterial(string Code)
         {
+
             mode = ObjectState.Edit;
             keyCode = Code;
             InitializeComponent();
-            this.Load += new EventHandler(AddEditEmployee_Load);
+            this.Load += new EventHandler(AddEditReceiveMaterial_Load);
         }
         #endregion
       
         #region :: Private Function ::
-        private void AddEditEmployee_Load(object sender, EventArgs e)
+        private void AddEditReceiveMaterial_Load(object sender, EventArgs e)
         {
             LoadData();
         }
         private void LoadData()
         {
-
             TranHead entity = new TranHead();
             if (mode == ObjectState.Edit && !string.IsNullOrEmpty(keyCode))
             {
+                
                 entity.tran_head_id = Converts.ParseLong(keyCode);
                 entity = ServiceProvider.TranHeadService.FindByKeys(entity, true);
 
                 txtReferenceNo.Text = entity.reference_no;
                 ddlReason.SelectedValue = entity.reason_id;
+                
 
+                ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindWareHouseActive();
+                ddlWarehouse.ValueMember = "warehouse_id";
+                ddlWarehouse.DisplayMember = "warehouse_id";
+
+                ddlSupplier.DataSource = ServiceProvider.SupplierService.FindSupplierActive();
+                ddlSupplier.ValueMember = "supplier_id";
+                ddlSupplier.DisplayMember = "supplier_id";
+
+
+                
+                                
                 if (entity.supplier_id != null) { rdoSupplier.Checked = true; }
                 else if (entity.warehouse_id != null) { rdoWarehouse.Checked = true; }
                 else if (!string.IsNullOrEmpty(entity.other_source)) { rdoOther.Checked = true; }
@@ -60,6 +75,7 @@ namespace POS.IN.ReceiveMaterial
                 lblStatus.Text = "";
                 lblDocumentNo.Text = "";
                 lblDocumentDate.Text = "";
+
             }
             else
             {
@@ -75,6 +91,7 @@ namespace POS.IN.ReceiveMaterial
                 lblStatus.Text = "";
                 lblDocumentNo.Text = "";
                 lblDocumentDate.Text = "";
+
             }
             EnableMode();
         }
@@ -82,11 +99,31 @@ namespace POS.IN.ReceiveMaterial
         {
             if (mode == ObjectState.Edit)
             {
-                //txtEmployeeNo.Enabled = false;
+                txtReferenceNo.Enabled = false;
+                txtOther.Enabled = false;
+                txtRemark.Enabled = false;
+                ddlSupplier.Enabled = false;
+                ddlWarehouse.Enabled = false;
+                ddlReason.Enabled = false;
+                base.btnResetEnable = false;
+                base.btnSaveEnable = false;
+                rdoOther.Enabled = false;
+                rdoSupplier.Enabled = false;
+                rdoWarehouse.Enabled = false;
             }
             else
             {
-                //txtEmployeeNo.Enabled = true;
+                txtReferenceNo.Enabled = true;
+                txtOther.Enabled = true;
+                txtRemark.Enabled = true;
+                ddlSupplier.Enabled = true;
+                ddlWarehouse.Enabled = true;
+                ddlReason.Enabled = true;
+                base.btnResetEnable = true;
+                base.btnSaveEnable = true;
+                rdoOther.Enabled = true;
+                rdoSupplier.Enabled = true;
+                rdoWarehouse.Enabled = true;
             }
         }
         private TranHead GetData()
@@ -95,8 +132,10 @@ namespace POS.IN.ReceiveMaterial
 
 
             entity.reference_no = txtReferenceNo.Text;
-            
-            entity.reason_id = Converts.ParseLong(ddlReason.SelectedValue.ToString());
+            entity.transaction_date = DateTime.Now;
+            entity.transaction_no = "";
+
+         //   entity.reason_id = Converts.ParseLong(ddlReason.SelectedValue.ToString());
 
             if (rdoSupplier.Checked) {  }
             else if (rdoWarehouse.Checked ) {  }
@@ -112,7 +151,7 @@ namespace POS.IN.ReceiveMaterial
         #endregion
 
         #region :: Event Action ::
-        private void AddEditEmployee_saveHandler()
+        private void AddEditReceiveMaterial_saveHandler()
         {
             TranHead entity = GetData();
             if (mode == ObjectState.Add)
@@ -126,7 +165,7 @@ namespace POS.IN.ReceiveMaterial
             base.formBase.ShowMessage(GeneralMessage.SaveComplete);
         }
 
-        private void AddEditEmployee_resetHandler()
+        private void AddEditReceiveMaterial_resetHandler()
         {
             LoadData();
         }

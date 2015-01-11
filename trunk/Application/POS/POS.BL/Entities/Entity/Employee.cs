@@ -16,7 +16,7 @@ namespace POS.BL.Entities.Entity
         public long employee_id { get; set; }
         public long employee_group_id { get; set; }
         public string employee_no { get; set; }
-        public string first_name { get; set; }
+        public string first_name { get; set; } 
         public string mid_name { get; set; }
         public string last_name { get; set; }
         public string user_name { get; set; }
