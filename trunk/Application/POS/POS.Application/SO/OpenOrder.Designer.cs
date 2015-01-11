@@ -388,6 +388,7 @@ namespace POS.SO
             // 
             this.lisMenuOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lisMenuOrder.FullRowSelect = true;
+            this.lisMenuOrder.HideSelection = false;
             this.lisMenuOrder.Location = new System.Drawing.Point(120, 80);
             this.lisMenuOrder.MultiSelect = false;
             this.lisMenuOrder.Name = "lisMenuOrder";
