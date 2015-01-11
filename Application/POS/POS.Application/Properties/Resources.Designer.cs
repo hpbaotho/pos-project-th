@@ -873,6 +873,16 @@ namespace POS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap First_Screen_mi_POS {
+            get {
+                object obj = ResourceManager.GetObject("First_Screen_mi_POS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Flag {
             get {
                 object obj = ResourceManager.GetObject("Flag", resourceCulture);
@@ -1626,6 +1636,16 @@ namespace POS.Properties {
         internal static System.Drawing.Bitmap Playback {
             get {
                 object obj = ResourceManager.GetObject("Playback", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap posLogo {
+            get {
+                object obj = ResourceManager.GetObject("posLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
