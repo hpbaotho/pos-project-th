@@ -71,9 +71,9 @@ namespace POS.SO
             this.fPnlMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.fPnlMenuItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fPnlMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.fPnlMenuItem.Location = new System.Drawing.Point(526, 80);
+            this.fPnlMenuItem.Location = new System.Drawing.Point(556, 80);
             this.fPnlMenuItem.Name = "fPnlMenuItem";
-            this.fPnlMenuItem.Size = new System.Drawing.Size(305, 380);
+            this.fPnlMenuItem.Size = new System.Drawing.Size(199, 467);
             this.fPnlMenuItem.TabIndex = 1;
             // 
             // btnClose
@@ -95,7 +95,7 @@ namespace POS.SO
             this.baseButton1.CommandArg = null;
             this.baseButton1.DataObject = null;
             this.baseButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.baseButton1.Location = new System.Drawing.Point(381, 694);
+            this.baseButton1.Location = new System.Drawing.Point(408, 694);
             this.baseButton1.Name = "baseButton1";
             this.baseButton1.Size = new System.Drawing.Size(139, 62);
             this.baseButton1.TabIndex = 5;
@@ -109,9 +109,9 @@ namespace POS.SO
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlNumScreen.BackColor = System.Drawing.Color.Transparent;
             this.pnlNumScreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlNumScreen.Location = new System.Drawing.Point(526, 515);
+            this.pnlNumScreen.Location = new System.Drawing.Point(553, 603);
             this.pnlNumScreen.Name = "pnlNumScreen";
-            this.pnlNumScreen.Size = new System.Drawing.Size(305, 250);
+            this.pnlNumScreen.Size = new System.Drawing.Size(202, 162);
             this.pnlNumScreen.TabIndex = 6;
             // 
             // txtCommand
@@ -119,9 +119,9 @@ namespace POS.SO
             this.txtCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtCommand.Location = new System.Drawing.Point(526, 467);
+            this.txtCommand.Location = new System.Drawing.Point(556, 553);
             this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(305, 44);
+            this.txtCommand.Size = new System.Drawing.Size(202, 44);
             this.txtCommand.TabIndex = 7;
             // 
             // panel3
@@ -265,7 +265,7 @@ namespace POS.SO
             this.panel4.Controls.Add(this.lbltablrdesc);
             this.panel4.Location = new System.Drawing.Point(121, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(399, 71);
+            this.panel4.Size = new System.Drawing.Size(429, 71);
             this.panel4.TabIndex = 9;
             // 
             // labEatingTime
@@ -273,7 +273,7 @@ namespace POS.SO
             this.labEatingTime.AutoSize = true;
             this.labEatingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.labEatingTime.ForeColor = System.Drawing.Color.Lime;
-            this.labEatingTime.Location = new System.Drawing.Point(316, 6);
+            this.labEatingTime.Location = new System.Drawing.Point(343, 6);
             this.labEatingTime.Name = "labEatingTime";
             this.labEatingTime.Size = new System.Drawing.Size(79, 20);
             this.labEatingTime.TabIndex = 7;
@@ -283,7 +283,7 @@ namespace POS.SO
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label6.Location = new System.Drawing.Point(225, 6);
+            this.label6.Location = new System.Drawing.Point(252, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 20);
             this.label6.TabIndex = 6;
@@ -293,7 +293,7 @@ namespace POS.SO
             // 
             this.labPersonCount.AutoSize = true;
             this.labPersonCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labPersonCount.Location = new System.Drawing.Point(318, 39);
+            this.labPersonCount.Location = new System.Drawing.Point(345, 39);
             this.labPersonCount.Name = "labPersonCount";
             this.labPersonCount.Size = new System.Drawing.Size(18, 20);
             this.labPersonCount.TabIndex = 5;
@@ -303,7 +303,7 @@ namespace POS.SO
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label5.Location = new System.Drawing.Point(257, 39);
+            this.label5.Location = new System.Drawing.Point(284, 39);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 4;
@@ -366,9 +366,9 @@ namespace POS.SO
             this.labTotalPrice.BackColor = System.Drawing.Color.Transparent;
             this.labTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.labTotalPrice.ForeColor = System.Drawing.Color.Red;
-            this.labTotalPrice.Location = new System.Drawing.Point(238, 660);
+            this.labTotalPrice.Location = new System.Drawing.Point(215, 660);
             this.labTotalPrice.Name = "labTotalPrice";
-            this.labTotalPrice.Size = new System.Drawing.Size(282, 25);
+            this.labTotalPrice.Size = new System.Drawing.Size(335, 25);
             this.labTotalPrice.TabIndex = 11;
             this.labTotalPrice.Text = "0.00";
             this.labTotalPrice.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -379,9 +379,9 @@ namespace POS.SO
             this.fPnlMainMenu.AutoScroll = true;
             this.fPnlMainMenu.BackColor = System.Drawing.Color.Transparent;
             this.fPnlMainMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fPnlMainMenu.Location = new System.Drawing.Point(837, 2);
+            this.fPnlMainMenu.Location = new System.Drawing.Point(761, 2);
             this.fPnlMainMenu.Name = "fPnlMainMenu";
-            this.fPnlMainMenu.Size = new System.Drawing.Size(185, 763);
+            this.fPnlMainMenu.Size = new System.Drawing.Size(261, 763);
             this.fPnlMainMenu.TabIndex = 12;
             // 
             // lisMenuOrder
@@ -392,7 +392,7 @@ namespace POS.SO
             this.lisMenuOrder.Location = new System.Drawing.Point(120, 80);
             this.lisMenuOrder.MultiSelect = false;
             this.lisMenuOrder.Name = "lisMenuOrder";
-            this.lisMenuOrder.Size = new System.Drawing.Size(400, 577);
+            this.lisMenuOrder.Size = new System.Drawing.Size(430, 577);
             this.lisMenuOrder.TabIndex = 13;
             this.lisMenuOrder.UseCompatibleStateImageBehavior = false;
             this.lisMenuOrder.SelectedIndexChanged += new System.EventHandler(this.lisMenuOrder_SelectedIndexChanged);
@@ -401,9 +401,9 @@ namespace POS.SO
             // 
             this.fPnlDiningType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.fPnlDiningType.Location = new System.Drawing.Point(526, 3);
+            this.fPnlDiningType.Location = new System.Drawing.Point(556, 3);
             this.fPnlDiningType.Name = "fPnlDiningType";
-            this.fPnlDiningType.Size = new System.Drawing.Size(305, 71);
+            this.fPnlDiningType.Size = new System.Drawing.Size(199, 71);
             this.fPnlDiningType.TabIndex = 14;
             // 
             // timeEating

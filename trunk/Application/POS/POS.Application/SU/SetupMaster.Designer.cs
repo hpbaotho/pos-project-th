@@ -34,6 +34,7 @@
             this.listMenu = new System.Windows.Forms.ListBox();
             this.btnSetting = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.baseTextBox1 = new POS.Control.BaseTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +60,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMenu.Controls.Add(this.baseTextBox1);
             this.pnlMenu.Controls.Add(this.btnInventory);
             this.pnlMenu.Controls.Add(this.listMenu);
             this.pnlMenu.Controls.Add(this.btnSetting);
@@ -109,6 +111,14 @@
             this.pnlContent.Size = new System.Drawing.Size(550, 704);
             this.pnlContent.TabIndex = 1;
             // 
+            // baseTextBox1
+            // 
+            this.baseTextBox1.Description = "Test";
+            this.baseTextBox1.Location = new System.Drawing.Point(74, 190);
+            this.baseTextBox1.Name = "baseTextBox1";
+            this.baseTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.baseTextBox1.TabIndex = 3;
+            // 
             // SetupMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,9 +129,9 @@
             this.MinimizeBox = false;
             this.Name = "SetupMaster";
             this.Text = "SetupMaster";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.pnlMenu.ResumeLayout(false);
+            this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -134,6 +144,7 @@
         private System.Windows.Forms.ListBox listMenu;
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Button btnInventory;
+        private Control.BaseTextBox baseTextBox1;
 
     }
 }

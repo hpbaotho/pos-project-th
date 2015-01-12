@@ -32,6 +32,10 @@ namespace POS.Control
         public bool IngoreFontDefault { get { return _IngoreFontDefault; } set { _IngoreFontDefault = value; } }
         private BaseTextBox txtProcress = null;
         private Panel Control_contanner = null;
+
+
+        protected object popupDataSource = null;
+        protected object popupResult = null;
         #endregion
         //====================================================================
         #region :: Construtor ::
@@ -50,49 +54,7 @@ namespace POS.Control
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
         #endregion
-
-        #region :: Popup Function ::
-
-
-        public delegate void ClosePopupHandler(object obj);
-        public event ClosePopupHandler closePopupHandler;
-
-        public delegate object OpenPupupHandler(object sender);
-        public event OpenPupupHandler openPopupHandler;
-
-        public object PageObjrct
-        {
-            get
-            {
-                if (openPopupHandler != null && _PageObjrct == null)
-                {
-                    _PageObjrct = openPopupHandler(this);
-                }
-                return _PageObjrct;
-
-            }
-        }
-        private object _PageObjrct = null;
-
-
-        protected void CloseScreen(object result)
-        {
-            if (closePopupHandler != null)
-            {
-                closePopupHandler(result);
-            }
-            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-        }
-
-        public void CloseScreen()
-        {
-
-            this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-        }
-
-
-
-        #endregion
+        
         //====================================================================
         #region :: Message Control
 
@@ -125,6 +87,45 @@ namespace POS.Control
         #region :: Custom Function ::
 
         // Public function
+        public object OpenPopup<T>(object popupCriteria) where T : FormBase
+        {
+            object popupresult = null;
+            Type type = typeof(T);
+            using (PopupBase form = (PopupBase)Activator.CreateInstance(type))
+            {
+                //this.Hide();
+                form.popupDataSource = popupCriteria;
+                DialogResult result = form.ShowDialog(this);
+                
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    this.Show();
+                    this.Focus();
+                    this.Activate();
+                }
+                else if (result == System.Windows.Forms.DialogResult.OK) {
+                    popupresult = form.popupResult;
+                    this.Show();
+                    this.Focus();
+                    this.Activate();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+
+            }
+            return popupresult;
+        }
+        public void ClosePopup(object result)
+        {
+            this.popupResult = result;
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+        public void ClosePopup()
+        {
+            this.CloseScreen();
+        }
 
         public void OpernNewScreen<T>() where T : FormBase
         {
@@ -134,9 +135,10 @@ namespace POS.Control
             {
                 this.Hide();
                 DialogResult result = form.ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.Abort)
+                if (result == System.Windows.Forms.DialogResult.Cancel || result == System.Windows.Forms.DialogResult.OK)
                 {
                     this.Show();
+                    this.Focus();
                     this.Activate();
                 }
                 else
@@ -146,7 +148,10 @@ namespace POS.Control
 
             }
         }
-
+        public void CloseScreen()
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
         public void UpdateFontDefault()
         {
             this.FindControlAll(this);
@@ -158,9 +163,9 @@ namespace POS.Control
             {
                 foreach (System.Windows.Forms.Control item in c.Controls)
                 {
-                    if (item.Font.Size < DefaultFontControl.FontSize)
+                    if (item.Font.Size < DefaultFontControl.FontSizeM)
                     {
-                        item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
+                        item.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);
                     }
                     this.FindControlAll(item);
 
@@ -392,13 +397,15 @@ namespace POS.Control
     }
     public class PopupBase : FormBase
     {
-        public object popupDataSource = null;
+       
         public PopupBase()
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.StartPosition = FormStartPosition.CenterScreen;
 
         }
+       
+    
 
 
     }

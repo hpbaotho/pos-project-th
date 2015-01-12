@@ -58,7 +58,7 @@ namespace POS.Control.GridView
             foreach (DataGridViewColumn header in Grid.Columns)
             {
                 header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSize, (FontStyle)DefaultFontControl.FontStyle);
+                header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);
             }
         }
         private void UpdateDataRow(DataGridViewRow rowSelected)

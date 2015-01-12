@@ -23,9 +23,9 @@ namespace POS.SO
         }
         protected override void OnShown(EventArgs e)
         {
-            if (this.PageObjrct != null)
+            if (this.popupDataSource != null)
             {
-                this.OrderHeads = this.PageObjrct as OrderHeadDTO;
+                this.OrderHeads = this.popupDataSource as OrderHeadDTO;
 
                 if (this.OrderHeads != null)
                 {
@@ -54,7 +54,7 @@ namespace POS.SO
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.CloseScreen(this.OrderHeads);
+            this.ClosePopup(this.OrderHeads);
         }
 
         private void btnDelPeson_Click(object sender, EventArgs e)
