@@ -18,7 +18,7 @@ namespace POS.SO
 
         private void btnPeriod_Click(object sender, EventArgs e)
         {
-
+            base.OpernNewScreen<SO.WorkPeriodSetup>();
         }
 
         private void btnPOS_Click(object sender, EventArgs e)
