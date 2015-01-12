@@ -83,9 +83,9 @@
             this.grdBase.DataSourceDataSet = null;
             this.grdBase.DataSourceTable = null;
             this.grdBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdBase.Location = new System.Drawing.Point(3, 69);
+            this.grdBase.Location = new System.Drawing.Point(3, 68);
             this.grdBase.Name = "grdBase";
-            this.grdBase.Size = new System.Drawing.Size(698, 373);
+            this.grdBase.Size = new System.Drawing.Size(698, 374);
             this.grdBase.TabIndex = 0;
             // 
             // groupBox1
@@ -95,7 +95,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(698, 60);
+            this.groupBox1.Size = new System.Drawing.Size(698, 59);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
