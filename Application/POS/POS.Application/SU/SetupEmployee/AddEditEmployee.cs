@@ -51,6 +51,8 @@ namespace POS.SU.SetupEmployee
                 txtFirstName.Text = entity.first_name;
                 txtMidName.Text = entity.mid_name;
                 txtLastName.Text = entity.last_name;
+                txtUserName.Text = entity.user_name;
+                txtPassword.Text = entity.user_password;
             }
             else
             {
@@ -58,6 +60,8 @@ namespace POS.SU.SetupEmployee
                 txtFirstName.Text = string.Empty;
                 txtMidName.Text = string.Empty;
                 txtLastName.Text = string.Empty;
+                txtUserName.Text = string.Empty;
+                txtPassword.Text = string.Empty;
             }
             EnableMode();
         }
@@ -81,6 +85,8 @@ namespace POS.SU.SetupEmployee
             entity.first_name = txtFirstName.Text;
             entity.mid_name = txtMidName.Text;
             entity.last_name = txtLastName.Text;
+            entity.user_name = txtUserName.Text;
+            entity.user_password = txtPassword.Text;
             entity.created_by = "SYSTEM";
             entity.created_date = DateTime.Now;
             entity.updated_by = "SYSTEM";

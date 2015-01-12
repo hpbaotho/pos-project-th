@@ -41,7 +41,7 @@ namespace POS.SU.SetupEmployee
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
-            grdBase.DataSourceDataSet = ServiceProvider.EmployeeService.FindAllDataSet(false);
+            grdBase.DataSourceDataSet = ServiceProvider.EmployeeService.GetGridEmployee(txtEmployeeNo.Text, txtName.Text);
             grdBase.DataKeyName = new string[] { DataKeyName };
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
