@@ -125,6 +125,9 @@
     <EmbeddedResource Include="BaseAddEditMaster.resx">
       <DependentUpon>BaseAddEditMaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaseTextBox.resx">
+      <DependentUpon>BaseTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CoreMessageBox.resx">
       <DependentUpon>CoreMessageBox.cs</DependentUpon>
     </EmbeddedResource>

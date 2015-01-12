@@ -25,12 +25,13 @@ namespace POS.Control
         }
         public BaseTextBox()
         {
-            InitializeComponent();
+
             label = new Label();
             label.AutoSize = true;
             label.Font = this.Font;
             label.Location = this.Location;
             label.Resize += new EventHandler(label_Resize);
+            InitializeComponent();
         }
         protected override void OnParentChanged(EventArgs e)
         {
@@ -41,7 +42,7 @@ namespace POS.Control
         private void moveLabel()
         {
             // Keep label right-aligned to the left of the text box
-            label.Location = new Point(this.Left - label.Width - 10, this.Top+5);
+            label.Location = new Point(this.Left - label.Width - 10, this.Top + 5);
         }
         private void label_Resize(object sender, EventArgs e)
         {
@@ -52,13 +53,14 @@ namespace POS.Control
             base.OnLocationChanged(e);
             moveLabel();
         }
-        protected override void OnPaint(PaintEventArgs pe)
+        protected override void OnPrint(PaintEventArgs e)
         {
-            base.OnPaint(pe);
+            base.OnPrint(e);
         }
+
         public void procressKey(KeyPressEventArgs e)
         {
-            
+
             base.OnKeyPress(e);
         }
     }
