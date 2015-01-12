@@ -115,5 +115,10 @@ namespace POS.SU.SetupEmployee
             LoadData();
         }
         #endregion
+
+        private void AddEditEmployee_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

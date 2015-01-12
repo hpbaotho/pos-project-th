@@ -18,7 +18,7 @@ namespace POS.SU.SetupEmployee
     public partial class ucEmployee : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
-        string DataKeyName = "employee_id";
+        string DataKeyName = "ID";
         AddEditEmployee addEditEmployee = new AddEditEmployee();
         string programName = ProgramName.SetupEmployee;
         string tabName = "List Employee";
