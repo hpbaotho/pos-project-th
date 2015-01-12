@@ -39,8 +39,8 @@ namespace POS.BL.DTO.SO
         {
             this.OrderState = ObjectState.Add;
         }
-        
-        public long? parent_sales_order_detail_id { get; set; }
+
+        public long? condiment_of_order_detail_id { get; set; }
         public long? sales_order_detail_id { get; set; }
         public long? sales_order_head_id { get; set; }
         public int order_amount { get; set; }

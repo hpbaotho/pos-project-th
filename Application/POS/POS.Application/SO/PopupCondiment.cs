@@ -20,9 +20,9 @@ namespace POS.SO
         }
         protected override void OnShown(EventArgs e)
         {
-            if (this.PageObjrct != null)
+            if (this.popupDataSource != null)
             {
-                this.parentMenu = this.PageObjrct as OrderDTO;
+                this.parentMenu = this.popupDataSource as OrderDTO;
             }
         }
         private void btnOk_Click(object sender, EventArgs e)
@@ -32,9 +32,10 @@ namespace POS.SO
             openCondiment.order_amount = 1;
             openCondiment.menu_price = Core.Standards.Converters.Converts.ParseDecimal(txtPrice.Text);
             openCondiment.ref_menu_dining_type_id = parentMenu.menu_dining_type_id;
-            openCondiment.parent_sales_order_detail_id = parentMenu.sales_order_detail_id;
+            openCondiment.condiment_of_order_detail_id = parentMenu.sales_order_detail_id;
             openCondiment.IsCondiment = true;
-            this.CloseScreen(openCondiment);
+            
+            this.ClosePopup(openCondiment);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

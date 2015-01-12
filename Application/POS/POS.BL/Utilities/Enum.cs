@@ -131,7 +131,10 @@ namespace POS.BL.Utilities
     public struct DefaultFontControl
     {
         public const string FontName = "Arial";
-        public const int FontSize = 14;
+        public const int FontSizeS = 8;
+        public const int FontSizeM = 10;
+        public const int FontSizeL = 12;
+        public const int FontSizeXL = 14;
         public const int FontStyle = 0;
     }
     #endregion

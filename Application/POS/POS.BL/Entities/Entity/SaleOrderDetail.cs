@@ -13,6 +13,7 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
         public long? sales_order_detail_id { get; set; }
+        public long? condiment_of_order_detail_id { get; set; }
         public long? sales_order_head_id { get; set; }
         public long? menu_dining_type_id { get; set; }
         public int order_amount { get; set; }
