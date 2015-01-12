@@ -27,11 +27,14 @@ namespace POS.SO
 
             //Find detail to current period
             WorkPeriod workPeriod = ServiceProvider.WorkPeriodService.findActiveWorkPeriod();
-            txtDateOfWorkPeriod.Text = workPeriod.open_period_date.ToString();
-            txtCurrentPeriodCode.Text = workPeriod.period_code.ToString();
-            txtCurrentPeriodName.Text = workPeriod.period_name.ToString();
-            txtCurrentOpenPeriodBy.Text = workPeriod.open_period_by.ToString();
-            txtCurrentOpenPeriodDate.Text = workPeriod.open_period_date.ToString();
+            if (workPeriod != null)
+            {
+                txtDateOfWorkPeriod.Text = workPeriod.open_period_date != null ? workPeriod.open_period_date.Value.ToString() : string.Empty;
+                txtCurrentPeriodCode.Text = workPeriod.period_code.ToString();
+                txtCurrentPeriodName.Text = workPeriod.period_name.ToString();
+                txtCurrentOpenPeriodBy.Text = workPeriod.open_period_by.ToString();
+                txtCurrentOpenPeriodDate.Text = workPeriod.open_period_date != null ? workPeriod.open_period_date.Value.ToString() : string.Empty;
+            }
 
             this.bindData();
         }
