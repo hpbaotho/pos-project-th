@@ -46,7 +46,7 @@
             // 
             this.txtEmployeeNo.Location = new System.Drawing.Point(61, 87);
             this.txtEmployeeNo.Name = "txtEmployeeNo";
-            this.txtEmployeeNo.Size = new System.Drawing.Size(100, 20);
+            this.txtEmployeeNo.Size = new System.Drawing.Size(306, 20);
             this.txtEmployeeNo.TabIndex = 8;
             // 
             // label1
@@ -63,7 +63,7 @@
             // 
             this.txtFirstName.Location = new System.Drawing.Point(61, 126);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(100, 20);
+            this.txtFirstName.Size = new System.Drawing.Size(306, 20);
             this.txtFirstName.TabIndex = 10;
             // 
             // label2
@@ -80,7 +80,7 @@
             // 
             this.txtMidName.Location = new System.Drawing.Point(61, 165);
             this.txtMidName.Name = "txtMidName";
-            this.txtMidName.Size = new System.Drawing.Size(100, 20);
+            this.txtMidName.Size = new System.Drawing.Size(306, 20);
             this.txtMidName.TabIndex = 12;
             // 
             // label3
@@ -97,7 +97,7 @@
             // 
             this.txtLastName.Location = new System.Drawing.Point(61, 204);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(100, 20);
+            this.txtLastName.Size = new System.Drawing.Size(306, 20);
             this.txtLastName.TabIndex = 14;
             // 
             // label4
@@ -114,7 +114,7 @@
             // 
             this.txtUserName.Location = new System.Drawing.Point(61, 246);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(100, 20);
+            this.txtUserName.Size = new System.Drawing.Size(306, 20);
             this.txtUserName.TabIndex = 16;
             // 
             // label5
@@ -132,7 +132,7 @@
             this.txtPassword.Location = new System.Drawing.Point(61, 288);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.Size = new System.Drawing.Size(306, 20);
             this.txtPassword.TabIndex = 18;
             // 
             // label6
@@ -162,7 +162,7 @@
             this.Controls.Add(this.txtEmployeeNo);
             this.Controls.Add(this.label1);
             this.Name = "AddEditEmployee";
-            this.Size = new System.Drawing.Size(499, 334);
+            this.Size = new System.Drawing.Size(393, 334);
             this.saveHandler += new POS.Control.BaseAddEditMaster.SaveHandler(this.AddEditEmployee_saveHandler);
             this.resetHandler += new POS.Control.BaseAddEditMaster.ResetHandler(this.AddEditEmployee_resetHandler);
             this.Controls.SetChildIndex(this.label1, 0);

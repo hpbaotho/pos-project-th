@@ -23,8 +23,8 @@ namespace POS.Control.GridView
         {
             InitializeComponent();
             this.Grid.DefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Regular);
-            
-           
+            this.Grid.RowHeadersVisible = false;
+
         }
         #region :: private function ::
         public void LoadData()
@@ -45,7 +45,7 @@ namespace POS.Control.GridView
                     Grid.DataMember = "Table";
                     Grid.AllowUserToAddRows = false;
                     Grid.AllowUserToDeleteRows = false;
-                  
+
                     tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceDataSet.Tables[0].Rows.Count);
                 }
                 else
@@ -53,13 +53,15 @@ namespace POS.Control.GridView
                     Grid.DataSource = DataSourceTable.ToList();
                     tsslblTotalRows.Text = string.Format(FormatString.TotalRowsGrid, DataSourceTable.Count());
                 }
-               
+
             }
             foreach (DataGridViewColumn header in Grid.Columns)
             {
+                header.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);
             }
+          
         }
         private void UpdateDataRow(DataGridViewRow rowSelected)
         {
@@ -162,8 +164,8 @@ namespace POS.Control.GridView
         private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-
-            UpdateDataRow(Grid.Rows[rowIndex]);
+            if (rowIndex > 0)
+                UpdateDataRow(Grid.Rows[rowIndex]);
 
 
         }
