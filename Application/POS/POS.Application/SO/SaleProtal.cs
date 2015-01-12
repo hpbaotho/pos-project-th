@@ -43,7 +43,7 @@ namespace POS.SO
 
         private void btnManage_Click(object sender, EventArgs e)
         {
-            base.OpernNewScreen<SO.SceenSetup>();
+            base.OpernNewScreen<SU.SetupMaster>();
         }
 
         private void btnSecurity_Click(object sender, EventArgs e)
