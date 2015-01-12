@@ -147,6 +147,7 @@ namespace POS.BL.Utilities
 }
 public enum ObjectState
 {
+    Nothing=0,
     Add = 1,
     Edit = 2,
     Delete = 3,

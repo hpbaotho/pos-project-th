@@ -10,6 +10,7 @@ namespace POS.BL.DTO.SO
     {
         public  CustromControlPropertyDTO() {
             this.control_type = ControlType.Button;
+            this.ControlState = ObjectState.Nothing;
         }
 
         public long? control_id { get; set; }

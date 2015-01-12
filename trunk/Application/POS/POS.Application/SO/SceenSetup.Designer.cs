@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            POS.BL.DTO.SO.CustromControlPropertyDTO custromControlPropertyDTO43 = new POS.BL.DTO.SO.CustromControlPropertyDTO();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -97,7 +96,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("Arial", 14F);
             this.splitContainer1.Size = new System.Drawing.Size(1000, 536);
-            this.splitContainer1.SplitterDistance = 253;
+            this.splitContainer1.SplitterDistance = 386;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -106,21 +105,21 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Arial", 14F);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(251, 534);
+            this.tabControl1.Size = new System.Drawing.Size(384, 534);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.spComtrolCommand);
             this.tabPage1.Font = new System.Drawing.Font("Arial", 14F);
-            this.tabPage1.Location = new System.Drawing.Point(4, 31);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(243, 499);
+            this.tabPage1.Size = new System.Drawing.Size(376, 501);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Events";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -145,19 +144,19 @@
             this.spComtrolCommand.Panel2.Controls.Add(this.txtTableName);
             this.spComtrolCommand.Panel2.Controls.Add(this.ddlControlType);
             this.spComtrolCommand.Panel2.Font = new System.Drawing.Font("Arial", 14F);
-            this.spComtrolCommand.Size = new System.Drawing.Size(237, 493);
-            this.spComtrolCommand.SplitterDistance = 82;
+            this.spComtrolCommand.Size = new System.Drawing.Size(370, 495);
+            this.spComtrolCommand.SplitterDistance = 128;
             this.spComtrolCommand.TabIndex = 0;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label6.Font = new System.Drawing.Font("Arial", 14F);
-            this.label6.Location = new System.Drawing.Point(0, 58);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(0, 54);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label6.Size = new System.Drawing.Size(114, 29);
+            this.label6.Size = new System.Drawing.Size(96, 27);
             this.label6.TabIndex = 2;
             this.label6.Text = "Next Screen";
             // 
@@ -165,11 +164,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.Font = new System.Drawing.Font("Arial", 14F);
-            this.label5.Location = new System.Drawing.Point(0, 29);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(0, 27);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label5.Size = new System.Drawing.Size(106, 29);
+            this.label5.Size = new System.Drawing.Size(90, 27);
             this.label5.TabIndex = 1;
             this.label5.Text = "TableName";
             // 
@@ -177,11 +176,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Arial", 14F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label1.Size = new System.Drawing.Size(118, 29);
+            this.label1.Size = new System.Drawing.Size(98, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Control Type";
             // 
@@ -197,17 +196,18 @@
             "Object"});
             this.ddlScreen.Location = new System.Drawing.Point(0, 59);
             this.ddlScreen.Name = "ddlScreen";
-            this.ddlScreen.Size = new System.Drawing.Size(151, 30);
+            this.ddlScreen.Size = new System.Drawing.Size(238, 30);
             this.ddlScreen.TabIndex = 2;
             this.ddlScreen.SelectedIndexChanged += new System.EventHandler(this.ddlScreen_SelectedIndexChanged);
             // 
             // txtTableName
             // 
+            this.txtTableName.Description = "";
             this.txtTableName.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtTableName.Enabled = false;
             this.txtTableName.Location = new System.Drawing.Point(0, 30);
             this.txtTableName.Name = "txtTableName";
-            this.txtTableName.Size = new System.Drawing.Size(151, 29);
+            this.txtTableName.Size = new System.Drawing.Size(238, 29);
             this.txtTableName.TabIndex = 1;
             this.txtTableName.TextChanged += new System.EventHandler(this.txtTableName_TextChanged);
             // 
@@ -222,7 +222,7 @@
             "Object"});
             this.ddlControlType.Location = new System.Drawing.Point(0, 0);
             this.ddlControlType.Name = "ddlControlType";
-            this.ddlControlType.Size = new System.Drawing.Size(151, 30);
+            this.ddlControlType.Size = new System.Drawing.Size(238, 30);
             this.ddlControlType.TabIndex = 0;
             this.ddlControlType.SelectedIndexChanged += new System.EventHandler(this.ddlControlType_SelectedIndexChanged);
             // 
@@ -230,10 +230,10 @@
             // 
             this.tabPage2.Controls.Add(this.propertyGrid1);
             this.tabPage2.Font = new System.Drawing.Font("Arial", 14F);
-            this.tabPage2.Location = new System.Drawing.Point(4, 31);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(243, 499);
+            this.tabPage2.Size = new System.Drawing.Size(376, 501);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Properties";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -244,7 +244,7 @@
             this.propertyGrid1.Font = new System.Drawing.Font("Arial", 14F);
             this.propertyGrid1.Location = new System.Drawing.Point(3, 3);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(237, 493);
+            this.propertyGrid1.Size = new System.Drawing.Size(370, 495);
             this.propertyGrid1.TabIndex = 0;
             // 
             // splitContainer2
@@ -276,17 +276,17 @@
             this.splitContainer2.Panel2.Controls.Add(this.dragContainer2);
             this.splitContainer2.Panel2.Font = new System.Drawing.Font("Arial", 14F);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainer2.Size = new System.Drawing.Size(745, 511);
+            this.splitContainer2.Size = new System.Drawing.Size(612, 511);
             this.splitContainer2.SplitterDistance = 73;
             this.splitContainer2.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 14F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(8, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 22);
+            this.label4.Size = new System.Drawing.Size(95, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Select From";
             // 
@@ -295,7 +295,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 14F);
-            this.label3.Location = new System.Drawing.Point(564, 38);
+            this.label3.Location = new System.Drawing.Point(431, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 22);
             this.label3.TabIndex = 4;
@@ -306,7 +306,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 14F);
-            this.label2.Location = new System.Drawing.Point(567, 12);
+            this.label2.Location = new System.Drawing.Point(434, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 22);
             this.label2.TabIndex = 3;
@@ -316,7 +316,7 @@
             // 
             this.txtHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHeight.Font = new System.Drawing.Font("Arial", 14F);
-            this.txtHeight.Location = new System.Drawing.Point(629, 35);
+            this.txtHeight.Location = new System.Drawing.Point(496, 35);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(100, 29);
             this.txtHeight.TabIndex = 2;
@@ -326,7 +326,7 @@
             // 
             this.txtWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtWidth.Font = new System.Drawing.Font("Arial", 14F);
-            this.txtWidth.Location = new System.Drawing.Point(629, 9);
+            this.txtWidth.Location = new System.Drawing.Point(496, 9);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(100, 29);
             this.txtWidth.TabIndex = 1;
@@ -335,24 +335,17 @@
             // cmdForm
             // 
             this.cmdForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmdForm.Font = new System.Drawing.Font("Arial", 14F);
+            this.cmdForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdForm.FormattingEnabled = true;
             this.cmdForm.Location = new System.Drawing.Point(128, 9);
             this.cmdForm.Name = "cmdForm";
-            this.cmdForm.Size = new System.Drawing.Size(250, 30);
+            this.cmdForm.Size = new System.Drawing.Size(250, 28);
             this.cmdForm.TabIndex = 0;
             this.cmdForm.SelectedIndexChanged += new System.EventHandler(this.cmdForm_SelectedIndexChanged);
             // 
             // dragContainer2
             // 
             this.dragContainer2.BackColor = System.Drawing.SystemColors.Control;
-            custromControlPropertyDTO43.control_code = null;
-            custromControlPropertyDTO43.control_id = null;
-            custromControlPropertyDTO43.control_parent_id = null;
-            custromControlPropertyDTO43.control_type = null;
-            custromControlPropertyDTO43.NextScreen = null;
-            custromControlPropertyDTO43.TableName = null;
-            this.dragContainer2.ControlCommand = custromControlPropertyDTO43;
             this.dragContainer2.Font = new System.Drawing.Font("Arial", 14F);
             this.dragContainer2.Location = new System.Drawing.Point(3, 3);
             this.dragContainer2.Name = "dragContainer2";
@@ -372,7 +365,7 @@
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(745, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(612, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
