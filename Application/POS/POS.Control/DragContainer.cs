@@ -17,8 +17,8 @@ namespace POS.Control
         public delegate void SelectDragItemHandler(object sender);
         public event SelectDragItemHandler SelectDragEvent;
 
-        private CustromControlPropertyDTO _ControlCommand;
-        public CustromControlPropertyDTO ControlCommand { get { return _ControlCommand; } set { _ControlCommand = value; } }
+        public CustromControlPropertyDTO ControlCommand;
+       // public CustromControlPropertyDTO ControlCommand { get { return _ControlCommand; } set { _ControlCommand = value; } }
 
         private bool isContainsDragItem;
         private Pen gridPen = new Pen(Color.LightGray);
@@ -39,7 +39,7 @@ namespace POS.Control
         {
             InitializeComponent();
             this.DragItem = new List<DragItem>();
-            this._ControlCommand = new CustromControlPropertyDTO();
+            this.ControlCommand = new CustromControlPropertyDTO();
             this.AddResizeControls();
         }
         protected void onSelectDragEvent(object sender)
