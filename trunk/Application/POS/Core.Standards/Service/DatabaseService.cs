@@ -412,6 +412,9 @@ namespace Core.Standards.Service
                 return null;
             }
         }
+
+
+
         public IEnumerable<TEntity> FindAll(bool locked)
         {
             DbCommand command = this.GetSqlQueryCommand(null, locked);
