@@ -55,13 +55,13 @@ namespace POS.IN.ReceiveMaterial
                 ddlReason.SelectedValue = entity.reason_id;
                 
 
-                ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindWareHouseActive();
-                ddlWarehouse.ValueMember = "warehouse_id";
-                ddlWarehouse.DisplayMember = "warehouse_id";
+                ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
+                ddlWarehouse.ValueMember = "Value";
+                ddlWarehouse.DisplayMember = "Display";
 
-                ddlSupplier.DataSource = ServiceProvider.SupplierService.FindSupplierActive();
-                ddlSupplier.ValueMember = "supplier_id";
-                ddlSupplier.DisplayMember = "supplier_id";
+                //ddlSupplier.DataSource = ServiceProvider.SupplierService.FindSupplierActive();
+                //ddlSupplier.ValueMember = "supplier_id";
+                //ddlSupplier.DisplayMember = "supplier_id";
 
 
                 
@@ -72,7 +72,6 @@ namespace POS.IN.ReceiveMaterial
 
                 txtRemark.Text = entity.remark;
 
-                lblStatus.Text = "";
                 lblDocumentNo.Text = "";
                 lblDocumentDate.Text = "";
 
@@ -88,7 +87,7 @@ namespace POS.IN.ReceiveMaterial
 
                 txtReferenceNo.Text = string.Empty;
 
-                lblStatus.Text = "";
+                //lblStatus.Text = "";
                 lblDocumentNo.Text = "";
                 lblDocumentDate.Text = "";
 

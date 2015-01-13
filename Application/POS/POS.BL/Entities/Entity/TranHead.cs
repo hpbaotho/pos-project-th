@@ -14,6 +14,7 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
         public long tran_head_id { get; set; }
+
         public long? document_type_id { get; set; }
         public string transaction_no { get; set; }
         public DateTime transaction_date { get; set; }
