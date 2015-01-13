@@ -89,9 +89,31 @@ namespace POS.BL.Utilities
     }
     public struct ErrorMessage
     {
-        // For SO 
+        //------------------- For SO 
         public const string ScreenCodeIsRequire = "Screen Code is require.";
-        public const string IsDuplicate = "{0} is duplicate in system.";
+
+        //------------------- General 
+        public const string IsRequired = "{0} is required";
+        public const string IsDuplicate = "{0} is duplicate in system";
+        public const string IsOverlapping = "{0} is overlapping in system";
+        public const string IncorrectFormatOne = "Format of {0} is incorrect";
+        public const string NotExistsField = "{0} {1} does not exists";
+        public const string NotEqualValue = "{0} must not be equal {1} ";
+        public const string MaxLength = "{0} length is exceed {1}";
+        public const string BetweenNumber = "{0} must between {1} and {2}";
+        public const string Exceed = "{0} must not exceed {2}";
+        public const string IncorrectValue = "{0} is incorrect, {0} values e.g. {1}";
+
+        //------------------- Compare
+        public const string CompareValueMore = "{0} must be more than {1}";
+        public const string CompareValueMoreOrEqual = "{0} must be equal or greater than {1}";
+        public const string CompareValueLess = "{0} must be less than {1}";
+        public const string CompareValueLessOrEqual = "{0} must be equal or less than {1}";
+        public const string CompareValueEqual = "{0} must be equal {1}";
+
+        //------------------- Cannot
+        public const string CannotDelete = "Cannot delete {0}, data is now in used";
+        public const string CannotSave = "Cannot save {0}";
     }
     public struct CustomControl
     {

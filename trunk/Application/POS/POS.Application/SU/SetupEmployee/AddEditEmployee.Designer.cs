@@ -40,6 +40,7 @@
             // 
             this.txtEmployeeNo.Description = "Employee No";
             this.txtEmployeeNo.Location = new System.Drawing.Point(106, 127);
+            this.txtEmployeeNo.MaxLength = 50;
             this.txtEmployeeNo.Name = "txtEmployeeNo";
             this.txtEmployeeNo.Size = new System.Drawing.Size(100, 20);
             this.txtEmployeeNo.TabIndex = 20;
@@ -48,6 +49,7 @@
             // 
             this.txtFirstName.Description = "First Name";
             this.txtFirstName.Location = new System.Drawing.Point(106, 158);
+            this.txtFirstName.MaxLength = 300;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(100, 20);
             this.txtFirstName.TabIndex = 27;
@@ -56,6 +58,7 @@
             // 
             this.txtMidName.Description = "Mid Name";
             this.txtMidName.Location = new System.Drawing.Point(282, 158);
+            this.txtMidName.MaxLength = 300;
             this.txtMidName.Name = "txtMidName";
             this.txtMidName.Size = new System.Drawing.Size(100, 20);
             this.txtMidName.TabIndex = 29;
@@ -64,6 +67,7 @@
             // 
             this.txtLastName.Description = "Last Name";
             this.txtLastName.Location = new System.Drawing.Point(464, 158);
+            this.txtLastName.MaxLength = 300;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
             this.txtLastName.TabIndex = 31;
@@ -72,6 +76,7 @@
             // 
             this.txtUserName.Description = "User Name";
             this.txtUserName.Location = new System.Drawing.Point(106, 190);
+            this.txtUserName.MaxLength = 300;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(100, 20);
             this.txtUserName.TabIndex = 33;
@@ -80,6 +85,7 @@
             // 
             this.txtPassword.Description = "Password";
             this.txtPassword.Location = new System.Drawing.Point(282, 190);
+            this.txtPassword.MaxLength = 300;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
