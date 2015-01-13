@@ -150,6 +150,19 @@ namespace POS.BL
                 }
             }
 
+            private static ReasonService reasonService;
+            public static ReasonService ReasonService
+            {
+                get
+                {
+                    if (reasonService == null)
+                    {
+                        reasonService = new ReasonService();
+                    }
+                    return reasonService;
+                }
+            }
+
 
         private static TranDetailService tranDetailService;
         public static TranDetailService TranDetailService

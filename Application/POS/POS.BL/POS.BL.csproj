@@ -69,6 +69,7 @@
     <Compile Include="Entities\Entity\DocumentType.cs" />
     <Compile Include="Entities\Entity\MenuCategory.cs" />
     <Compile Include="Entities\Entity\MenuGroup.cs" />
+    <Compile Include="Entities\Entity\Reason.cs" />
     <Compile Include="Entities\Entity\SaleOrderDetail.cs" />
     <Compile Include="Entities\Entity\SaleOrderHeader.cs" />
     <Compile Include="Entities\Entity\Supplier.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Service\DB\DocumentLastRunningNumberService.cs" />
     <Compile Include="Service\DB\DocumentNumberFormatService.cs" />
     <Compile Include="Service\DB\DocumentTypeService.cs" />
+    <Compile Include="Service\DB\ReasonService.cs" />
     <Compile Include="Service\DB\SupplierService.cs" />
     <Compile Include="Service\DB\WareHouseService.cs" />
     <Compile Include="Service\IN\TranDetailService.cs" />
