@@ -67,6 +67,12 @@
     <Compile Include="IN\CountStock\ucCountStock.Designer.cs">
       <DependentUpon>ucCountStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="IN\IssueMaterial\IssueMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\IssueMaterial\IssueMaterial.Designer.cs">
+      <DependentUpon>IssueMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="IN\ReceiveMaterial\AddEditReceiveMaterial.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IN\CountStock\ucCountStock.resx">
       <DependentUpon>ucCountStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\IssueMaterial\IssueMaterial.resx">
+      <DependentUpon>IssueMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveMaterial\AddEditReceiveMaterial.resx">
       <DependentUpon>AddEditReceiveMaterial.cs</DependentUpon>
