@@ -11,6 +11,8 @@ using POS.BL.Utilities;
 using POS.BL.Entities.Entity;
 using Core.Standards.Converters;
 using POS.BL;
+using Core.Standards.Exceptions;
+using Core.Standards.Validations;
 
 namespace POS.SU.SetupEmployee
 {
@@ -33,7 +35,7 @@ namespace POS.SU.SetupEmployee
             this.Load += new EventHandler(AddEditEmployee_Load);
         }
         #endregion
-      
+
         #region :: Private Function ::
         private void AddEditEmployee_Load(object sender, EventArgs e)
         {
@@ -98,16 +100,23 @@ namespace POS.SU.SetupEmployee
         #region :: Event Action ::
         private void AddEditEmployee_saveHandler()
         {
-            Employee entity = GetData();
-            if (mode == ObjectState.Add)
+            try
             {
-                ServiceProvider.EmployeeService.Insert(entity);
+                Employee entity = GetData();
+                if (mode == ObjectState.Add)
+                {
+                    ServiceProvider.EmployeeService.Insert(entity, new string[] { ValidationRuleset.Insert });
+                }
+                else
+                {
+                    ServiceProvider.EmployeeService.Update(entity, new string[] { ValidationRuleset.Update });
+                }
+                base.formBase.ShowMessage(GeneralMessage.SaveComplete);
             }
-            else
+            catch (ValidationException ex)
             {
-                ServiceProvider.EmployeeService.Update(entity);
+                formBase.ShowErrorMessage(ex);
             }
-            base.formBase.ShowMessage(GeneralMessage.SaveComplete);
         }
 
         private void AddEditEmployee_resetHandler()

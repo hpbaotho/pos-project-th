@@ -5,6 +5,7 @@ using System.Text;
 using POS.BL.Entities.Entity;
 using System.Data;
 using System.Data.Common;
+using POS.BL.DTO;
 
 namespace POS.BL.Service.SU
 {
@@ -34,6 +35,30 @@ namespace POS.BL.Service.SU
             param.Add(this.CreateParameter("@Name", Name));
 
             return base.ExecuteQuery(sql.ToString(), param.ToArray());
+        }
+
+        public List<DuplicateItemDTO> IsDuplicationEmployee(Employee employee)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendLine(@" SELECT  'Key' as ColumnName
+                                , CASE WHEN COUNT(*) > 0 THEN 1 
+	                                   ELSE 0
+                                  END AS isDuplicate
+                                FROM    [db_employee]  WITH(NOLOCK)
+                                WHERE  employee_no = @employee_no
+            ");
+
+            //---Edit
+            if (employee.employee_id > 0)
+            {
+                strSql.AppendLine(" AND employee_id <>  employee_id ");
+            }
+
+            List<DbParameter> param = new List<DbParameter>();
+            param.Add(base.CreateParameter("employee_no", employee.employee_no));
+            param.Add(base.CreateParameter("employee_id", employee.employee_id));
+
+            return this.ExecuteQuery<DuplicateItemDTO>(strSql.ToString(), param.ToArray()).ToList();
         }
     }
 }

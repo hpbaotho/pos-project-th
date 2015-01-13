@@ -12,6 +12,7 @@ using POS.BL.Utilities;
 using POS.BL.Entities.Entity;
 using Core.Standards.Converters;
 using Core.Standards.Exceptions;
+using Core.Standards.Validations;
 
 namespace POS.SU.SetupEmployee
 {
@@ -65,7 +66,7 @@ namespace POS.SU.SetupEmployee
                 {
                     listEmp.Add(new Employee() { employee_id = Converts.ParseLong(item[DataKeyName].ToString()) });
                 }
-                ServiceProvider.EmployeeService.Delete(listEmp);
+                ServiceProvider.EmployeeService.Delete(listEmp, new string[] { ValidationRuleset.Delete });
             }
             catch (ValidationException ex)
             {
