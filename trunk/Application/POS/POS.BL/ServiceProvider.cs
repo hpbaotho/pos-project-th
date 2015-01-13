@@ -111,6 +111,46 @@ namespace POS.BL
             }
         }
 
+        private static DocumentLastRunningNumberService documentLastRunningNumberService;
+        public static DocumentLastRunningNumberService DocumentLastRunningNumberService
+        {
+            get
+            {
+                if (documentLastRunningNumberService == null)
+                {
+                    documentLastRunningNumberService = new DocumentLastRunningNumberService();
+                }
+                return documentLastRunningNumberService;
+            }
+        }
+
+            private static DocumentNumberFormatService documentNumberFormatService;
+            public static DocumentNumberFormatService DocumentNumberFormatService
+            {
+                get
+                {
+                    if (documentNumberFormatService == null)
+                    {
+                        documentNumberFormatService = new DocumentNumberFormatService();
+                    }
+                    return documentNumberFormatService;
+                }
+            }
+
+            private static DocumentTypeService documentTypeService;
+            public static DocumentTypeService DocumentTypeService
+            {
+                get
+                {
+                    if (documentTypeService == null)
+                    {
+                        documentTypeService = new DocumentTypeService();
+                    }
+                    return documentTypeService;
+                }
+            }
+
+
         private static TranDetailService tranDetailService;
         public static TranDetailService TranDetailService
         {
