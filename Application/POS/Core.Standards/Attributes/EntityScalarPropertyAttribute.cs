@@ -37,6 +37,9 @@ namespace Core.Standards.Attributes
         public string ReplaceNullBy { get; set; }
         public string ExpressionSQL { get; set; }
 
+        public bool ComboBoxDisplay { get; set; }
+        public bool ComboBoxValue { get; set; }
+
         /*======= Property UpdateBy,UpdateDate */
         public bool ObjIsUpdateBy { get; set; }
         public bool ObjIsUpdateDate { get; set; }
