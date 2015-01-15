@@ -41,6 +41,7 @@ namespace POS.BL.Utilities
         public const string NoSelectedDataAdd = "Please select data to add";
         public const string NoSelectedDataGenerate = "Please select data to generate";
         public const string SaveComplete = "Save data completed";
+        public const string SaveIncomplete = "Save data incompleted";
         public const string DeleteComplete = "Delete data completed";
         public const string GenerateComplete = "Generate data completed";
         public const string CannotSaveNotChange = "Cannot Save , Please change data before.";
@@ -59,6 +60,9 @@ namespace POS.BL.Utilities
         public const string ConfirmUpdateChanged = "The data has been changed, do you want to replace?";
         public const string ConfirmSaveDate = "Do you want to Save the data?";
 
+        //------------ Other Message
+        public const string PleaseSelect = "--Please Select--";
+        public const string AutoRunningDocumentNo = "Auto";
     }
     public struct Format
     {
@@ -84,8 +88,7 @@ namespace POS.BL.Utilities
         public const string DateFormat = "d-MMM-yyyy";
         public const string DateFormatShowEmail = "{0:dd-Mon-yyyy }";
         public const string DateTimeFormat = "d-MMM-yyyy HH:mm:ss";
-        public const string TimeFormat = "HH:mm:ss";
-
+        public const string TimeFormat = "HH:mm:ss";        
     }
     public struct ErrorMessage
     {
@@ -165,7 +168,18 @@ namespace POS.BL.Utilities
 
     #endregion
 
-
+    public struct DocumentTypeCode
+    {
+        public struct IN
+        {
+            public const string ReceiveMaterial = "RM";
+            public const string ReceiveOrder = "RO";
+            public const string IssueMaterial = "IM";
+            public const string SoldMaterial = "SM";
+            public const string CancelSold = "CS";
+            public const string StockCount = "SC";
+        }
+    }
 }
 public enum ObjectState
 {

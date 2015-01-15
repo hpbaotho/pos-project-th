@@ -12,6 +12,9 @@ namespace POS.Control
 {
     public partial class BaseAddEditMaster : BaseUserControl
     {
+        protected ObjectState FormMode { get; set; }
+        protected string FormKeyCode { get; set; }
+
         public delegate void SaveHandler();
         public event SaveHandler saveHandler;
         public delegate void ResetHandler();
@@ -71,8 +74,8 @@ namespace POS.Control
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        protected bool btnSaveEnable { get { return btnSave.Enabled; } set { btnSave.Enabled = value; } }
-        protected bool btnResetEnable { get { return btnReset.Enabled; } set { btnReset.Enabled = value; } }
-        protected bool btnBackEnable { get { return btnBack.Enabled; } set { btnBack.Enabled = value; } }
+        public bool btnSaveEnable { get { return btnSave.Enabled; } set { btnSave.Enabled = value; } }
+        public bool btnResetEnable { get { return btnReset.Enabled; } set { btnReset.Enabled = value; } }
+        public bool btnBackEnable { get { return btnBack.Enabled; } set { btnBack.Enabled = value; } }
     }
 }

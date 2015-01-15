@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -64,12 +65,13 @@
     <Compile Include="DTO\SO\OrderDTO.cs" />
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
     <Compile Include="Entities\EntitiyBase.cs" />
+    <Compile Include="Entities\Entity\PhyLot.cs" />
+    <Compile Include="Entities\IEntityMasterBase.cs" />
     <Compile Include="Entities\Entity\DiningType.cs" />
     <Compile Include="Entities\Entity\DocumentLastRunningNumber.cs" />
     <Compile Include="Entities\Entity\DocumentNumberFormat.cs" />
     <Compile Include="Entities\Entity\DocumentType.cs" />
     <Compile Include="Entities\Entity\LogLot.cs" />
-    <Compile Include="Entities\Entity\LogLotDetail.cs" />
     <Compile Include="Entities\Entity\Material.cs" />
     <Compile Include="Entities\Entity\MenuCategory.cs" />
     <Compile Include="Entities\Entity\MenuGroup.cs" />
@@ -97,10 +99,10 @@
     <Compile Include="Service\DB\ReasonService.cs" />
     <Compile Include="Service\DB\SupplierService.cs" />
     <Compile Include="Service\DB\WareHouseService.cs" />
-    <Compile Include="Service\IN\LogLotDetailService.cs" />
     <Compile Include="Service\IN\LogLotService.cs" />
     <Compile Include="Service\IN\MaterialService.cs" />
     <Compile Include="Service\IN\PeriodService.cs" />
+    <Compile Include="Service\IN\PhyLotService.cs" />
     <Compile Include="Service\IN\TranDetailService.cs" />
     <Compile Include="Service\IN\TranHeadService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Service\SU\SystemConfigGroupService.cs" />
     <Compile Include="Service\SU\SystemConfigurationService.cs" />
     <Compile Include="Utilities\Enum.cs" />
+    <Compile Include="Utilities\ExtensionMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Standards\Core.Standards.csproj">

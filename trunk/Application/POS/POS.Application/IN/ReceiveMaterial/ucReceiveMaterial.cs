@@ -19,7 +19,7 @@ namespace POS.IN.ReceiveMaterial
     public partial class ucReceiveMaterial : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
-        string DataKeyName = "tran_head_id";
+        string DataKeyName = "ID";
         AddEditReceiveMaterial addEditReceiveMaterial = new AddEditReceiveMaterial();
         string programName = ProgramName.SetupINReceiveMaterial;
         string tabName = "List Receive Material";

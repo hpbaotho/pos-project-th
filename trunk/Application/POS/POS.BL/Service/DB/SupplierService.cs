@@ -8,11 +8,6 @@ namespace POS.BL.Service.DB
 {
    public class SupplierService:ServiceBase<Supplier>
     {
-       public List<Supplier> FindSupplierActive()
-       {
-           string sql = @" SELECT * FROM db_supplier WITH(NOLOCK) WHERE active=1 ";
-           return this.ExecuteQuery<Supplier>(sql).ToList();
 
-       }
     }
 }

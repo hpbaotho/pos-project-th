@@ -10,11 +10,12 @@ namespace POS.BL.Entities.Entity
     [HasSelfValidation]
     [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.Supplier, POS.BL", TableMapping = "db_supplier")]
 
-    public class Supplier : EntityBase
+    public class Supplier : EntityBase, IEntityMasterBase
     {
-         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
+         [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
          public long supplier_id { get; set; }
          public string supplier_code { get; set; }
+         [EntityScalarProperty(ComboBoxDisplay = true)]
          public string supplier_name { get; set; }
          public string supplier_description { get; set; }
          public string supplier_address { get; set; }

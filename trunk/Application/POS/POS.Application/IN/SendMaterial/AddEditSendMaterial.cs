@@ -37,7 +37,7 @@ namespace POS.IN.SendMaterial
         #region :: Private Function ::
         private void AddEditSendMaterial_Load(object sender, EventArgs e)
         {
-            //LoadData();
+            LoadData();
         }
         private void LoadData()
         {
@@ -49,9 +49,9 @@ namespace POS.IN.SendMaterial
                 entity = ServiceProvider.TranHeadService.FindByKeys(entity, true);
 
                 txtReferenceNo.Text = entity.reference_no;
-               
-                
-                ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindWareHouseActive();
+
+
+                //ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
                 ddlWarehouse.ValueMember = "warehouse_id";
                 ddlWarehouse.DisplayMember = "warehouse_id";
 
