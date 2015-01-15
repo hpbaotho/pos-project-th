@@ -26,5 +26,11 @@ namespace POS.BL.Entities.Entity
         public double log_lot { get; set; }
         public string material_pic_path { get; set; }
         public string status { get; set; }
+        public long? material_group_id { get; set; }
+        public double max_stock { get; set; }
+        public double min_stock { get; set; }
+        public double shelf_life { get; set; }
+        public double material_cost { get; set; }
+        public double acceptable_variance { get; set; }
     }
 }

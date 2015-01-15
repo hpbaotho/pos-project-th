@@ -162,7 +162,19 @@ namespace POS.BL
                 return reasonService;
             }
         }
-
+        private static LogLotService logLotService;
+        public static LogLotService LogLotService
+        {
+            get
+            {
+                if (logLotService == null)
+                {
+                    logLotService = new LogLotService();
+                }
+                return logLotService;
+            }
+        }
+        
         private static LogLotDetailService logLotDetailService;
         public static LogLotDetailService LogLotDetailService
         {
