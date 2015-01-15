@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using POS.Control;
 
 namespace POS.SO
 {
@@ -53,7 +54,8 @@ namespace POS.SO
 
         private void btnDriver_Click(object sender, EventArgs e)
         {
-
+            Type formOpenType = base.OpenPopup<SO.PopupDiverControl>() as Type;
+            base.OpernNewScreen(formOpenType);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

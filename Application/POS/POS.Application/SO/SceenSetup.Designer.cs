@@ -41,6 +41,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.btnClose = new POS.Control.BaseButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -260,6 +261,7 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer2.Panel1.Controls.Add(this.btnClose);
             this.splitContainer2.Panel1.Controls.Add(this.label4);
             this.splitContainer2.Panel1.Controls.Add(this.label3);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
@@ -280,6 +282,20 @@
             this.splitContainer2.SplitterDistance = 73;
             this.splitContainer2.TabIndex = 3;
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.CommandArg = null;
+            this.btnClose.DataObject = null;
+            this.btnClose.Location = new System.Drawing.Point(485, 11);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(117, 49);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "Close";
+            this.btnClose.Theme = POS.Control.Theme.MSOffice2010_RED;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -295,7 +311,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 14F);
-            this.label3.Location = new System.Drawing.Point(431, 38);
+            this.label3.Location = new System.Drawing.Point(314, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 22);
             this.label3.TabIndex = 4;
@@ -306,7 +322,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 14F);
-            this.label2.Location = new System.Drawing.Point(434, 12);
+            this.label2.Location = new System.Drawing.Point(317, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 22);
             this.label2.TabIndex = 3;
@@ -316,7 +332,7 @@
             // 
             this.txtHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHeight.Font = new System.Drawing.Font("Arial", 14F);
-            this.txtHeight.Location = new System.Drawing.Point(496, 35);
+            this.txtHeight.Location = new System.Drawing.Point(379, 35);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(100, 29);
             this.txtHeight.TabIndex = 2;
@@ -326,7 +342,7 @@
             // 
             this.txtWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtWidth.Font = new System.Drawing.Font("Arial", 14F);
-            this.txtWidth.Location = new System.Drawing.Point(496, 9);
+            this.txtWidth.Location = new System.Drawing.Point(379, 9);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(100, 29);
             this.txtWidth.TabIndex = 1;
@@ -498,5 +514,6 @@
         private Control.BaseTextBox txtTableName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox ddlScreen;
+        private Control.BaseButton btnClose;
     }
 }

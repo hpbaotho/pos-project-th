@@ -73,6 +73,7 @@ namespace POS.Control
             this.OrignalLocation = location;
             this.CustomProperties = new ControPropertiesDTO(this);
             this.ControlCommand = new CustromControlPropertyDTO();
+            this.BackgroundImageLayout = ImageLayout.Zoom;
         }
         public DragItem CloneTo(DragItem cloneItem)
         {
