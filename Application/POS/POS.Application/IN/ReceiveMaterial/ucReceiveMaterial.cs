@@ -42,7 +42,7 @@ namespace POS.IN.ReceiveMaterial
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
-            grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.FindAllDataSet(false);
+            grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.GetGridTranHead();
             grdBase.DataKeyName = new string[] { DataKeyName };
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
