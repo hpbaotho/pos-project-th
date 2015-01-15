@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Core.Standards.Exceptions;
 
 namespace POS.Control
 {
@@ -29,10 +30,21 @@ namespace POS.Control
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (saveHandler != null)
+            try
             {
-                saveHandler();
-                base.onNotifyReturnEvent(ControlMode.Save);
+                if (saveHandler != null)
+                {
+                    saveHandler();
+                    base.onNotifyReturnEvent(ControlMode.Save);
+                }
+            }
+            catch (ValidationException ex)
+            {
+                formBase.ShowErrorMessage(ex);
+            }
+            catch (Exception ex)
+            {
+                formBase.ShowErrorMessage(ex.Message);
             }
         }
         private void btnReset_Click(object sender, EventArgs e)

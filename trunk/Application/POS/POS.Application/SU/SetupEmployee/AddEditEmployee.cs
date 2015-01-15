@@ -115,7 +115,7 @@ namespace POS.SU.SetupEmployee
             }
             catch (ValidationException ex)
             {
-                formBase.ShowErrorMessage(ex);
+                throw ex;
             }
         }
 
