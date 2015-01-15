@@ -10,10 +10,11 @@ using Core.Standards.Service;
 using Core.Standards.Entity;
 using POS.Control.BaseMessageBox;
 using POS.BL.Utilities;
+using Core.Standards.Exceptions;
 
 namespace POS.Control.GridView
 {
-    public partial class BaseGrid : UserControl
+    public partial class BaseGrid : BaseUserControl
     {
         public DataSet DataSourceDataSet { get; set; }
         public IEnumerable<object> DataSourceTable { get; set; }
@@ -61,7 +62,7 @@ namespace POS.Control.GridView
                 header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);
             }
-          
+
         }
         private void UpdateDataRow(DataGridViewRow rowSelected)
         {
@@ -172,8 +173,20 @@ namespace POS.Control.GridView
 
         private void tsbtnDelete_Click(object sender, EventArgs e)
         {
-            List<DataGridViewRow> SelectedRows = Grid.Rows.Cast<DataGridViewRow>().Where(li => li.Selected && !li.IsNewRow).ToList();
-            DeleteData(SelectedRows);
+            try
+            {
+                List<DataGridViewRow> SelectedRows = Grid.Rows.Cast<DataGridViewRow>().Where(li => li.Selected && !li.IsNewRow).ToList();
+                DeleteData(SelectedRows);
+            }
+            catch (ValidationException ex)
+            {
+                formBase.ShowErrorMessage(ex);
+            }
+            catch (Exception ex)
+            {
+                formBase.ShowErrorMessage(ex.Message);
+            }
+
         }
 
         private void Grid_SelectionChanged(object sender, EventArgs e)
