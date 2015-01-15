@@ -84,7 +84,7 @@ namespace POS.BL
                 return tranHeadService;
             }
         }
-        
+
         private static WareHouseService wareHouseService;
         public static WareHouseService WareHouseService
         {
@@ -99,7 +99,7 @@ namespace POS.BL
         }
 
         private static SupplierService supplierService;
-        public static SupplierService SupplierService 
+        public static SupplierService SupplierService
         {
             get
             {
@@ -124,44 +124,83 @@ namespace POS.BL
             }
         }
 
-            private static DocumentNumberFormatService documentNumberFormatService;
-            public static DocumentNumberFormatService DocumentNumberFormatService
+        private static DocumentNumberFormatService documentNumberFormatService;
+        public static DocumentNumberFormatService DocumentNumberFormatService
+        {
+            get
             {
-                get
+                if (documentNumberFormatService == null)
                 {
-                    if (documentNumberFormatService == null)
-                    {
-                        documentNumberFormatService = new DocumentNumberFormatService();
-                    }
-                    return documentNumberFormatService;
+                    documentNumberFormatService = new DocumentNumberFormatService();
                 }
+                return documentNumberFormatService;
             }
+        }
 
-            private static DocumentTypeService documentTypeService;
-            public static DocumentTypeService DocumentTypeService
+        private static DocumentTypeService documentTypeService;
+        public static DocumentTypeService DocumentTypeService
+        {
+            get
             {
-                get
+                if (documentTypeService == null)
                 {
-                    if (documentTypeService == null)
-                    {
-                        documentTypeService = new DocumentTypeService();
-                    }
-                    return documentTypeService;
+                    documentTypeService = new DocumentTypeService();
                 }
+                return documentTypeService;
             }
+        }
 
-            private static ReasonService reasonService;
-            public static ReasonService ReasonService
+        private static ReasonService reasonService;
+        public static ReasonService ReasonService
+        {
+            get
             {
-                get
+                if (reasonService == null)
                 {
-                    if (reasonService == null)
-                    {
-                        reasonService = new ReasonService();
-                    }
-                    return reasonService;
+                    reasonService = new ReasonService();
                 }
+                return reasonService;
             }
+        }
+
+        private static LogLotDetailService logLotDetailService;
+        public static LogLotDetailService LogLotDetailService
+        {
+            get
+            {
+                if (logLotDetailService == null)
+                {
+                    logLotDetailService = new LogLotDetailService();
+                }
+                return logLotDetailService;
+            }
+        }
+
+        private static MaterialService materialService;
+        public static MaterialService MaterialService
+        {
+            get
+            {
+                if (materialService == null)
+                {
+                    materialService = new MaterialService();
+                }
+                return materialService;
+            }
+        }
+
+        private static PeriodService periodService;
+        public static PeriodService PeriodService
+        {
+            get
+            {
+                if (periodService == null)
+                {
+                    periodService = new PeriodService();
+                }
+                return periodService;
+            }
+        }
 
 
         private static TranDetailService tranDetailService;
