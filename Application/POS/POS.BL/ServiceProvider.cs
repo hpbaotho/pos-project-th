@@ -201,6 +201,20 @@ namespace POS.BL
             }
         }
 
+
+        private static PhyLotService phyLotService;
+        public static PhyLotService PhyLotService
+        {
+            get
+            {
+                if (phyLotService == null)
+                {
+                    phyLotService = new PhyLotService();
+                }
+                return phyLotService;
+            }
+        }
+
         private static PeriodService periodService;
         public static PeriodService PeriodService
         {
