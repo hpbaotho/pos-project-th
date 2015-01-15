@@ -42,7 +42,7 @@ namespace POS.SO
         {
             Control.DragItem d = sender as Control.DragItem;
             spComtrolCommand.Panel2.Enabled = false;
-           
+
             ddlControlType.SelectedIndex = -1;
             ddlControlType.Enabled = false;
             ddlScreen.SelectedIndex = -1;
@@ -50,9 +50,10 @@ namespace POS.SO
             txtTableName.Text = string.Empty;
             txtTableName.Enabled = false;
 
-        
+
             if (d != null)
             {
+                ddlControlType.Enabled = true;
                 spComtrolCommand.Panel2.Enabled = true;
                 propertyGrid1.SelectedObject = d.CustomProperties;
                 ddlControlType.SelectedIndex = ddlControlType.FindString(d.ControlCommand.control_type);
@@ -61,10 +62,11 @@ namespace POS.SO
                     txtTableName.Text = d.ControlCommand.TableName;
                     txtTableName.Enabled = true;
                 }
-                else { 
-                
+                else
+                {
+
                 }
-               
+
                 ddlScreen.SelectedIndex = ddlScreen.FindString(d.ControlCommand.NextScreen);
             }
             else
@@ -89,6 +91,8 @@ namespace POS.SO
             Control.DragItem d = new Control.DragItem(new Point(0, 0));
             d.ControlCommand.ControlState = ObjectState.Add;
             d.ControlCommand.control_type = ControlType.Button;
+            d.CustomProperties.Top = 0;
+            d.CustomProperties.Left = 0;
             d.Width = 60;
             d.Height = 60;
             dragContainer2.AddDragControl(d);
@@ -350,6 +354,11 @@ namespace POS.SO
                 dragProprty.NextScreen = screenCode;
                 dragContainer2.setCurentSelectDragItemProprty(dragProprty);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 

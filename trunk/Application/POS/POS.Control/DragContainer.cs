@@ -18,7 +18,7 @@ namespace POS.Control
         public event SelectDragItemHandler SelectDragEvent;
 
         public CustromControlPropertyDTO ControlCommand;
-       // public CustromControlPropertyDTO ControlCommand { get { return _ControlCommand; } set { _ControlCommand = value; } }
+        // public CustromControlPropertyDTO ControlCommand { get { return _ControlCommand; } set { _ControlCommand = value; } }
 
         private bool isContainsDragItem;
         private Pen gridPen = new Pen(Color.LightGray);
@@ -76,7 +76,10 @@ namespace POS.Control
         }
         public void AddDragControl(DragItem control)
         {
-            control = this.CheckIsContainOtherObj(control);
+
+            if (control.CustomProperties.Top + control.CustomProperties.Left == 0)
+                control = this.CheckIsContainOtherObj(control);
+
             if (control != null)
             {
                 string controlName = string.Format("{0}_DragItem_{1}", this.Name, this.DragItem.Count());
@@ -297,7 +300,7 @@ namespace POS.Control
                     }
                     #endregion
 
-                    if (!isContains && this.Width >= control.CustomProperties.Left + control.Width-1 && this.Height >= control.CustomProperties.Top + control.Height-1)
+                    if (!isContains && this.Width >= control.CustomProperties.Left + control.Width - 1 && this.Height >= control.CustomProperties.Top + control.Height - 1)
                     {
                         isCanPast = true;
                         break;

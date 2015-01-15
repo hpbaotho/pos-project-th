@@ -53,6 +53,7 @@ namespace POS.SU
             {
                 listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Inventory).Select(item => item.MenuName).ToList();
             }
+            
 
             listMenu.ClearSelected();
            // toolStripGridview.Visible = false;

@@ -87,6 +87,9 @@ namespace POS.Control
         #region :: Custom Function ::
 
         // Public function
+        public object OpenPopup<T>() where T : FormBase {
+            return OpenPopup<T>(null);
+        }
         public object OpenPopup<T>(object popupCriteria) where T : FormBase
         {
             object popupresult = null;
@@ -131,6 +134,25 @@ namespace POS.Control
         {
 
             Type type = typeof(T);
+            using (FormBase form = (FormBase)Activator.CreateInstance(type))
+            {
+                this.Hide();
+                DialogResult result = form.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.Cancel || result == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.Show();
+                    this.Focus();
+                    this.Activate();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+
+            }
+        }
+        public void OpernNewScreen(Type type)
+        {
             using (FormBase form = (FormBase)Activator.CreateInstance(type))
             {
                 this.Hide();
@@ -195,7 +217,7 @@ namespace POS.Control
 
                 foreach (ScreenConfig item in dragItem)
                 {
-
+                    
                     switch (item.control_type)
                     {
                         case ControlType.Button:
@@ -221,6 +243,11 @@ namespace POS.Control
                             break;
                         case ControlType.Table:
                             Button btnTable = new Button();
+                            if (!string.IsNullOrEmpty(item.background_image_path))
+                            {
+                                btnTable.BackgroundImage = Image.FromFile(item.background_image_path);
+                                btnTable.BackgroundImageLayout = ImageLayout.Zoom;
+                            }
                             btnTable.Location = new System.Drawing.Point(0, 0);
                             btnTable.Left = item.position_left;
                             btnTable.Top = item.position_top;
