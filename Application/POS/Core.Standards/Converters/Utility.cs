@@ -273,6 +273,22 @@ namespace Core.Standards.Converters
         }
 
         /// <summary>
+        /// This function for convert number string to long type.
+        /// </summary>
+        /// <param name="strNumber">Input string number</param>
+        /// <returns></returns>
+        public static long ToLong(this object longValue)
+        {
+            if (longValue == DBNull.Value) return 0;
+            if (longValue == null) return 0;
+
+            long returnLong;
+            long.TryParse(longValue.ToString(), out returnLong);
+
+            return returnLong;
+        }
+
+        /// <summary>
         /// This function for set format to number string.
         /// </summary>
         /// <param name="strNumber">Number string to set format</param>
@@ -437,6 +453,13 @@ namespace Core.Standards.Converters
             return result;
         }
 
+        public static string ToStringNullable(this object stringValue)
+        {
+            if (stringValue == DBNull.Value) return string.Empty;
+            if (stringValue == null) return string.Empty;
+
+            return stringValue.ToString();
+        }
 
         #region Converting ObjectArray to Datatable
         public static DataTable ConvertToDataTable(Object[] array)

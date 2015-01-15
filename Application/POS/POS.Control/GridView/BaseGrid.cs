@@ -19,6 +19,8 @@ namespace POS.Control.GridView
         public DataSet DataSourceDataSet { get; set; }
         public IEnumerable<object> DataSourceTable { get; set; }
         public string[] DataKeyName { get; set; }
+        public object[] DataKeyValue { get; set; }
+        public ObjectState FormMode { get; set; }
         //public DatabaseService<EntityBase> EntityService { get; set; }
         public BaseGrid()
         {
@@ -228,6 +230,10 @@ namespace POS.Control.GridView
         {
             this.LoadData();
         }
+
+        public bool btnAddEnable { get { return btnAdd.Enabled; } set { btnAdd.Enabled = value; } }
+        public bool btnDeleteEnable { get { return btnDelete.Enabled; } set { btnDelete.Enabled = value; } }
+        public bool btnSearchEnable { get { return btnSearch.Enabled; } set { btnSearch.Enabled = value; } }
     }
     public class DataBindArgs : EventArgs
     {

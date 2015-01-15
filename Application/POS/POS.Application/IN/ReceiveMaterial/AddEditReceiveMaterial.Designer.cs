@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditReceiveMaterial));
             this.ddlReason = new System.Windows.Forms.ComboBox();
             this.lblReferenceNo = new System.Windows.Forms.Label();
             this.lblReason = new System.Windows.Forms.Label();
@@ -46,12 +47,18 @@
             this.ddlWarehouse = new System.Windows.Forms.ComboBox();
             this.txtOther = new POS.Control.BaseTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLoadPortFolio = new POS.Control.BaseButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.baseGrid1 = new POS.Control.GridView.BaseGrid();
+            this.baseAddEditMasterDetail = new POS.Control.BaseAddEditMaster();
+            this.pictureBoxMaterial = new System.Windows.Forms.PictureBox();
+            this.baseGridDetail = new POS.Control.GridView.BaseGrid();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.ddlMaterial = new System.Windows.Forms.ComboBox();
             this.ddlWarehouseDetails = new System.Windows.Forms.ComboBox();
             this.txtLotNo = new POS.Control.BaseTextBox();
@@ -62,20 +69,16 @@
             this.lblWarehouse = new System.Windows.Forms.Label();
             this.txtRemarkDetails = new System.Windows.Forms.TextBox();
             this.lblRemarkDetails = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnLoadPortFolio = new POS.Control.BaseButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaterial)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlReason
             // 
+            this.ddlReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlReason.FormattingEnabled = true;
-            this.ddlReason.Location = new System.Drawing.Point(121, 43);
+            this.ddlReason.Location = new System.Drawing.Point(121, 48);
             this.ddlReason.Name = "ddlReason";
             this.ddlReason.Size = new System.Drawing.Size(481, 21);
             this.ddlReason.TabIndex = 1;
@@ -84,7 +87,7 @@
             // 
             this.lblReferenceNo.AutoSize = true;
             this.lblReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReferenceNo.Location = new System.Drawing.Point(16, 16);
+            this.lblReferenceNo.Location = new System.Drawing.Point(12, 21);
             this.lblReferenceNo.Name = "lblReferenceNo";
             this.lblReferenceNo.Size = new System.Drawing.Size(98, 13);
             this.lblReferenceNo.TabIndex = 1;
@@ -94,7 +97,7 @@
             // 
             this.lblReason.AutoSize = true;
             this.lblReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReason.Location = new System.Drawing.Point(52, 43);
+            this.lblReason.Location = new System.Drawing.Point(52, 48);
             this.lblReason.Name = "lblReason";
             this.lblReason.Size = new System.Drawing.Size(58, 13);
             this.lblReason.TabIndex = 2;
@@ -104,7 +107,7 @@
             // 
             this.lblSource.AutoSize = true;
             this.lblSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblSource.Location = new System.Drawing.Point(55, 70);
+            this.lblSource.Location = new System.Drawing.Point(55, 75);
             this.lblSource.Name = "lblSource";
             this.lblSource.Size = new System.Drawing.Size(55, 13);
             this.lblSource.TabIndex = 3;
@@ -113,7 +116,9 @@
             // txtReferenceNo
             // 
             this.txtReferenceNo.Description = "";
-            this.txtReferenceNo.Location = new System.Drawing.Point(121, 16);
+            this.txtReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtReferenceNo.Location = new System.Drawing.Point(121, 21);
+            this.txtReferenceNo.MaxLength = 100;
             this.txtReferenceNo.Name = "txtReferenceNo";
             this.txtReferenceNo.Size = new System.Drawing.Size(481, 20);
             this.txtReferenceNo.TabIndex = 0;
@@ -122,39 +127,45 @@
             // 
             this.rdoSupplier.AutoSize = true;
             this.rdoSupplier.Checked = true;
-            this.rdoSupplier.Location = new System.Drawing.Point(121, 70);
+            this.rdoSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.rdoSupplier.Location = new System.Drawing.Point(121, 75);
             this.rdoSupplier.Name = "rdoSupplier";
             this.rdoSupplier.Size = new System.Drawing.Size(63, 17);
             this.rdoSupplier.TabIndex = 2;
             this.rdoSupplier.TabStop = true;
             this.rdoSupplier.Text = "Supplier";
             this.rdoSupplier.UseVisualStyleBackColor = true;
+            this.rdoSupplier.CheckedChanged += new System.EventHandler(this.rdoSupplier_CheckedChanged);
             // 
             // rdoWarehouse
             // 
             this.rdoWarehouse.AutoSize = true;
-            this.rdoWarehouse.Location = new System.Drawing.Point(121, 93);
+            this.rdoWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.rdoWarehouse.Location = new System.Drawing.Point(121, 98);
             this.rdoWarehouse.Name = "rdoWarehouse";
             this.rdoWarehouse.Size = new System.Drawing.Size(80, 17);
             this.rdoWarehouse.TabIndex = 4;
             this.rdoWarehouse.Text = "Warehouse";
             this.rdoWarehouse.UseVisualStyleBackColor = true;
+            this.rdoWarehouse.CheckedChanged += new System.EventHandler(this.rdoWarehouse_CheckedChanged);
             // 
             // rdoOther
             // 
             this.rdoOther.AutoSize = true;
-            this.rdoOther.Location = new System.Drawing.Point(121, 116);
+            this.rdoOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.rdoOther.Location = new System.Drawing.Point(121, 121);
             this.rdoOther.Name = "rdoOther";
             this.rdoOther.Size = new System.Drawing.Size(51, 17);
             this.rdoOther.TabIndex = 6;
             this.rdoOther.Text = "Other";
             this.rdoOther.UseVisualStyleBackColor = true;
+            this.rdoOther.CheckedChanged += new System.EventHandler(this.rdoOther_CheckedChanged);
             // 
             // lblRemark
             // 
             this.lblRemark.AutoSize = true;
             this.lblRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblRemark.Location = new System.Drawing.Point(52, 142);
+            this.lblRemark.Location = new System.Drawing.Point(52, 147);
             this.lblRemark.Name = "lblRemark";
             this.lblRemark.Size = new System.Drawing.Size(58, 13);
             this.lblRemark.TabIndex = 18;
@@ -164,7 +175,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label6.Location = new System.Drawing.Point(690, 16);
+            this.label6.Location = new System.Drawing.Point(686, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 13);
             this.label6.TabIndex = 20;
@@ -174,7 +185,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label7.Location = new System.Drawing.Point(679, 43);
+            this.label7.Location = new System.Drawing.Point(679, 48);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 13);
             this.label7.TabIndex = 21;
@@ -183,16 +194,18 @@
             // lblDocumentNo
             // 
             this.lblDocumentNo.AutoSize = true;
-            this.lblDocumentNo.Location = new System.Drawing.Point(788, 16);
+            this.lblDocumentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblDocumentNo.Location = new System.Drawing.Point(788, 21);
             this.lblDocumentNo.Name = "lblDocumentNo";
             this.lblDocumentNo.Size = new System.Drawing.Size(29, 13);
             this.lblDocumentNo.TabIndex = 23;
-            this.lblDocumentNo.Text = "Auto";
+            this.lblDocumentNo.Text = "label";
             // 
             // lblDocumentDate
             // 
             this.lblDocumentDate.AutoSize = true;
-            this.lblDocumentDate.Location = new System.Drawing.Point(788, 43);
+            this.lblDocumentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblDocumentDate.Location = new System.Drawing.Point(788, 48);
             this.lblDocumentDate.Name = "lblDocumentDate";
             this.lblDocumentDate.Size = new System.Drawing.Size(41, 13);
             this.lblDocumentDate.TabIndex = 24;
@@ -200,24 +213,30 @@
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(121, 142);
+            this.txtRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtRemark.Location = new System.Drawing.Point(121, 147);
+            this.txtRemark.MaxLength = 1000;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(705, 43);
+            this.txtRemark.Size = new System.Drawing.Size(665, 43);
             this.txtRemark.TabIndex = 8;
             // 
             // ddlSupplier
             // 
+            this.ddlSupplier.Enabled = false;
+            this.ddlSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlSupplier.FormattingEnabled = true;
-            this.ddlSupplier.Location = new System.Drawing.Point(224, 67);
+            this.ddlSupplier.Location = new System.Drawing.Point(224, 72);
             this.ddlSupplier.Name = "ddlSupplier";
             this.ddlSupplier.Size = new System.Drawing.Size(378, 21);
             this.ddlSupplier.TabIndex = 25;
             // 
             // ddlWarehouse
             // 
+            this.ddlWarehouse.Enabled = false;
+            this.ddlWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouse.FormattingEnabled = true;
-            this.ddlWarehouse.Location = new System.Drawing.Point(224, 92);
+            this.ddlWarehouse.Location = new System.Drawing.Point(224, 97);
             this.ddlWarehouse.Name = "ddlWarehouse";
             this.ddlWarehouse.Size = new System.Drawing.Size(378, 21);
             this.ddlWarehouse.TabIndex = 26;
@@ -225,7 +244,10 @@
             // txtOther
             // 
             this.txtOther.Description = "";
-            this.txtOther.Location = new System.Drawing.Point(224, 116);
+            this.txtOther.Enabled = false;
+            this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtOther.Location = new System.Drawing.Point(224, 121);
+            this.txtOther.MaxLength = 1000;
             this.txtOther.Name = "txtOther";
             this.txtOther.Size = new System.Drawing.Size(378, 20);
             this.txtOther.TabIndex = 27;
@@ -253,6 +275,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.rdoOther);
             this.groupBox1.Controls.Add(this.lblRemark);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox1.Location = new System.Drawing.Point(1, 56);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1020, 242);
@@ -260,13 +283,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Head";
             // 
+            // btnLoadPortFolio
+            // 
+            this.btnLoadPortFolio.CommandArg = null;
+            this.btnLoadPortFolio.DataObject = null;
+            this.btnLoadPortFolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnLoadPortFolio.Location = new System.Drawing.Point(374, 200);
+            this.btnLoadPortFolio.Name = "btnLoadPortFolio";
+            this.btnLoadPortFolio.Size = new System.Drawing.Size(174, 23);
+            this.btnLoadPortFolio.TabIndex = 33;
+            this.btnLoadPortFolio.Text = "Load Portfolio";
+            this.btnLoadPortFolio.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnLoadPortFolio.UseVisualStyleBackColor = true;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(608, 69);
+            this.label3.Location = new System.Drawing.Point(608, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(11, 13);
+            this.label3.Size = new System.Drawing.Size(12, 13);
             this.label3.TabIndex = 30;
             this.label3.Text = "*";
             // 
@@ -274,9 +310,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(608, 46);
+            this.label2.Location = new System.Drawing.Point(608, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(11, 13);
+            this.label2.Size = new System.Drawing.Size(12, 13);
             this.label2.TabIndex = 30;
             this.label2.Text = "*";
             // 
@@ -284,16 +320,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(608, 19);
+            this.label1.Location = new System.Drawing.Point(608, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(11, 13);
+            this.label1.Size = new System.Drawing.Size(12, 13);
             this.label1.TabIndex = 30;
             this.label1.Text = "*";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Controls.Add(this.baseGrid1);
+            this.groupBox2.Controls.Add(this.baseAddEditMasterDetail);
+            this.groupBox2.Controls.Add(this.pictureBoxMaterial);
+            this.groupBox2.Controls.Add(this.baseGridDetail);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
@@ -308,51 +345,120 @@
             this.groupBox2.Controls.Add(this.lblWarehouse);
             this.groupBox2.Controls.Add(this.txtRemarkDetails);
             this.groupBox2.Controls.Add(this.lblRemarkDetails);
-            this.groupBox2.Location = new System.Drawing.Point(4, 304);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.groupBox2.Location = new System.Drawing.Point(1, 304);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1020, 600);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
             // 
-            // pictureBox1
+            // baseAddEditMasterDetail
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(693, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 96);
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
+            this.baseAddEditMasterDetail.BackColor = System.Drawing.Color.Transparent;
+            this.baseAddEditMasterDetail.btnBackEnable = true;
+            this.baseAddEditMasterDetail.btnResetEnable = true;
+            this.baseAddEditMasterDetail.btnSaveEnable = true;
+            this.baseAddEditMasterDetail.Location = new System.Drawing.Point(6, 14);
+            this.baseAddEditMasterDetail.Name = "baseAddEditMasterDetail";
+            this.baseAddEditMasterDetail.Size = new System.Drawing.Size(166, 51);
+            this.baseAddEditMasterDetail.TabIndex = 33;
+            this.baseAddEditMasterDetail.saveHandler += new POS.Control.BaseAddEditMaster.SaveHandler(this.baseAddEditMasterDetail_saveHandler);
+            this.baseAddEditMasterDetail.resetHandler += new POS.Control.BaseAddEditMaster.ResetHandler(this.baseAddEditMasterDetail_resetHandler);
+            this.baseAddEditMasterDetail.backHandler += new POS.Control.BaseAddEditMaster.BackHandler(this.baseAddEditMasterDetail_backHandler);
             // 
-            // baseGrid1
+            // pictureBoxMaterial
             // 
-            this.baseGrid1.DataKeyName = null;
-            this.baseGrid1.DataSourceDataSet = null;
-            this.baseGrid1.DataSourceTable = null;
-            this.baseGrid1.Location = new System.Drawing.Point(19, 222);
-            this.baseGrid1.Name = "baseGrid1";
-            this.baseGrid1.Size = new System.Drawing.Size(976, 218);
-            this.baseGrid1.TabIndex = 25;
+            this.pictureBoxMaterial.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxMaterial.ErrorImage")));
+            this.pictureBoxMaterial.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMaterial.Image")));
+            this.pictureBoxMaterial.Location = new System.Drawing.Point(632, 17);
+            this.pictureBoxMaterial.Name = "pictureBoxMaterial";
+            this.pictureBoxMaterial.Size = new System.Drawing.Size(150, 150);
+            this.pictureBoxMaterial.TabIndex = 26;
+            this.pictureBoxMaterial.TabStop = false;
+            // 
+            // baseGridDetail
+            // 
+            this.baseGridDetail.btnAddEnable = true;
+            this.baseGridDetail.btnDeleteEnable = true;
+            this.baseGridDetail.btnSearchEnable = true;
+            this.baseGridDetail.DataKeyName = null;
+            this.baseGridDetail.DataKeyValue = null;
+            this.baseGridDetail.DataSourceDataSet = null;
+            this.baseGridDetail.DataSourceTable = null;
+            this.baseGridDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.baseGridDetail.FormMode = ObjectState.Nothing;
+            this.baseGridDetail.Location = new System.Drawing.Point(19, 222);
+            this.baseGridDetail.Name = "baseGridDetail";
+            this.baseGridDetail.Size = new System.Drawing.Size(976, 218);
+            this.baseGridDetail.TabIndex = 25;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(608, 154);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(12, 13);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "*";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(608, 128);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(12, 13);
+            this.label13.TabIndex = 30;
+            this.label13.Text = "*";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(608, 97);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(12, 13);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "*";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(608, 70);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(12, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "*";
             // 
             // ddlMaterial
             // 
+            this.ddlMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlMaterial.FormattingEnabled = true;
-            this.ddlMaterial.Location = new System.Drawing.Point(121, 120);
+            this.ddlMaterial.Location = new System.Drawing.Point(121, 67);
             this.ddlMaterial.Name = "ddlMaterial";
             this.ddlMaterial.Size = new System.Drawing.Size(481, 21);
             this.ddlMaterial.TabIndex = 24;
+            this.ddlMaterial.SelectedIndexChanged += new System.EventHandler(this.ddlMaterial_SelectedIndexChanged);
             // 
             // ddlWarehouseDetails
             // 
+            this.ddlWarehouseDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouseDetails.FormattingEnabled = true;
-            this.ddlWarehouseDetails.Location = new System.Drawing.Point(121, 67);
+            this.ddlWarehouseDetails.Location = new System.Drawing.Point(121, 91);
             this.ddlWarehouseDetails.Name = "ddlWarehouseDetails";
             this.ddlWarehouseDetails.Size = new System.Drawing.Size(481, 21);
             this.ddlWarehouseDetails.TabIndex = 23;
+            this.ddlWarehouseDetails.SelectedIndexChanged += new System.EventHandler(this.ddlWarehouseDetails_SelectedIndexChanged);
             // 
             // txtLotNo
             // 
             this.txtLotNo.Description = "";
-            this.txtLotNo.Location = new System.Drawing.Point(121, 94);
+            this.txtLotNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtLotNo.Location = new System.Drawing.Point(121, 118);
+            this.txtLotNo.MaxLength = 20;
             this.txtLotNo.Name = "txtLotNo";
             this.txtLotNo.Size = new System.Drawing.Size(481, 20);
             this.txtLotNo.TabIndex = 21;
@@ -360,7 +466,9 @@
             // txtQuantity
             // 
             this.txtQuantity.Description = "";
+            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtQuantity.Location = new System.Drawing.Point(121, 147);
+            this.txtQuantity.MaxLength = 20;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(481, 20);
             this.txtQuantity.TabIndex = 19;
@@ -379,7 +487,7 @@
             // 
             this.lblMaterial.AutoSize = true;
             this.lblMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblMaterial.Location = new System.Drawing.Point(54, 123);
+            this.lblMaterial.Location = new System.Drawing.Point(54, 70);
             this.lblMaterial.Name = "lblMaterial";
             this.lblMaterial.Size = new System.Drawing.Size(60, 13);
             this.lblMaterial.TabIndex = 2;
@@ -389,7 +497,7 @@
             // 
             this.lblLotNo.AutoSize = true;
             this.lblLotNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblLotNo.Location = new System.Drawing.Point(57, 97);
+            this.lblLotNo.Location = new System.Drawing.Point(57, 121);
             this.lblLotNo.Name = "lblLotNo";
             this.lblLotNo.Size = new System.Drawing.Size(57, 13);
             this.lblLotNo.TabIndex = 1;
@@ -399,7 +507,7 @@
             // 
             this.lblWarehouse.AutoSize = true;
             this.lblWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblWarehouse.Location = new System.Drawing.Point(35, 73);
+            this.lblWarehouse.Location = new System.Drawing.Point(35, 97);
             this.lblWarehouse.Name = "lblWarehouse";
             this.lblWarehouse.Size = new System.Drawing.Size(79, 13);
             this.lblWarehouse.TabIndex = 0;
@@ -407,10 +515,12 @@
             // 
             // txtRemarkDetails
             // 
+            this.txtRemarkDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtRemarkDetails.Location = new System.Drawing.Point(121, 176);
+            this.txtRemarkDetails.MaxLength = 1000;
             this.txtRemarkDetails.Multiline = true;
             this.txtRemarkDetails.Name = "txtRemarkDetails";
-            this.txtRemarkDetails.Size = new System.Drawing.Size(705, 43);
+            this.txtRemarkDetails.Size = new System.Drawing.Size(662, 43);
             this.txtRemarkDetails.TabIndex = 8;
             // 
             // lblRemarkDetails
@@ -423,58 +533,6 @@
             this.lblRemarkDetails.TabIndex = 18;
             this.lblRemarkDetails.Text = "Remark :";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(608, 70);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(11, 13);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "*";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(608, 97);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(11, 13);
-            this.label12.TabIndex = 30;
-            this.label12.Text = "*";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(608, 128);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(11, 13);
-            this.label13.TabIndex = 30;
-            this.label13.Text = "*";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(608, 154);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(11, 13);
-            this.label14.TabIndex = 30;
-            this.label14.Text = "*";
-            // 
-            // btnLoadPortFolio
-            // 
-            this.btnLoadPortFolio.CommandArg = null;
-            this.btnLoadPortFolio.DataObject = null;
-            this.btnLoadPortFolio.Location = new System.Drawing.Point(374, 200);
-            this.btnLoadPortFolio.Name = "btnLoadPortFolio";
-            this.btnLoadPortFolio.Size = new System.Drawing.Size(174, 23);
-            this.btnLoadPortFolio.TabIndex = 33;
-            this.btnLoadPortFolio.Text = "Load   PortFolio";
-            this.btnLoadPortFolio.Theme = POS.Control.Theme.MSOffice2010_WHITE;
-            this.btnLoadPortFolio.UseVisualStyleBackColor = true;
-            // 
             // AddEditReceiveMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,13 +541,16 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "AddEditReceiveMaterial";
             this.Size = new System.Drawing.Size(1024, 617);
+            this.saveHandler += new POS.Control.BaseAddEditMaster.SaveHandler(this.AddEditReceiveMaterial_saveHandler);
+            this.resetHandler += new POS.Control.BaseAddEditMaster.ResetHandler(this.AddEditReceiveMaterial_resetHandler);
+            this.Load += new System.EventHandler(this.AddEditReceiveMaterial_Load);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaterial)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -518,8 +579,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private Control.GridView.BaseGrid baseGrid1;
+        private System.Windows.Forms.PictureBox pictureBoxMaterial;
+        private Control.GridView.BaseGrid baseGridDetail;
         private System.Windows.Forms.ComboBox ddlMaterial;
         private System.Windows.Forms.ComboBox ddlWarehouseDetails;
         private Control.BaseTextBox txtLotNo;
@@ -535,6 +596,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
         private Control.BaseButton btnLoadPortFolio;
+        private Control.BaseAddEditMaster baseAddEditMasterDetail;
 
     }
 }

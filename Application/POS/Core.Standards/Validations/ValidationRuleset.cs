@@ -10,5 +10,7 @@ namespace Core.Standards.Validations
 		public const string Insert = "Insert";
 		public const string Update = "Update";
 		public const string Delete = "Delete";
+
+        public const string ReceiveMaterialInsert = "ReceiveMaterialInsert";
 	}
 }

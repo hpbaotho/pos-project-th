@@ -17,7 +17,7 @@ namespace POS.BL.Entities.Entity
         public long document_last_running_number_id { get; set; }
         public long? document_type_id { get; set; }
         public string document_number_value { get; set; }
-        public string document_last_running_number { get; set; }
+        public long document_last_running_number { get; set; }
 
     }
 }

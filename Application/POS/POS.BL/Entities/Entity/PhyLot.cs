@@ -8,7 +8,7 @@ using Core.Standards.Attributes;
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.DiningType, POS.BL", TableMapping = "[db_dining_type]")]
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.PhyLot, POS.BL", TableMapping = "[in_phy_lot]")]
 
     public class PhyLot : EntityBase
     {

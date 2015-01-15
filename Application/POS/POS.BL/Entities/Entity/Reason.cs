@@ -8,7 +8,7 @@ using Core.Standards.Attributes;
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.WareHouse, POS.BL", TableMapping = "db_warehouse")]
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.Reason, POS.BL", TableMapping = "db_reason")]
     public class Reason:EntityBase
     {
         public long reason_id { get; set; }

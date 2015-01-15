@@ -10,7 +10,7 @@ namespace POS.BL.Entities.Entity
     [HasSelfValidation]
     [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.WareHouse, POS.BL", TableMapping = "db_warehouse")]
 
-    public class WareHouse : EntityBase 
+    public class WareHouse : EntityBase, IEntityMasterBase
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
         public long warehouse_id { get; set; }
@@ -20,8 +20,5 @@ namespace POS.BL.Entities.Entity
         public string warehouse_description { get; set; }
         public long? company_branch_id { get; set; }
         public bool active { get; set; }
-
-
-
     }
 }
