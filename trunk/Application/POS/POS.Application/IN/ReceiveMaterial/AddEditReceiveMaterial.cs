@@ -454,13 +454,10 @@ namespace POS.IN.ReceiveMaterial
         {
             try
             {
-                List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                List<TranDetail> listTranDetail = new List<TranDetail>();
-                foreach (Dictionary<string, object> item in list)
+                foreach(DataGridViewRow row in e.RowsSelected)
                 {
-                    listTranDetail.Add(new TranDetail() { tran_detail_id = Converts.ParseLong(item[DataKeyName].ToString()) });
+                    this.dsTranDetail.Tables[0].Rows.RemoveAt(row.Index);
                 }
-                ServiceProvider.TranDetailService.Delete(listTranDetail);
             }
             catch (ValidationException ex)
             {
