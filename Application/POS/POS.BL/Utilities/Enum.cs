@@ -137,7 +137,7 @@ namespace POS.BL.Utilities
         public const string SystemConfiguration = "SystemConfiguration";
 
         public const string SetupINReceiveMaterial = "Receive Material";
-        public const string SetupINSendMaterial = "Send Material";
+        public const string SetupINIssueMaterial = "Issue Material";
         public const string SetupINCountStock = "Count Stock";
 
     }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.grdBase = new POS.Control.GridView.BaseGrid();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.grdBase = new POS.Control.GridView.BaseGrid();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -45,17 +45,6 @@
             this.tabControl1.Size = new System.Drawing.Size(588, 354);
             this.tabControl1.TabIndex = 0;
             // 
-            // grdBase
-            // 
-            this.grdBase.DataKeyName = null;
-            this.grdBase.DataSourceDataSet = null;
-            this.grdBase.DataSourceTable = null;
-            this.grdBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdBase.Location = new System.Drawing.Point(3, 3);
-            this.grdBase.Name = "grdBase";
-            this.grdBase.Size = new System.Drawing.Size(574, 322);
-            this.grdBase.TabIndex = 0;
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.grdBase);
@@ -66,6 +55,22 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // grdBase
+            // 
+            this.grdBase.btnAddEnable = true;
+            this.grdBase.btnDeleteEnable = true;
+            this.grdBase.btnSearchEnable = true;
+            this.grdBase.DataKeyName = null;
+            this.grdBase.DataKeyValue = null;
+            this.grdBase.DataSourceDataSet = null;
+            this.grdBase.DataSourceTable = null;
+            this.grdBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdBase.FormMode = ObjectState.Nothing;
+            this.grdBase.Location = new System.Drawing.Point(3, 3);
+            this.grdBase.Name = "grdBase";
+            this.grdBase.Size = new System.Drawing.Size(574, 322);
+            this.grdBase.TabIndex = 0;
             // 
             // ucReceiveMaterial
             // 

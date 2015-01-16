@@ -13,8 +13,8 @@ using POS.BL;
 using Core.Standards.Converters;
 using POS.BL.Entities.Entity;
 using POS.IN.ReceiveMaterial;
-using POS.IN.SendMaterial;
 using POS.IN.CountStock;
+using POS.IN.IssueMaterial;
 
 namespace POS.IN
 {
@@ -35,7 +35,7 @@ namespace POS.IN
 
             //---Add list Menu
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveMaterial });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINSendMaterial });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterial });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINCountStock });
 
             listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Setting).Select(item => item.MenuName).ToList();
@@ -53,14 +53,16 @@ namespace POS.IN
             {
                 pnlContent.Controls.Add(new ucReceiveMaterial());
             }
-            else if (selected == ProgramName.SetupINSendMaterial)
+            else if (selected == ProgramName.SetupINIssueMaterial)
             {
-                pnlContent.Controls.Add(new ucSendMaterial());
+                pnlContent.Controls.Add(new ucIssueMaterial());
             }
             else if (selected == ProgramName.SetupINCountStock)
             {
                 pnlContent.Controls.Add(new ucCountStock());
             }
+
         }
+
     }
 }

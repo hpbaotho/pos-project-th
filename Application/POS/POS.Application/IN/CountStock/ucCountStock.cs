@@ -20,8 +20,8 @@ namespace POS.IN.CountStock
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "employee_id";
         AddEditCountStock addEditcountStock= new AddEditCountStock();
-        string programName = ProgramName.SetupINReceiveMaterial;
-        string tabName = "List Receive Material";
+        string programName = ProgramName.SetupINCountStock;
+        string tabName = "List Count Stock";
 
         public ucCountStock()
         {
