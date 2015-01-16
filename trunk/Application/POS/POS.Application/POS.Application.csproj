@@ -121,12 +121,6 @@
     <Compile Include="SO\PopupCondiment.Designer.cs">
       <DependentUpon>PopupCondiment.cs</DependentUpon>
     </Compile>
-    <Compile Include="SO\PopupDiverControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SO\PopupDiverControl.Designer.cs">
-      <DependentUpon>PopupDiverControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="SO\PopUpPerson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,14 +201,16 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <EmbeddedResource Include="SO\OpenOrder.resx">
       <DependentUpon>OpenOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\PopupCondiment.resx">
       <DependentUpon>PopupCondiment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SO\PopupDiverControl.resx">
-      <DependentUpon>PopupDiverControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\PopUpPerson.resx">
       <DependentUpon>PopUpPerson.cs</DependentUpon>
