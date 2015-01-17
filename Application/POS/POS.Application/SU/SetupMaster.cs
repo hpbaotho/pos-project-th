@@ -32,10 +32,14 @@ namespace POS.SU
             tableLayoutPanel1.SetColumnSpan(toolStrip, 3);
 
             //---Add list Menu
+            //---Setting
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupEmployee });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupRole });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.AssignEmployeeRole });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SystemConfiguration });
+
+            //---SO
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.SO, MenuName = ProgramName.SetupBillOfMaterial });
 
             btnManage_Click(btnSetting, null);
             btnSetting.Focus();
@@ -53,7 +57,10 @@ namespace POS.SU
             {
                 listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Inventory).Select(item => item.MenuName).ToList();
             }
-            
+            else if (btn.Name == "btnSO")
+            {
+                listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.SO).Select(item => item.MenuName).ToList();
+            }
 
             listMenu.ClearSelected();
            // toolStripGridview.Visible = false;
