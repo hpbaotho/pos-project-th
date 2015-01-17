@@ -16,6 +16,11 @@ namespace POS.Control.GridView
 {
     public partial class BaseGrid : BaseUserControl
     {
+        /// <summary>
+        /// let user assign this value to hide some columns, assign this before loading data
+        /// </summary>
+        public List<string> HiddenColumnName { get; set; }
+
         public DataSet DataSourceDataSet { get; set; }
         public IEnumerable<object> DataSourceTable { get; set; }
         public string[] DataKeyName { get; set; }
@@ -60,6 +65,10 @@ namespace POS.Control.GridView
             }
             foreach (DataGridViewColumn header in Grid.Columns)
             {
+                //hide s0me column
+                if (HiddenColumnName != null && HiddenColumnName.Where(x => x == header.Name).Count() > 0)
+                    header.Visible = false;
+
                 header.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);

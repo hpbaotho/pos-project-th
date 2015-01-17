@@ -42,8 +42,13 @@ namespace POS.IN.ReceiveMaterial
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
+            //hide the damn column
+            grdBase.HiddenColumnName = new List<string>() { "ID" };
+
             grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.GetGridTranHead();
             grdBase.DataKeyName = new string[] { DataKeyName };
+
+
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {
