@@ -52,6 +52,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ddlUOM = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.baseAddEditMasterDetail = new POS.Control.BaseAddEditMaster();
             this.pictureBoxMaterial = new System.Windows.Forms.PictureBox();
             this.baseGridDetail = new POS.Control.GridView.BaseGrid();
@@ -328,6 +331,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.ddlUOM);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.baseAddEditMasterDetail);
             this.groupBox2.Controls.Add(this.pictureBoxMaterial);
             this.groupBox2.Controls.Add(this.baseGridDetail);
@@ -352,6 +358,35 @@
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(275, 154);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(12, 13);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "*";
+            // 
+            // ddlUOM
+            // 
+            this.ddlUOM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ddlUOM.FormattingEnabled = true;
+            this.ddlUOM.Location = new System.Drawing.Point(354, 147);
+            this.ddlUOM.Name = "ddlUOM";
+            this.ddlUOM.Size = new System.Drawing.Size(248, 21);
+            this.ddlUOM.TabIndex = 39;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label4.Location = new System.Drawing.Point(305, 151);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "UOM :";
             // 
             // baseAddEditMasterDetail
             // 
@@ -470,7 +505,7 @@
             this.txtQuantity.Location = new System.Drawing.Point(121, 147);
             this.txtQuantity.MaxLength = 20;
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(481, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(148, 20);
             this.txtQuantity.TabIndex = 19;
             // 
             // lblQuantity
@@ -597,6 +632,9 @@
         private System.Windows.Forms.Label label10;
         private Control.BaseButton btnLoadPortFolio;
         private Control.BaseAddEditMaster baseAddEditMasterDetail;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox ddlUOM;
+        private System.Windows.Forms.Label label4;
 
     }
 }

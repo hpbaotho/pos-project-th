@@ -16,6 +16,7 @@ namespace POS.BL.Entities.Entity
     {
          [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
          public long supplier_id { get; set; }
+        [EntityScalarProperty(ComboBoxCode = true)]
          public string supplier_code { get; set; }
          [EntityScalarProperty(ComboBoxDisplay = true)]
          public string supplier_name { get; set; }

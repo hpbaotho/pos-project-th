@@ -28,7 +28,7 @@ namespace POS.BL.Entities.Entity
         public bool is_cancel_order { get; set; }
         public long? order_no_id { get; set; }
         public long? cancel_reason_id { get; set; }
-
+        public string transaction_status { get; set; }
         //[SelfValidation(Ruleset = ValidationRuleset.ReceiveMaterialInsert)]        
         //public void EntityValidation(ValidationResults results)
         //{

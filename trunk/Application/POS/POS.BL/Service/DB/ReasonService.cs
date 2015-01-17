@@ -33,7 +33,7 @@ namespace POS.BL.Service.DB
             {
                 ComboBoxDTO DTO = new ComboBoxDTO();
                 DTO.Value = child.reason_id.ToString();
-                DTO.Display = child.reason_name + " (" + child.reason_id + ")";
+                DTO.Display = child.reason_name;
                 lstComboBoxDTO.Add(DTO);
             }
 
