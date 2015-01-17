@@ -43,7 +43,7 @@ namespace POS.IN.ReceiveMaterial
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
             //hide the damn column
-            grdBase.HiddenColumnName = new List<string>() { "ID" };
+            grdBase.HiddenColumnName = new List<string>() { "ID", "Transaction No", "Supplier", "Warehouse"  };
 
             grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.GetGridTranHead();
             grdBase.DataKeyName = new string[] { DataKeyName };
