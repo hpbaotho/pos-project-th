@@ -24,12 +24,21 @@ namespace POS.IN.ReceiveMaterial
         string programName = ProgramName.SetupINReceiveMaterial;
         string tabName = "List Receive Material";
 
+        /// <summary>
+        /// all the controls that cannot tolerate each other
+        /// </summary>
+        List<System.Windows.Forms.Control> IntoleranceControl;
+
         public ucReceiveMaterial()
         {
             InitializeComponent();
 
+            SetInitialControl();
+
             this.Dock = DockStyle.Fill;
             tabPage1.Text = tabName;
+
+            IntoleranceControl = new List<System.Windows.Forms.Control>() { ddlSupplier, ddlWarehouse, txtOther };
 
             grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
             grdBase.onSelectedDataRow += new EventHandler<Control.GridView.RowEventArgs>(grdBase_onSelectedDataRow);
@@ -43,9 +52,14 @@ namespace POS.IN.ReceiveMaterial
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
             //hide the damn column
-            grdBase.HiddenColumnName = new List<string>() { "ID", "Transaction No", "Supplier", "Warehouse"  };
+            grdBase.HiddenColumnName = new List<string>() { "ID", "Transaction No"};//, "Supplier", "Warehouse" };
 
-            grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.GetGridTranHead();
+            grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.GetGridTranHead(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
+                ,txtReferenceNo.Text
+                , rdoWarehouse.Checked  ? ddlWarehouse.SelectedValue.ToString() : string.Empty 
+                , rdoSupplier.Checked ? ddlSupplier.SelectedValue.ToString() : string.Empty
+                , rdoOther.Checked ? txtOther.Text : string.Empty );
+
             grdBase.DataKeyName = new string[] { DataKeyName };
 
 
@@ -148,6 +162,33 @@ namespace POS.IN.ReceiveMaterial
             }
             tabControl1.SelectedTab = tabPageAddEdit;
         }
+
+        private void rdoItolerate_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (System.Windows.Forms.Control control in IntoleranceControl)
+            {
+                RadioButton clickedCb = sender as RadioButton;
+                if (clickedCb != null && control.Tag.ToString() == clickedCb.Name)
+                {
+                    control.Enabled = true;
+                }
+                else
+                    control.Enabled = false;
+            }
+        }
+
+        private void SetInitialControl()
+        {
+            ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID();
+            ddlSupplier.ValueMember = "Value";
+            ddlSupplier.DisplayMember = "Display";
+
+            ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
+            ddlWarehouse.ValueMember = "Value";
+            ddlWarehouse.DisplayMember = "Display";
+        }
         #endregion
+
+
     }
 }

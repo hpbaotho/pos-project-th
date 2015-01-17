@@ -13,11 +13,11 @@ namespace POS.BL.Service.IN
 
         public DataSet GetGridTranHead()
         {
-            return GetGridTranHead(string.Empty, null, null, string.Empty, string.Empty, string.Empty);
+            return GetGridTranHead(string.Empty, null, null, string.Empty, string.Empty,string.Empty, string.Empty);
         }
 
         public DataSet GetGridTranHead(string DocumentNo, DateTime? DocDateFrom, DateTime? DocDateTo
-            , string ReferenceNo, string SourceWareHouseID, string SourceOther)
+            , string ReferenceNo, string SourceWareHouseID,string SupplierID, string SourceOther)
         {
             StringBuilder sql = new StringBuilder();
 
@@ -42,6 +42,16 @@ namespace POS.BL.Service.IN
             // Document No. - Textbox, Document Date - Calendar From-To, Reference No. - Textbox, Source - Radio + DDL, Status - DDL
             List<DbParameter> param = new List<DbParameter>();
 
+            if (DocDateFrom.HasValue)
+            {
+                sql.AppendLine(" AND CONVERT(date, transaction_date ) >= @DocDateFrom");
+                param.Add(this.CreateParameter("@DocDateFrom", DocDateFrom.Value.Date ));
+            }
+            if ( DocDateTo.HasValue) 
+            {
+                sql.AppendLine(" AND  CONVERT(date, transaction_date ) <= @DocDateTo");
+                param.Add(this.CreateParameter("@DocDateTo", DocDateTo.Value.Date));
+            }
             if( !string.IsNullOrEmpty(DocumentNo))
             {
                 sql.AppendLine(" AND head.document_type_id = @DocumentNo");
@@ -52,15 +62,20 @@ namespace POS.BL.Service.IN
             {
                 sql.AppendLine(" AND reference_no = @ReferenceNo");
                 param.Add(this.CreateParameter("@ReferenceNo", ReferenceNo));
-            }  
-            if( !string.IsNullOrEmpty(SourceWareHouseID))
+            }
+            if (!string.IsNullOrEmpty(SourceWareHouseID))
             {
                 sql.AppendLine(" AND warehouse.warehouse_id = @SourceWareHouseID");
                 param.Add(this.CreateParameter("@SourceWareHouseID", SourceWareHouseID));
+            }
+            if (!string.IsNullOrEmpty( SupplierID ))
+            {
+                sql.AppendLine(" AND supplr.supplier_id = @SupplierID");
+                param.Add(this.CreateParameter("@SupplierID", SupplierID));
             }  
             if( !string.IsNullOrEmpty(SourceOther))
             {
-                sql.AppendLine(" AND head.document_type_id like @SourceOther");
+                sql.AppendLine(" AND other_source like @SourceOther");
                 param.Add(this.CreateParameter("@SourceOther", string.Format("{0}{1}{0}", "%", SourceOther)));
             }
 
