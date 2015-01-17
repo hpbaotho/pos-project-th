@@ -17,7 +17,7 @@ namespace POS.Control.GridView
     public partial class BaseGrid : BaseUserControl
     {
         /// <summary>
-        /// let user assign this value to hide some columns, assign this before loading data
+        /// let usprogrammer assign this value to hide some columns, assign this before loading data
         /// </summary>
         public List<string> HiddenColumnName { get; set; }
 
@@ -238,6 +238,33 @@ namespace POS.Control.GridView
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             this.LoadData();
+        }
+
+
+        /// <summary>
+        /// rearrange button according to each button's disability
+        /// </summary>
+        public void RearrangeButton()
+        {
+
+            int locationX = 0, locationY = 1;
+            //for each button in the panel
+            foreach (System.Windows.Forms.Control control in panel1.Controls)
+            {
+                Button currentBtn = control as Button;
+                if (currentBtn != null)
+                {
+                    //of it is enabled, place it
+                    if (currentBtn.Enabled)
+                    {
+                        currentBtn.Location = new Point(locationX, locationY);
+                        locationX += 53;
+                    }
+                    //otherwise just hide it
+                    else
+                        currentBtn.Visible = false;
+                }
+            }
         }
 
         public bool btnAddEnable { get { return btnAdd.Enabled; } set { btnAdd.Enabled = value; } }
