@@ -4,41 +4,42 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 using Core.Standards.Attributes;
+using Microsoft.Practices.EnterpriseLibrary.Validation;
+using POS.BL.DTO;
 using Core.Standards.Validations;
 using POS.BL.Utilities;
-using Microsoft.Practices.EnterpriseLibrary.Validation;
 
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.Period, POS.BL", TableMapping = "in_period")]
-    public class Period : EntityBase
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.BillOfMaterialHead, POS.BL", TableMapping = "in_bill_of_material_head")]
+    public class BillOfMaterialHead : EntityBase
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
-        public long period_id { get; set; }
-        public long? period_group_id { get; set; }
-        public string period_code { get; set; }
-        public DateTime? period_date { get; set; }
-        public bool active { get; set; }
+        public long bill_of_material_head_id { get; set; }
+        public long? bill_of_material_group_id { get; set; }
+        public string bill_of_material_head_code { get; set; }
+        public string bill_of_material_head_name { get; set; }
+        public string bill_of_material_head_description { get; set; }
 
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         [SelfValidation(Ruleset = ValidationRuleset.Update)]
         public void EntityValidation(ValidationResults results)
         {
             //--- Required
-            if (period_group_id == null)
+            if (bill_of_material_group_id == null)
             {
-                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Period Group"), this, string.Empty, string.Empty, null);
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill Of Material Group"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
-            if (string.IsNullOrEmpty(period_code))
+            if (string.IsNullOrEmpty(bill_of_material_head_code))
             {
-                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Period Code"), this, string.Empty, string.Empty, null);
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill of Material Head Code"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
-            if (period_date == null)
+            if (string.IsNullOrEmpty(bill_of_material_head_name))
             {
-                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Period Date"), this, string.Empty, string.Empty, null);
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill Of Material Head Name"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
         }

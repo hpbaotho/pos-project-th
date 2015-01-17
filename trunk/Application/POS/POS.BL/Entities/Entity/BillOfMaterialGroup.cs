@@ -6,29 +6,36 @@ using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 using Core.Standards.Attributes;
 using Core.Standards.Validations;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
+using POS.BL.Utilities;
+using POS.BL.DTO;
 
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.WareHouse, POS.BL", TableMapping = "db_warehouse")]
-
-    public class WareHouse : EntityBase, IEntityMasterBase
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.BillOfMaterialGroup, POS.BL", TableMapping = "in_bill_of_material_group")]
+    public class BillOfMaterialGroup : EntityBase
     {
-        [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
-        public long warehouse_id { get; set; }
-        public string warehouse_code { get; set; }
-        [EntityScalarProperty(ComboBoxDisplay = true)]
-        public string warehouse_name { get; set; }
-        public string warehouse_description { get; set; }
-        public long? company_branch_id { get; set; }
-        public bool active { get; set; }
+        [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
+        public long bill_of_material_group_id { get; set; }
+        public string bill_of_material_group_code { get; set; }
+        public string bill_of_material_group_name { get; set; }
+        public string bill_of_material_group_description { get; set; }
 
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         [SelfValidation(Ruleset = ValidationRuleset.Update)]
         public void EntityValidation(ValidationResults results)
         {
             //--- Required
-          
+            if (string.IsNullOrEmpty(bill_of_material_group_code))
+            {
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill Of Material Group Code"), this, string.Empty, string.Empty, null);
+                results.AddResult(result);
+            }
+            if (string.IsNullOrEmpty(bill_of_material_group_name))
+            {
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill Of Material Group Name"), this, string.Empty, string.Empty, null);
+                results.AddResult(result);
+            }
         }
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         public void CheckDuplicateInsert(ValidationResults results)

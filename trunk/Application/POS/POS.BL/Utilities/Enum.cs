@@ -127,18 +127,24 @@ namespace POS.BL.Utilities
     {
         public const string Setting = "Setting";
         public const string Inventory = "Inventory";
+        public const string SO = "SO";
     }
     public struct ProgramName
     {
+        //---Setting
         public const string SetupSystemConfigGroup = "System Config Group";
         public const string SetupEmployee = "Setup Employee";
         public const string SetupRole = "Setup Role";
         public const string AssignEmployeeRole = "Assign Employee Role";
         public const string SystemConfiguration = "SystemConfiguration";
 
+        //---IN
         public const string SetupINReceiveMaterial = "Receive Material";
         public const string SetupINIssueMaterial = "Issue Material";
         public const string SetupINCountStock = "Count Stock";
+
+        //---SO
+        public const string SetupBillOfMaterial = "Setup Bill Of Material";
 
     }
     public struct FormatString

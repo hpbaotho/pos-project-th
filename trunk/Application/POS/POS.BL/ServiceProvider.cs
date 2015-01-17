@@ -317,6 +317,95 @@ namespace POS.BL
             }
         }
 
+        private static MenuMappingService menuMappingService;
+        public static MenuMappingService MenuMappingService
+        {
+            get
+            {
+                if (menuMappingService == null)
+                {
+                    menuMappingService = new MenuMappingService();
+                }
+                return menuMappingService;
+            }
+        }
 
+        private static BillOfMaterialGroupService billOfMaterialGroupService;
+        public static BillOfMaterialGroupService BillOfMaterialGroupService
+        {
+            get
+            {
+                if (billOfMaterialGroupService == null)
+                {
+                    billOfMaterialGroupService = new BillOfMaterialGroupService();
+                }
+                return billOfMaterialGroupService;
+            }
+        }
+
+        private static BillOfMaterialHeadService billOfMaterialHeadService;
+        public static BillOfMaterialHeadService BillOfMaterialHeadService
+        {
+            get
+            {
+                if (billOfMaterialHeadService == null)
+                {
+                    billOfMaterialHeadService = new BillOfMaterialHeadService();
+                }
+                return billOfMaterialHeadService;
+            }
+        }
+
+        private static BillOfMaterialDetailService billOfMaterialDetailService;
+        public static BillOfMaterialDetailService BillOfMaterialDetailService
+        {
+            get
+            {
+                if (billOfMaterialDetailService == null)
+                {
+                    billOfMaterialDetailService = new BillOfMaterialDetailService();
+                }
+                return billOfMaterialDetailService;
+            }
+        }
+
+        private static UOMService uOMService;
+        public static UOMService UOMService
+        {
+            get
+            {
+                if (uOMService == null)
+                {
+                    uOMService = new UOMService();
+                }
+                return uOMService;
+            }
+        }
+
+        private static UOMRatioService uOMRatioService;
+        public static UOMRatioService UOMRatioService
+        {
+            get
+            {
+                if (uOMRatioService == null)
+                {
+                    uOMRatioService = new UOMRatioService();
+                }
+                return uOMRatioService;
+            }
+        }
+
+        private static PeriodGroupService periodGroupService;
+        public static PeriodGroupService PeriodGroupService
+        {
+            get
+            {
+                if (periodGroupService == null)
+                {
+                    periodGroupService = new PeriodGroupService();
+                }
+                return periodGroupService;
+            }
+        }
     }
 }

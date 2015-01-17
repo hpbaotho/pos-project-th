@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnSO = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.listMenu = new System.Windows.Forms.ListBox();
             this.btnSetting = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMenu.Controls.Add(this.btnSO);
             this.pnlMenu.Controls.Add(this.btnInventory);
             this.pnlMenu.Controls.Add(this.listMenu);
             this.pnlMenu.Controls.Add(this.btnSetting);
@@ -66,6 +68,17 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(294, 704);
             this.pnlMenu.TabIndex = 0;
+            // 
+            // btnSO
+            // 
+            this.btnSO.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSO.Location = new System.Drawing.Point(0, 597);
+            this.btnSO.Name = "btnSO";
+            this.btnSO.Size = new System.Drawing.Size(292, 35);
+            this.btnSO.TabIndex = 3;
+            this.btnSO.Text = "SO";
+            this.btnSO.UseVisualStyleBackColor = true;
+            this.btnSO.Click += new System.EventHandler(this.btnManage_Click);
             // 
             // btnInventory
             // 
@@ -133,6 +146,7 @@
         private System.Windows.Forms.ListBox listMenu;
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.Button btnSO;
 
     }
 }
