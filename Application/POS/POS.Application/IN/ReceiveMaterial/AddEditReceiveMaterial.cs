@@ -503,9 +503,18 @@ namespace POS.IN.ReceiveMaterial
             try
             {
                 this.ValidationDetail(entity);
-                DataRow dr = this.dsTranDetail.Tables[0].NewRow();
-                entity.ToDataRow(ref dr);
-                this.dsTranDetail.Tables[0].Rows.Add(dr);
+                if (baseGridDetail.FormMode == ObjectState.Edit)
+                {
+                    DataRow dr = this.dsTranDetail.Tables[0].Rows[baseGridDetail.DataKeyValue[0].ToInt()];
+                    entity.ToDataRow(ref dr);
+                    //this.dsTranDetail.Tables[0].Rows.Add(dr);
+                }
+                else if (baseGridDetail.FormMode == ObjectState.Add || baseGridDetail.FormMode == ObjectState.Nothing)
+                {
+                    DataRow dr = this.dsTranDetail.Tables[0].NewRow();
+                    entity.ToDataRow(ref dr);
+                    this.dsTranDetail.Tables[0].Rows.Add(dr);
+                }
 
                 this.ClearDataDetail();
             }

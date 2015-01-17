@@ -140,7 +140,10 @@ namespace POS.BL.Utilities
 
         //---IN
         public const string SetupINReceiveMaterial = "Receive Material";
-        public const string SetupINIssueMaterial = "Issue Material";
+        public const string SetupINReceiveOrder = "Receive Order";
+        public const string SetupINIssueMaterialWarehouse = "Issue Material (Warehouse\\Other)";
+        public const string SetupINIssueMaterialSold = "Issue Material (Sold)";
+        public const string SetupINIssueMaterialWaste = "Issue Material (Waste)";
         public const string SetupINCountStock = "Count Stock";
 
         //---SO

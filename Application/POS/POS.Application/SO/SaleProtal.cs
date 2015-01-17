@@ -54,8 +54,8 @@ namespace POS.SO
 
         private void btnDriver_Click(object sender, EventArgs e)
         {
-            //Type formOpenType = base.OpenPopup<SO.PopupDiverControl>() as Type;
-            //base.OpernNewScreen(formOpenType);
+            Type formOpenType = base.OpenPopup<SO.PopupDiverControl>() as Type;
+            base.OpernNewScreen(formOpenType);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

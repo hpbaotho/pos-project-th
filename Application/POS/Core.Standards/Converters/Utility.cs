@@ -289,6 +289,22 @@ namespace Core.Standards.Converters
         }
 
         /// <summary>
+        /// This function for convert number string to int type.
+        /// </summary>
+        /// <param name="strNumber">Input int number</param>
+        /// <returns></returns>
+        public static int ToInt(this object intValue)
+        {
+            if (intValue == DBNull.Value) return 0;
+            if (intValue == null) return 0;
+
+            int returnInt;
+            int.TryParse(intValue.ToString(), out returnInt);
+
+            return returnInt;
+        }
+
+        /// <summary>
         /// This function for set format to number string.
         /// </summary>
         /// <param name="strNumber">Number string to set format</param>

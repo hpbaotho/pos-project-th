@@ -101,18 +101,6 @@
     <Compile Include="IN\IssueMaterialWaste\ucIssueMaterialWaste.Designer.cs">
       <DependentUpon>ucIssueMaterialWaste.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterial\IssueMaterial.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="IN\IssueMaterial\IssueMaterial.Designer.cs">
-      <DependentUpon>IssueMaterial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IN\IssueMaterial\ucIssueMaterial.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="IN\IssueMaterial\ucIssueMaterial.Designer.cs">
-      <DependentUpon>ucIssueMaterial.cs</DependentUpon>
-    </Compile>
     <Compile Include="IN\ReceiveMaterial\AddEditReceiveMaterial.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,6 +138,12 @@
     </Compile>
     <Compile Include="SO\PopupCondiment.Designer.cs">
       <DependentUpon>PopupCondiment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SO\PopupDiverControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SO\PopupDiverControl.Designer.cs">
+      <DependentUpon>PopupDiverControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SO\PopUpPerson.cs">
       <SubType>Form</SubType>
@@ -223,12 +217,6 @@
     <EmbeddedResource Include="IN\IssueMaterialWaste\ucIssueMaterialWaste.resx">
       <DependentUpon>ucIssueMaterialWaste.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterial\IssueMaterial.resx">
-      <DependentUpon>IssueMaterial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterial\ucIssueMaterial.resx">
-      <DependentUpon>ucIssueMaterial.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveMaterial\AddEditReceiveMaterial.resx">
       <DependentUpon>AddEditReceiveMaterial.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SO\PopupCondiment.resx">
       <DependentUpon>PopupCondiment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\PopupDiverControl.resx">
+      <DependentUpon>PopupDiverControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SO\PopUpPerson.resx">
       <DependentUpon>PopUpPerson.cs</DependentUpon>

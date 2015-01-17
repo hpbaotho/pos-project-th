@@ -26,8 +26,11 @@ namespace POS.BL.Service
         {
             PropertyInfo PropertyInfoComboBoxDisplay = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("ComboBoxDisplay", true, true).FirstOrDefault();
             PropertyInfo PropertyInfoComboBoxValue = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("ComboBoxValue", true, true).FirstOrDefault();
-            if (PropertyInfoComboBoxDisplay == null) { PropertyInfoComboBoxDisplay = typeof(TEntity).GetProperties().Where(w => w.Name.Contains("Name")).FirstOrDefault(); }
+            PropertyInfo PropertyInfoComboBoxCode = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("ComboBoxCode", true, true).FirstOrDefault();
+            
+            if (PropertyInfoComboBoxDisplay == null) { PropertyInfoComboBoxDisplay = typeof(TEntity).GetProperties().Where(w => w.Name.Contains("name")).FirstOrDefault(); }
             if (PropertyInfoComboBoxValue == null) { PropertyInfoComboBoxValue = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("IdentityKey", true, true).FirstOrDefault(); }
+            if (PropertyInfoComboBoxCode == null) { PropertyInfoComboBoxCode = typeof(TEntity).GetProperties().Where(w => w.Name.Contains("code")).FirstOrDefault(); }
 
             List<TEntity> lstEntity = new List<TEntity>();
             List<ComboBoxDTO> lstComboBoxDTO = new List<ComboBoxDTO>();
@@ -49,18 +52,25 @@ namespace POS.BL.Service
                 {
                     ComboBoxDTO DTO = new ComboBoxDTO();
                     PropertyInfo[] properties = child.GetType().GetProperties();
+                    string Code = string.Empty;
+                    string Display = string.Empty;
                     foreach (PropertyInfo property in properties)
                     {
                         if (property.Name == PropertyInfoComboBoxDisplay.Name)
                         {
-                            DTO.Display = property.GetValue(child, null).ToString();
+                            Display = property.GetValue(child, null).ToString();
                         }
                         else if (property.Name == PropertyInfoComboBoxValue.Name)
                         {
                             DTO.Value = property.GetValue(child, null).ToString();
                         }
+                        else if (property.Name == PropertyInfoComboBoxCode.Name)
+                        {
+                            Code = property.GetValue(child, null).ToString();
+                        }
+                        
                     }
-                    DTO.Display = DTO.Display + " (" + DTO.Value + ")";
+                    DTO.Display = Code + ":" + Display;
                     lstComboBoxDTO.Add(DTO);
                 }
             }

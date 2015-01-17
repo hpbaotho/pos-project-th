@@ -14,7 +14,9 @@ using Core.Standards.Converters;
 using POS.BL.Entities.Entity;
 using POS.IN.ReceiveMaterial;
 using POS.IN.CountStock;
-using POS.IN.IssueMaterial;
+using POS.IN.IssueMaterialSold;
+using POS.IN.IssueMaterialWareHouseOther;
+using POS.IN.IssueMaterialWaste;
 
 namespace POS.IN
 {
@@ -35,7 +37,10 @@ namespace POS.IN
 
             //---Add list Menu
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveMaterial });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterial });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveOrder });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterialWarehouse });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterialSold });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterialWaste });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINCountStock });
 
             listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Setting).Select(item => item.MenuName).ToList();
@@ -53,10 +58,22 @@ namespace POS.IN
             {
                 pnlContent.Controls.Add(new ucReceiveMaterial());
             }
-            else if (selected == ProgramName.SetupINIssueMaterial)
+            else if (selected == ProgramName.SetupINReceiveOrder)
             {
-                pnlContent.Controls.Add(new ucIssueMaterial());
+                //pnlContent.Controls.Add(new ucIssueMaterial());
             }
+            else if (selected == ProgramName.SetupINIssueMaterialWarehouse)
+            {
+                pnlContent.Controls.Add(new ucIssueMaterialWareHouseOther());
+            }
+            else if (selected == ProgramName.SetupINIssueMaterialSold)
+            {
+                pnlContent.Controls.Add(new ucIssueMaterialSold());
+            }
+            else if (selected == ProgramName.SetupINIssueMaterialWaste)
+            {
+                pnlContent.Controls.Add(new ucIssueMaterialWaste());
+            }    
             else if (selected == ProgramName.SetupINCountStock)
             {
                 pnlContent.Controls.Add(new ucCountStock());
