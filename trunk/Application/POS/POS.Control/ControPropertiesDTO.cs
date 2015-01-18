@@ -20,7 +20,7 @@ namespace POS.Control
     {
         private DragItem dragItem;
         private string _text;
-        private string _backgroupnPath;
+        private Image _backgroupnImage;
         [Category("Font")]
         public string Text { get { return _text; } set { _text = value; dragItem.Refresh(); } }
         [Category("Font")]
@@ -34,15 +34,15 @@ namespace POS.Control
         [Category("BackGroupd")]
         public ImageLayout BackGroundLayout { get { return this.dragItem.BackgroundImageLayout; } set { this.dragItem.BackgroundImageLayout = value; dragItem.Refresh(); } }
         [Category("BackGroupd")]
-        [Editor(typeof(FileSelectorTypeEditor), typeof(UITypeEditor))]
-        public string BackGroundImage
+      //  [Editor(typeof(FileSelectorTypeEditor), typeof(UITypeEditor))]
+        public Image BackGroundImage
         {
-            get { return _backgroupnPath; }
+            get { return _backgroupnImage; }
             set
             {
-                _backgroupnPath = value;
-                if (string.IsNullOrEmpty(_backgroupnPath)) return;
-                this.dragItem.BackgroundImage = Image.FromFile(_backgroupnPath);
+                _backgroupnImage = value;
+                if (_backgroupnImage == null) return;
+                this.dragItem.BackgroundImage = _backgroupnImage;
                 this.dragItem.Refresh();
             }
         }

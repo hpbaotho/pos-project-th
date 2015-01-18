@@ -10,6 +10,7 @@ namespace POS.BL.DTO.SO
         public OrderHeadDTO()
         {
             Person = 1;
+            OrderList = new List<OrderDTO>();
         }
         private bool isStartTime = false;
         public bool IsStartTime
@@ -27,11 +28,16 @@ namespace POS.BL.DTO.SO
                 }
             }
         }
+        public string TableCode { get; set; }
         public int Person { get; set; }
         //public int Childen { get; set; }
-        public long sales_order_head_id { get; set; }
+        public bool IsCancle { get; set; }
+        public long? sales_order_head_id { get; set; }
         private DateTime? startTimeEating;
         public DateTime? StartTimeEating { get { return this.startTimeEating; } }
+        public DateTime? startTimeINDB { set { this.startTimeEating = value; } }
+      
+        public List<OrderDTO> OrderList { get; set; }
     }
     public class OrderDTO
     {
@@ -49,9 +55,9 @@ namespace POS.BL.DTO.SO
         public bool isInventoryItem { get; set; }
 
         public long? menu_id { get; set; }
-        public bool IsActiveMenu { get; set; }
-        public bool? isCombo { get; set; }
-        public int maxComboFreeItemQTY { get; set; }
+       // public bool IsActiveMenu { get; set; }
+        //public bool? isCombo { get; set; }
+        //public int maxComboFreeItemQTY { get; set; }
         public long? ref_menu_dining_type_id { get; set; }
         public string menu_name { get; set; }
         public decimal menu_price { get; set; }
@@ -61,8 +67,9 @@ namespace POS.BL.DTO.SO
         public long? menu_dining_type_id { get; set; }
         public long? menu_group_id { get; set; }
         public long? menu_category_id { get; set; }
-        public int dining_type_id { get; set; }
+        public long? dining_type_id { get; set; }
         public bool IsCondiment { get; set; }
         public bool Selected { get; set; }
+        public int ChkNo { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace POS.BL.Entities.Entity
         public string control_command { get; set; }
         public string control_command_group { get; set; }
         public int background_color { get; set; }
-        public string background_image_path { get; set; }
+        public long? sc_screen_image_id { get; set; }
         public int border_style { get; set; }
         public string display_text { get; set; }
         public int fore_color { get; set; }
@@ -37,6 +37,8 @@ namespace POS.BL.Entities.Entity
         public long? control_parent_id { get; set; }
         public decimal percent_width { get; set; }
         public decimal percent_height { get; set; }
+        [EntityScalarProperty(PersistenceIgnorance = true)]
+        public byte[] image { get; set; }
 
         [EntityScalarProperty(PersistenceIgnorance = true)]
         public ObjectState ObjectState { get; set; }

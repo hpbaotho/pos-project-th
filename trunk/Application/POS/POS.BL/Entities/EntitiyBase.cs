@@ -61,9 +61,9 @@ namespace POS.BL.Entities
 
         public EntityBase()
         {
-            this.created_by = "SYSTEM";
-            this.updated_by = "SYSTEM";
-            this.UpdateByEntity = "SYSTEM";
+            this.created_by = (UserAccount.UserData == null) ? "Unknow User" : UserAccount.UserData.UserName;
+            this.updated_by = (UserAccount.UserData == null) ? "Unknow User" : UserAccount.UserData.UserName;
+            this.UpdateByEntity = (UserAccount.UserData == null) ? "Unknow User" : UserAccount.UserData.UserName;
 
         }
         public Type[] GetTypesInNamespace()

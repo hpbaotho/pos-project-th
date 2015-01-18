@@ -19,5 +19,7 @@ namespace POS.BL.Entities.Entity
         public int order_amount { get; set; }
         public bool is_print { get; set; }
         public bool is_cancel { get; set; }
+        public int ChkNo { get; set; }
+        public string Open_Condiment { get; set; }
     }
 }

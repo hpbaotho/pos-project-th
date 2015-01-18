@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using System.Data;
 using POS.BL.Entities;
 using System.Reflection;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace POS.BL.Utilities
 {
@@ -42,7 +44,7 @@ namespace POS.BL.Utilities
                         }
                         else
                         {
-                            object data = ChangeType(dataRow[column.ColumnName],prop.PropertyType);
+                            object data = ChangeType(dataRow[column.ColumnName], prop.PropertyType);
                             prop.SetValue(DTO, data, null);
                         }
                         break;
@@ -88,4 +90,6 @@ namespace POS.BL.Utilities
             }
         }
     }
+
+
 }

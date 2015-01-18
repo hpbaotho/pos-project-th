@@ -13,7 +13,7 @@ namespace POS.BL.Service.SO
 {
     public class MenuService : ServiceBase<SOMenu>
     {
-        public List<OrderDTO> LoadMainMenu(long? menu_reference_id, int dining_type_id, long? menu_group_id, long? menu_category_id)
+        public List<OrderDTO> LoadMainMenu(long? menu_reference_id, long? dining_type_id, long? menu_group_id, long? menu_category_id)
         {
             string sql = @"
                         SELECT 
@@ -82,7 +82,7 @@ namespace POS.BL.Service.SO
             result.Add(new OrderDTO() { menu_name = "Open Condiment" });
             return result;
         }
-        public bool HaveMinuItem(long? menu_id, int diningTypeId, long? menuGroupId, long? menuCategoryId)
+        public bool HaveMinuItem(long? menu_id, long? diningTypeId, long? menuGroupId, long? menuCategoryId)
         {
             string sql = @"
                 SELECT COUNT(1) MenuItem 

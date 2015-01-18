@@ -52,6 +52,7 @@
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPassword.Description = "";
             this.txtPassword.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(25, 18);
             this.txtPassword.Name = "txtPassword";

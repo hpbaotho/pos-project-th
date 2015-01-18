@@ -14,6 +14,8 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
         public long? menu_id { get; set; }
+        public long? menu_category_id { get; set; }
+        public long? menu_group_id { get; set; }
         public string menu_code { get; set; }
         public string menu_name { get; set; }
         public string menu_description { get; set; }
@@ -28,5 +30,6 @@ namespace POS.BL.Entities.Entity
         public decimal menu_price { get; set; }
         [EntityScalarProperty(PersistenceIgnorance = true)]
         public long? menu_dining_type_id { get; set; }
+
     }
 }

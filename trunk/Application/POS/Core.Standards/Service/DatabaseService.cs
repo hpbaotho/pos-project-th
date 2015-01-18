@@ -148,7 +148,8 @@ namespace Core.Standards.Service
             }
             else
             {
-                return new TResult();
+
+                return default(TResult);
             }
         }
 

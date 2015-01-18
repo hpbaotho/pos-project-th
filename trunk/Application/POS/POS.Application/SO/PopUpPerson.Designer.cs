@@ -84,9 +84,7 @@
             this.Controls.Add(this.btnDelPeson);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnPerson);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PopUpPerson";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopUpPerson";
             this.ResumeLayout(false);
 
