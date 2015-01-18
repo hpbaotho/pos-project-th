@@ -23,8 +23,8 @@ namespace POS.KC.KitchenOrderList
     {
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "ID";
-        AddEditReceiveMaterial addEditReceiveMaterial = new AddEditReceiveMaterial();
-        string programName = ProgramName.SetupINReceiveMaterial;
+        KitchenOrderDetail addEditReceiveMaterial = new KitchenOrderDetail();
+        string programName = ProgramName.KitchenOrderListDetail;
         string tabName = "Kitchen Order List";
 
         private const string btnProcessName = "btnProcess"
@@ -45,11 +45,12 @@ namespace POS.KC.KitchenOrderList
             this.Dock = DockStyle.Fill;
             tabPage1.Text = tabName;
 
-            grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
+           // grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
             grdBase.onSelectedDataRow += new EventHandler<Control.GridView.RowEventArgs>(grdBase_onSelectedDataRow);
             grdBase.onLoadDataGrid += new EventHandler<Control.GridView.DataBindArgs>(grdBase_onLoadDataGrid);
             grdBase.onCellFormatting += new EventHandler<DataGridViewCellFormattingEventArgs>(grdBase_onCellFormatting);
 
+            ///manually add event to each button
             grdBase.AttachEventToButton( btnProcessName, new EventHandler(grdBase_KitchenCommand));
             grdBase.AttachEventToButton( btnProcessCancelName , new EventHandler(grdBase_KitchenCommand));
             grdBase.AttachEventToButton( btnProcessCompleteName , new EventHandler(grdBase_KitchenCommand));
@@ -60,11 +61,11 @@ namespace POS.KC.KitchenOrderList
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
             //hide the damn column
-            grdBase.HiddenColumnName = new List<string>() { "ITEM_KEY" };//, "Supplier", "Warehouse" };
+            grdBase.HiddenColumnName = new List<string>() { "ID" };//, "Supplier", "Warehouse" };
             //grdBase.SetColumnFit();
 
             grdBase.DataSourceDataSet =
-            ServiceProvider.KCSaleOrderDetailService.FindOrderByCriteria(txtTableName.Text.Trim(), txtMenuName.Text.Trim());
+            ServiceProvider.KCSaleOrderDetailService.FindOrderInKitchenList(txtTableName.Text.Trim(), txtMenuName.Text.Trim());
 
             grdBase.DataKeyName = new string[] { DataKeyName };
 
@@ -93,7 +94,7 @@ namespace POS.KC.KitchenOrderList
                 else
                 {
                     //Button currenButton = 
-                    List<string> OrderDetailKeyList = selectedRows.Select(x => x.Cells["ITEM_KEY"].Value.ToString()).ToList();
+                    List<string> OrderDetailKeyList = selectedRows.Select(x => x.Cells["ID"].Value.ToString()).ToList();
 
                     string StatusToUpdate = string.Empty;
 
@@ -133,15 +134,11 @@ namespace POS.KC.KitchenOrderList
             return answer;
         }
 
-        public void grdBase_onAddNewRow(object sender, EventArgs e)
-        {
-            addEditReceiveMaterial = new AddEditReceiveMaterial();
-            this.AddEditTab(string.Format(TabName.Add, programName), addEditReceiveMaterial);
-        }
+   
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            addEditReceiveMaterial = new AddEditReceiveMaterial(dataKey[DataKeyName].ToString());
+            addEditReceiveMaterial = new KitchenOrderDetail(dataKey[DataKeyName].ToString() );//, tabControl1, tabPageAddEdit);
             this.AddEditTab(string.Format(TabName.Edit, programName), addEditReceiveMaterial);
         }
 
@@ -195,7 +192,7 @@ namespace POS.KC.KitchenOrderList
         }
 
         #region :: Private Function ::
-        private void AddEditTab(string TabTitle, AddEditReceiveMaterial controlAddEdit)
+        private void AddEditTab(string TabTitle, KitchenOrderDetail controlAddEdit)
         {
             if (tabControl1.TabPages.Count == 1 || (tabControl1.TabPages.Count > 1 && base.formBase.ShowConfirmMessage(GeneralMessage.ConfirmNewTab, "Confirm")))
             {

@@ -423,6 +423,7 @@
             this.baseGridDetail.DataSourceTable = null;
             this.baseGridDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.baseGridDetail.FormMode = ObjectState.Nothing;
+            this.baseGridDetail.HiddenColumnName = null;
             this.baseGridDetail.Location = new System.Drawing.Point(19, 222);
             this.baseGridDetail.Name = "baseGridDetail";
             this.baseGridDetail.Size = new System.Drawing.Size(976, 218);
