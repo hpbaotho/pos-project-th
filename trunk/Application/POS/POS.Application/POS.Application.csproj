@@ -146,6 +146,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SO\MappingMenu\AddEditMappingMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SO\MappingMenu\AddEditMappingMenu.Designer.cs">
+      <DependentUpon>AddEditMappingMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SO\MappingMenu\ucMappingMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SO\MappingMenu\ucMappingMenu.Designer.cs">
+      <DependentUpon>ucMappingMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="SO\OpenOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +279,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SO\MappingMenu\AddEditMappingMenu.resx">
+      <DependentUpon>AddEditMappingMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SO\MappingMenu\ucMappingMenu.resx">
+      <DependentUpon>ucMappingMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SO\OpenOrder.resx">
       <DependentUpon>OpenOrder.cs</DependentUpon>
     </EmbeddedResource>
