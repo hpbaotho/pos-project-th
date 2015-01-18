@@ -201,7 +201,7 @@ namespace POS.BL.Utilities
         {
             public const string ReceiveMaterial = "RM";
             public const string ReceiveOrder = "RO";
-            public const string IssueMaterial = "IM";
+            public const string IssueMaterialWarehouseOther = "IW";
             public const string SoldMaterial = "SM";
             public const string CancelSold = "CS";
             public const string StockCount = "SC";

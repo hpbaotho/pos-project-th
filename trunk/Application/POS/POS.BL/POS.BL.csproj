@@ -68,11 +68,11 @@
     <Compile Include="DTO\SU\UserAccountDTO.cs" />
     <Compile Include="Entities\EntitiyBase.cs" />
     <Compile Include="Entities\Entity\MenuDiningType.cs" />
-    <Compile Include="Entities\Entity\OrderCheck.cs" />
     <Compile Include="Entities\Entity\BillOfMaterialDetail.cs" />
     <Compile Include="Entities\Entity\BillOfMaterialGroup.cs" />
     <Compile Include="Entities\Entity\BillOfMaterialHead.cs" />
     <Compile Include="Entities\Entity\MenuMapping.cs" />
+    <Compile Include="Entities\Entity\OrderCheck.cs" />
     <Compile Include="Entities\Entity\PeriodGroup.cs" />
     <Compile Include="Entities\Entity\PhyLot.cs" />
     <Compile Include="Entities\Entity\ScreenImage.cs" />
@@ -132,8 +132,12 @@
     <Compile Include="Service\SO\MenuGroupService.cs" />
     <Compile Include="Service\SO\MenuMappingService.cs" />
     <Compile Include="Service\SO\MenuService.cs" />
-    <Compile Include="Service\SO\OrderCheckService.cs" />
-    <Compile Include="Service\SO\SaleOrderDetailService.cs" />
+    <Compile Include="Service\SO\OrderCheckService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service\SO\SaleOrderDetailService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Service\SO\SaleOrderHeaderService.cs" />
     <Compile Include="Service\SC\ScreenConfigService.cs" />
     <Compile Include="Service\SO\SOTableService.cs" />
