@@ -22,12 +22,12 @@ namespace POS.KC.KitchenOrderList
         {
             InitializeComponent();
         }
-        public KitchenOrderDetail(string MaterialID) //, TabControl Owner, TabPage NewTab )
+        public KitchenOrderDetail(string MaterialID, TabControl Owner )//, TabPage NewTab )
         {
             InitializeComponent();
 
             //CurrentTab = NewTab;
-            //TabOwner = Owner;
+            TabOwner = Owner;
             baseAddEditMasterDetail.btnResetEnable = false;
             baseAddEditMasterDetail.btnSaveEnable = false;
 
