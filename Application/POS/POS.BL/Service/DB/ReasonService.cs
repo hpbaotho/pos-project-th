@@ -15,18 +15,13 @@ namespace POS.BL.Service.DB
 
             List<Reason> lstEntity = new List<Reason>();
             List<ComboBoxDTO> lstComboBoxDTO = new List<ComboBoxDTO>();
-            lstComboBoxDTO.SetPleaseSelect();
+            lstEntity = base.FindAll(false).Where(w => w.active && w.document_type_id == DocumentTypeID).ToList();
 
-
-            if (ReasonID != null)
+            if (ReasonID != null && lstEntity.Where(w=>w.reason_id == ReasonID.Value).Count() == 0)
             {
                 Reason entity = new Reason() { reason_id = ReasonID.Value };
                 entity = base.FindByKeys(entity, false);
                 lstEntity.Add(entity);
-            }
-            else
-            {
-                lstEntity = base.FindAll(false).Where(w => w.active && w.document_type_id == DocumentTypeID).ToList();
             }
 
             foreach (Reason child in lstEntity)
@@ -36,7 +31,8 @@ namespace POS.BL.Service.DB
                 DTO.Display = child.reason_name;
                 lstComboBoxDTO.Add(DTO);
             }
-
+            lstComboBoxDTO = lstComboBoxDTO.OrderBy(o => o.Display).ToList();
+            lstComboBoxDTO.SetPleaseSelect();
             return lstComboBoxDTO;
         }
     }

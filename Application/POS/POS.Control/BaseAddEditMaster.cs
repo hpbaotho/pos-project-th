@@ -77,5 +77,9 @@ namespace POS.Control
         public bool btnSaveEnable { get { return btnSave.Enabled; } set { btnSave.Enabled = value; } }
         public bool btnResetEnable { get { return btnReset.Enabled; } set { btnReset.Enabled = value; } }
         public bool btnBackEnable { get { return btnBack.Enabled; } set { btnBack.Enabled = value; } }
+
+        public bool btnSaveVisible { get { return btnSave.Visible; } set { btnSave.Visible = value; } }
+        public bool btnResetVisible { get { return btnReset.Visible; } set { btnReset.Visible = value; } }
+        public bool btnBackVisible { get { return btnBack.Visible; } set { btnBack.Visible = value; } }
     }
 }

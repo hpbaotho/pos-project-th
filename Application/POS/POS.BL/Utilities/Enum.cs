@@ -202,6 +202,17 @@ namespace POS.BL.Utilities
             public const string StockCount = "SC";
         }
     }
+
+    public struct TransactionStatus
+    {
+        public struct IN
+        {
+            public const string NormalCode = "N";
+            public const string NormalText = "Normal";
+            public const string FinalCode = "F";
+            public const string FinalText = "Final";
+        }
+    }
 }
 public enum ObjectState
 {
