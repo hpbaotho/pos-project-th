@@ -6,8 +6,13 @@ using POS.BL.Service.SO;
 using POS.BL.Service.SU;
 using POS.BL.Service.IN;
 using POS.BL.Service.DB;
+
+using POS.BL.Service.SC;
+using POS.BL.DTO.SU;
+
 using POS.BL.Service.KC;
 //using POS.BL.Service.KC;
+
 namespace POS.BL
 {
     public static class ServiceProvider
@@ -331,6 +336,17 @@ namespace POS.BL
             }
         }
 
+
+        private static ScreenImageService _ScreenImageService;
+        public static ScreenImageService ScreenImageService
+        {
+            get
+            {
+                if (_ScreenImageService == null) _ScreenImageService = new ScreenImageService();
+                return _ScreenImageService;
+            }
+        }
+
         private static MenuMappingService menuMappingService;
         public static MenuMappingService MenuMappingService
         {
@@ -343,6 +359,41 @@ namespace POS.BL
                 return menuMappingService;
             }
         }
+
+
+        private static SOTableService _SOTableService;
+        public static SOTableService SOTableService
+        {
+            get
+            {
+                if (_SOTableService == null) _SOTableService = new SOTableService();
+                return _SOTableService;
+            }
+
+        }
+
+        private static OrderCheckService _OrderCheckService;
+        public static OrderCheckService OrderCheckService
+        {
+            get
+            {
+                if (_OrderCheckService == null) _OrderCheckService = new OrderCheckService();
+                return _OrderCheckService;
+            }
+
+        }
+
+        private static MenuDiningTypeService _MenuDiningTypeService;
+        public static MenuDiningTypeService MenuDiningTypeService
+        {
+            get
+            {
+                if (_MenuDiningTypeService == null) _MenuDiningTypeService = new MenuDiningTypeService();
+                return _MenuDiningTypeService;
+            }
+
+        }
+
 
         private static BillOfMaterialGroupService billOfMaterialGroupService;
         public static BillOfMaterialGroupService BillOfMaterialGroupService
@@ -421,5 +472,25 @@ namespace POS.BL
                 return periodGroupService;
             }
         }
+
     }
+    public sealed class UserAccount
+    {
+        private static readonly UserAccount _instance = new UserAccount();
+        private static UserAccountDTO _userAccount;
+        public static void SignOut()
+        {
+            _userAccount = null;
+        }
+        public static UserAccountDTO SignIn(string password)
+        {
+            _userAccount = new UserAccountDTO();
+            _userAccount.UserName = "TestUser";
+            return _userAccount;
+
+        }
+        public static UserAccountDTO UserData { get { return _userAccount; } }
+
+    }
+
 }
