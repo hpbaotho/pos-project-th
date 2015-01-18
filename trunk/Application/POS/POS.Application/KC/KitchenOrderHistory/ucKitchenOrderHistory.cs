@@ -16,10 +16,11 @@ using Core.Standards.Validations;
 using POS.IN.ReceiveMaterial;
 using POS.Control.BaseMessageBox;
 using POS.Control.GridView;
+using POS.KC.KitchenOrderList;
 
-namespace POS.KC.KitchenOrderList
+namespace POS.KC.KitchenOrderHistory
 {
-    public partial class ucKitchenOrderList : BaseUserControl
+    public partial class ucKitchenOrderHistory : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "ID";
@@ -31,13 +32,13 @@ namespace POS.KC.KitchenOrderList
             , btnProcessCompleteName = "btnProcessComplete"
             , btnProcessCancelName = "btnProcessCancel";
 
-  
+   
 
-        public ucKitchenOrderList()
+        public ucKitchenOrderHistory()
         {
             InitializeComponent();
 
-            // SetInitialControl();
+            SetInitialControl();
 
             this.Dock = DockStyle.Fill;
             tabPage1.Text = tabName;
@@ -54,6 +55,15 @@ namespace POS.KC.KitchenOrderList
 
             grdBase.LoadData();
         }
+
+        private void SetInitialControl()
+        {
+            ddlStatus.DataSource = ServiceProvider.KCSaleOrderDetailService.GetEnumOrderDetailStatus();
+            ddlStatus.ValueMember = "Value";
+            ddlStatus.DisplayMember = "Display";
+          
+        }
+
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
@@ -61,8 +71,14 @@ namespace POS.KC.KitchenOrderList
             grdBase.HiddenColumnName = new List<string>() { "ID" };//, "Supplier", "Warehouse" };
             //grdBase.SetColumnFit();
 
+            List<string> statusList;
+            if (ddlStatus.SelectedIndex == 0)
+                statusList = new List<string>() { KitichenStatus.Cancel, KitichenStatus.Finish };
+            else
+                statusList = new List<string>() { ddlStatus.SelectedValue.ToString() };
+
             grdBase.DataSourceDataSet =
-            ServiceProvider.KCSaleOrderDetailService.FindOrderInKitchenList(txtTableName.Text.Trim(), txtMenuName.Text.Trim());
+                ServiceProvider.KCSaleOrderDetailService.FindOrderInKitchenHistory(txtTableName.Text.Trim(), txtMenuName.Text.Trim(), statusList);
 
             grdBase.DataKeyName = new string[] { DataKeyName };
 
@@ -209,9 +225,6 @@ namespace POS.KC.KitchenOrderList
             }
             tabControl1.SelectedTab = tabPageAddEdit;
         }
-
-
-
         #endregion
 
 

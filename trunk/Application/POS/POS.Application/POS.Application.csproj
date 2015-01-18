@@ -126,6 +126,12 @@
     <Compile Include="KC\KCCommand.Designer.cs">
       <DependentUpon>KCCommand.cs</DependentUpon>
     </Compile>
+    <Compile Include="KC\KitchenOrderHistory\ucKitchenOrderHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KC\KitchenOrderHistory\ucKitchenOrderHistory.Designer.cs">
+      <DependentUpon>ucKitchenOrderHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="KC\KitchenOrderList\KitchenOrderDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KC\KCCommand.resx">
       <DependentUpon>KCCommand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KC\KitchenOrderHistory\ucKitchenOrderHistory.resx">
+      <DependentUpon>ucKitchenOrderHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KC\KitchenOrderList\KitchenOrderDetail.resx">
       <DependentUpon>KitchenOrderDetail.cs</DependentUpon>

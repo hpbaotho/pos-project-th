@@ -19,6 +19,7 @@ using POS.IN.IssueMaterialWareHouseOther;
 using POS.IN.IssueMaterialWaste;
 using POS.Control;
 using POS.KC.KitchenOrderList;
+using POS.KC.KitchenOrderHistory;
 
 namespace POS.KC
 {
@@ -41,7 +42,8 @@ namespace POS.KC
             tableLayoutPanel1.SetColumnSpan(toolStrip, 3);
 
 
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Kitchen, MenuName = ProgramName.KitchenOrderList  });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Kitchen, MenuName = ProgramName.KitchenOrderList });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Kitchen, MenuName = ProgramName.KitchenOrderHistory });
             //AddMenu(ModuleName.Kitchen, ProgramName.SetupINCountStock, OrderListPage);
 
 
@@ -66,6 +68,10 @@ namespace POS.KC
             if (selected == ProgramName.KitchenOrderList)
             {
                 pnlContent.Controls.Add(new ucKitchenOrderList());
+            }
+            else if (selected == ProgramName.KitchenOrderHistory )
+            {
+                pnlContent.Controls.Add(new ucKitchenOrderHistory());
             }
 
         }
