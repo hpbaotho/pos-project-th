@@ -54,11 +54,19 @@ namespace POS.BL.Service.IN
             return entity;
         }
 
+        //Decrease logical lot
         public void Stock_DecreaseLogical(StockDTO stockDTO)
         {
 
         }
 
+        //Check from logical lot
+        public bool Stock_CheckAvailable(StockDTO stockDTO)
+        {
+            return true;
+        }
+
+        //Increase logical lot
         public void Stock_IncreaseLogical(StockDTO stockDTO)
         {
 
