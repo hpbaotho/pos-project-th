@@ -73,12 +73,13 @@ namespace POS.BL.Service.SO
         public WorkPeriod findActiveWorkPeriod()
         {
             string sql = @"
-                            SELECT * 
+                            SELECT TOP 1 * 
                             FROM db_period WITH(NOLOCK) 
                             WHERE active = 1
+                            ORDER BY created_date
                         ";
 
-            return this.ExecuteQuery<WorkPeriod>(sql).FirstOrDefault();
+            return this.ExecuteQueryOne<WorkPeriod>(sql);
         }
     }
 }

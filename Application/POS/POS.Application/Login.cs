@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using POS.BL.Utilities;
+using POS.BL;
 
 namespace POS
 {
@@ -27,6 +28,7 @@ namespace POS
         {
             if (e.KeyCode == Keys.Enter)
             {
+                UserAccount.SignIn(string.Empty);
                 txtPassword.Text = string.Empty;
                 base.OpernNewScreen<SO.SaleProtal>();
                
@@ -37,6 +39,8 @@ namespace POS
         {
             Application.Exit();
         }
+
+        
 
 
     }

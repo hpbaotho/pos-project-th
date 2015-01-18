@@ -38,6 +38,7 @@
             // 
             // txtMenuName
             // 
+            this.txtMenuName.Description = "";
             this.txtMenuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtMenuName.Location = new System.Drawing.Point(12, 75);
             this.txtMenuName.Name = "txtMenuName";
@@ -46,6 +47,7 @@
             // 
             // txtPrice
             // 
+            this.txtPrice.Description = "";
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtPrice.Location = new System.Drawing.Point(669, 75);
             this.txtPrice.Name = "txtPrice";
@@ -104,7 +106,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(870, 262);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);

@@ -172,6 +172,8 @@ namespace POS.SO
                 mainScreen.control_type = ControlType.Form;
                 mainScreen.control_width = dragContainer2.Width;
                 mainScreen.control_height = dragContainer2.Height;
+                mainScreen.background_color = dragContainer2.BackColor.ToArgb();
+                mainScreen.image =Converts.ParseByte(dragContainer2.BackgroundImage);
                 foreach (Control.DragItem item in dragContainer2.DragItem.Where(a => a.ControlCommand.ControlState != ObjectState.Delete))
                 {
                     ScreenConfig dragItem = new ScreenConfig();
@@ -193,7 +195,7 @@ namespace POS.SO
                     dragItem.control_width = item.Width;
                     dragItem.control_height = item.Height;
                     dragItem.background_color = item.BackColor.ToArgb();
-                    dragItem.background_image_path = item.CustomProperties.BackGroundImage;
+                    dragItem.image =Converts.ParseByte(item.CustomProperties.BackGroundImage);
                     dragItem.fore_color = item.ForeColor.ToArgb();
                     dragItem.percent_height = item.PercenyHeight;
                     dragItem.percent_width = item.PercenyWidth;
@@ -229,8 +231,18 @@ namespace POS.SO
             spComtrolCommand.Panel2.Enabled = false;
             mainScreen.control_id = Converts.ParseLongNullable(cmdForm.SelectedValue.ToString());
             mainScreen = ServiceProvider.ScreenConfigService.FindByKeys(mainScreen, false);
+            
             if (mainScreen != null)
             {
+                if (mainScreen.sc_screen_image_id != null)
+                {
+                    mainScreen.image = ServiceProvider.ScreenImageService.FindByKeys(new ScreenImage() { sc_screen_image_id = mainScreen.sc_screen_image_id }, false).image;
+                    dragContainer2.BackgroundImage = Converts.ParseImage(mainScreen.image);
+                }
+                else {
+                    dragContainer2.BackgroundImage = null;
+                }
+                dragContainer2.BackColor = Color.FromArgb(mainScreen.background_color);
                 dragContainer2.HideBoxResize();
                 dragContainer2.ControlCommand.control_id = mainScreen.control_id;
                 dragContainer2.ClearDragItem();
@@ -260,7 +272,7 @@ namespace POS.SO
                     d.Width = item.control_width;
                     d.Height = item.control_height;
                     d.FontStr = item.font;
-                    d.CustomProperties.BackGroundImage = item.background_image_path;
+                    d.CustomProperties.BackGroundImage =Converts.ParseImage(item.image);
                     d.BackColor = Color.FromArgb(item.background_color);
                     d.ForeColor = Color.FromArgb(item.fore_color);
                     d.Top = item.position_top;

@@ -49,14 +49,10 @@ namespace POS.SO
                 btnPerson.Text = string.Format("+ ลูกค้า ({0})", this.OrderHeads.Person);
             }
         }
-
-
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.ClosePopup(this.OrderHeads);
         }
-
         private void btnDelPeson_Click(object sender, EventArgs e)
         {
             if (this.OrderHeads != null)

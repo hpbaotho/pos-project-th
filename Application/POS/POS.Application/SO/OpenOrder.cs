@@ -20,7 +20,6 @@ namespace POS.SO
         int defaultBtnW = 120;
         int defaultBtnH = 60;
         Font defaultBtnFont;
-        List<OrderDTO> OrderList;
         private OrderHeadDTO _OrderHeads;
         public OrderHeadDTO OrderHeads
         {
@@ -50,15 +49,50 @@ namespace POS.SO
             InitializeComponent();
             this.defaultBtnFont = new System.Drawing.Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, FontStyle.Bold);
             base.BindConfigScreen(pnlNumScreen, ControlCode.OpenOrder, txtCommand);
-
-            lisMenuOrder.Columns.Add("Menu Name", 250, HorizontalAlignment.Left);
+            lisMenuOrder.Columns.Add("Chk", 50, HorizontalAlignment.Left);
+            lisMenuOrder.Columns.Add("Menu Name", 200, HorizontalAlignment.Left);
             lisMenuOrder.Columns.Add("Oty", 50, HorizontalAlignment.Right);
             lisMenuOrder.Columns.Add("Price", -2, HorizontalAlignment.Right);
 
             lisMenuOrder.View = View.Details;
             this.LoadDiningType();
-        }
 
+        }
+        private void OpenOrder_Shown(object sender, EventArgs e)
+        {
+            string tableCode = this.popupDataSource.ToString();
+            this.OrderHeads = ServiceProvider.SaleOrderHeaderService.GetOrderByTable(tableCode);
+            //Update Oder information
+            this.CheckStartEatingTime();
+            this.OrderHeads.TableCode = tableCode;
+            labPersonCount.Text = this.OrderHeads.Person.ToString();
+
+            this.BindListOrder();
+            this.UpdateOrderHeadToScreen();
+
+            //Auto Click Button menu
+            foreach (System.Windows.Forms.Control item in fPnlDiningType.Controls)
+            {
+                if (item.GetType() == typeof(BaseButton))
+                {
+                    BaseButton btn = item as BaseButton;
+                    btn.PerformClick();
+                    break;
+                }
+            }
+
+            foreach (System.Windows.Forms.Control item in fPnlMainMenu.Controls)
+            {
+                if (item.GetType() == typeof(BaseButton))
+                {
+                    BaseButton btn = item as BaseButton;
+                    btn.PerformClick();
+                    break;
+                }
+            }
+
+
+        }
         #region :: Costom Function ::
 
 
@@ -66,7 +100,7 @@ namespace POS.SO
         private long GetOrderMenuId()
         {
             long orderDetailId = -1;
-            long minId = this.OrderList.Count > 0 ? this.OrderList.Min(a => a.sales_order_detail_id).Value : 0;
+            long minId = this.OrderHeads.OrderList.Count > 0 ? this.OrderHeads.OrderList.Min(a => a.sales_order_detail_id).Value : 0;
             if (minId > 0)
             {
                 orderDetailId = -1;
@@ -172,18 +206,24 @@ namespace POS.SO
             lisMenuOrder.Items.Clear();
             lisMenuOrder.Focus();
 
-            foreach (OrderDTO Orderitem in this.OrderList.Where(o => o.OrderState != ObjectState.Delete && !o.condiment_of_order_detail_id.HasValue))
+            foreach (OrderDTO Orderitem in this.OrderHeads.OrderList.Where(o => o.OrderState != ObjectState.Delete && !o.condiment_of_order_detail_id.HasValue).OrderByDescending(c => c.ChkNo))
             {
-                ListViewItem item = new ListViewItem(Orderitem.menu_name);
+                ListViewItem item = new ListViewItem(Orderitem.ChkNo.ToString());
+                if (Orderitem.is_print)
+                    item.ForeColor = Color.Blue;
+                item.SubItems.Add(Orderitem.menu_name);
                 item.SubItems.Add(Orderitem.order_amount.ToString());
                 item.SubItems.Add(Orderitem.TotalAmount.ToString());
                 item.Name = Orderitem.sales_order_detail_id.ToString();
                 item.Selected = Orderitem.Selected;
                 lisMenuOrder.Items.Add(item);
 
-                foreach (OrderDTO Condimentitem in this.OrderList.Where(o => o.OrderState != ObjectState.Delete && o.condiment_of_order_detail_id == Orderitem.sales_order_detail_id))
+                foreach (OrderDTO Condimentitem in this.OrderHeads.OrderList.Where(o => o.OrderState != ObjectState.Delete && o.condiment_of_order_detail_id == Orderitem.sales_order_detail_id))
                 {
-                    ListViewItem CondimentListitem = new ListViewItem("  - " + Condimentitem.menu_name);
+                    ListViewItem CondimentListitem = new ListViewItem(Condimentitem.ChkNo.ToString());
+                    if (Orderitem.is_print)
+                        CondimentListitem.ForeColor = Color.Blue;
+                    CondimentListitem.SubItems.Add(" - " + Condimentitem.menu_name);
                     CondimentListitem.SubItems.Add(Condimentitem.order_amount.ToString());
                     CondimentListitem.SubItems.Add(Condimentitem.TotalAmount.ToString());
                     CondimentListitem.Name = Condimentitem.sales_order_detail_id.ToString();
@@ -198,7 +238,7 @@ namespace POS.SO
             }
 
 
-            labTotalPrice.Text = string.Format(Format.DecimalNumberFormat2DZero, this.OrderList.Sum(a => a.TotalAmount));
+            labTotalPrice.Text = string.Format(Format.DecimalNumberFormat2DZero, this.OrderHeads.OrderList.Sum(a => a.TotalAmount));
         }
 
         private void AddMenu()
@@ -206,10 +246,10 @@ namespace POS.SO
 
             if (lisMenuOrder.SelectedItems.Count > 0)
             {
-                this.OrderList.ForEach(a => a.Selected = false);
+                this.OrderHeads.OrderList.ForEach(a => a.Selected = false);
                 ListViewItem addItem = lisMenuOrder.SelectedItems[0];
                 long sales_order_detail_id = Converts.ParseLong(addItem.Name);
-                OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
+                OrderDTO updateItem = this.OrderHeads.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
                 if (updateItem != null && updateItem.OrderState == ObjectState.Add)
                 {
                     updateItem.order_amount = updateItem.order_amount += 1;
@@ -225,14 +265,14 @@ namespace POS.SO
             {
                 ListViewItem delItem = lisMenuOrder.SelectedItems[0];
                 long sales_order_detail_id = Converts.ParseLong(delItem.Name);
-                OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
+                OrderDTO updateItem = this.OrderHeads.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id).FirstOrDefault();
                 updateItem.order_amount = updateItem.order_amount - 1;
 
                 if (updateItem.order_amount <= 0)
                 {
                     if (updateItem != null && updateItem.OrderState == ObjectState.Add)
                     {
-                        this.OrderList.Remove(updateItem);
+                        this.OrderHeads.OrderList.Remove(updateItem);
 
                     }
                     else if (updateItem != null && updateItem.OrderState == ObjectState.Edit)
@@ -255,7 +295,7 @@ namespace POS.SO
         protected void btnDiningi_Click(object sender, EventArgs e)
         {
             BaseButton btnDining = sender as BaseButton;
-           
+
 
             if (btnDining != null)
             {
@@ -298,7 +338,7 @@ namespace POS.SO
 
             if (btnCategory != null)
             {
-               
+
                 MenuCategory MenuCategorySelect = btnCategory.DataObject as MenuCategory;
                 this.LoadMenuToContaner(MenuCategorySelect.dining_type_id, MenuCategorySelect.menu_group_id, MenuCategorySelect.menu_category_id);
                 this.LoadMenuGroupByDiningType(new DiningType() { dining_type_id = MenuCategorySelect.dining_type_id });
@@ -319,9 +359,9 @@ namespace POS.SO
         }
         protected void btnMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.OrderList == null)
+            if (this.OrderHeads.OrderList == null)
             {
-                this.OrderList = new List<OrderDTO>();
+                this.OrderHeads.OrderList = new List<OrderDTO>();
             }
 
             BaseButton btnMenu = sender as BaseButton;
@@ -347,24 +387,24 @@ namespace POS.SO
             OrderItem.menu_id = MenuItem.menu_id;
             OrderItem.menu_dining_type_id = MenuItem.menu_dining_type_id;
             OrderItem.menu_name = MenuItem.menu_name;
-
+            OrderItem.ChkNo = ServiceProvider.OrderCheckService.GetCheckNo();
             // Chekc Is Inver item?
             if (MenuItem.isInventoryItem)
             {
-                OrderDTO ItemInven = this.OrderList.Where(i => i.menu_id == MenuItem.menu_id).FirstOrDefault();
+                OrderDTO ItemInven = this.OrderHeads.OrderList.Where(i => i.menu_id == MenuItem.menu_id).FirstOrDefault();
                 if (ItemInven != null)
                 {
                     ItemInven.order_amount += menuCount;
                 }
                 else
                 {
-                    this.OrderList.Add(OrderItem);
+                    this.OrderHeads.OrderList.Add(OrderItem);
                 }
 
             }
             else
             {
-                this.OrderList.Add(OrderItem);
+                this.OrderHeads.OrderList.Add(OrderItem);
             }
             this.BindListOrder();
             txtCommand.Text = string.Empty;
@@ -389,6 +429,12 @@ namespace POS.SO
             labPersonCount.Text = this.OrderHeads.Person.ToString();
 
         }
+        private void btnChangeTable_Click(object sender, EventArgs e)
+        {
+            object orderHead = this.OpenPopup<PopupChangeTable>(this.OrderHeads);
+            this.OrderHeads = orderHead as OrderHeadDTO;
+            this.UpdateOrderHeadToScreen();
+        }
         protected void btnCondiment_Click(object sender, EventArgs e)
         {
             fPnlMenuItem.Controls.Clear();
@@ -403,16 +449,16 @@ namespace POS.SO
             if (returnObj != null)
             {
                 OrderDTO menuCondiment = returnObj as OrderDTO;
-
-                OrderDTO condimentResult = this.OrderList.Find(a => a.sales_order_detail_id == menuCondiment.condiment_of_order_detail_id);
+                menuCondiment.ChkNo = ServiceProvider.OrderCheckService.GetCheckNo();
+                OrderDTO condimentResult = this.OrderHeads.OrderList.Find(a => a.sales_order_detail_id == menuCondiment.condiment_of_order_detail_id);
                 if (condimentResult != null)
                 {
-                    this.OrderList.ForEach(s => s.Selected = false);
+                    this.OrderHeads.OrderList.ForEach(s => s.Selected = false);
                     condimentResult.Selected = true;
 
                     long orderDetailId = this.GetOrderMenuId();
                     menuCondiment.sales_order_detail_id = orderDetailId;
-                    this.OrderList.Add(menuCondiment);
+                    this.OrderHeads.OrderList.Add(menuCondiment);
                     this.BindListOrder();
 
                 }
@@ -424,19 +470,49 @@ namespace POS.SO
         private void btnStartTime_Click(object sender, EventArgs e)
         {
             this.OrderHeads.IsStartTime = true;
-            btnStartTime.Theme = Theme.MSOffice2010_Green;
-            btnStartTime.Text = "Re-New";
-            btnStartTime.Invalidate();
-            timeEating.Stop();
-            timeEating.Start();
+            this.CheckStartEatingTime();
+        }
+
+        private void CheckStartEatingTime()
+        {
+            if (this.OrderHeads.IsStartTime)
+            {
+                btnStartTime.Theme = Theme.MSOffice2010_Green;
+                btnStartTime.Text = "Re-New";
+                btnStartTime.Invalidate();
+                timeEating.Stop();
+                timeEating.Start();
+            }
+            else
+            {
+                timeEating.Stop();
+            }
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            foreach (OrderDTO Orderitem in this.OrderHeads.OrderList.Where(o => o.OrderState != ObjectState.Delete))
+            {
+                Orderitem.is_print = true;
+            }
+            ServiceProvider.SaleOrderHeaderService.SendOrderToKitchen(this.OrderHeads);
             this.CloseScreen();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.CloseScreen();
+        }
+        private void btnCencelBill_Click(object sender, EventArgs e)
+        {
+            if (base.ShowConfirmMessage("Are you sure to Cancel?", "Cancel Bill"))
+            {
+
+                if (this.OrderHeads.sales_order_head_id.HasValue)
+                {
+                    this.OrderHeads.IsCancle = true;
+                }
+                ServiceProvider.SOTableService.CancelBookTable(this.OrderHeads.TableCode);
+                this.CloseScreen();
+            }
         }
         #endregion
 
@@ -449,10 +525,10 @@ namespace POS.SO
 
                 ListViewItem addItem = lisMenuOrder.SelectedItems[0];
                 long sales_order_detail_id = Converts.ParseLong(addItem.Name);
-                OrderDTO updateItem = this.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id && !a.condiment_of_order_detail_id.HasValue).FirstOrDefault();
+                OrderDTO updateItem = this.OrderHeads.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id && !a.condiment_of_order_detail_id.HasValue).FirstOrDefault();
                 if (updateItem != null)
                 {
-                    this.OrderList.ForEach(s => s.Selected = false);
+                    this.OrderHeads.OrderList.ForEach(s => s.Selected = false);
                     updateItem.Selected = true;
                     if (!updateItem.IsCondiment)
                     {
@@ -523,6 +599,17 @@ namespace POS.SO
                 labEatingTime.Text = dateDiff.ToString(@"hh\:mm\:ss");//string.Format("{0:c}", dateDiff);
             }
         }
+
+
+
+        private void UpdateOrderHeadToScreen()
+        {
+            lblTableCode.Text = this.OrderHeads.TableCode;
+        }
+
+
+
+
 
 
 

@@ -38,12 +38,12 @@ namespace POS.SO
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnStartTime = new POS.Control.BaseButton();
             this.btnPerson = new POS.Control.BaseButton();
-            this.baseButton6 = new POS.Control.BaseButton();
+            this.btnCencelBill = new POS.Control.BaseButton();
             this.btnDelete = new POS.Control.BaseButton();
             this.btnAdd = new POS.Control.BaseButton();
             this.btnPrint = new POS.Control.BaseButton();
             this.baseButton4 = new POS.Control.BaseButton();
-            this.baseButton3 = new POS.Control.BaseButton();
+            this.btnChangeTable = new POS.Control.BaseButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.labEatingTime = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@ namespace POS.SO
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTableCode = new System.Windows.Forms.Label();
             this.lbltablrdesc = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labTotalPrice = new System.Windows.Forms.Label();
@@ -118,6 +118,7 @@ namespace POS.SO
             // 
             this.txtCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCommand.Description = "";
             this.txtCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtCommand.Location = new System.Drawing.Point(556, 553);
             this.txtCommand.Name = "txtCommand";
@@ -129,12 +130,12 @@ namespace POS.SO
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.btnStartTime);
             this.panel3.Controls.Add(this.btnPerson);
-            this.panel3.Controls.Add(this.baseButton6);
+            this.panel3.Controls.Add(this.btnCencelBill);
             this.panel3.Controls.Add(this.btnDelete);
             this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Controls.Add(this.btnPrint);
             this.panel3.Controls.Add(this.baseButton4);
-            this.panel3.Controls.Add(this.baseButton3);
+            this.panel3.Controls.Add(this.btnChangeTable);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -169,18 +170,19 @@ namespace POS.SO
             this.btnPerson.UseVisualStyleBackColor = true;
             this.btnPerson.Click += new System.EventHandler(this.btnPerson_Click);
             // 
-            // baseButton6
+            // btnCencelBill
             // 
-            this.baseButton6.CommandArg = null;
-            this.baseButton6.DataObject = null;
-            this.baseButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.baseButton6.Location = new System.Drawing.Point(3, 543);
-            this.baseButton6.Name = "baseButton6";
-            this.baseButton6.Size = new System.Drawing.Size(110, 71);
-            this.baseButton6.TabIndex = 5;
-            this.baseButton6.Text = "Cancel Bill";
-            this.baseButton6.Theme = POS.Control.Theme.MSOffice2010_RED;
-            this.baseButton6.UseVisualStyleBackColor = true;
+            this.btnCencelBill.CommandArg = null;
+            this.btnCencelBill.DataObject = null;
+            this.btnCencelBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnCencelBill.Location = new System.Drawing.Point(3, 543);
+            this.btnCencelBill.Name = "btnCencelBill";
+            this.btnCencelBill.Size = new System.Drawing.Size(110, 71);
+            this.btnCencelBill.TabIndex = 5;
+            this.btnCencelBill.Text = "Cancel Bill";
+            this.btnCencelBill.Theme = POS.Control.Theme.MSOffice2010_RED;
+            this.btnCencelBill.UseVisualStyleBackColor = true;
+            this.btnCencelBill.Click += new System.EventHandler(this.btnCencelBill_Click);
             // 
             // btnDelete
             // 
@@ -221,7 +223,7 @@ namespace POS.SO
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(110, 71);
             this.btnPrint.TabIndex = 2;
-            this.btnPrint.Text = "Print Bill";
+            this.btnPrint.Text = "Kitchen";
             this.btnPrint.Theme = POS.Control.Theme.MSOffice2010_Green;
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -239,18 +241,19 @@ namespace POS.SO
             this.baseButton4.Theme = POS.Control.Theme.MSOffice2010_Pink;
             this.baseButton4.UseVisualStyleBackColor = true;
             // 
-            // baseButton3
+            // btnChangeTable
             // 
-            this.baseButton3.CommandArg = null;
-            this.baseButton3.DataObject = null;
-            this.baseButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.baseButton3.Location = new System.Drawing.Point(3, 3);
-            this.baseButton3.Name = "baseButton3";
-            this.baseButton3.Size = new System.Drawing.Size(110, 71);
-            this.baseButton3.TabIndex = 0;
-            this.baseButton3.Text = "Change Table";
-            this.baseButton3.Theme = POS.Control.Theme.MSOffice2010_BLUE;
-            this.baseButton3.UseVisualStyleBackColor = true;
+            this.btnChangeTable.CommandArg = null;
+            this.btnChangeTable.DataObject = null;
+            this.btnChangeTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnChangeTable.Location = new System.Drawing.Point(3, 3);
+            this.btnChangeTable.Name = "btnChangeTable";
+            this.btnChangeTable.Size = new System.Drawing.Size(110, 71);
+            this.btnChangeTable.TabIndex = 0;
+            this.btnChangeTable.Text = "Change Table";
+            this.btnChangeTable.Theme = POS.Control.Theme.MSOffice2010_BLUE;
+            this.btnChangeTable.UseVisualStyleBackColor = true;
+            this.btnChangeTable.Click += new System.EventHandler(this.btnChangeTable_Click);
             // 
             // panel4
             // 
@@ -261,7 +264,7 @@ namespace POS.SO
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.lblTableCode);
             this.panel4.Controls.Add(this.lbltablrdesc);
             this.panel4.Location = new System.Drawing.Point(121, 3);
             this.panel4.Name = "panel4";
@@ -329,15 +332,15 @@ namespace POS.SO
             this.label2.TabIndex = 2;
             this.label2.Text = "Status:";
             // 
-            // label1
+            // lblTableCode
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(69, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "10";
+            this.lblTableCode.AutoSize = true;
+            this.lblTableCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblTableCode.Location = new System.Drawing.Point(69, 6);
+            this.lblTableCode.Name = "lblTableCode";
+            this.lblTableCode.Size = new System.Drawing.Size(27, 20);
+            this.lblTableCode.TabIndex = 1;
+            this.lblTableCode.Text = "10";
             // 
             // lbltablrdesc
             // 
@@ -386,7 +389,7 @@ namespace POS.SO
             // 
             // lisMenuOrder
             // 
-            this.lisMenuOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lisMenuOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lisMenuOrder.FullRowSelect = true;
             this.lisMenuOrder.HideSelection = false;
             this.lisMenuOrder.Location = new System.Drawing.Point(120, 80);
@@ -430,6 +433,7 @@ namespace POS.SO
             this.Controls.Add(this.fPnlMenuItem);
             this.Name = "OpenOrder";
             this.Text = "OpenOrder";
+            this.Shown += new System.EventHandler(this.OpenOrder_Shown);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -449,11 +453,11 @@ namespace POS.SO
         private Control.BaseButton btnDelete;
         private Control.BaseButton btnAdd;
         private Control.BaseButton btnPrint;
-        private Control.BaseButton baseButton3;
+        private Control.BaseButton btnChangeTable;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTableCode;
         private System.Windows.Forms.Label lbltablrdesc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labTotalPrice;
@@ -461,7 +465,7 @@ namespace POS.SO
         private System.Windows.Forms.FlowLayoutPanel fPnlMainMenu;
         private System.Windows.Forms.ListView lisMenuOrder;
         private System.Windows.Forms.FlowLayoutPanel fPnlDiningType;
-        private BaseButton baseButton6;
+        private BaseButton btnCencelBill;
         private BaseButton btnPerson;
         private System.Windows.Forms.Label labPersonCount;
         private System.Windows.Forms.Label label5;

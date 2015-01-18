@@ -8,6 +8,7 @@ using System.Data;
 using System.Reflection;
 using System.Drawing;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 
 namespace Core.Standards.Converters
 {
@@ -524,6 +525,47 @@ namespace Core.Standards.Converters
             return font;
 
         }
-        
+        public static byte[] ParseByte(Image image)
+        {
+            byte[] data=new byte[0];
+            if (image != null)
+            {
+                using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+                {
+                    if (ImageFormat.Jpeg.Equals(image.RawFormat))
+                    {
+                        // JPEG
+                        image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                    else if (ImageFormat.Png.Equals(image.RawFormat))
+                    {
+                        // PNG
+                        image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    else if (ImageFormat.Gif.Equals(image.RawFormat))
+                    {
+                        // GIF
+                        image.Save(stream, System.Drawing.Imaging.ImageFormat.Gif);
+                    }
+                    else 
+                    {
+                        // Bmp
+                        image.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
+                    }
+                   
+                    data = stream.ToArray();
+                }
+            }
+            return data;
+        }
+        public static Image ParseImage(byte[] data)
+        {
+            Image image = null;
+            if (data != null && data.Length > 0)
+                image = Image.FromStream(new System.IO.MemoryStream(data));
+
+            return image;
+        }
+
     }
 }

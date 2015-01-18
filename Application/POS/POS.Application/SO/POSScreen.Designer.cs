@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlTableView = new System.Windows.Forms.Panel();
             this.btnClose = new POS.Control.BaseButton();
+            this.timerTable = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // pnlTableView
@@ -54,6 +56,11 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // timerTable
+            // 
+            this.timerTable.Interval = 300;
+            this.timerTable.Tick += new System.EventHandler(this.timerTable_Tick);
+            // 
             // POSScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -63,6 +70,7 @@
             this.Controls.Add(this.pnlTableView);
             this.Name = "POSScreen";
             this.Text = "POSScreen";
+            this.Shown += new System.EventHandler(this.POSScreen_Shown);
             this.ResumeLayout(false);
 
         }
@@ -71,5 +79,6 @@
 
         private System.Windows.Forms.Panel pnlTableView;
         private Control.BaseButton btnClose;
+        private System.Windows.Forms.Timer timerTable;
     }
 }

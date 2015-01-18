@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using POS.Control;
+using POS.BL;
 
 namespace POS.SO
 {
@@ -60,6 +61,7 @@ namespace POS.SO
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
+            UserAccount.SignOut();
             base.CloseScreen();
         }
 

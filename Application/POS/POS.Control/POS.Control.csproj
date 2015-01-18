@@ -57,6 +57,12 @@
       <DependentUpon>BaseButton.cs</DependentUpon>
     </Compile>
     <Compile Include="BaseMessageBox\UtilityMessage.cs" />
+    <Compile Include="BasePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BasePanel.Designer.cs">
+      <DependentUpon>BasePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

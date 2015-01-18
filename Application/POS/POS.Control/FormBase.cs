@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Threading;
 using POS.Control.BaseMessageBox;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace POS.Control
 {
@@ -42,19 +43,111 @@ namespace POS.Control
         public FormBase(bool ignordDefaulstFont)
         {
             this._IngoreFontDefault = ignordDefaulstFont;
-
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.InintControlForm();
         }
 
         public FormBase()
         {
-
+            this.InintControlForm();
+        }
+        private void InintControlForm()
+        {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+
+
+
+
+
+        }
+        private Image PrintInvisibleControl()
+        {
+
+            Graphics g = this.CreateGraphics();
+            //new bitmap object to save the image        
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+            //Drawing control to the bitmap        
+            this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
+
+            return bmp;
+        }
+        private Image TakeSnapshot(bool isBlur)
+        {
+            Graphics g = this.CreateGraphics();
+            //new bitmap object to save the image        
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+            //Drawing control to the bitmap     
+            Rectangle rec = new Rectangle(0, 0, this.Width, this.Height);
+            this.DrawToBitmap(bmp, rec);
+            if (isBlur)
+                bmp = this.MakeGrayscale3(bmp);
+            return bmp;
+        }
+
+        //private void Blur()
+        //{
+        //    this.UnBlur();
+        //    PictureBox pb = new PictureBox();
+        //    pb.Location = new Point(0, 0);
+        //    pb.Name = "pbBlueForm";
+
+        //    pb.Visible = true;
+        //    pb.Dock = DockStyle.Fill;
+        //    pb.BackgroundImage = TakeSnapshot(true);
+
+        //    this.Controls.Add(pb);
+        //    pb.BringToFront();
+        //}
+
+        //private void UnBlur()
+        //{
+        //    List<System.Windows.Forms.Control> c = this.Controls.Find("pbBlueForm", true).ToList();
+        //    if (c != null && c.Count > 0)
+        //    {
+        //        foreach (var item in c)
+        //        {
+        //            this.Controls.Remove(item);
+        //        }
+
+        //    }
+
+        //}
+        public Bitmap MakeGrayscale3(Bitmap original)
+        {
+            //create a blank bitmap the same size as original
+            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
+
+            //get a graphics object from the new image
+            Graphics g = Graphics.FromImage(newBitmap);
+
+            //create the grayscale ColorMatrix
+            ColorMatrix colorMatrix = new ColorMatrix(
+               new float[][] 
+      {
+         new float[] {.3f, .3f, .3f, 0, 0},
+         new float[] {.59f, .59f, .59f, 0, 0},
+         new float[] {.11f, .11f, .11f, 0, 0},
+         new float[] {0, 0, 0, 1, 0},
+         new float[] {0, 0, 0, 0, 1}
+      });
+
+            //create some image attributes
+            ImageAttributes attributes = new ImageAttributes();
+
+            //set the color matrix attribute
+            attributes.SetColorMatrix(colorMatrix);
+
+            //draw the original image on the new image
+            //using the grayscale color matrix
+            g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+               0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+
+            //dispose the Graphics object
+            g.Dispose();
+            return newBitmap;
         }
         #endregion
-        
+
         //====================================================================
         #region :: Message Control
 
@@ -87,26 +180,31 @@ namespace POS.Control
         #region :: Custom Function ::
 
         // Public function
-        public object OpenPopup<T>() where T : FormBase {
+        public object OpenPopup<T>() where T : FormBase
+        {
             return OpenPopup<T>(null);
         }
         public object OpenPopup<T>(object popupCriteria) where T : FormBase
         {
+            //   this.Blur();
             object popupresult = null;
             Type type = typeof(T);
             using (PopupBase form = (PopupBase)Activator.CreateInstance(type))
             {
                 //this.Hide();
                 form.popupDataSource = popupCriteria;
-                DialogResult result = form.ShowDialog(this);
-                
+
+                DialogResult result = form.ShowDialog();
+
                 if (result == System.Windows.Forms.DialogResult.Cancel)
                 {
+
                     this.Show();
                     this.Focus();
                     this.Activate();
                 }
-                else if (result == System.Windows.Forms.DialogResult.OK) {
+                else if (result == System.Windows.Forms.DialogResult.OK)
+                {
                     popupresult = form.popupResult;
                     this.Show();
                     this.Focus();
@@ -118,6 +216,7 @@ namespace POS.Control
                 }
 
             }
+            //   this.UnBlur();
             return popupresult;
         }
         public void ClosePopup(object result)
@@ -129,17 +228,23 @@ namespace POS.Control
         {
             this.CloseScreen();
         }
-
-        public void OpernNewScreen<T>() where T : FormBase
+        public object OpernNewScreen<T>() where T : FormBase
         {
-
+            return this.OpernNewScreen<T>(null);
+        }
+        public object OpernNewScreen<T>(object dataSource) where T : FormBase
+        {
+            //  this.UnBlur();
+            object resultPopup = null;
             Type type = typeof(T);
             using (FormBase form = (FormBase)Activator.CreateInstance(type))
             {
                 this.Hide();
-                DialogResult result = form.ShowDialog();
+                form.popupDataSource = dataSource;
+                DialogResult result = form.ShowDialog(this);
                 if (result == System.Windows.Forms.DialogResult.Cancel || result == System.Windows.Forms.DialogResult.OK)
                 {
+                    resultPopup = form.popupResult;
                     this.Show();
                     this.Focus();
                     this.Activate();
@@ -150,9 +255,12 @@ namespace POS.Control
                 }
 
             }
+            return resultPopup;
         }
         public void OpernNewScreen(Type type)
         {
+            if (type == null) return;
+            //   this.UnBlur();
             using (FormBase form = (FormBase)Activator.CreateInstance(type))
             {
                 this.Hide();
@@ -211,13 +319,18 @@ namespace POS.Control
             {
                 Control_contanner.Width = mainScreen.control_width;
                 Control_contanner.Height = mainScreen.control_height;
-
+                contanner.BackColor = Color.FromArgb(mainScreen.background_color);
+                if (mainScreen.image != null && mainScreen.image.Length > 0)
+                {
+                    contanner.BackgroundImage = Converts.ParseImage(mainScreen.image);
+                    // contanner.BackgroundImageLayout = ImageLayout.Zoom;
+                }
                 List<ScreenConfig> dragItem = new List<ScreenConfig>();
                 dragItem = ServiceProvider.ScreenConfigService.getChildScreenByParent(mainScreen.control_id);
 
                 foreach (ScreenConfig item in dragItem)
                 {
-                    
+
                     switch (item.control_type)
                     {
                         case ControlType.Button:
@@ -242,24 +355,44 @@ namespace POS.Control
                             Control_contanner.Controls.Add(btn);
                             break;
                         case ControlType.Table:
-                            Button btnTable = new Button();
-                            if (!string.IsNullOrEmpty(item.background_image_path))
+                            SOTable tableDB = ServiceProvider.SOTableService.GetTaleByCode(item.control_command);
+                            if (tableDB != null && tableDB.active)
                             {
-                                btnTable.BackgroundImage = Image.FromFile(item.background_image_path);
-                                btnTable.BackgroundImageLayout = ImageLayout.Zoom;
+                                BasePanel PnlTable = new BasePanel();
+                                PictureBox tableImage = new PictureBox();
+                                PnlTable.DataObject = item;
+                                Label labTableName = new Label();
+
+                                if (item.image != null && item.image.Length > 0)
+                                {
+                                    tableImage.BackgroundImage = Converts.ParseImage(item.image);
+                                    tableImage.BackgroundImageLayout = ImageLayout.Zoom;
+                                    tableImage.Dock = DockStyle.Fill;
+
+                                }
+                                labTableName.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
+                                PnlTable.Location = new System.Drawing.Point(0, 0);
+                                PnlTable.Left = item.position_left;
+                                PnlTable.Top = item.position_top;
+                                PnlTable.Width = item.control_width;
+                                PnlTable.Height = item.control_height;
+                                PnlTable.Text = item.display_text;
+                                labTableName.Text = item.display_text;
+                                //labTableName.Anchor = ((AnchorStyles)(AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top));
+                                labTableName.AutoSize = false;
+                                labTableName.Dock = DockStyle.Fill;
+                                labTableName.TextAlign = ContentAlignment.MiddleCenter;
+                                PnlTable.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
+                                PnlTable.BackColor = Color.FromArgb(item.background_color);
+                                labTableName.BackColor = Color.Transparent;
+                                labTableName.Click += new EventHandler(btn_TableClick);
+
+                                PnlTable.Controls.Add(tableImage);
+                                labTableName.Location = new Point(0, 0);
+                                labTableName.Parent = tableImage;
+
+                                Control_contanner.Controls.Add(PnlTable);
                             }
-                            btnTable.Location = new System.Drawing.Point(0, 0);
-                            btnTable.Left = item.position_left;
-                            btnTable.Top = item.position_top;
-                            btnTable.Width = item.control_width;
-                            btnTable.Height = item.control_height;
-                            btnTable.Text = item.display_text;
-                            btnTable.Font = Core.Standards.Converters.Converts.ConvertStringToFont(item.font);
-                            btnTable.BackColor = Color.FromArgb(item.background_color);
-                            btnTable.Tag = item.control_command;
-                            btnTable.Click += new EventHandler(btn_TableClick);
-                            btnTable.FlatStyle = FlatStyle.Popup;
-                            Control_contanner.Controls.Add(btnTable);
                             break;
                         default:
                             Panel pnlObj = new Panel();
@@ -302,7 +435,15 @@ namespace POS.Control
         {
             if (TableClickEvent != null)
             {
-                TableClickEvent(((Button)sender).Tag.ToString());
+                Label labTable = sender as Label;
+                PictureBox pb = ((PictureBox)labTable.Parent);
+                if (pb != null)
+                {
+                    BasePanel panel = ((BasePanel)pb.Parent);
+                    ScreenConfig panelConfig = panel.DataObject as ScreenConfig;
+
+                    TableClickEvent(panelConfig.control_command);
+                }
             }
         }
 
@@ -424,15 +565,20 @@ namespace POS.Control
     }
     public class PopupBase : FormBase
     {
-       
+
         public PopupBase()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.ControlBox = true;
+            this.BackColor = Color.FromArgb(255, 255, 128);
             this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.StartPosition = FormStartPosition.CenterScreen;
 
         }
-       
-    
+
+
 
 
     }

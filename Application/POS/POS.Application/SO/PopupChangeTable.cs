@@ -7,55 +7,62 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using POS.BL.Utilities;
+using POS.BL.DTO.SO;
 using POS.BL.Entities.Entity;
 using POS.BL;
 using POS.Control;
-using Core.Standards.Validations;
 
 namespace POS.SO
 {
-    public partial class POSScreen : Control.FormBase
+    public partial class PopupChangeTable : Control.PopupBase
     {
-        public POSScreen()
-        {
-            InitializeComponent();
-            base.BindConfigScreen(pnlTableView, ControlCode.POS, null);
-            this.TableClickEvent += new TableClickHandler(POSScreen_TableClickEvent);
+        private OrderHeadDTO _OrderHeads;
 
-        }
-        private void POSScreen_Shown(object sender, EventArgs e)
+        public PopupChangeTable()
         {
-            WorkPeriod activeWorkPeriod = ServiceProvider.WorkPeriodService.findActiveWorkPeriod();
-            if (activeWorkPeriod != null)
+          
+
+            InitializeComponent();
+            timer1.Enabled = false;
+            timer1.Stop();
+            base.BindConfigScreen(pnlTableView, ControlCode.POS, null);
+            timer1.Enabled = true;
+            timer1.Start();
+            this.TableClickEvent += new TableClickHandler(PopupChangeTable_TableClickEvent);
+        }
+
+        void PopupChangeTable_TableClickEvent(string tableCode)
+        {
+            if (ServiceProvider.SOTableService.SwitchTable(_OrderHeads, _OrderHeads.TableCode, tableCode))
             {
-                timerTable.Start();
+                _OrderHeads.TableCode = tableCode;
+                this.ClosePopup(_OrderHeads);
             }
             else
             {
-                this.ShowErrorMessage("Please Open Work Perion!");
-                base.CloseScreen();
-            }
-        }
-        protected void POSScreen_TableClickEvent(string tableCode)
-        {
-            SOTable selectTable = ServiceProvider.SOTableService.GetTaleByCode(tableCode);
-            if (selectTable != null && selectTable.active)
-            {
-                ServiceProvider.SOTableService.BookTable(tableCode);
-                base.OpernNewScreen<OpenOrder>(tableCode);
-                SaleOrderHeader orderHead = ServiceProvider.SaleOrderHeaderService.GetOrdrtHeadByTable(tableCode);
-                if (orderHead == null) {
-                    ServiceProvider.SOTableService.CancelBookTable(tableCode);
-                }
+                this.ShowErrorMessage("Please re-Select Table this table is not available!. ");
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void PopupChangeTable_Shown(object sender, EventArgs e)
+        {
+            _OrderHeads = this.popupDataSource as OrderHeadDTO;
+            if (_OrderHeads != null)
+            {
+
+            }
+            else
+            {
+                this.CloseScreen();
+            }
+        }
+
+        private void baseButton1_Click(object sender, EventArgs e)
         {
             this.CloseScreen();
         }
 
-        private void timerTable_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             foreach (System.Windows.Forms.Control item in pnlTableView.Controls)
             {
@@ -87,7 +94,5 @@ namespace POS.SO
                 }
             }
         }
-
-
     }
 }
