@@ -61,9 +61,14 @@ namespace POS.BL.Service.IN
         }
 
         //Check from logical lot
-        public bool Stock_CheckAvailable(StockDTO stockDTO)
+        public void Stock_CheckAvailable(StockDTO stockDTO)
         {
-            return true;
+            
+        }
+
+        public void Stock_CancelOrder(StockDTO stockDTO)
+        {
+
         }
 
         //Increase logical lot
