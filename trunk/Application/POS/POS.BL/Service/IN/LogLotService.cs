@@ -5,7 +5,7 @@ using System.Text;
 using POS.BL.Entities.Entity;
 using System.Data.Common;
 using Core.Standards.Converters;
-using POS.BL.DTO;
+using POS.BL.DTO.IN;
 
 namespace POS.BL.Service.IN
 {

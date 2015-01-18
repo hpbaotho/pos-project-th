@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DTO\ComboBoxDTO.cs" />
     <Compile Include="DTO\DuplicateItemDTO.cs" />
+    <Compile Include="DTO\IN\StockDTO.cs" />
     <Compile Include="DTO\SO\CustromControlPropertyDTO.cs" />
     <Compile Include="DTO\SO\OrderDTO.cs" />
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
