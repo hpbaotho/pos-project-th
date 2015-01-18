@@ -160,6 +160,7 @@ namespace POS.BL.Utilities
 
         //---Kitchen
         public const string KitchenOrderList = "Kitchen Order List";
+        public const string KitchenOrderListDetail = "Kitchen Order List Detail";
 
     }
     public struct FormatString
