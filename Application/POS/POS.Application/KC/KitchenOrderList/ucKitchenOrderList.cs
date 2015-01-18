@@ -138,7 +138,7 @@ namespace POS.KC.KitchenOrderList
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            addEditReceiveMaterial = new KitchenOrderDetail(dataKey[DataKeyName].ToString() );//, tabControl1, tabPageAddEdit);
+            addEditReceiveMaterial = new KitchenOrderDetail(dataKey[DataKeyName].ToString(), tabControl1);//, tabControl1, tabPageAddEdit);
             this.AddEditTab(string.Format(TabName.Edit, programName), addEditReceiveMaterial);
         }
 
