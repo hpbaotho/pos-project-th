@@ -63,6 +63,10 @@ namespace POS.IN.ReceiveMaterial
             grdBase.DataKeyName = new string[] { DataKeyName };
 
 
+            //try to set its visibility 
+            grdBase.btnDeleteEnable = false;
+            grdBase.RearrangeButton();
+
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {
