@@ -5,6 +5,7 @@ using System.Text;
 using POS.BL.Entities.Entity;
 using System.Data.Common;
 using System.Data;
+using POS.BL.Utilities;
 
 namespace POS.BL.Service.KC
 {
@@ -12,7 +13,7 @@ namespace POS.BL.Service.KC
     {
         public DataSet FindOrderInKitchenList(string TableName, string MenuName)
         {
-            return FindOrderByCriteria(string.Empty, TableName, MenuName, false , true , string.Empty );
+            return FindOrderByCriteria(string.Empty, TableName, MenuName, false, true, KitichenStatus.Process);
         }
 
         public DataSet FindOrderByCriteria(string OrderDetailID)
@@ -27,22 +28,28 @@ namespace POS.BL.Service.KC
         //    , string  TableName , string OrderBy  )
         {
             StringBuilder sql = new StringBuilder(
-    @"select sales_order_detail_id [ID]
-	    , sales_order_date  [Order Date], table_name [Table Name]
-	    , menu_name [Menu], order_amount [Quantity]
-	    from so_sales_order_head saleHead with(nolock)
-		    left join so_table daTable  with(nolock)
-			    on saleHead.table_id = daTable.table_id
-		    left join so_sales_order_detail detail with(nolock)
-			    on saleHead.sales_order_head_id = detail.sales_order_head_id
-		    left join so_menu_dining_type dinType
-			    on dinType.menu_dining_type_id = detail.menu_dining_type_id
-		    left join so_menu menu with(nolock)
-			    on dinType.menu_id = menu.menu_id
-		    where 1 = 1");
-
+            @"select sales_order_detail_id [ID]
+	            , sales_order_date  [Order Date], table_name [Table Name]
+	            , menu_name [Menu], order_amount [Quantity]
+	            from so_sales_order_head saleHead with(nolock)
+		            left join so_table daTable  with(nolock)
+			            on saleHead.table_id = daTable.table_id
+		            left join so_sales_order_detail detail with(nolock)
+			            on saleHead.sales_order_head_id = detail.sales_order_head_id
+		            left join so_menu_dining_type dinType
+			            on dinType.menu_dining_type_id = detail.menu_dining_type_id
+		            left join so_menu menu with(nolock)
+			            on dinType.menu_id = menu.menu_id
+		            where 1 = 1");
+            
             List<DbParameter> param = new List<DbParameter>();
+            
 
+            if( !string.IsNullOrEmpty( KitchenStatus ))
+            {
+                sql.AppendLine(string.Format(" AND isnull(detail.kitchen_status,'{0}')   = @KitchenStatus", KitichenStatus.Process ));
+                param.Add(this.CreateParameter("@KitchenStatus", KitchenStatus));
+            }
             if (IsCancel.HasValue)
             {
                 if (IsCancel.Value)
