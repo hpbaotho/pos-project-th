@@ -248,8 +248,15 @@ namespace POS.Control.GridView
         {
 
             int locationX = 0, locationY = 1;
+            int buttonWidth = 53;
+
+            //re-arrange the control by the inital X position
+            List<System.Windows.Forms.Control> controlList = new List<System.Windows.Forms.Control>();
+            controlList.AddRange(panel1.Controls.OfType<System.Windows.Forms.Control>());
+            controlList = controlList.OrderBy(x => x.Location.X).ToList();
+
             //for each button in the panel
-            foreach (System.Windows.Forms.Control control in panel1.Controls)
+            foreach (System.Windows.Forms.Control control in controlList)//panel1.Controls)
             {
                 Button currentBtn = control as Button;
                 if (currentBtn != null)
@@ -258,7 +265,7 @@ namespace POS.Control.GridView
                     if (currentBtn.Enabled)
                     {
                         currentBtn.Location = new Point(locationX, locationY);
-                        locationX += 53;
+                        locationX += buttonWidth;
                     }
                     //otherwise just hide it
                     else
