@@ -104,12 +104,6 @@
       <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GridView\IDataGrid.cs" />
-    <Compile Include="LOV.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LOV.Designer.cs">
-      <DependentUpon>LOV.cs</DependentUpon>
-    </Compile>
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -151,9 +145,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GridView\EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LOV.resx">
-      <DependentUpon>LOV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
