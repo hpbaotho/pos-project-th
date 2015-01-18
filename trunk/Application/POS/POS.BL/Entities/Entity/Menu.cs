@@ -22,8 +22,6 @@ namespace POS.BL.Entities.Entity
         public long? menu_reference_id { get; set; }
         public bool active { get; set; }
         public bool? isInventoryItem { get; set; }
-        public long? menu_group_id { get; set; }
-        public long? menu_category_id { get; set; }
         public int? priorityValue { get; set; }
 
         [EntityScalarProperty(PersistenceIgnorance = true)]
