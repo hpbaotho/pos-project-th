@@ -11,37 +11,53 @@ namespace POS.BL.Service.SO
 {
     public class MenuMappingService : ServiceBase<MenuMapping>
     {
-        public DataSet GetGridMenuMapping(long? BillOfMaterialHeaddID)
+        public DataSet GetGridMenuMapping(string MenuName)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine(@"SELECT TOP 50 menu_id AS ID
+                            , menu_code AS Code
+                            , menu_name AS Name
+                            , menu_description AS [Description]
+                            , active AS Active
+                            , created_by AS [Created By]
+                            , created_date [Created Date]
+                            , updated_by [Updated By]
+                            , updated_date [Updated Date] 
+                            --, isInventoryItem, menu_group_id, menu_category_id, priorityValue
+                            FROM dbo.so_menu WITH(NOLOCK)
+                            WHERE 1=1 ");
+
+            if (!string.IsNullOrEmpty(MenuName))
+            {
+                sql.AppendLine(" AND  CHARINDEX(@menu_name,menu_name) > 0 ");
+            }
+            List<DbParameter> param = new List<DbParameter>();
+            param.Add(this.CreateParameter("@menu_name", MenuName));
+
+            return base.ExecuteQuery(sql.ToString(), param.ToArray());
+        }
+
+        public DataSet GetGridMenuMappingDetail(long MenuId)
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(@"SELECT so_menu_mapping.menu_mapping_id AS ID
-                            ,in_bill_of_material_head.bill_of_material_head_name AS [Group]
-                            ,so_menu.menu_name
-                            ,so_menu_mapping.created_by AS [Created By]
-                            ,so_menu_mapping.created_date AS [Created Date]
-                            ,so_menu_mapping.updated_by AS [Updated By]
-                            ,so_menu_mapping.updated_date AS [Updated Date] 
-                            FROM so_menu_mapping WITH(NOLOCK)
-                            LEFT JOIN in_bill_of_material_head WITH(NOLOCK)
-                            ON so_menu_mapping.bill_of_material_head_id = in_bill_of_material_head.bill_of_material_head_id
-                            LEFT JOIN so_menu WITH(NOLOCK)
-                            ON so_menu_mapping.menu_id = so_menu.menu_id 
-                            WHERE 1=1 ");
+                                    ,in_bill_of_material_head.bill_of_material_head_name AS [Bill Of Material]
+                                    ,CAST(so_menu_mapping.quantity AS int) AS Quantity
+                                    ,so_menu_mapping.created_by AS [Created By]
+                                    ,so_menu_mapping.created_date AS [Created Date]
+                                    ,so_menu_mapping.updated_by AS [Updated By]
+                                    ,so_menu_mapping.updated_date AS [Updated Date] 
+                                    FROM so_menu_mapping WITH(NOLOCK)
+                                    LEFT JOIN in_bill_of_material_head WITH(NOLOCK)
+                                    ON so_menu_mapping.bill_of_material_head_id = in_bill_of_material_head.bill_of_material_head_id
+                                    LEFT JOIN so_menu WITH(NOLOCK)
+                                    ON so_menu_mapping.menu_id = so_menu.menu_id 
+                                    WHERE 1=1
+                                    AND so_menu_mapping.menu_id = @menu_id 
+                                    ");
 
-            if (BillOfMaterialHeaddID != null)
-            {
-                sql.AppendLine(" AND in_bill_of_material_head.bill_of_material_head_id = @bill_of_material_head_id");
-            }
-//            if (!string.IsNullOrEmpty(Name))
-//            {
-//                sql.AppendLine(@" AND (    CHARINDEX(@Name,first_name) > 0 
-//                                        OR CHARINDEX(@Name,mid_name) > 0
-//                                        OR CHARINDEX(@Name,last_name) > 0  
-//                                      )");
-//            }
             List<DbParameter> param = new List<DbParameter>();
-            param.Add(this.CreateParameter("@bill_of_material_head_id", BillOfMaterialHeaddID));
-            //param.Add(this.CreateParameter("@Name", Name));
+            param.Add(this.CreateParameter("@menu_id", MenuId));
 
             return base.ExecuteQuery(sql.ToString(), param.ToArray());
         }
@@ -54,14 +70,17 @@ namespace POS.BL.Service.SO
 	                                   ELSE 0
                                   END AS isDuplicate
                                 FROM    [so_menu_mapping]  WITH(NOLOCK)
-                                WHERE  menu_id = @menu_id
-                                AND bill_of_material_head_id = @bill_of_material_head_id
+                                WHERE  1=1
             ");
 
             //---Edit
             if (menuMapping.menu_mapping_id > 0)
             {
-                strSql.AppendLine(" AND menu_mapping_id <>  menu_mapping_id ");
+                strSql.AppendLine(" AND menu_id <>  menu_id ");
+            }
+            else
+            {
+                strSql.AppendLine(" AND menu_id =  menu_id ");
             }
 
             List<DbParameter> param = new List<DbParameter>();

@@ -6,6 +6,8 @@ using POS.BL.Entities.Entity;
 using System.Data.Common;
 using Core.Standards.Converters;
 using POS.BL.DTO.SO;
+using POS.BL.DTO;
+using POS.BL.Utilities;
 
 namespace POS.BL.Service.SO
 {
@@ -73,7 +75,8 @@ namespace POS.BL.Service.SO
             param.Add(base.CreateParameter("ref_menu_dining_type_id", ref_menu_dining_type_id));
             List<OrderDTO> result = new List<OrderDTO>();
             result = this.ExecuteQuery<OrderDTO>(sql, param.ToArray()).ToList();
-            if (result == null) {
+            if (result == null)
+            {
                 result = new List<OrderDTO>();
             }
             result.Add(new OrderDTO() { menu_name = "Open Condiment" });
@@ -100,6 +103,23 @@ namespace POS.BL.Service.SO
 
         }
 
+        public List<ComboBoxDTO> GetMenuComboBoxDTO()
+        {
+            List<SOMenu> lstEntity = new List<SOMenu>();
+            List<ComboBoxDTO> lstComboBoxDTO = new List<ComboBoxDTO>();
+            lstComboBoxDTO.SetPleaseSelect();
+
+            lstEntity = base.FindAll(false).Where(w => w.active).ToList();
+
+            foreach (SOMenu child in lstEntity)
+            {
+                ComboBoxDTO DTO = new ComboBoxDTO();
+                DTO.Value = child.menu_id.Value.ToString();
+                DTO.Display = child.menu_name;
+                lstComboBoxDTO.Add(DTO);
+            }
+            return lstComboBoxDTO;
+        }
 
     }
 }

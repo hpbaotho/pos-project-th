@@ -13,6 +13,7 @@ using POS.BL;
 using Core.Standards.Converters;
 using POS.BL.Entities.Entity;
 using POS.SU.SetupEmployee;
+using POS.SO.MappingMenu;
 
 namespace POS.SU
 {
@@ -39,7 +40,7 @@ namespace POS.SU
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SystemConfiguration });
 
             //---SO
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.SO, MenuName = ProgramName.SetupBillOfMaterial });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Sold, MenuName = ProgramName.MappingMenu });
 
             btnManage_Click(btnSetting, null);
             btnSetting.Focus();
@@ -57,13 +58,13 @@ namespace POS.SU
             {
                 listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Inventory).Select(item => item.MenuName).ToList();
             }
-            else if (btn.Name == "btnSO")
+            else if (btn.Name == "btnSold")
             {
-                listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.SO).Select(item => item.MenuName).ToList();
+                listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Sold).Select(item => item.MenuName).ToList();
             }
 
             listMenu.ClearSelected();
-           // toolStripGridview.Visible = false;
+            // toolStripGridview.Visible = false;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -79,19 +80,12 @@ namespace POS.SU
 
             pnlContent.Controls.Clear();
 
-            if (selected == ProgramName.SetupEmployee)
+            switch (selected)
             {
-                pnlContent.Controls.Add(new ucEmployee());
-            }
-            else if (selected == ProgramName.SetupRole)
-            {
-            }
-            else if (selected == ProgramName.SystemConfiguration)
-            {
-            }
-            else
-            {
-                
+                case ProgramName.SetupEmployee: pnlContent.Controls.Add(new ucEmployee()); break;
+                case ProgramName.SetupRole: break;
+                case ProgramName.SystemConfiguration: break;
+                case ProgramName.MappingMenu: pnlContent.Controls.Add(new ucMappingMenu()); break;
             }
         }
 
