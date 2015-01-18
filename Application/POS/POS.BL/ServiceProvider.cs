@@ -6,6 +6,7 @@ using POS.BL.Service.SO;
 using POS.BL.Service.SU;
 using POS.BL.Service.IN;
 using POS.BL.Service.DB;
+using POS.BL.Service.KC;
 namespace POS.BL
 {
     public static class ServiceProvider
@@ -276,6 +277,18 @@ namespace POS.BL
                     saleOrderDetailService = new SaleOrderDetailService();
                 }
                 return saleOrderDetailService;
+            }
+        }
+        private static KCSaleOrderDetailService kcSaleOrderDetailService;
+        public static KCSaleOrderDetailService KCSaleOrderDetailService
+        {
+            get
+            {
+                if (kcSaleOrderDetailService == null)
+                {
+                    kcSaleOrderDetailService = new KCSaleOrderDetailService();
+                }
+                return kcSaleOrderDetailService;
             }
         }
         private static DiningTypeService diningTypeService;

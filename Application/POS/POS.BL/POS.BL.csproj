@@ -118,6 +118,7 @@
     <Compile Include="Service\IN\PhyLotService.cs" />
     <Compile Include="Service\IN\TranDetailService.cs" />
     <Compile Include="Service\IN\TranHeadService.cs" />
+    <Compile Include="Service\KC\KCSaleOrderDetailService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Service\SO\MenuCategoryService.cs" />
     <Compile Include="Service\SO\MenuGroupService.cs" />

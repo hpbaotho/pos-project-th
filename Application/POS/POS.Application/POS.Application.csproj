@@ -119,6 +119,18 @@
     <Compile Include="IN\SetupIN.Designer.cs">
       <DependentUpon>SetupIN.cs</DependentUpon>
     </Compile>
+    <Compile Include="KC\KCCommand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KC\KCCommand.Designer.cs">
+      <DependentUpon>KCCommand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KC\KitchenOrderList\ucKitchenOrderList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KC\KitchenOrderList\ucKitchenOrderList.Designer.cs">
+      <DependentUpon>ucKitchenOrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +237,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IN\SetupIN.resx">
       <DependentUpon>SetupIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KC\KCCommand.resx">
+      <DependentUpon>KCCommand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KC\KitchenOrderList\ucKitchenOrderList.resx">
+      <DependentUpon>ucKitchenOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

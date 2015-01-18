@@ -36,7 +36,10 @@
             this.tsslblSelectedRows = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnProcessComplete = new System.Windows.Forms.Button();
+            this.btnProcess = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnProcessCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
@@ -100,7 +103,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnProcessComplete);
+            this.panel1.Controls.Add(this.btnProcess);
             this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.btnProcessCancel);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -108,6 +114,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(431, 53);
             this.panel1.TabIndex = 5;
+            // 
+            // btnProcessComplete
+            // 
+            this.btnProcessComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcessComplete.Image = ((System.Drawing.Image)(resources.GetObject("btnProcessComplete.Image")));
+            this.btnProcessComplete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnProcessComplete.Location = new System.Drawing.Point(217, 1);
+            this.btnProcessComplete.Name = "btnProcessComplete";
+            this.btnProcessComplete.Size = new System.Drawing.Size(54, 50);
+            this.btnProcessComplete.TabIndex = 3;
+            this.btnProcessComplete.Tag = "kitchenOP";
+            this.btnProcessComplete.Text = "Comp";
+            this.btnProcessComplete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnProcessComplete.UseVisualStyleBackColor = true;
+            this.btnProcessComplete.Visible = false;
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcess.Image = ((System.Drawing.Image)(resources.GetObject("btnProcess.Image")));
+            this.btnProcess.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnProcess.Location = new System.Drawing.Point(164, 1);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(54, 50);
+            this.btnProcess.TabIndex = 3;
+            this.btnProcess.Tag = "kitchenOP";
+            this.btnProcess.Text = "Proc";
+            this.btnProcess.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnProcess.UseVisualStyleBackColor = true;
+            this.btnProcess.Visible = false;
             // 
             // btnSearch
             // 
@@ -118,10 +154,26 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(54, 50);
             this.btnSearch.TabIndex = 2;
+            this.btnSearch.Tag = "normalOP";
             this.btnSearch.Text = "Search";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnProcessCancel
+            // 
+            this.btnProcessCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcessCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnProcessCancel.Image")));
+            this.btnProcessCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnProcessCancel.Location = new System.Drawing.Point(270, 1);
+            this.btnProcessCancel.Name = "btnProcessCancel";
+            this.btnProcessCancel.Size = new System.Drawing.Size(54, 50);
+            this.btnProcessCancel.TabIndex = 1;
+            this.btnProcessCancel.Tag = "kitchenOP";
+            this.btnProcessCancel.Text = "Cancel";
+            this.btnProcessCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnProcessCancel.UseVisualStyleBackColor = true;
+            this.btnProcessCancel.Visible = false;
             // 
             // btnDelete
             // 
@@ -132,6 +184,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(54, 50);
             this.btnDelete.TabIndex = 1;
+            this.btnDelete.Tag = "normalOP";
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -146,6 +199,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(54, 50);
             this.btnAdd.TabIndex = 0;
+            this.btnAdd.Tag = "normalOP";
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -181,5 +235,8 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.Button btnProcessComplete;
+        private System.Windows.Forms.Button btnProcessCancel;
     }
 }
