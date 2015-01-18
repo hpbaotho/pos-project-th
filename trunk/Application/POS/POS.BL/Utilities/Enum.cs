@@ -135,7 +135,7 @@ namespace POS.BL.Utilities
     {
         public const string Setting = "Setting";
         public const string Inventory = "Inventory";
-        public const string SO = "SO";
+        public const string Sold = "Sold";
         public const string Kitchen = "KC";
     }
     public struct ProgramName
@@ -156,7 +156,7 @@ namespace POS.BL.Utilities
         public const string SetupINCountStock = "Count Stock";
 
         //---SO
-        public const string SetupBillOfMaterial = "Setup Bill Of Material";
+        public const string MappingMenu = "Mapping Menu";
 
         //---Kitchen
         public const string KitchenOrderList = "Kitchen Order List";

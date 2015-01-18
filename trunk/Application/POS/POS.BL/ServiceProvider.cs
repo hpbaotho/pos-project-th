@@ -7,6 +7,7 @@ using POS.BL.Service.SU;
 using POS.BL.Service.IN;
 using POS.BL.Service.DB;
 using POS.BL.Service.KC;
+//using POS.BL.Service.KC;
 namespace POS.BL
 {
     public static class ServiceProvider

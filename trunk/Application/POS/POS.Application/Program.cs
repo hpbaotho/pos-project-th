@@ -55,12 +55,12 @@ namespace POS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
-            //Application.Run(new SU.SetupMaster());
+            Application.Run(new SU.SetupMaster());
             //Application.Run(new SetupMaster());
             //Application.Run(new TestGridControl());
-           // Application.Run(new SO.OpenOrder());
+            //Application.Run(new SO.OpenOrder());
             //Application.Run(new SO.SceenSetup());
-            Application.Run(new Login(true));
+            //Application.Run(new Login(true));
         }
 
     }
