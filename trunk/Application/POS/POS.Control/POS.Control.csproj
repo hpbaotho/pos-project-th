@@ -104,6 +104,12 @@
       <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GridView\IDataGrid.cs" />
+    <Compile Include="LOV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOV.Designer.cs">
+      <DependentUpon>LOV.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     <EmbeddedResource Include="GridView\EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LOV.resx">
+      <DependentUpon>LOV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -176,7 +185,15 @@
   <ItemGroup>
     <None Include="Resources\warning.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\btnProcess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnProcess.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnProcessComplete.Image.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -21,6 +21,8 @@ namespace POS.Control.GridView
         /// </summary>
         public List<string> HiddenColumnName { get; set; }
 
+
+
         public DataSet DataSourceDataSet { get; set; }
         public IEnumerable<object> DataSourceTable { get; set; }
         public string[] DataKeyName { get; set; }
@@ -33,8 +35,34 @@ namespace POS.Control.GridView
             this.Grid.DefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Regular);
             this.Grid.RowHeadersVisible = false;
 
+            //prevent the old thing to take effect, set its initial value
+            BtnProcesEnable = false;
+            BtnProcessCancelEnable = false;
+            BtnProcessCompleteEnable = false;
         }
+
+        /// <summary>
+        /// an alteranative BaseGrid for displaying kitchen commands
+        /// </summary>
+        /// <param name="IsKitchenMode"></param>
+        public BaseGrid(bool IsKitchenMode = true)
+        {
+            if (IsKitchenMode)
+            {
+                InitializeComponent();
+                this.Grid.DefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Regular);
+                this.Grid.RowHeadersVisible = false;
+            }
+        }
+
         #region :: private function ::
+        public void LoadData(bool IsClearSelection = true)
+        {
+            LoadData();
+            if( IsClearSelection )
+                Grid.ClearSelection();
+        }
+
         public void LoadData()
         {
             Form form = this.FindForm();
@@ -240,7 +268,7 @@ namespace POS.Control.GridView
             this.LoadData();
         }
 
-
+        #region :: Custom Public Function eiei ::
         /// <summary>
         /// rearrange button according to each button's disability
         /// </summary>
@@ -264,6 +292,7 @@ namespace POS.Control.GridView
                     //of it is enabled, place it
                     if (currentBtn.Enabled)
                     {
+                        currentBtn.Visible = true;
                         currentBtn.Location = new Point(locationX, locationY);
                         locationX += buttonWidth;
                     }
@@ -274,9 +303,41 @@ namespace POS.Control.GridView
             }
         }
 
+        public void AttachEventToButton(string ButtonName, EventHandler Event)
+        {
+            Button buttonToassign;
+            buttonToassign = this.Controls.Find(ButtonName, true).FirstOrDefault() as Button;
+            if (buttonToassign != null)
+            {
+                buttonToassign.Click += Event;//new System.EventHandler(this.btnRefresh_Click);
+            }
+            else
+                throw new Exception("There's no  specific button");
+        }
+        #endregion :: Custom Public Function eiei ::
+
+
+        #region custom weird property
+        /// <summary>
+        /// so that the programmer can somewaht implement the function
+        /// </summary>
+        public List<DataGridViewRow> GridSelectedRows
+        {
+            get
+            {
+                return Grid.Rows.Cast<DataGridViewRow>().Where(li => li.Selected && !li.IsNewRow).ToList();
+            }
+        }
+
+
+        private bool BtnProcessCancelEnable { get { return btnProcessCancel.Enabled; } set { btnProcessCancel.Enabled = value; } }
+        private bool BtnProcessCompleteEnable { get { return btnProcessComplete.Enabled; } set { btnProcessComplete.Enabled = value; } }
+        private bool BtnProcesEnable { get { return btnProcess.Enabled; } set { btnProcess.Enabled = value; } }
+
         public bool btnAddEnable { get { return btnAdd.Enabled; } set { btnAdd.Enabled = value; } }
         public bool btnDeleteEnable { get { return btnDelete.Enabled; } set { btnDelete.Enabled = value; } }
         public bool btnSearchEnable { get { return btnSearch.Enabled; } set { btnSearch.Enabled = value; } }
+        #endregion
     }
     public class DataBindArgs : EventArgs
     {

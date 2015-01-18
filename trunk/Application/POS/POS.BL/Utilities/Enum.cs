@@ -23,6 +23,12 @@ namespace POS.BL.Utilities
         public const string Table = "Table";
         public const string Object = "Object";
     }
+    public struct KitichenStatus
+    {
+        public const string Process = "P";
+        public const string Finish = "F";
+        public const string Cancel = "C";
+    }
     public struct CommandGroup
     {
         public const string Event = "Event";
@@ -38,11 +44,13 @@ namespace POS.BL.Utilities
         public const string NoSelectedDataComplete = "Please select data to complete";
         public const string NoSelectedDataIncomplete = "Please select data to Incomplete";
         public const string NoSelectedData = "Please select data to delete";
+       
         public const string NoSelectedDataAdd = "Please select data to add";
         public const string NoSelectedDataGenerate = "Please select data to generate";
         public const string SaveComplete = "Save data completed";
         public const string SaveIncomplete = "Save data incompleted";
         public const string DeleteComplete = "Delete data completed";
+        public const string UpdateStatusCompleted = "Update Status Completed";
         public const string GenerateComplete = "Generate data completed";
         public const string CannotSaveNotChange = "Cannot Save , Please change data before.";
         public const string UploadSuccessfully = "Upload data completed";
@@ -128,6 +136,7 @@ namespace POS.BL.Utilities
         public const string Setting = "Setting";
         public const string Inventory = "Inventory";
         public const string SO = "SO";
+        public const string Kitchen = "KC";
     }
     public struct ProgramName
     {
@@ -148,6 +157,9 @@ namespace POS.BL.Utilities
 
         //---SO
         public const string SetupBillOfMaterial = "Setup Bill Of Material";
+
+        //---Kitchen
+        public const string KitchenOrderList = "Kitchen Order List";
 
     }
     public struct FormatString
