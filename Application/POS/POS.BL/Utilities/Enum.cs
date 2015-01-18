@@ -28,6 +28,10 @@ namespace POS.BL.Utilities
         public const string Process = "P";
         public const string Finish = "F";
         public const string Cancel = "C";
+
+        public const string ProcessWording = "Process";
+        public const string FinishWording = "Finish";
+        public const string CancelWording = "Cancle";
     }
     public struct CommandGroup
     {
@@ -71,6 +75,7 @@ namespace POS.BL.Utilities
         //------------ Other Message
         public const string PleaseSelect = "--Please Select--";
         public const string AutoRunningDocumentNo = "Auto";
+        public const string All = "All";
     }
     public struct Format
     {
@@ -160,7 +165,7 @@ namespace POS.BL.Utilities
 
         //---Kitchen
         public const string KitchenOrderList = "Kitchen Order List";
-        public const string KitchenOrderListDetail = "Kitchen Order List Detail";
+        public const string KitchenOrderHistory = "Kitchen Order History";
 
     }
     public struct FormatString

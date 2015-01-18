@@ -6,6 +6,7 @@ using POS.BL.Entities.Entity;
 using System.Data.Common;
 using System.Data;
 using POS.BL.Utilities;
+using POS.BL.DTO;
 
 namespace POS.BL.Service.KC
 {
@@ -13,17 +14,40 @@ namespace POS.BL.Service.KC
     {
         public DataSet FindOrderInKitchenList(string TableName, string MenuName)
         {
-            return FindOrderByCriteria(string.Empty, TableName, MenuName, false, true, KitichenStatus.Process);
+            return FindOrderByCriteria(string.Empty, TableName, MenuName, false, true, KitichenStatus.Process, "sales_order_date Desc");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="MenuName"></param>
+        /// <param name="OrderStatus">String.Empty if not inculde inthe cirtieria</param>
+        /// <returns></returns>
+        public DataSet FindOrderInKitchenHistory(string TableName, string MenuName, List<string>  OrderStatus)
+        {
+            // List<string> ktichenProcess = new List<string>() { KitichenStatus.Finish, KitichenStatus.Cancel };
+            return FindOrderByCriteria(string.Empty, TableName, MenuName, null, null, OrderStatus, "sales_order_date ASC");
         }
 
         public DataSet FindOrderByCriteria(string OrderDetailID)
         {
-            return FindOrderByCriteria(OrderDetailID, string.Empty, string.Empty, null, null, string.Empty);
+            return FindOrderByCriteria(OrderDetailID, string.Empty, string.Empty, null, null, string.Empty, "sales_order_date ASC");
         }
 
+        private DataSet FindOrderByCriteria(string OrderDetailID, string TableName, string MenuName
+                , bool? IsCancel, bool? IsPrint, string KitchenStatus, string OrderBy)
+        {
+             List<string> KitchenStatusList = null;
+            if( !string.IsNullOrEmpty( KitchenStatus ))
+                    KitchenStatusList = new List<string>() { KitchenStatus };
+
+            return FindOrderByCriteria(OrderDetailID, TableName, MenuName
+                , IsCancel, IsPrint, KitchenStatusList , OrderBy);
+        }
 
         private DataSet FindOrderByCriteria(string OrderDetailID, string TableName, string MenuName
-                ,bool? IsCancel, bool? IsPrint, string KitchenStatus )
+                , bool? IsCancel, bool? IsPrint, List<string> KitchenStatus, string OrderBy)
         //public DataSet GetSaleOrder(string OrderId, DateTime? OrderDateFrom, DateTime? OrderDateTo
         //    , string  TableName , string OrderBy  )
         {
@@ -41,14 +65,25 @@ namespace POS.BL.Service.KC
 		            left join so_menu menu with(nolock)
 			            on dinType.menu_id = menu.menu_id
 		            where 1 = 1");
-            
-            List<DbParameter> param = new List<DbParameter>();
-            
 
-            if( !string.IsNullOrEmpty( KitchenStatus ))
+            List<DbParameter> param = new List<DbParameter>();
+
+
+            if (KitchenStatus != null)
             {
-                sql.AppendLine(string.Format(" AND isnull(detail.kitchen_status,'{0}')   = @KitchenStatus", KitichenStatus.Process ));
-                param.Add(this.CreateParameter("@KitchenStatus", KitchenStatus));
+                //sql.AppendLine(string.Format(" AND isnull(detail.kitchen_status,'{0}')   = @KitchenStatus", KitichenStatus.Process));
+                //param.Add(this.CreateParameter("@KitchenStatus", KitchenStatus));
+
+                sql.AppendLine(string.Format(" AND isnull(detail.kitchen_status,'{0}')   in ( '-1' ", KitichenStatus.Process));
+                for (int runner = 0; runner < KitchenStatus.Count; runner++)
+                {
+                    string paramName = "@status" + runner;
+
+                    sql.AppendLine(string.Format(",{0} ", paramName));
+                    param.Add(this.CreateParameter(paramName, KitchenStatus[runner]));
+
+                }
+                sql.AppendLine(string.Format(" )"));
             }
             if (IsCancel.HasValue)
             {
@@ -63,7 +98,7 @@ namespace POS.BL.Service.KC
                     sql.AppendLine(" AND (saleHead.is_cancel = 0 OR saleHead.is_cancel is null) ");
                 }
             }
-            if (IsPrint.HasValue) 
+            if (IsPrint.HasValue)
             {
                 if (IsPrint.Value)
                     sql.AppendLine(" AND detail.is_print = 1");
@@ -86,7 +121,7 @@ namespace POS.BL.Service.KC
                 param.Add(this.CreateParameter("@MenuName", string.Format("{0}{1}{0}", "%", MenuName)));
             }
 
-            sql.AppendLine(" ORDER BY  sales_order_date ASC");
+            sql.AppendLine(" ORDER BY " + OrderBy);
 
             return base.ExecuteQuery(sql.ToString(), param.ToArray());
             //return this.ExecuteQuery<SaleOrderHeader>(sql.ToString() , param.ToArray()).ToList();
@@ -125,6 +160,19 @@ namespace POS.BL.Service.KC
             return base.ExecuteQuery(sql.ToString(), param.ToArray());
         }
 
+
+        public List<ComboBoxDTO> GetEnumOrderDetailStatus()
+        {
+            List<ComboBoxDTO> anwer = new List<ComboBoxDTO>();
+
+            //anwer.Add(new ComboBoxDTO() { Display = KitichenStatus.ProcessWording, Value = KitichenStatus.Process });
+            anwer.Add(new ComboBoxDTO() { Display = KitichenStatus.FinishWording, Value = KitichenStatus.Finish });
+            anwer.Add(new ComboBoxDTO() { Display = KitichenStatus.CancelWording, Value = KitichenStatus.Cancel });
+
+            anwer.Insert(0, new ComboBoxDTO() { Value = string.Empty, Display = GeneralMessage.All });
+
+            return anwer;
+        }
 
         public DataSet FindBOMHeaderByOrderDetailId(string OrderDetailID)
         {
