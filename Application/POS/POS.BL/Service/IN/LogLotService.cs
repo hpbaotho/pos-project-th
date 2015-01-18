@@ -5,6 +5,7 @@ using System.Text;
 using POS.BL.Entities.Entity;
 using System.Data.Common;
 using Core.Standards.Converters;
+using POS.BL.DTO;
 
 namespace POS.BL.Service.IN
 {
@@ -51,6 +52,16 @@ namespace POS.BL.Service.IN
                 entity.log_lot_id = base.Insert<long>(entity);
             }
             return entity;
+        }
+
+        public void Stock_DecreaseLogical(StockDTO stockDTO)
+        {
+
+        }
+
+        public void Stock_IncreaseLogical(StockDTO stockDTO)
+        {
+
         }
     }
 }
