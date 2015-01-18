@@ -16,7 +16,8 @@ namespace POS.BL.Entities.Entity
        public long log_lot_id { get; set; }
        public long? warehouse_id { get; set; }
        public long? material_id { get; set; }
-       public DateTime bf_date { get; set; }
+       public DateTime? bf_date { get; set; }
        public double bf_qty { get; set; }
+       public double bal_qty { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace POS.BL.Service.DB
 {
     public class UOMService : ServiceBase<UOM>
     {
+        
     }
 }

@@ -204,7 +204,7 @@ namespace POS.Control.GridView
         private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if (rowIndex > 0)
+            if (rowIndex >= 0)
                 UpdateDataRow(Grid.Rows[rowIndex]);
 
 
@@ -338,6 +338,9 @@ namespace POS.Control.GridView
         public bool btnDeleteEnable { get { return btnDelete.Enabled; } set { btnDelete.Enabled = value; } }
         public bool btnSearchEnable { get { return btnSearch.Enabled; } set { btnSearch.Enabled = value; } }
         #endregion
+        public bool btnAddVisible { get { return btnAdd.Visible; } set { btnAdd.Visible = value; } }
+        public bool btnDeleteVisible { get { return btnDelete.Visible; } set { btnDelete.Visible = value; } }
+        public bool btnSearchVisible { get { return btnSearch.Visible; } set { btnSearch.Visible = value; } }
     }
     public class DataBindArgs : EventArgs
     {

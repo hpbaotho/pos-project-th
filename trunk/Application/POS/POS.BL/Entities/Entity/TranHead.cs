@@ -29,20 +29,5 @@ namespace POS.BL.Entities.Entity
         public long? order_no_id { get; set; }
         public long? cancel_reason_id { get; set; }
         public string transaction_status { get; set; }
-        //[SelfValidation(Ruleset = ValidationRuleset.ReceiveMaterialInsert)]        
-        //public void EntityValidation(ValidationResults results)
-        //{
-        //    //--- Required
-        //    if (string.IsNullOrEmpty(reference_no))
-        //    {
-        //        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Employee No"), this, string.Empty, string.Empty, null);
-        //        results.AddResult(result);
-        //    }
-        //    if (reason_id!=0)
-        //    {
-        //        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "First Name"), this, string.Empty, string.Empty, null);
-        //        results.AddResult(result);
-        //    }            
-        //}
     }
 }

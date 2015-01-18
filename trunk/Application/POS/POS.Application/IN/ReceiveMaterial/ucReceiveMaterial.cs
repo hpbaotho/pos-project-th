@@ -19,7 +19,7 @@ namespace POS.IN.ReceiveMaterial
     public partial class ucReceiveMaterial : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
-        string DataKeyName = "ID";
+        string DataKeyName = "tran_head_id";
         AddEditReceiveMaterial addEditReceiveMaterial = new AddEditReceiveMaterial();
         string programName = ProgramName.SetupINReceiveMaterial;
         string tabName = "List Receive Material";
@@ -52,14 +52,31 @@ namespace POS.IN.ReceiveMaterial
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
             //hide the damn column
-            grdBase.HiddenColumnName = new List<string>() { "ID", "Transaction No"};//, "Supplier", "Warehouse" };
-
-            grdBase.DataSourceDataSet = ServiceProvider.TranHeadService.GetGridTranHead(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
-                ,txtReferenceNo.Text
-                , rdoWarehouse.Checked  ? ddlWarehouse.SelectedValue.ToString() : string.Empty 
+            grdBase.HiddenColumnName = new List<string>() { "tran_head_id" };
+            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHead(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
+                , txtReferenceNo.Text
+                , rdoWarehouse.Checked ? ddlWarehouse.SelectedValue.ToString() : string.Empty
                 , rdoSupplier.Checked ? ddlSupplier.SelectedValue.ToString() : string.Empty
-                , rdoOther.Checked ? txtOther.Text : string.Empty );
+                , rdoOther.Checked ? txtOther.Text : string.Empty);
 
+            if (ds.Tables.Count > 0)
+            {
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    if (row["Status"].ToStringNullable() == TransactionStatus.IN.NormalCode)
+                    {
+                        row["Status"] = TransactionStatus.IN.NormalText;
+                    }
+                    else if (row["Status"].ToStringNullable() == TransactionStatus.IN.FinalCode)
+                    {
+                        row["Status"] = TransactionStatus.IN.FinalText;
+                    }
+                    
+                    row["Document Date"] = DateTime.Parse(row["Document Date"].ToString()).ConvertDateToDisplay();
+                }
+            }
+
+            grdBase.DataSourceDataSet = ds;
             grdBase.DataKeyName = new string[] { DataKeyName };
 
 

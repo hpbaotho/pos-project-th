@@ -14,7 +14,7 @@ namespace POS.BL.Utilities
     {
         public static void SetPleaseSelect(this List<ComboBoxDTO> lstDTO)
         {
-            lstDTO.Add(new ComboBoxDTO() { Value = string.Empty, Display = GeneralMessage.PleaseSelect });
+            lstDTO.Insert(0,new ComboBoxDTO() { Value = string.Empty, Display = GeneralMessage.PleaseSelect });
         }
 
         public static string ConvertDateToDisplay(this DateTime dt)

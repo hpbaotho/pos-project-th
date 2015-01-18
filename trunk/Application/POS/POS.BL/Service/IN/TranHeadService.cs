@@ -20,22 +20,23 @@ namespace POS.BL.Service.IN
             , string ReferenceNo, string SourceWareHouseID,string SupplierID, string SourceOther)
         {
             StringBuilder sql = new StringBuilder();
-
-            sql.AppendLine(@"SELECT tran_head_id AS ID
-	                            , head.document_type_id AS [Document ID]
-	                            , transaction_no AS [Transaction No]
-	                            , transaction_date AS [Transaction Date]
-	                             , reference_no AS [Reference No]
-	                             ,  reason_name AS [Reason]
-	                             ,  supplier_name AS [Supplier]
-	                             , warehouse_name [Warehouse]
-	                             , other_source AS [Other Source]
-	                             ,remark AS [Remark]
+            sql.AppendLine(@"SELECT head.tran_head_id
+	                            , head.transaction_no AS [Document No]
+	                            , CAST(head.transaction_date AS NVARCHAR(20)) AS [Document Date]
+	                            , head.reference_no AS [Reference No]
+                                , case 
+									when head.supplier_id is not null then 'Supplier:' + supplier.supplier_name 
+									when head.warehouse_id is not null then 'Warehouse:' + warehouse.warehouse_name 
+									else 'Other:' + head.other_source
+								end AS [Source]
+                                , head.transaction_status AS [Status]
+	                            , reason.reason_name AS [Reason]	                             
+	                            , head.remark AS [Remark]
                              FROM in_tran_head head 
 	                            left join db_reason reason
 		                            on head.reason_id = reason.reason_id
-	                            left join db_supplier supplr
-		                            on head.supplier_id =  supplr.supplier_id 
+	                            left join db_supplier supplier
+		                            on head.supplier_id =  supplier.supplier_id 
 	                            left join db_warehouse warehouse
 		                            on head.warehouse_id =  warehouse.warehouse_id
                                  WHERE 1=1  ");
@@ -80,6 +81,15 @@ namespace POS.BL.Service.IN
             }
 
             return base.ExecuteQuery(sql.ToString(), param);
+        }
+
+        public TranHead GetTransactionByReferenceNo(string ReferenceNo)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat(@" SELECT * FROM {0} WHERE 1=1 ", base.EntityTableName);
+            sql.AppendLine(@" AND [reference_no] = @reference_no");
+            DbParameter param = base.CreateParameter("reference_no", ReferenceNo);
+            return base.ExecuteQueryOne<TranHead>(sql.ToString(), param);
         }
     }
 }

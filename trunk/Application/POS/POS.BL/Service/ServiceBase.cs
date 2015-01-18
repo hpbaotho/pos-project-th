@@ -27,25 +27,22 @@ namespace POS.BL.Service
             PropertyInfo PropertyInfoComboBoxDisplay = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("ComboBoxDisplay", true, true).FirstOrDefault();
             PropertyInfo PropertyInfoComboBoxValue = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("ComboBoxValue", true, true).FirstOrDefault();
             PropertyInfo PropertyInfoComboBoxCode = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("ComboBoxCode", true, true).FirstOrDefault();
-            
+
             if (PropertyInfoComboBoxDisplay == null) { PropertyInfoComboBoxDisplay = typeof(TEntity).GetProperties().Where(w => w.Name.Contains("name")).FirstOrDefault(); }
             if (PropertyInfoComboBoxValue == null) { PropertyInfoComboBoxValue = typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("IdentityKey", true, true).FirstOrDefault(); }
             if (PropertyInfoComboBoxCode == null) { PropertyInfoComboBoxCode = typeof(TEntity).GetProperties().Where(w => w.Name.Contains("code")).FirstOrDefault(); }
 
             List<TEntity> lstEntity = new List<TEntity>();
             List<ComboBoxDTO> lstComboBoxDTO = new List<ComboBoxDTO>();
-            lstComboBoxDTO.SetPleaseSelect();
 
             if (typeof(TEntity).GetInterfaces().Contains(typeof(POS.BL.Entities.IEntityMasterBase)))
             {
+                lstEntity = base.FindAll(false).Where(w => ((POS.BL.Entities.IEntityMasterBase)w).active).ToList();
+
                 if (entity != null)
                 {
                     TEntity Entity = base.FindByKeys(entity, false);
                     lstEntity.Add(Entity);
-                }
-                else
-                {
-                    lstEntity = base.FindAll(false).Where(w => ((POS.BL.Entities.IEntityMasterBase)w).active).ToList();
                 }
 
                 foreach (TEntity child in lstEntity)
@@ -68,12 +65,17 @@ namespace POS.BL.Service
                         {
                             Code = property.GetValue(child, null).ToString();
                         }
-                        
+
                     }
                     DTO.Display = Code + ":" + Display;
-                    lstComboBoxDTO.Add(DTO);
+                    if (lstComboBoxDTO.Where(w => w.Value == DTO.Value).Count() == 0)
+                    {
+                        lstComboBoxDTO.Add(DTO);
+                    }
                 }
             }
+            lstComboBoxDTO = lstComboBoxDTO.OrderBy(o => o.Display).ToList();
+            lstComboBoxDTO.SetPleaseSelect();
             return lstComboBoxDTO;
         }
     }

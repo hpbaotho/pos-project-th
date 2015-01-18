@@ -14,11 +14,13 @@ namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
     [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.UOM, POS.BL", TableMapping = "db_uom")]
-    public class UOM : EntityBase
+    public class UOM : EntityBase, IEntityMasterBase
     {
-        [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
+        [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue=true)]
         public long uom_id { get; set; }
+        [EntityScalarProperty(ComboBoxCode = true)]
         public string uom_code { get; set; }
+        [EntityScalarProperty(ComboBoxDisplay = true)]
         public string uom_name { get; set; }
         public string uom_description { get; set; }
         public bool active { get; set; }
