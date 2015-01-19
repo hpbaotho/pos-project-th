@@ -5,6 +5,7 @@ using System.Text;
 using POS.BL.Entities.Entity;
 using System.Data;
 using System.Data.Common;
+using POS.BL.Utilities;
 
 namespace POS.BL.Service.IN
 {
@@ -13,11 +14,26 @@ namespace POS.BL.Service.IN
 
         public DataSet GetGridTranHead()
         {
-            return GetGridTranHead(string.Empty, null, null, string.Empty, string.Empty,string.Empty, string.Empty);
+            return GetGridTranHead(string.Empty, null, null, string.Empty, string.Empty,string.Empty, string.Empty,string.Empty );
+        }
+
+        //public DataSet GetWare
+        public DataSet GetIssueMaterialOther(string DocumentNo, DateTime? DocDateFrom, DateTime? DocDateTo
+            , string ReferenceNo, string SourceWareHouseID, string SupplierID, string SourceOther)
+        {
+            return GetGridTranHead(DocumentNo, DocDateFrom, DocDateTo
+         , ReferenceNo, SourceWareHouseID, SupplierID, SourceOther, DocumentTypeCode.IN.IssueMaterialWarehouseOther );
+        }
+
+        public DataSet GetReceiveMaterial(string DocumentNo, DateTime? DocDateFrom, DateTime? DocDateTo
+            , string ReferenceNo, string SourceWareHouseID, string SupplierID, string SourceOther)
+        {
+            return GetGridTranHead( DocumentNo,  DocDateFrom,  DocDateTo
+            ,  ReferenceNo,  SourceWareHouseID,  SupplierID,  SourceOther,  string.Empty );
         }
 
         public DataSet GetGridTranHead(string DocumentNo, DateTime? DocDateFrom, DateTime? DocDateTo
-            , string ReferenceNo, string SourceWareHouseID,string SupplierID, string SourceOther)
+            , string ReferenceNo, string SourceWareHouseID,string SupplierID, string SourceOther, string DocTypeName )
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(@"SELECT head.tran_head_id
@@ -39,6 +55,8 @@ namespace POS.BL.Service.IN
 		                            on head.supplier_id =  supplier.supplier_id 
 	                            left join db_warehouse warehouse
 		                            on head.warehouse_id =  warehouse.warehouse_id
+                                left join db_document_type docType
+                                    on head.document_type_id = docType.document_type_id
                                  WHERE 1=1  ");
             // Document No. - Textbox, Document Date - Calendar From-To, Reference No. - Textbox, Source - Radio + DDL, Status - DDL
             List<DbParameter> param = new List<DbParameter>();
@@ -53,9 +71,15 @@ namespace POS.BL.Service.IN
                 sql.AppendLine(" AND  CONVERT(date, transaction_date ) <= @DocDateTo");
                 param.Add(this.CreateParameter("@DocDateTo", DocDateTo.Value.Date));
             }
+
+            if (!string.IsNullOrEmpty(DocTypeName))
+            {
+                sql.AppendLine(" AND docType.document_type_name = @DocTypeName");
+                param.Add(this.CreateParameter("@DocTypeName", DocTypeName));
+            }
             if( !string.IsNullOrEmpty(DocumentNo))
             {
-                sql.AppendLine(" AND head.document_type_id = @DocumentNo");
+                sql.AppendLine(" AND head.transaction_no = @DocumentNo");
                 param.Add(this.CreateParameter("@DocumentNo", DocumentNo));
             }
             //ReferenceNo, string SourceWareHouseID, string SourceOther
