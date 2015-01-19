@@ -12,6 +12,7 @@ using POS.BL.Entities.Entity;
 using POS.Control;
 using Core.Standards.Converters;
 using POS.BL.DTO.SO;
+using Core.Standards.Validations;
 namespace POS.SO
 {
     public partial class OpenOrder : Control.FormBase
@@ -60,8 +61,20 @@ namespace POS.SO
         }
         private void OpenOrder_Shown(object sender, EventArgs e)
         {
-            string tableCode = this.popupDataSource.ToString();
-            this.OrderHeads = ServiceProvider.SaleOrderHeaderService.GetOrderByTable(tableCode);
+            string tableCode = string.Empty;
+            if (this.popupDataSource.GetType() == typeof(string))
+            {
+                tableCode = this.popupDataSource.ToString();
+                if (!string.IsNullOrEmpty(tableCode))
+                {
+                    this.OrderHeads = ServiceProvider.SaleOrderHeaderService.GetOrderByTable(tableCode);
+                }
+            }
+            else if (this.popupDataSource.GetType() == typeof(SaleOrderHeader))
+            {
+                SaleOrderHeader takeAwayOrder = this.popupDataSource as SaleOrderHeader;
+                this.OrderHeads = ServiceProvider.SaleOrderHeaderService.GetOrderOrderHeader(takeAwayOrder);
+            }
             //Update Oder information
             this.CheckStartEatingTime();
             this.OrderHeads.TableCode = tableCode;
@@ -506,11 +519,7 @@ namespace POS.SO
             if (base.ShowConfirmMessage("Are you sure to Cancel?", "Cancel Bill"))
             {
 
-                if (this.OrderHeads.sales_order_head_id.HasValue)
-                {
-                    this.OrderHeads.IsCancle = true;
-                }
-                ServiceProvider.SOTableService.CancelBookTable(this.OrderHeads.TableCode);
+                ServiceProvider.SaleOrderHeaderService.CancleOrder(this.OrderHeads);
                 this.CloseScreen();
             }
         }
@@ -526,7 +535,7 @@ namespace POS.SO
                 ListViewItem addItem = lisMenuOrder.SelectedItems[0];
                 long sales_order_detail_id = Converts.ParseLong(addItem.Name);
                 OrderDTO updateItem = this.OrderHeads.OrderList.Where(a => a.sales_order_detail_id == sales_order_detail_id && !a.condiment_of_order_detail_id.HasValue).FirstOrDefault();
-                if (updateItem != null)
+                if (updateItem != null && !updateItem.is_print)
                 {
                     this.OrderHeads.OrderList.ForEach(s => s.Selected = false);
                     updateItem.Selected = true;
@@ -562,12 +571,25 @@ namespace POS.SO
                             }
                         }
                     }
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnAdd.Theme = Theme.MSOffice2010_Green;
+                    btnDelete.Theme = Theme.MSOffice2010_RED;
+                }
+                else if (updateItem != null)
+                {
+                    BaseButton btnCancleMenu = new BaseButton();
+                    btnCancleMenu.Theme = Theme.MSOffice2010_RED;
+                    btnCancleMenu.Width = this.defaultBtnW;
+                    btnCancleMenu.Height = this.defaultBtnH;
+                    btnCancleMenu.Text = "Cancle Menu";
+                    btnCancleMenu.DataObject = updateItem;
+                    btnCancleMenu.Font = this.defaultBtnFont;
+                    btnCancleMenu.Click += new EventHandler(btnCancleMenu_Click);
+                    fPnlMenuItem.Controls.Add(btnCancleMenu);
                 }
 
-                btnAdd.Enabled = true;
-                btnDelete.Enabled = true;
-                btnAdd.Theme = Theme.MSOffice2010_Green;
-                btnDelete.Theme = Theme.MSOffice2010_RED;
+
 
             }
             else
@@ -579,6 +601,29 @@ namespace POS.SO
             }
             btnAdd.Invalidate();
             btnDelete.Invalidate();
+        }
+
+        void btnCancleMenu_Click(object sender, EventArgs e)
+        {
+            BaseButton btn = sender as BaseButton;
+            if (btn.DataObject != null)
+            {
+                OrderDTO updateItem = btn.DataObject as OrderDTO;
+                updateItem = this.OrderHeads.OrderList.Where(a => a.sales_order_detail_id == updateItem.sales_order_detail_id).FirstOrDefault();
+                if (updateItem != null && updateItem.OrderState != ObjectState.Add)
+                {
+                    updateItem.is_cancel = true;
+                    updateItem.OrderState = ObjectState.Edit;
+                    this.OrderHeads = ServiceProvider.SaleOrderHeaderService.SendOrderToKitchen(this.OrderHeads);
+
+                }
+                else
+                {
+                    this.OrderHeads.OrderList.Remove(updateItem);
+                }
+
+                this.BindListOrder();
+            }
         }
         private void timeEating_Tick(object sender, EventArgs e)
         {
@@ -605,6 +650,20 @@ namespace POS.SO
         private void UpdateOrderHeadToScreen()
         {
             lblTableCode.Text = this.OrderHeads.TableCode;
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            SaleOrderHeader orderHear = new SaleOrderHeader();
+            orderHear.sales_order_head_id = this.OrderHeads.sales_order_head_id;
+
+            orderHear = ServiceProvider.SaleOrderHeaderService.FindByKeys(orderHear, true);
+            if (orderHear != null)
+            {
+                orderHear.is_payment_procress = true;
+                ServiceProvider.SaleOrderHeaderService.Update(orderHear, ValidationRuleset.Update);
+            }
+            this.CloseScreen();
         }
 
 

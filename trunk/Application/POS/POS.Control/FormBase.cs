@@ -311,14 +311,25 @@ namespace POS.Control
         }
         protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt)
         {
+            this.BindConfigScreen(contanner, screenCode, txt, false);
+        }
+        protected void BindConfigScreen(Panel contanner, string screenCode, BaseTextBox txt, bool isFullScreen)
+        {
             Control_contanner = contanner;
             Control_contanner.Controls.Clear();
             ScreenConfig mainScreen = ServiceProvider.ScreenConfigService.getScreenByCode(screenCode);
             txtProcress = txt;
             if (mainScreen != null)
             {
-                Control_contanner.Width = mainScreen.control_width;
-                Control_contanner.Height = mainScreen.control_height;
+                if (!isFullScreen)
+                {
+                    Control_contanner.Width = mainScreen.control_width;
+                    Control_contanner.Height = mainScreen.control_height;
+                }
+                else
+                {
+                    Control_contanner.Dock = DockStyle.Fill;
+                }
                 contanner.BackColor = Color.FromArgb(mainScreen.background_color);
                 if (mainScreen.image != null && mainScreen.image.Length > 0)
                 {

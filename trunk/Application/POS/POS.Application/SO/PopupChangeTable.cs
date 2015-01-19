@@ -20,7 +20,7 @@ namespace POS.SO
 
         public PopupChangeTable()
         {
-          
+
 
             InitializeComponent();
             timer1.Enabled = false;
@@ -32,6 +32,11 @@ namespace POS.SO
         }
 
         void PopupChangeTable_TableClickEvent(string tableCode)
+        {
+            this.UpdateTable(tableCode);
+        }
+
+        private void UpdateTable(string tableCode)
         {
             if (ServiceProvider.SOTableService.SwitchTable(_OrderHeads, _OrderHeads.TableCode, tableCode))
             {
@@ -93,6 +98,13 @@ namespace POS.SO
                     }
                 }
             }
+        }
+
+        private void btnTakeAway_Click(object sender, EventArgs e)
+        {
+
+            this.UpdateTable(string.Empty);
+
         }
     }
 }

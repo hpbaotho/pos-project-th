@@ -28,10 +28,17 @@ namespace POS.BL.Service.SO
                 try
                 {
                     SOTable NewlTable = ServiceProvider.SOTableService.GetTaleByCode(NewTableCode);
-                    if (NewlTable.IsAvailable)
+                    if (NewlTable!=null && NewlTable.IsAvailable)
                     {
                         this.CancelBookTable(orgTableCode);
                         this.BookTable(NewlTable.table_code);
+                        ServiceProvider.SaleOrderHeaderService.UpdateOrderHeadTable(orderHead.sales_order_head_id, NewTableCode);
+                        trans.Complete();
+                        result = true;
+                    }
+                    else if (string.IsNullOrEmpty(NewTableCode))
+                    {
+                        this.CancelBookTable(orgTableCode);
                         ServiceProvider.SaleOrderHeaderService.UpdateOrderHeadTable(orderHead.sales_order_head_id, NewTableCode);
                         trans.Complete();
                         result = true;
