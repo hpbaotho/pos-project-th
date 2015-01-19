@@ -50,7 +50,7 @@
             // 
             this.txtMenuCode.Description = "Menu Code";
             this.txtMenuCode.Location = new System.Drawing.Point(163, 32);
-            this.txtMenuCode.MaxLength = 50;
+            this.txtMenuCode.MaxLength = 20;
             this.txtMenuCode.Name = "txtMenuCode";
             this.txtMenuCode.Size = new System.Drawing.Size(418, 20);
             this.txtMenuCode.TabIndex = 22;
@@ -64,7 +64,7 @@
             this.groupBox1.Controls.Add(this.txtMenuCode);
             this.groupBox1.Location = new System.Drawing.Point(3, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1024, 141);
+            this.groupBox1.Size = new System.Drawing.Size(1024, 172);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Head";
@@ -72,7 +72,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(113, 111);
+            this.label1.Location = new System.Drawing.Point(110, 138);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 28;
@@ -81,7 +81,7 @@
             // chkActive
             // 
             this.chkActive.AutoSize = true;
-            this.chkActive.Location = new System.Drawing.Point(163, 111);
+            this.chkActive.Location = new System.Drawing.Point(160, 138);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(15, 14);
             this.chkActive.TabIndex = 27;
@@ -91,7 +91,7 @@
             // 
             this.txtMenuName.Description = "Menu Name";
             this.txtMenuName.Location = new System.Drawing.Point(163, 58);
-            this.txtMenuName.MaxLength = 50;
+            this.txtMenuName.MaxLength = 500;
             this.txtMenuName.Name = "txtMenuName";
             this.txtMenuName.Size = new System.Drawing.Size(418, 20);
             this.txtMenuName.TabIndex = 26;
@@ -100,9 +100,10 @@
             // 
             this.txtMenuDescription.Description = "Menu Description";
             this.txtMenuDescription.Location = new System.Drawing.Point(163, 84);
-            this.txtMenuDescription.MaxLength = 50;
+            this.txtMenuDescription.MaxLength = 1000;
+            this.txtMenuDescription.Multiline = true;
             this.txtMenuDescription.Name = "txtMenuDescription";
-            this.txtMenuDescription.Size = new System.Drawing.Size(418, 20);
+            this.txtMenuDescription.Size = new System.Drawing.Size(418, 48);
             this.txtMenuDescription.TabIndex = 24;
             // 
             // groupBox2
@@ -123,8 +124,11 @@
             // grdDetail
             // 
             this.grdDetail.btnAddEnable = true;
+            this.grdDetail.btnAddVisible = true;
             this.grdDetail.btnDeleteEnable = true;
+            this.grdDetail.btnDeleteVisible = true;
             this.grdDetail.btnSearchEnable = false;
+            this.grdDetail.btnSearchVisible = true;
             this.grdDetail.DataKeyName = null;
             this.grdDetail.DataKeyValue = null;
             this.grdDetail.DataSourceDataSet = null;
@@ -141,8 +145,11 @@
             // 
             this.baseAddEditMaster1.BackColor = System.Drawing.Color.Transparent;
             this.baseAddEditMaster1.btnBackEnable = false;
+            this.baseAddEditMaster1.btnBackVisible = true;
             this.baseAddEditMaster1.btnResetEnable = true;
+            this.baseAddEditMaster1.btnResetVisible = true;
             this.baseAddEditMaster1.btnSaveEnable = true;
+            this.baseAddEditMaster1.btnSaveVisible = true;
             this.baseAddEditMaster1.Location = new System.Drawing.Point(0, 19);
             this.baseAddEditMaster1.Name = "baseAddEditMaster1";
             this.baseAddEditMaster1.Size = new System.Drawing.Size(172, 59);
@@ -155,9 +162,11 @@
             // 
             this.txtQuantity.Description = "Quantity";
             this.txtQuantity.Location = new System.Drawing.Point(163, 111);
+            this.txtQuantity.MaxLength = 10;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(418, 20);
             this.txtQuantity.TabIndex = 2;
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // label2
             // 
@@ -179,7 +188,7 @@
             // pnlDetail
             // 
             this.pnlDetail.Controls.Add(this.groupBox2);
-            this.pnlDetail.Location = new System.Drawing.Point(3, 205);
+            this.pnlDetail.Location = new System.Drawing.Point(0, 236);
             this.pnlDetail.Name = "pnlDetail";
             this.pnlDetail.Size = new System.Drawing.Size(1024, 517);
             this.pnlDetail.TabIndex = 25;

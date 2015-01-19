@@ -6,6 +6,8 @@ using POS.BL.Entities.Entity;
 using System.Data;
 using POS.BL.DTO;
 using System.Data.Common;
+using System.Transactions;
+using Core.Standards.Validations;
 
 namespace POS.BL.Service.SO
 {
@@ -70,17 +72,14 @@ namespace POS.BL.Service.SO
 	                                   ELSE 0
                                   END AS isDuplicate
                                 FROM    [so_menu_mapping]  WITH(NOLOCK)
-                                WHERE  1=1
+                                WHERE  menu_id =  @menu_id
+                                AND bill_of_material_head_id = @bill_of_material_head_id
             ");
 
             //---Edit
             if (menuMapping.menu_mapping_id > 0)
             {
-                strSql.AppendLine(" AND menu_id <>  menu_id ");
-            }
-            else
-            {
-                strSql.AppendLine(" AND menu_id =  menu_id ");
+                strSql.AppendLine(" AND menu_mapping_id <> @menu_mapping_id ");
             }
 
             List<DbParameter> param = new List<DbParameter>();
@@ -89,6 +88,19 @@ namespace POS.BL.Service.SO
             param.Add(base.CreateParameter("menu_mapping_id", menuMapping.menu_mapping_id));
 
             return this.ExecuteQuery<DuplicateItemDTO>(strSql.ToString(), param.ToArray()).ToList();
+        }
+
+        public int DeleteMappingMenu(List<long?> listMenuID)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat(@" DELETE so_menu_mapping
+                                 WHERE menu_id IN ({0})
+            ", string.Join(",", listMenuID.ToArray()));
+
+            List<DbParameter> param = new List<DbParameter>();
+            //param.Add(base.CreateParameter("menu_id", menuMapping.menu_id));
+
+            return this.ExecuteNonQuery(strSql.ToString(), param.ToArray());
         }
     }
 }
