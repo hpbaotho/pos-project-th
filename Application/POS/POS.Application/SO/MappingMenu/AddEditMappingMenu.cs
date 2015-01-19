@@ -257,8 +257,8 @@ namespace POS.SO.MappingMenu
 
             if (modeDetail == ObjectState.Add)
             {
-                entity.bill_of_material_head_id = Converts.ParseLong(ddlBomHead.SelectedValue.ToString());
-                entity.quantity = Converts.ParseDecimal(txtQuantity.Text);
+                entity.bill_of_material_head_id = Converts.ParseLongNullable(ddlBomHead.SelectedValue.ToString());
+                entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
                 entity.created_by = "SYSTEM";
                 entity.created_date = DateTime.Now;
                 entity.updated_by = "SYSTEM";
@@ -269,14 +269,28 @@ namespace POS.SO.MappingMenu
                 entity = ServiceProvider.MenuMappingService.FindByKeys(entity, false);
                 if (entity != null)
                 {
-                    entity.bill_of_material_head_id = Converts.ParseLong(ddlBomHead.SelectedValue.ToString());
-                    entity.quantity = Converts.ParseDecimal(txtQuantity.Text);
+                    entity.bill_of_material_head_id = Converts.ParseLongNullable(ddlBomHead.SelectedValue.ToString());
+                    entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
                     entity.updated_by = "SYSTEM";
                     entity.updated_date = DateTime.Now;
                 }
             }
 
             return entity;
+        }
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
         }
         #endregion
 

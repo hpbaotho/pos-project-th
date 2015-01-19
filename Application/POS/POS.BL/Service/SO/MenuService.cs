@@ -8,6 +8,9 @@ using Core.Standards.Converters;
 using POS.BL.DTO.SO;
 using POS.BL.DTO;
 using POS.BL.Utilities;
+using System.Transactions;
+using Core.Standards.Validations;
+using Core.Standards.Exceptions;
 
 namespace POS.BL.Service.SO
 {
@@ -103,6 +106,30 @@ namespace POS.BL.Service.SO
 
         }
 
+        #region :: Master Menu ::
+        public List<DuplicateItemDTO> IsDuplicationMenu(SOMenu soMenu)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendLine(@" SELECT  'Key' as ColumnName
+                                , CASE WHEN COUNT(*) > 0 THEN 1 
+	                                   ELSE 0
+                                  END AS isDuplicate
+                                FROM    [so_menu]  WITH(NOLOCK)
+                                WHERE  menu_code = @menu_code
+            ");
+
+            //---Edit
+            if (soMenu.menu_id > 0)
+            {
+                strSql.AppendLine(" AND menu_id <>  menu_id ");
+            }
+
+            List<DbParameter> param = new List<DbParameter>();
+            param.Add(base.CreateParameter("menu_id", soMenu.menu_id));
+            param.Add(base.CreateParameter("menu_code", soMenu.menu_code));
+
+            return this.ExecuteQuery<DuplicateItemDTO>(strSql.ToString(), param.ToArray()).ToList();
+        }
         public List<ComboBoxDTO> GetMenuComboBoxDTO()
         {
             List<SOMenu> lstEntity = new List<SOMenu>();
@@ -120,6 +147,31 @@ namespace POS.BL.Service.SO
             }
             return lstComboBoxDTO;
         }
+        public void DeleteSOMenuAndMappingMenu(List<SOMenu> listSOMenu)
+        {
+            TransactionOptions tranOpt = new TransactionOptions() { IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted };
+            using (var trans = new TransactionScope(TransactionScopeOption.Required, tranOpt))
+            {
+                try
+                {
+                    //---Delete Detail
+                    List<long?> listMenuID = listSOMenu.Select(item => item.menu_id).ToList();
+                    ServiceProvider.MenuMappingService.DeleteMappingMenu(listMenuID);
+
+                    //---Delete Header
+                    ServiceProvider.MenuService.Delete(listSOMenu, new string[] { ValidationRuleset.Delete });
+                }
+                catch (ValidationException ex)
+                {
+                    trans.Dispose();
+
+                    throw ex;
+                }
+
+                trans.Complete();
+            }
+        }
+        #endregion
 
     }
 }

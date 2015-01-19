@@ -61,12 +61,13 @@ namespace POS.SO.MappingMenu
             try
             {
                 List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                //List<Employee> listEmp = new List<Employee>();
-                //foreach (Dictionary<string, object> item in list)
-                //{
-                //    listEmp.Add(new Employee() { employee_id = Converts.ParseLong(item[DataKeyName].ToString()) });
-                //}
-                //ServiceProvider.EmployeeService.Delete(listEmp, new string[] { ValidationRuleset.Delete });
+                List<SOMenu> listEntity = new List<SOMenu>();
+                foreach (Dictionary<string, object> item in list)
+                {
+                    listEntity.Add(new SOMenu() { menu_id = Converts.ParseLong(item[DataKeyName].ToString()) });
+                }
+
+                ServiceProvider.MenuService.DeleteSOMenuAndMappingMenu(listEntity);
             }
             catch (ValidationException ex)
             {
@@ -109,18 +110,15 @@ namespace POS.SO.MappingMenu
         {
             if (param != null)
             {
-                string action = param.ToString();
-                if (action == "Back")
+                ControlMode controlMode = (ControlMode)param;
+                if (controlMode == ControlMode.Back)
                 {
-                    ControlMode controlMode = (ControlMode)param;
                     if (tabControl1.TabPages.Count > 1)
                     {
                         tabControl1.TabPages.RemoveAt(1);
                     }
-                    if (controlMode == ControlMode.Save)
-                    {
-                        grdBase.LoadData();
-                    }
+
+                    grdBase.LoadData();
                     tabControl1.SelectedTab = tabPage1;
                 }
             }
