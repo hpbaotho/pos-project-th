@@ -29,7 +29,7 @@ namespace POS.BL.Service.SO
 
                         orderHead = new SaleOrderHeader();
 
-                        orderHead.sales_order_date = DateTime.Now;
+                       // orderHead.sales_order_date = DateTime.Now;
                         orderHead.take_order_by = UserAccount.UserData.UserName;
                         orderHead.take_order_date = DateTime.Now;
                         orderHead.period_id = activeWorkPeriod.period_id;
@@ -49,6 +49,10 @@ namespace POS.BL.Service.SO
                         {
                             orderHead.table_id = table.table_id;
                         }
+                        else
+                        {
+                            orderHead.table_id = null;
+                        }
                         orderHead.is_cancel = orderHeadDTO.IsCancle;
                         orderHead.is_start_time = orderHeadDTO.IsStartTime;
                         orderHead.eating_start_time = orderHeadDTO.StartTimeEating;
@@ -61,6 +65,10 @@ namespace POS.BL.Service.SO
                     }
 
                     orderHeadDTO.OrderList = ServiceProvider.SaleOrderDetailService.SaveOrderDetail(orderHeadDTO.OrderList, orderHeadDTO);
+                    
+                    if (orderHeadDTO.OrderList != null && orderHeadDTO.OrderList.Count > 0) {
+                        orderHeadDTO.OrderList = orderHeadDTO.OrderList.Where(a => !a.is_cancel).ToList();
+                    }
                     trans.Complete();
                 }
                 else
@@ -75,11 +83,41 @@ namespace POS.BL.Service.SO
 
 
         }
+        public List<SaleOrderHeader> FindTakeAwayOrder()
+        {
+            string sql = @"
+                        SELECT * FROM so_sales_order_head WITH(NOLOCK)
+                        WHERE ISNULL(table_id,0) = 0  
+                        AND ISNULL(is_cancel,1) = 0 
+                        AND ISNULL(is_payment_procress,0) = 0
+                        ORDER BY take_order_date
+                    ";
+            return this.ExecuteQuery<SaleOrderHeader>(sql).ToList();
+
+        }
         public OrderHeadDTO GetOrderByTable(string tableCode)
         {
             OrderHeadDTO result = new OrderHeadDTO();
 
             SaleOrderHeader orderHead = this.GetOrdrtHeadByTable(tableCode);
+            if (orderHead != null && !orderHead.is_cancel && !orderHead.is_payment_procress)
+            {
+                result.OrderList = ServiceProvider.SaleOrderDetailService.FindOrderDetail(orderHead.sales_order_head_id);
+                result.sales_order_head_id = orderHead.sales_order_head_id;
+                result.IsStartTime = orderHead.is_start_time;
+                result.startTimeINDB = orderHead.eating_start_time;
+                result.Person = orderHead.Person;
+            }
+
+
+            return result;
+        }
+        public OrderHeadDTO GetOrderOrderHeader(SaleOrderHeader Header)
+        {
+            OrderHeadDTO result = new OrderHeadDTO();
+
+            SaleOrderHeader orderHead = this.FindByKeys(Header, false);
+
             if (orderHead != null)
             {
                 result.OrderList = ServiceProvider.SaleOrderDetailService.FindOrderDetail(orderHead.sales_order_head_id);
@@ -116,11 +154,34 @@ namespace POS.BL.Service.SO
                 updateTableItem = this.FindByKeys(updateTableItem, false);
                 if (updateTableItem != null)
                 {
-                    updateTableItem.table_id = table.table_id;
+                    if (table != null)
+                    {
+                        updateTableItem.table_id = table.table_id;
+                    }
+                    else {
+                        updateTableItem.table_id = null;
+                    }
                     this.Update(updateTableItem, ValidationRuleset.Update);
                 }
             }
 
+        }
+        public void CancleOrder(OrderHeadDTO orderHead)
+        {
+            TransactionOptions tranOpt = new TransactionOptions() { IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted };
+            using (var trans = new TransactionScope(TransactionScopeOption.Required, tranOpt))
+            {
+                SaleOrderHeader order = new SaleOrderHeader();
+                order.sales_order_head_id = orderHead.sales_order_head_id;
+                order = this.FindByKeys(order, true);
+                if (order != null)
+                {
+                    order.is_cancel = true;
+                    this.Update(order, ValidationRuleset.Update);
+                }
+                ServiceProvider.SOTableService.CancelBookTable(orderHead.TableCode);
+                trans.Complete();
+            }
         }
 
         public List<ComboBoxDTO> GetAllCancelOrder()

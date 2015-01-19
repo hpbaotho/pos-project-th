@@ -32,7 +32,7 @@ namespace POS.SO
             this.components = new System.ComponentModel.Container();
             this.fPnlMenuItem = new System.Windows.Forms.FlowLayoutPanel();
             this.btnClose = new POS.Control.BaseButton();
-            this.baseButton1 = new POS.Control.BaseButton();
+            this.btnPay = new POS.Control.BaseButton();
             this.pnlNumScreen = new System.Windows.Forms.Panel();
             this.txtCommand = new POS.Control.BaseTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -90,18 +90,19 @@ namespace POS.SO
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // baseButton1
+            // btnPay
             // 
-            this.baseButton1.CommandArg = null;
-            this.baseButton1.DataObject = null;
-            this.baseButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.baseButton1.Location = new System.Drawing.Point(408, 694);
-            this.baseButton1.Name = "baseButton1";
-            this.baseButton1.Size = new System.Drawing.Size(139, 62);
-            this.baseButton1.TabIndex = 5;
-            this.baseButton1.Text = "PAY";
-            this.baseButton1.Theme = POS.Control.Theme.MSOffice2010_Green;
-            this.baseButton1.UseVisualStyleBackColor = true;
+            this.btnPay.CommandArg = null;
+            this.btnPay.DataObject = null;
+            this.btnPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnPay.Location = new System.Drawing.Point(408, 694);
+            this.btnPay.Name = "btnPay";
+            this.btnPay.Size = new System.Drawing.Size(139, 62);
+            this.btnPay.TabIndex = 5;
+            this.btnPay.Text = "PAY";
+            this.btnPay.Theme = POS.Control.Theme.MSOffice2010_Green;
+            this.btnPay.UseVisualStyleBackColor = true;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
             // pnlNumScreen
             // 
@@ -428,7 +429,7 @@ namespace POS.SO
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.txtCommand);
             this.Controls.Add(this.pnlNumScreen);
-            this.Controls.Add(this.baseButton1);
+            this.Controls.Add(this.btnPay);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.fPnlMenuItem);
             this.Name = "OpenOrder";
@@ -446,7 +447,7 @@ namespace POS.SO
 
         private System.Windows.Forms.FlowLayoutPanel fPnlMenuItem;
         private Control.BaseButton btnClose;
-        private Control.BaseButton baseButton1;
+        private Control.BaseButton btnPay;
         private System.Windows.Forms.Panel pnlNumScreen;
         private Control.BaseTextBox txtCommand;
         private System.Windows.Forms.Panel panel3;
