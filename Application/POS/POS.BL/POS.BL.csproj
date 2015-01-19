@@ -67,6 +67,9 @@
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
     <Compile Include="DTO\SU\UserAccountDTO.cs" />
     <Compile Include="Entities\EntitiyBase.cs" />
+    <Compile Include="Entities\Entity\BFLogical.cs" />
+    <Compile Include="Entities\Entity\BFPhysical.cs" />
+    <Compile Include="Entities\Entity\StockDetail.cs" />
     <Compile Include="Entities\Entity\MenuDiningType.cs" />
     <Compile Include="Entities\Entity\BillOfMaterialDetail.cs" />
     <Compile Include="Entities\Entity\BillOfMaterialGroup.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="Entities\Entity\PhyLot.cs" />
     <Compile Include="Entities\Entity\ScreenImage.cs" />
     <Compile Include="Entities\Entity\SOTable.cs" />
+    <Compile Include="Entities\Entity\StockHead.cs" />
     <Compile Include="Entities\Entity\UOM.cs" />
     <Compile Include="Entities\Entity\UOMRatio.cs" />
     <Compile Include="Entities\IEntityMasterBase.cs" />
@@ -117,11 +121,15 @@
     <Compile Include="Service\IN\BillOfMaterialDetailService.cs" />
     <Compile Include="Service\IN\BillOfMaterialGroupService.cs" />
     <Compile Include="Service\IN\BillOfMaterialHeadService.cs" />
+    <Compile Include="Service\IN\BFPhysicalService.cs" />
+    <Compile Include="Service\IN\BFLogicalService.cs" />
+    <Compile Include="Service\IN\StockDetailService.cs" />
     <Compile Include="Service\IN\LogLotService.cs" />
     <Compile Include="Service\IN\MaterialService.cs" />
     <Compile Include="Service\IN\PeriodGroupService.cs" />
     <Compile Include="Service\IN\PeriodService.cs" />
     <Compile Include="Service\IN\PhyLotService.cs" />
+    <Compile Include="Service\IN\StockHeadService.cs" />
     <Compile Include="Service\IN\TranDetailService.cs" />
     <Compile Include="Service\IN\TranHeadService.cs" />
     <Compile Include="Service\SC\ScreenImageService.cs" />

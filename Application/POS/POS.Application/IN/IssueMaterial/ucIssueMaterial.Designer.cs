@@ -1,6 +1,6 @@
-﻿namespace POS.IN.IssueMaterialWareHouseOther
+﻿namespace POS.IN.IssueMaterial
 {
-    partial class ucIssueMaterialWareHouseOther
+    partial class ucIssueMaterial
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,6 +33,7 @@
             this.panelWrapGrid = new System.Windows.Forms.Panel();
             this.grdBase = new POS.Control.GridView.BaseGrid();
             this.gbSearchPanel = new System.Windows.Forms.GroupBox();
+            this.rdoWaste = new System.Windows.Forms.RadioButton();
             this.dpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dpDateTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,11 +42,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ddlWarehouse = new System.Windows.Forms.ComboBox();
             this.lblReason = new System.Windows.Forms.Label();
-            this.ddlSupplier = new System.Windows.Forms.ComboBox();
             this.lblSource = new System.Windows.Forms.Label();
             this.txtDocNo = new POS.Control.BaseTextBox();
             this.txtReferenceNo = new POS.Control.BaseTextBox();
-            this.rdoSupplier = new System.Windows.Forms.RadioButton();
             this.rdoWarehouse = new System.Windows.Forms.RadioButton();
             this.rdoOther = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
@@ -106,6 +105,7 @@
             // 
             // gbSearchPanel
             // 
+            this.gbSearchPanel.Controls.Add(this.rdoWaste);
             this.gbSearchPanel.Controls.Add(this.dpDateFrom);
             this.gbSearchPanel.Controls.Add(this.dpDateTo);
             this.gbSearchPanel.Controls.Add(this.label2);
@@ -114,20 +114,29 @@
             this.gbSearchPanel.Controls.Add(this.label1);
             this.gbSearchPanel.Controls.Add(this.ddlWarehouse);
             this.gbSearchPanel.Controls.Add(this.lblReason);
-            this.gbSearchPanel.Controls.Add(this.ddlSupplier);
             this.gbSearchPanel.Controls.Add(this.lblSource);
             this.gbSearchPanel.Controls.Add(this.txtDocNo);
             this.gbSearchPanel.Controls.Add(this.txtReferenceNo);
-            this.gbSearchPanel.Controls.Add(this.rdoSupplier);
             this.gbSearchPanel.Controls.Add(this.rdoWarehouse);
             this.gbSearchPanel.Controls.Add(this.rdoOther);
             this.gbSearchPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.gbSearchPanel.Location = new System.Drawing.Point(6, 6);
             this.gbSearchPanel.Name = "gbSearchPanel";
-            this.gbSearchPanel.Size = new System.Drawing.Size(976, 148);
+            this.gbSearchPanel.Size = new System.Drawing.Size(956, 148);
             this.gbSearchPanel.TabIndex = 31;
             this.gbSearchPanel.TabStop = false;
             this.gbSearchPanel.Text = "Search Criteria";
+            // 
+            // rdoWaste
+            // 
+            this.rdoWaste.AutoSize = true;
+            this.rdoWaste.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.rdoWaste.Location = new System.Drawing.Point(121, 98);
+            this.rdoWaste.Name = "rdoWaste";
+            this.rdoWaste.Size = new System.Drawing.Size(56, 17);
+            this.rdoWaste.TabIndex = 34;
+            this.rdoWaste.Text = "Waste";
+            this.rdoWaste.UseVisualStyleBackColor = true;
             // 
             // dpDateFrom
             // 
@@ -147,11 +156,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(348, 24);
+            this.label2.Location = new System.Drawing.Point(304, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.Size = new System.Drawing.Size(134, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Date From :";
+            this.label2.Text = "Document Date From :";
             // 
             // lblReferenceNo
             // 
@@ -167,7 +176,7 @@
             // 
             this.txtOther.Enabled = false;
             this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOther.Location = new System.Drawing.Point(224, 101);
+            this.txtOther.Location = new System.Drawing.Point(224, 123);
             this.txtOther.MaxLength = 1000;
             this.txtOther.Name = "txtOther";
             this.txtOther.Size = new System.Drawing.Size(305, 20);
@@ -178,17 +187,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(360, 51);
+            this.label1.Location = new System.Drawing.Point(316, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Date To :";
+            this.label1.Text = "Document Date To :";
             // 
             // ddlWarehouse
             // 
             this.ddlWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouse.FormattingEnabled = true;
-            this.ddlWarehouse.Location = new System.Drawing.Point(224, 77);
+            this.ddlWarehouse.Location = new System.Drawing.Point(224, 73);
             this.ddlWarehouse.Name = "ddlWarehouse";
             this.ddlWarehouse.Size = new System.Drawing.Size(305, 21);
             this.ddlWarehouse.TabIndex = 26;
@@ -203,17 +212,6 @@
             this.lblReason.Size = new System.Drawing.Size(92, 13);
             this.lblReason.TabIndex = 2;
             this.lblReason.Text = "Document No :";
-            // 
-            // ddlSupplier
-            // 
-            this.ddlSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ddlSupplier.FormattingEnabled = true;
-            this.ddlSupplier.Location = new System.Drawing.Point(568, 100);
-            this.ddlSupplier.Name = "ddlSupplier";
-            this.ddlSupplier.Size = new System.Drawing.Size(305, 21);
-            this.ddlSupplier.TabIndex = 25;
-            this.ddlSupplier.Tag = "rdoSupplier";
-            this.ddlSupplier.Visible = false;
             // 
             // lblSource
             // 
@@ -243,25 +241,12 @@
             this.txtReferenceNo.Size = new System.Drawing.Size(163, 20);
             this.txtReferenceNo.TabIndex = 0;
             // 
-            // rdoSupplier
-            // 
-            this.rdoSupplier.AutoSize = true;
-            this.rdoSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoSupplier.Location = new System.Drawing.Point(710, 77);
-            this.rdoSupplier.Name = "rdoSupplier";
-            this.rdoSupplier.Size = new System.Drawing.Size(63, 17);
-            this.rdoSupplier.TabIndex = 2;
-            this.rdoSupplier.Text = "Supplier";
-            this.rdoSupplier.UseVisualStyleBackColor = true;
-            this.rdoSupplier.Visible = false;
-            this.rdoSupplier.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
-            // 
             // rdoWarehouse
             // 
             this.rdoWarehouse.AutoSize = true;
             this.rdoWarehouse.Checked = true;
             this.rdoWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoWarehouse.Location = new System.Drawing.Point(121, 78);
+            this.rdoWarehouse.Location = new System.Drawing.Point(121, 75);
             this.rdoWarehouse.Name = "rdoWarehouse";
             this.rdoWarehouse.Size = new System.Drawing.Size(80, 17);
             this.rdoWarehouse.TabIndex = 4;
@@ -274,7 +259,7 @@
             // 
             this.rdoOther.AutoSize = true;
             this.rdoOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoOther.Location = new System.Drawing.Point(121, 101);
+            this.rdoOther.Location = new System.Drawing.Point(121, 123);
             this.rdoOther.Name = "rdoOther";
             this.rdoOther.Size = new System.Drawing.Size(51, 17);
             this.rdoOther.TabIndex = 6;
@@ -282,12 +267,12 @@
             this.rdoOther.UseVisualStyleBackColor = true;
             this.rdoOther.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
             // 
-            // ucIssueMaterialWareHouseOther
+            // ucIssueMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Name = "ucIssueMaterialWareHouseOther";
+            this.Name = "ucIssueMaterial";
             this.Size = new System.Drawing.Size(976, 396);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -306,10 +291,8 @@
         private System.Windows.Forms.GroupBox gbSearchPanel;
         private Control.BaseTextBox txtOther;
         private System.Windows.Forms.ComboBox ddlWarehouse;
-        private System.Windows.Forms.ComboBox ddlSupplier;
         private System.Windows.Forms.Label lblSource;
         private Control.BaseTextBox txtReferenceNo;
-        private System.Windows.Forms.RadioButton rdoSupplier;
         private System.Windows.Forms.RadioButton rdoWarehouse;
         private System.Windows.Forms.RadioButton rdoOther;
         private Control.GridView.BaseGrid grdBase;
@@ -320,5 +303,6 @@
         private System.Windows.Forms.DateTimePicker dpDateFrom;
         private System.Windows.Forms.DateTimePicker dpDateTo;
         private Control.BaseTextBox txtDocNo;
+        private System.Windows.Forms.RadioButton rdoWaste;
     }
 }

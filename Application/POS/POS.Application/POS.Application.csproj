@@ -54,53 +54,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IN\CountStock\AddEditCountStock.cs">
+    <Compile Include="IN\ReceiveOrder\AddEditReceiveOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\CountStock\AddEditCountStock.Designer.cs">
-      <DependentUpon>AddEditCountStock.cs</DependentUpon>
+    <Compile Include="IN\ReceiveOrder\AddEditReceiveOrder.Designer.cs">
+      <DependentUpon>AddEditReceiveOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\CountStock\ucCountStock.cs">
+    <Compile Include="IN\ReceiveOrder\ucReceiveOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\CountStock\ucCountStock.Designer.cs">
-      <DependentUpon>ucCountStock.cs</DependentUpon>
+    <Compile Include="IN\ReceiveOrder\ucReceiveOrder.Designer.cs">
+      <DependentUpon>ucReceiveOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterialSold\IssueMaterialSold.cs">
+    <Compile Include="IN\StockCount\AddEditStockCount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\IssueMaterialSold\IssueMaterialSold.Designer.cs">
-      <DependentUpon>IssueMaterialSold.cs</DependentUpon>
+    <Compile Include="IN\StockCount\AddEditStockCount.Designer.cs">
+      <DependentUpon>AddEditStockCount.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterialSold\ucIssueMaterialSold.cs">
+    <Compile Include="IN\StockCount\ucStockCount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\IssueMaterialSold\ucIssueMaterialSold.Designer.cs">
-      <DependentUpon>ucIssueMaterialSold.cs</DependentUpon>
+    <Compile Include="IN\StockCount\ucStockCount.Designer.cs">
+      <DependentUpon>ucStockCount.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterialWareHouseOther\IssueMaterialWareHouseOther.cs">
+    <Compile Include="IN\IssueSold\AddEditIssueSold.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\IssueMaterialWareHouseOther\IssueMaterialWareHouseOther.Designer.cs">
-      <DependentUpon>IssueMaterialWareHouseOther.cs</DependentUpon>
+    <Compile Include="IN\IssueSold\AddEditIssueSold.Designer.cs">
+      <DependentUpon>AddEditIssueSold.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterialWareHouseOther\ucIssueMaterialWareHouseOther.cs">
+    <Compile Include="IN\IssueSold\ucIssueSold.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\IssueMaterialWareHouseOther\ucIssueMaterialWareHouseOther.Designer.cs">
-      <DependentUpon>ucIssueMaterialWareHouseOther.cs</DependentUpon>
+    <Compile Include="IN\IssueSold\ucIssueSold.Designer.cs">
+      <DependentUpon>ucIssueSold.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterialWaste\IssueMaterialWaste.cs">
+    <Compile Include="IN\IssueMaterial\AddEditIssueMaterial.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\IssueMaterialWaste\IssueMaterialWaste.Designer.cs">
-      <DependentUpon>IssueMaterialWaste.cs</DependentUpon>
+    <Compile Include="IN\IssueMaterial\AddEditIssueMaterial.Designer.cs">
+      <DependentUpon>AddEditIssueMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="IN\IssueMaterialWaste\ucIssueMaterialWaste.cs">
+    <Compile Include="IN\IssueMaterial\ucIssueMaterial.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IN\IssueMaterialWaste\ucIssueMaterialWaste.Designer.cs">
-      <DependentUpon>ucIssueMaterialWaste.cs</DependentUpon>
+    <Compile Include="IN\IssueMaterial\ucIssueMaterial.Designer.cs">
+      <DependentUpon>ucIssueMaterial.cs</DependentUpon>
     </Compile>
     <Compile Include="IN\ReceiveMaterial\AddEditReceiveMaterial.cs">
       <SubType>UserControl</SubType>
@@ -113,18 +113,6 @@
     </Compile>
     <Compile Include="IN\ReceiveMaterial\ucReceiveMaterial.Designer.cs">
       <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IN\ReceiveOrder\ReceiveOrder.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="IN\ReceiveOrder\ReceiveOrder.Designer.cs">
-      <DependentUpon>ReceiveOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IN\ReceiveOrder\ucReceiveOrder.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="IN\ReceiveOrder\ucReceiveOrder.Designer.cs">
-      <DependentUpon>ucReceiveOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="IN\SetupIN.cs">
       <SubType>Form</SubType>
@@ -248,41 +236,35 @@
     <Compile Include="SU\SetupEmployee\ucEmployee.Designer.cs">
       <DependentUpon>ucEmployee.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="IN\CountStock\AddEditCountStock.resx">
-      <DependentUpon>AddEditCountStock.cs</DependentUpon>
+    <EmbeddedResource Include="IN\ReceiveOrder\AddEditReceiveOrder.resx">
+      <DependentUpon>AddEditReceiveOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\CountStock\ucCountStock.resx">
-      <DependentUpon>ucCountStock.cs</DependentUpon>
+    <EmbeddedResource Include="IN\ReceiveOrder\ucReceiveOrder.resx">
+      <DependentUpon>ucReceiveOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterialSold\IssueMaterialSold.resx">
-      <DependentUpon>IssueMaterialSold.cs</DependentUpon>
+    <EmbeddedResource Include="IN\StockCount\AddEditStockCount.resx">
+      <DependentUpon>AddEditStockCount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterialSold\ucIssueMaterialSold.resx">
-      <DependentUpon>ucIssueMaterialSold.cs</DependentUpon>
+    <EmbeddedResource Include="IN\StockCount\ucStockCount.resx">
+      <DependentUpon>ucStockCount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterialWareHouseOther\IssueMaterialWareHouseOther.resx">
-      <DependentUpon>IssueMaterialWareHouseOther.cs</DependentUpon>
+    <EmbeddedResource Include="IN\IssueSold\AddEditIssueSold.resx">
+      <DependentUpon>AddEditIssueSold.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterialWareHouseOther\ucIssueMaterialWareHouseOther.resx">
-      <DependentUpon>ucIssueMaterialWareHouseOther.cs</DependentUpon>
+    <EmbeddedResource Include="IN\IssueSold\ucIssueSold.resx">
+      <DependentUpon>ucIssueSold.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterialWaste\IssueMaterialWaste.resx">
-      <DependentUpon>IssueMaterialWaste.cs</DependentUpon>
+    <EmbeddedResource Include="IN\IssueMaterial\AddEditIssueMaterial.resx">
+      <DependentUpon>AddEditIssueMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IN\IssueMaterialWaste\ucIssueMaterialWaste.resx">
-      <DependentUpon>ucIssueMaterialWaste.cs</DependentUpon>
+    <EmbeddedResource Include="IN\IssueMaterial\ucIssueMaterial.resx">
+      <DependentUpon>ucIssueMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveMaterial\AddEditReceiveMaterial.resx">
       <DependentUpon>AddEditReceiveMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveMaterial\ucReceiveMaterial.resx">
       <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IN\ReceiveOrder\ReceiveOrder.resx">
-      <DependentUpon>ReceiveOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IN\ReceiveOrder\ucReceiveOrder.resx">
-      <DependentUpon>ucReceiveOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\SetupIN.resx">
       <DependentUpon>SetupIN.cs</DependentUpon>

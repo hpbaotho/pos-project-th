@@ -18,8 +18,8 @@ namespace POS.BL.Entities.Entity
         public long tran_head_id { get; set; }
         public long material_id { get; set; }
         public long warehouse_id_dest { get; set; }
-        public double? quantity { get; set; }
+        public decimal? quantity { get; set; }
         public string remark { get; set; }
-        public double? lot_no { get; set; }
+        public decimal? lot_no { get; set; }
     }
 }

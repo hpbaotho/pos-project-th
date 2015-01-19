@@ -15,23 +15,22 @@ using Core.Standards.Exceptions;
 using Core.Standards.Validations;
 using POS.BL.DTO;
 
-namespace POS.IN.ReceiveMaterial
+namespace POS.IN.IssueMaterial
 {
-    public partial class ucReceiveMaterial : BaseUserControl
+    public partial class ucIssueMaterial : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "tran_head_id";
-        AddEditReceiveMaterial addEditReceiveMaterial = new AddEditReceiveMaterial();
-        string programName = ProgramName.SetupINReceiveMaterial;
+        AddEditIssueMaterial addEditIssueMaterial = new AddEditIssueMaterial();
+        string programName = ProgramName.SetupINIssueMaterial;
         string tabName = "List Receive Material";
-        private string _documentTypeCode { get { return DocumentTypeCode.IN.ReceiveMaterial; } }
 
         /// <summary>
         /// all the controls that cannot tolerate each other
         /// </summary>
         List<System.Windows.Forms.Control> IntoleranceControl;
 
-        public ucReceiveMaterial()
+        public ucIssueMaterial()
         {
             InitializeComponent();
 
@@ -40,7 +39,7 @@ namespace POS.IN.ReceiveMaterial
             this.Dock = DockStyle.Fill;
             tabPage1.Text = tabName;
 
-            IntoleranceControl = new List<System.Windows.Forms.Control>() { ddlSupplier, ddlWarehouse, txtOther };
+            IntoleranceControl = new List<System.Windows.Forms.Control>() { ddlWarehouse, txtOther };
 
             grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
             grdBase.onSelectedDataRow += new EventHandler<Control.GridView.RowEventArgs>(grdBase_onSelectedDataRow);
@@ -55,13 +54,15 @@ namespace POS.IN.ReceiveMaterial
         {
             //hide the damn column
             grdBase.HiddenColumnName = new List<string>() { "tran_head_id" };
-            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHeadReceiveMaterial(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
+            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHeadIssueMaterial(
+                txtDocNo.Text
+                , dpDateFrom.Value
+                , dpDateTo.Value
                 , txtReferenceNo.Text
                 , rdoWarehouse.Checked
-                , rdoSupplier.Checked
-                , rdoOther.Checked
+                , rdoWaste.Checked
+                , rdoOther.Checked 
                 , ddlWarehouse.SelectedValue.ToString()
-                , ddlSupplier.SelectedValue.ToString() 
                 , txtOther.Text);
 
             if (ds.Tables.Count > 0)
@@ -84,6 +85,7 @@ namespace POS.IN.ReceiveMaterial
             grdBase.DataSourceDataSet = ds;
             grdBase.DataKeyName = new string[] { DataKeyName };
 
+
             //try to set its visibility 
             grdBase.btnDeleteEnable = false;
             grdBase.RearrangeButton();
@@ -91,14 +93,14 @@ namespace POS.IN.ReceiveMaterial
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {
-            addEditReceiveMaterial = new AddEditReceiveMaterial();
-            this.AddEditTab(string.Format(TabName.Add, programName), addEditReceiveMaterial);
+            addEditIssueMaterial = new AddEditIssueMaterial();
+            this.AddEditTab(string.Format(TabName.Add, programName), addEditIssueMaterial);
         }
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            addEditReceiveMaterial = new AddEditReceiveMaterial(dataKey[DataKeyName].ToString());
-            this.AddEditTab(string.Format(TabName.Edit, programName), addEditReceiveMaterial);
+            addEditIssueMaterial = new AddEditIssueMaterial(dataKey[DataKeyName].ToString());
+            this.AddEditTab(string.Format(TabName.Edit, programName), addEditIssueMaterial);
         }
         public void grdBase_onDeleteDataRows(object sender, Control.GridView.RowsEventArgs e)
         {
@@ -167,7 +169,7 @@ namespace POS.IN.ReceiveMaterial
         }
 
         #region :: Private Function ::
-        private void AddEditTab(string TabTitle, AddEditReceiveMaterial controlAddEdit)
+        private void AddEditTab(string TabTitle, AddEditIssueMaterial controlAddEdit)
         {
             if (tabControl1.TabPages.Count == 1 || (tabControl1.TabPages.Count > 1 && base.formBase.ShowConfirmMessage(GeneralMessage.ConfirmNewTab, "Confirm")))
             {
@@ -187,6 +189,7 @@ namespace POS.IN.ReceiveMaterial
             }
             tabControl1.SelectedTab = tabPageAddEdit;
         }
+
         private void rdoItolerate_CheckedChanged(object sender, EventArgs e)
         {
             foreach (System.Windows.Forms.Control control in IntoleranceControl)
@@ -200,25 +203,12 @@ namespace POS.IN.ReceiveMaterial
                     control.Enabled = false;
             }
         }
+
         private void SetInitialControl()
         {
-            List<Supplier> lstSupplier = ServiceProvider.SupplierService.FindAll(false).ToList();
-            List<ComboBoxDTO> lstComboBoxDTOSupplier = new List<ComboBoxDTO>();
-            foreach (Supplier supplier in lstSupplier)
-            {
-                ComboBoxDTO DTO = new ComboBoxDTO();
-                DTO.Value = supplier.supplier_id.ToString();
-                DTO.Display = supplier.supplier_name;
-                lstComboBoxDTOSupplier.Add(DTO);
-            }
-            lstComboBoxDTOSupplier.SetPleaseSelect();
-            ddlSupplier.DataSource = lstComboBoxDTOSupplier;
-            ddlSupplier.ValueMember = "Value";
-            ddlSupplier.DisplayMember = "Display";
-
             List<WareHouse> lstWarehouse = ServiceProvider.WareHouseService.FindAll(false).ToList();
             List<ComboBoxDTO> lstComboBoxDTO = new List<ComboBoxDTO>();
-            foreach (WareHouse warehouse in lstWarehouse)
+            foreach(WareHouse warehouse in lstWarehouse)
             {
                 ComboBoxDTO DTO = new ComboBoxDTO();
                 DTO.Value = warehouse.warehouse_id.ToString();

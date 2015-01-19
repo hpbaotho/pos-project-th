@@ -22,5 +22,6 @@ namespace POS.BL.Entities.Entity
         public bool is_start_time { get; set; }
         public DateTime? eating_start_time { get; set; }
         public int Person { get; set; }
+        public string order_no { get; set; }
     }
 }

@@ -13,24 +13,20 @@ using POS.BL.Entities.Entity;
 using Core.Standards.Converters;
 using Core.Standards.Exceptions;
 using Core.Standards.Validations;
-using POS.IN.ReceiveMaterial;
+using POS.BL.DTO;
 
-namespace POS.IN.IssueMaterialWareHouseOther
+namespace POS.IN.IssueSold
 {
-    public partial class ucIssueMaterialWareHouseOther : BaseUserControl
+    public partial class ucIssueSold : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "tran_head_id";
-        IssueMaterialWareHouseOther addEditReceiveMaterial = new IssueMaterialWareHouseOther();
-        string programName = ProgramName.SetupINReceiveMaterial;
-        string tabName = "List Receive Material";
+        AddEditIssueSold addEditIssueSold = new AddEditIssueSold();
+        string programName = ProgramName.SetupINIssueSold;
+        string tabName = "List Issue Material (Sold)";
 
-        /// <summary>
-        /// all the controls that cannot tolerate each other
-        /// </summary>
-        List<System.Windows.Forms.Control> IntoleranceControl;
 
-        public ucIssueMaterialWareHouseOther()
+        public ucIssueSold()
         {
             InitializeComponent();
 
@@ -39,11 +35,7 @@ namespace POS.IN.IssueMaterialWareHouseOther
             this.Dock = DockStyle.Fill;
             tabPage1.Text = tabName;
 
-            IntoleranceControl = new List<System.Windows.Forms.Control>() { ddlSupplier, ddlWarehouse, txtOther };
-
-            grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
             grdBase.onSelectedDataRow += new EventHandler<Control.GridView.RowEventArgs>(grdBase_onSelectedDataRow);
-            grdBase.onDeleteDataRows += new EventHandler<Control.GridView.RowsEventArgs>(grdBase_onDeleteDataRows);
             grdBase.onLoadDataGrid += new EventHandler<Control.GridView.DataBindArgs>(grdBase_onLoadDataGrid);
             grdBase.onCellFormatting += new EventHandler<DataGridViewCellFormattingEventArgs>(grdBase_onCellFormatting);
 
@@ -54,11 +46,12 @@ namespace POS.IN.IssueMaterialWareHouseOther
         {
             //hide the damn column
             grdBase.HiddenColumnName = new List<string>() { "tran_head_id" };
-            DataSet ds = ServiceProvider.TranHeadService.GetIssueMaterialOther(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
-                , txtReferenceNo.Text
-                , rdoWarehouse.Checked ? ddlWarehouse.SelectedValue.ToString() : string.Empty
-                , rdoSupplier.Checked ? ddlSupplier.SelectedValue.ToString() : string.Empty
-                , rdoOther.Checked ? txtOther.Text : string.Empty);
+            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHeadIssueSold(
+                txtDocNo.Text
+                , dpDateFrom.Value
+                , dpDateTo.Value
+                , txtOrderNo.Text
+                );
 
             if (ds.Tables.Count > 0)
             {
@@ -72,7 +65,7 @@ namespace POS.IN.IssueMaterialWareHouseOther
                     {
                         row["Status"] = TransactionStatus.IN.FinalText;
                     }
-
+                    
                     row["Document Date"] = DateTime.Parse(row["Document Date"].ToString()).ConvertDateToDisplay();
                 }
             }
@@ -83,36 +76,15 @@ namespace POS.IN.IssueMaterialWareHouseOther
 
             //try to set its visibility 
             grdBase.btnDeleteEnable = false;
+            grdBase.btnAddEnable = false;
             grdBase.RearrangeButton();
 
-        }
-        public void grdBase_onAddNewRow(object sender, EventArgs e)
-        {
-            addEditReceiveMaterial = new IssueMaterialWareHouseOther();
-            this.AddEditTab(string.Format(TabName.Add, programName), addEditReceiveMaterial);
         }
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            addEditReceiveMaterial = new IssueMaterialWareHouseOther(dataKey[DataKeyName].ToString());
-            this.AddEditTab(string.Format(TabName.Edit, programName), addEditReceiveMaterial);
-        }
-        public void grdBase_onDeleteDataRows(object sender, Control.GridView.RowsEventArgs e)
-        {
-            try
-            {
-                List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                List<TranHead> listTranHead = new List<TranHead>();
-                foreach (Dictionary<string, object> item in list)
-                {
-                    listTranHead.Add(new TranHead() { tran_head_id = Converts.ParseLong(item[DataKeyName].ToString()) });
-                }
-                ServiceProvider.TranHeadService.Delete(listTranHead);
-            }
-            catch (ValidationException ex)
-            {
-                base.formBase.ShowErrorMessage(ex);
-            }
+            addEditIssueSold = new AddEditIssueSold(dataKey[DataKeyName].ToString());
+            this.AddEditTab(string.Format(TabName.Edit, programName), addEditIssueSold);
         }
         public void grdBase_onCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -164,7 +136,7 @@ namespace POS.IN.IssueMaterialWareHouseOther
         }
 
         #region :: Private Function ::
-        private void AddEditTab(string TabTitle, IssueMaterialWareHouseOther controlAddEdit)
+        private void AddEditTab(string TabTitle, AddEditIssueSold controlAddEdit)
         {
             if (tabControl1.TabPages.Count == 1 || (tabControl1.TabPages.Count > 1 && base.formBase.ShowConfirmMessage(GeneralMessage.ConfirmNewTab, "Confirm")))
             {
@@ -185,29 +157,9 @@ namespace POS.IN.IssueMaterialWareHouseOther
             tabControl1.SelectedTab = tabPageAddEdit;
         }
 
-        private void rdoItolerate_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (System.Windows.Forms.Control control in IntoleranceControl)
-            {
-                RadioButton clickedCb = sender as RadioButton;
-                if (clickedCb != null && control.Tag.ToString() == clickedCb.Name)
-                {
-                    control.Enabled = true;
-                }
-                else
-                    control.Enabled = false;
-            }
-        }
-
         private void SetInitialControl()
         {
-            ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID();
-            ddlSupplier.ValueMember = "Value";
-            ddlSupplier.DisplayMember = "Display";
-
-            ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
-            ddlWarehouse.ValueMember = "Value";
-            ddlWarehouse.DisplayMember = "Display";
+            
         }
         #endregion
 

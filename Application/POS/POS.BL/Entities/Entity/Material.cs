@@ -22,16 +22,16 @@ namespace POS.BL.Entities.Entity
         public long? uom_id_count { get; set; }
         public long? uom_id_use { get; set; }
         public long? period_group_id { get; set; }
-        public double phy_lot { get; set; }
-        public double log_lot { get; set; }
+        public decimal phy_lot { get; set; }
+        public decimal log_lot { get; set; }
         public bool active { get; set; }
         public string material_pic_path { get; set; }
         public string status { get; set; }
         public long? material_group_id { get; set; }
-        public double max_stock { get; set; }
-        public double min_stock { get; set; }
+        public decimal max_stock { get; set; }
+        public decimal min_stock { get; set; }
         public double shelf_life { get; set; }
-        public double material_cost { get; set; }
+        public decimal material_cost { get; set; }
         public double acceptable_variance { get; set; }
     }
 }

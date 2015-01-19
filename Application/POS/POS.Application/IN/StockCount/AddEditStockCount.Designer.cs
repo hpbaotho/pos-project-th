@@ -1,7 +1,6 @@
-﻿using POS.IN.ReceiveMaterial;
-namespace POS.IN.IssueMaterialWareHouseOther
+﻿namespace POS.IN.StockCount
 {
-    partial class IssueMaterialWareHouseOther
+    partial class AddEditStockCount
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,147 +28,95 @@ namespace POS.IN.IssueMaterialWareHouseOther
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IssueMaterialWareHouseOther));
-            this.ddlReason = new System.Windows.Forms.ComboBox();
-            this.lblReferenceNo = new System.Windows.Forms.Label();
-            this.lblReason = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditStockCount));
+            this.ddlPeriod = new System.Windows.Forms.ComboBox();
+            this.lblPeriodGroup = new System.Windows.Forms.Label();
+            this.lblPeriod = new System.Windows.Forms.Label();
             this.lblSource = new System.Windows.Forms.Label();
-            this.txtReferenceNo = new POS.Control.BaseTextBox();
-            this.rdoSupplier = new System.Windows.Forms.RadioButton();
-            this.rdoWarehouse = new System.Windows.Forms.RadioButton();
-            this.rdoOther = new System.Windows.Forms.RadioButton();
             this.lblRemark = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblDocumentNo = new System.Windows.Forms.Label();
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
-            this.ddlSupplier = new System.Windows.Forms.ComboBox();
             this.ddlWarehouse = new System.Windows.Forms.ComboBox();
-            this.txtOther = new POS.Control.BaseTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ddlPeriodGroup = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnLoadPortFolio = new POS.Control.BaseButton();
+            this.btnGenerate = new POS.Control.BaseButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblUOM = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblUOMAdjust = new System.Windows.Forms.Label();
+            this.txtAdjust = new POS.Control.BaseTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblUOMCount = new System.Windows.Forms.Label();
             this.baseAddEditMasterDetail = new POS.Control.BaseAddEditMaster();
             this.pictureBoxMaterial = new System.Windows.Forms.PictureBox();
             this.baseGridDetail = new POS.Control.GridView.BaseGrid();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.ddlMaterial = new System.Windows.Forms.ComboBox();
-            this.ddlWarehouseDetails = new System.Windows.Forms.ComboBox();
             this.txtLotNo = new POS.Control.BaseTextBox();
-            this.txtQuantity = new POS.Control.BaseTextBox();
+            this.txtCount = new POS.Control.BaseTextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lblMaterial = new System.Windows.Forms.Label();
             this.lblLotNo = new System.Windows.Forms.Label();
-            this.lblWarehouse = new System.Windows.Forms.Label();
             this.txtRemarkDetails = new System.Windows.Forms.TextBox();
             this.lblRemarkDetails = new System.Windows.Forms.Label();
+            this.lblReferenceNo = new System.Windows.Forms.Label();
+            this.ddlReason = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaterial)).BeginInit();
             this.SuspendLayout();
             // 
-            // ddlReason
+            // ddlPeriod
             // 
-            this.ddlReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ddlReason.FormattingEnabled = true;
-            this.ddlReason.Location = new System.Drawing.Point(121, 48);
-            this.ddlReason.Name = "ddlReason";
-            this.ddlReason.Size = new System.Drawing.Size(481, 21);
-            this.ddlReason.TabIndex = 1;
+            this.ddlPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ddlPeriod.FormattingEnabled = true;
+            this.ddlPeriod.Location = new System.Drawing.Point(114, 44);
+            this.ddlPeriod.Name = "ddlPeriod";
+            this.ddlPeriod.Size = new System.Drawing.Size(481, 21);
+            this.ddlPeriod.TabIndex = 1;
             // 
-            // lblReferenceNo
+            // lblPeriodGroup
             // 
-            this.lblReferenceNo.AutoSize = true;
-            this.lblReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReferenceNo.Location = new System.Drawing.Point(12, 21);
-            this.lblReferenceNo.Name = "lblReferenceNo";
-            this.lblReferenceNo.Size = new System.Drawing.Size(98, 13);
-            this.lblReferenceNo.TabIndex = 1;
-            this.lblReferenceNo.Text = "Reference No. :";
+            this.lblPeriodGroup.AutoSize = true;
+            this.lblPeriodGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblPeriodGroup.Location = new System.Drawing.Point(12, 21);
+            this.lblPeriodGroup.Name = "lblPeriodGroup";
+            this.lblPeriodGroup.Size = new System.Drawing.Size(89, 13);
+            this.lblPeriodGroup.TabIndex = 1;
+            this.lblPeriodGroup.Text = "Period Group :";
             // 
-            // lblReason
+            // lblPeriod
             // 
-            this.lblReason.AutoSize = true;
-            this.lblReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReason.Location = new System.Drawing.Point(52, 48);
-            this.lblReason.Name = "lblReason";
-            this.lblReason.Size = new System.Drawing.Size(58, 13);
-            this.lblReason.TabIndex = 2;
-            this.lblReason.Text = "Reason :";
+            this.lblPeriod.AutoSize = true;
+            this.lblPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblPeriod.Location = new System.Drawing.Point(52, 48);
+            this.lblPeriod.Name = "lblPeriod";
+            this.lblPeriod.Size = new System.Drawing.Size(51, 13);
+            this.lblPeriod.TabIndex = 2;
+            this.lblPeriod.Text = "Period :";
             // 
             // lblSource
             // 
             this.lblSource.AutoSize = true;
             this.lblSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblSource.Location = new System.Drawing.Point(29, 74);
+            this.lblSource.Location = new System.Drawing.Point(24, 75);
             this.lblSource.Name = "lblSource";
             this.lblSource.Size = new System.Drawing.Size(79, 13);
             this.lblSource.TabIndex = 3;
-            this.lblSource.Text = "Destination :";
-            // 
-            // txtReferenceNo
-            // 
-            this.txtReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtReferenceNo.Location = new System.Drawing.Point(121, 21);
-            this.txtReferenceNo.MaxLength = 100;
-            this.txtReferenceNo.Name = "txtReferenceNo";
-            this.txtReferenceNo.Size = new System.Drawing.Size(481, 20);
-            this.txtReferenceNo.TabIndex = 0;
-            this.txtReferenceNo.Leave += new System.EventHandler(this.txtReferenceNo_Leave);
-            // 
-            // rdoSupplier
-            // 
-            this.rdoSupplier.AutoSize = true;
-            this.rdoSupplier.Checked = true;
-            this.rdoSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoSupplier.Location = new System.Drawing.Point(121, 75);
-            this.rdoSupplier.Name = "rdoSupplier";
-            this.rdoSupplier.Size = new System.Drawing.Size(63, 17);
-            this.rdoSupplier.TabIndex = 2;
-            this.rdoSupplier.TabStop = true;
-            this.rdoSupplier.Text = "Supplier";
-            this.rdoSupplier.UseVisualStyleBackColor = true;
-            this.rdoSupplier.CheckedChanged += new System.EventHandler(this.rdoSupplier_CheckedChanged);
-            // 
-            // rdoWarehouse
-            // 
-            this.rdoWarehouse.AutoSize = true;
-            this.rdoWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoWarehouse.Location = new System.Drawing.Point(121, 98);
-            this.rdoWarehouse.Name = "rdoWarehouse";
-            this.rdoWarehouse.Size = new System.Drawing.Size(80, 17);
-            this.rdoWarehouse.TabIndex = 4;
-            this.rdoWarehouse.Text = "Warehouse";
-            this.rdoWarehouse.UseVisualStyleBackColor = true;
-            this.rdoWarehouse.CheckedChanged += new System.EventHandler(this.rdoWarehouse_CheckedChanged);
-            // 
-            // rdoOther
-            // 
-            this.rdoOther.AutoSize = true;
-            this.rdoOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoOther.Location = new System.Drawing.Point(121, 121);
-            this.rdoOther.Name = "rdoOther";
-            this.rdoOther.Size = new System.Drawing.Size(51, 17);
-            this.rdoOther.TabIndex = 6;
-            this.rdoOther.Text = "Other";
-            this.rdoOther.UseVisualStyleBackColor = true;
-            this.rdoOther.CheckedChanged += new System.EventHandler(this.rdoOther_CheckedChanged);
+            this.lblSource.Text = "Warehouse :";
             // 
             // lblRemark
             // 
             this.lblRemark.AutoSize = true;
             this.lblRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblRemark.Location = new System.Drawing.Point(52, 147);
+            this.lblRemark.Location = new System.Drawing.Point(45, 98);
             this.lblRemark.Name = "lblRemark";
             this.lblRemark.Size = new System.Drawing.Size(58, 13);
             this.lblRemark.TabIndex = 18;
@@ -218,67 +165,42 @@ namespace POS.IN.IssueMaterialWareHouseOther
             // txtRemark
             // 
             this.txtRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtRemark.Location = new System.Drawing.Point(121, 147);
+            this.txtRemark.Location = new System.Drawing.Point(114, 98);
             this.txtRemark.MaxLength = 1000;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(665, 43);
             this.txtRemark.TabIndex = 8;
             // 
-            // ddlSupplier
-            // 
-            this.ddlSupplier.Enabled = false;
-            this.ddlSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ddlSupplier.FormattingEnabled = true;
-            this.ddlSupplier.Location = new System.Drawing.Point(224, 72);
-            this.ddlSupplier.Name = "ddlSupplier";
-            this.ddlSupplier.Size = new System.Drawing.Size(378, 21);
-            this.ddlSupplier.TabIndex = 25;
-            // 
             // ddlWarehouse
             // 
             this.ddlWarehouse.Enabled = false;
             this.ddlWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouse.FormattingEnabled = true;
-            this.ddlWarehouse.Location = new System.Drawing.Point(224, 97);
+            this.ddlWarehouse.Location = new System.Drawing.Point(114, 71);
             this.ddlWarehouse.Name = "ddlWarehouse";
-            this.ddlWarehouse.Size = new System.Drawing.Size(378, 21);
+            this.ddlWarehouse.Size = new System.Drawing.Size(481, 21);
             this.ddlWarehouse.TabIndex = 26;
-            // 
-            // txtOther
-            // 
-            this.txtOther.Enabled = false;
-            this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOther.Location = new System.Drawing.Point(224, 121);
-            this.txtOther.MaxLength = 1000;
-            this.txtOther.Name = "txtOther";
-            this.txtOther.Size = new System.Drawing.Size(378, 20);
-            this.txtOther.TabIndex = 27;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ddlPeriodGroup);
             this.groupBox1.Controls.Add(this.lblStatus);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.btnLoadPortFolio);
+            this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lblReferenceNo);
-            this.groupBox1.Controls.Add(this.txtOther);
-            this.groupBox1.Controls.Add(this.ddlReason);
+            this.groupBox1.Controls.Add(this.lblPeriodGroup);
+            this.groupBox1.Controls.Add(this.ddlPeriod);
             this.groupBox1.Controls.Add(this.ddlWarehouse);
-            this.groupBox1.Controls.Add(this.lblReason);
-            this.groupBox1.Controls.Add(this.ddlSupplier);
+            this.groupBox1.Controls.Add(this.lblPeriod);
             this.groupBox1.Controls.Add(this.lblSource);
             this.groupBox1.Controls.Add(this.txtRemark);
             this.groupBox1.Controls.Add(this.lblDocumentDate);
-            this.groupBox1.Controls.Add(this.txtReferenceNo);
             this.groupBox1.Controls.Add(this.lblDocumentNo);
-            this.groupBox1.Controls.Add(this.rdoSupplier);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.rdoWarehouse);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.rdoOther);
             this.groupBox1.Controls.Add(this.lblRemark);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox1.Location = new System.Drawing.Point(1, 56);
@@ -287,6 +209,16 @@ namespace POS.IN.IssueMaterialWareHouseOther
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Head";
+            // 
+            // ddlPeriodGroup
+            // 
+            this.ddlPeriodGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ddlPeriodGroup.FormattingEnabled = true;
+            this.ddlPeriodGroup.Location = new System.Drawing.Point(114, 17);
+            this.ddlPeriodGroup.Name = "ddlPeriodGroup";
+            this.ddlPeriodGroup.Size = new System.Drawing.Size(481, 21);
+            this.ddlPeriodGroup.TabIndex = 40;
+            this.ddlPeriodGroup.SelectedValueChanged += new System.EventHandler(this.ddlPeriodGroup_SelectedValueChanged);
             // 
             // lblStatus
             // 
@@ -308,24 +240,25 @@ namespace POS.IN.IssueMaterialWareHouseOther
             this.label11.TabIndex = 37;
             this.label11.Text = "Document Status :";
             // 
-            // btnLoadPortFolio
+            // btnGenerate
             // 
-            this.btnLoadPortFolio.CommandArg = null;
-            this.btnLoadPortFolio.DataObject = null;
-            this.btnLoadPortFolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btnLoadPortFolio.Location = new System.Drawing.Point(374, 200);
-            this.btnLoadPortFolio.Name = "btnLoadPortFolio";
-            this.btnLoadPortFolio.Size = new System.Drawing.Size(174, 23);
-            this.btnLoadPortFolio.TabIndex = 33;
-            this.btnLoadPortFolio.Text = "Load Portfolio";
-            this.btnLoadPortFolio.Theme = POS.Control.Theme.MSOffice2010_WHITE;
-            this.btnLoadPortFolio.UseVisualStyleBackColor = true;
+            this.btnGenerate.CommandArg = null;
+            this.btnGenerate.DataObject = null;
+            this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btnGenerate.Location = new System.Drawing.Point(366, 147);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(174, 23);
+            this.btnGenerate.TabIndex = 33;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.Theme = POS.Control.Theme.MSOffice2010_WHITE;
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(608, 74);
+            this.label3.Location = new System.Drawing.Point(608, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(12, 13);
             this.label3.TabIndex = 30;
@@ -335,7 +268,7 @@ namespace POS.IN.IssueMaterialWareHouseOther
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(608, 51);
+            this.label2.Location = new System.Drawing.Point(608, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(12, 13);
             this.label2.TabIndex = 30;
@@ -345,7 +278,7 @@ namespace POS.IN.IssueMaterialWareHouseOther
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(608, 24);
+            this.label1.Location = new System.Drawing.Point(608, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(12, 13);
             this.label1.TabIndex = 30;
@@ -353,22 +286,20 @@ namespace POS.IN.IssueMaterialWareHouseOther
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.lblUOM);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.lblUOMAdjust);
+            this.groupBox2.Controls.Add(this.txtAdjust);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.lblUOMCount);
             this.groupBox2.Controls.Add(this.baseAddEditMasterDetail);
             this.groupBox2.Controls.Add(this.pictureBoxMaterial);
             this.groupBox2.Controls.Add(this.baseGridDetail);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.ddlMaterial);
-            this.groupBox2.Controls.Add(this.ddlWarehouseDetails);
             this.groupBox2.Controls.Add(this.txtLotNo);
-            this.groupBox2.Controls.Add(this.txtQuantity);
+            this.groupBox2.Controls.Add(this.txtCount);
             this.groupBox2.Controls.Add(this.lblQuantity);
             this.groupBox2.Controls.Add(this.lblMaterial);
             this.groupBox2.Controls.Add(this.lblLotNo);
-            this.groupBox2.Controls.Add(this.lblWarehouse);
             this.groupBox2.Controls.Add(this.txtRemarkDetails);
             this.groupBox2.Controls.Add(this.lblRemarkDetails);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -379,25 +310,54 @@ namespace POS.IN.IssueMaterialWareHouseOther
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
             // 
-            // label5
+            // label4
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(275, 154);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(12, 13);
-            this.label5.TabIndex = 40;
-            this.label5.Text = "*";
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(275, 157);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(12, 13);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "*";
             // 
-            // lblUOM
+            // lblUOMAdjust
             // 
-            this.lblUOM.AutoSize = true;
-            this.lblUOM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblUOM.Location = new System.Drawing.Point(305, 150);
-            this.lblUOM.Name = "lblUOM";
-            this.lblUOM.Size = new System.Drawing.Size(43, 13);
-            this.lblUOM.TabIndex = 37;
-            this.lblUOM.Text = "UOM :";
+            this.lblUOMAdjust.AutoSize = true;
+            this.lblUOMAdjust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblUOMAdjust.Location = new System.Drawing.Point(305, 153);
+            this.lblUOMAdjust.Name = "lblUOMAdjust";
+            this.lblUOMAdjust.Size = new System.Drawing.Size(43, 13);
+            this.lblUOMAdjust.TabIndex = 46;
+            this.lblUOMAdjust.Text = "UOM :";
+            // 
+            // txtAdjust
+            // 
+            this.txtAdjust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtAdjust.Location = new System.Drawing.Point(121, 150);
+            this.txtAdjust.MaxLength = 20;
+            this.txtAdjust.Name = "txtAdjust";
+            this.txtAdjust.Size = new System.Drawing.Size(148, 20);
+            this.txtAdjust.TabIndex = 45;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label9.Location = new System.Drawing.Point(63, 153);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 44;
+            this.label9.Text = "Adjust :";
+            // 
+            // lblUOMCount
+            // 
+            this.lblUOMCount.AutoSize = true;
+            this.lblUOMCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblUOMCount.Location = new System.Drawing.Point(304, 127);
+            this.lblUOMCount.Name = "lblUOMCount";
+            this.lblUOMCount.Size = new System.Drawing.Size(43, 13);
+            this.lblUOMCount.TabIndex = 37;
+            this.lblUOMCount.Text = "UOM :";
             // 
             // baseAddEditMasterDetail
             // 
@@ -445,83 +405,45 @@ namespace POS.IN.IssueMaterialWareHouseOther
             this.baseGridDetail.Size = new System.Drawing.Size(976, 218);
             this.baseGridDetail.TabIndex = 25;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(608, 128);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(12, 13);
-            this.label13.TabIndex = 30;
-            this.label13.Text = "*";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(608, 97);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(12, 13);
-            this.label12.TabIndex = 30;
-            this.label12.Text = "*";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(608, 70);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(12, 13);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "*";
-            // 
             // ddlMaterial
             // 
+            this.ddlMaterial.Enabled = false;
             this.ddlMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlMaterial.FormattingEnabled = true;
             this.ddlMaterial.Location = new System.Drawing.Point(121, 67);
             this.ddlMaterial.Name = "ddlMaterial";
             this.ddlMaterial.Size = new System.Drawing.Size(481, 21);
             this.ddlMaterial.TabIndex = 24;
-            this.ddlMaterial.SelectedIndexChanged += new System.EventHandler(this.ddlMaterial_SelectedIndexChanged);
-            // 
-            // ddlWarehouseDetails
-            // 
-            this.ddlWarehouseDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ddlWarehouseDetails.FormattingEnabled = true;
-            this.ddlWarehouseDetails.Location = new System.Drawing.Point(121, 91);
-            this.ddlWarehouseDetails.Name = "ddlWarehouseDetails";
-            this.ddlWarehouseDetails.Size = new System.Drawing.Size(481, 21);
-            this.ddlWarehouseDetails.TabIndex = 23;
-            this.ddlWarehouseDetails.SelectedIndexChanged += new System.EventHandler(this.ddlWarehouseDetails_SelectedIndexChanged);
             // 
             // txtLotNo
             // 
+            this.txtLotNo.Enabled = false;
             this.txtLotNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtLotNo.Location = new System.Drawing.Point(121, 118);
+            this.txtLotNo.Location = new System.Drawing.Point(120, 95);
             this.txtLotNo.MaxLength = 20;
             this.txtLotNo.Name = "txtLotNo";
             this.txtLotNo.Size = new System.Drawing.Size(481, 20);
             this.txtLotNo.TabIndex = 21;
             // 
-            // txtQuantity
+            // txtCount
             // 
-            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtQuantity.Location = new System.Drawing.Point(121, 147);
-            this.txtQuantity.MaxLength = 20;
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(148, 20);
-            this.txtQuantity.TabIndex = 19;
+            this.txtCount.Enabled = false;
+            this.txtCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtCount.Location = new System.Drawing.Point(120, 124);
+            this.txtCount.MaxLength = 20;
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(148, 20);
+            this.txtCount.TabIndex = 19;
             // 
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblQuantity.Location = new System.Drawing.Point(52, 150);
+            this.lblQuantity.Location = new System.Drawing.Point(65, 127);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(62, 13);
+            this.lblQuantity.Size = new System.Drawing.Size(48, 13);
             this.lblQuantity.TabIndex = 3;
-            this.lblQuantity.Text = "Quantity :";
+            this.lblQuantity.Text = "Count :";
             // 
             // lblMaterial
             // 
@@ -537,21 +459,11 @@ namespace POS.IN.IssueMaterialWareHouseOther
             // 
             this.lblLotNo.AutoSize = true;
             this.lblLotNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblLotNo.Location = new System.Drawing.Point(57, 121);
+            this.lblLotNo.Location = new System.Drawing.Point(56, 98);
             this.lblLotNo.Name = "lblLotNo";
             this.lblLotNo.Size = new System.Drawing.Size(57, 13);
             this.lblLotNo.TabIndex = 1;
             this.lblLotNo.Text = "Lot No. :";
-            // 
-            // lblWarehouse
-            // 
-            this.lblWarehouse.AutoSize = true;
-            this.lblWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblWarehouse.Location = new System.Drawing.Point(35, 97);
-            this.lblWarehouse.Name = "lblWarehouse";
-            this.lblWarehouse.Size = new System.Drawing.Size(79, 13);
-            this.lblWarehouse.TabIndex = 0;
-            this.lblWarehouse.Text = "Warehouse :";
             // 
             // txtRemarkDetails
             // 
@@ -573,17 +485,46 @@ namespace POS.IN.IssueMaterialWareHouseOther
             this.lblRemarkDetails.TabIndex = 18;
             this.lblRemarkDetails.Text = "Remark :";
             // 
-            // IssueMaterialWareHouseOther
+            // lblReferenceNo
+            // 
+            this.lblReferenceNo.AutoSize = true;
+            this.lblReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblReferenceNo.Location = new System.Drawing.Point(12, 21);
+            this.lblReferenceNo.Name = "lblReferenceNo";
+            this.lblReferenceNo.Size = new System.Drawing.Size(89, 13);
+            this.lblReferenceNo.TabIndex = 1;
+            this.lblReferenceNo.Text = "Period Group :";
+            // 
+            // ddlReason
+            // 
+            this.ddlReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ddlReason.FormattingEnabled = true;
+            this.ddlReason.Location = new System.Drawing.Point(121, 48);
+            this.ddlReason.Name = "ddlReason";
+            this.ddlReason.Size = new System.Drawing.Size(481, 21);
+            this.ddlReason.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label8.Location = new System.Drawing.Point(305, 153);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(43, 13);
+            this.label8.TabIndex = 46;
+            this.label8.Text = "UOM :";
+            // 
+            // AddEditStockCount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "IssueMaterialWareHouseOther";
+            this.Name = "AddEditStockCount";
             this.Size = new System.Drawing.Size(1024, 617);
-            this.saveHandler += new POS.Control.BaseAddEditMaster.SaveHandler(this.AddEditReceiveMaterial_saveHandler);
-            this.resetHandler += new POS.Control.BaseAddEditMaster.ResetHandler(this.AddEditReceiveMaterial_resetHandler);
-            this.Load += new System.EventHandler(this.AddEditReceiveMaterial_Load);
+            this.saveHandler += new POS.Control.BaseAddEditMaster.SaveHandler(this.AddEditStockCount_saveHandler);
+            this.resetHandler += new POS.Control.BaseAddEditMaster.ResetHandler(this.AddEditStockCount_resetHandler);
+            this.Load += new System.EventHandler(this.AddEditStockCount_Load);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.groupBox1.ResumeLayout(false);
@@ -597,23 +538,17 @@ namespace POS.IN.IssueMaterialWareHouseOther
 
         #endregion
 
-        private System.Windows.Forms.ComboBox ddlReason;
-        private System.Windows.Forms.Label lblReferenceNo;
-        private System.Windows.Forms.Label lblReason;
+        private System.Windows.Forms.ComboBox ddlPeriod;
+        private System.Windows.Forms.Label lblPeriodGroup;
+        private System.Windows.Forms.Label lblPeriod;
         private System.Windows.Forms.Label lblSource;
-        private Control.BaseTextBox txtReferenceNo;
-        private System.Windows.Forms.RadioButton rdoSupplier;
-        private System.Windows.Forms.RadioButton rdoWarehouse;
-        private System.Windows.Forms.RadioButton rdoOther;
         private System.Windows.Forms.Label lblRemark;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblDocumentNo;
         private System.Windows.Forms.Label lblDocumentDate;
         private System.Windows.Forms.TextBox txtRemark;
-        private System.Windows.Forms.ComboBox ddlSupplier;
         private System.Windows.Forms.ComboBox ddlWarehouse;
-        private Control.BaseTextBox txtOther;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -622,24 +557,26 @@ namespace POS.IN.IssueMaterialWareHouseOther
         private System.Windows.Forms.PictureBox pictureBoxMaterial;
         private Control.GridView.BaseGrid baseGridDetail;
         private System.Windows.Forms.ComboBox ddlMaterial;
-        private System.Windows.Forms.ComboBox ddlWarehouseDetails;
         private Control.BaseTextBox txtLotNo;
-        private Control.BaseTextBox txtQuantity;
+        private Control.BaseTextBox txtCount;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblMaterial;
         private System.Windows.Forms.Label lblLotNo;
-        private System.Windows.Forms.Label lblWarehouse;
         private System.Windows.Forms.TextBox txtRemarkDetails;
         private System.Windows.Forms.Label lblRemarkDetails;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label10;
-        private Control.BaseButton btnLoadPortFolio;
+        private Control.BaseButton btnGenerate;
         private Control.BaseAddEditMaster baseAddEditMasterDetail;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblUOM;
+        private System.Windows.Forms.Label lblUOMCount;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblReferenceNo;
+        private System.Windows.Forms.ComboBox ddlPeriodGroup;
+        private System.Windows.Forms.ComboBox ddlReason;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblUOMAdjust;
+        private Control.BaseTextBox txtAdjust;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
 
     }
 }

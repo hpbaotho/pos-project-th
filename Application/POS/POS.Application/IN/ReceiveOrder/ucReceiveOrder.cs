@@ -13,6 +13,7 @@ using POS.BL.Entities.Entity;
 using Core.Standards.Converters;
 using Core.Standards.Exceptions;
 using Core.Standards.Validations;
+using POS.BL.DTO;
 
 namespace POS.IN.ReceiveOrder
 {
@@ -20,29 +21,20 @@ namespace POS.IN.ReceiveOrder
     {
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "tran_head_id";
-        ReceiveOrder receiveOrder = new ReceiveOrder();
+        AddEditReceiveOrder addEditReceiveOrder = new AddEditReceiveOrder();
         string programName = ProgramName.SetupINReceiveOrder;
-        string tabName = "List Receive Oder";
-
-        /// <summary>
-        /// all the controls that cannot tolerate each other
-        /// </summary>
-        List<System.Windows.Forms.Control> IntoleranceControl;
+        string tabName = "List Receive Order";
+        private string _documentTypeCode { get { return DocumentTypeCode.IN.ReceiveOrder; } }
 
         public ucReceiveOrder()
         {
             InitializeComponent();
 
-            SetInitialControl();
-
             this.Dock = DockStyle.Fill;
-            tabPage1.Text = tabName;
-
-            IntoleranceControl = new List<System.Windows.Forms.Control>() { ddlSupplier, ddlWarehouse, txtOther };
+            tabPage1.Text = tabName;            
 
             grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
             grdBase.onSelectedDataRow += new EventHandler<Control.GridView.RowEventArgs>(grdBase_onSelectedDataRow);
-            grdBase.onDeleteDataRows += new EventHandler<Control.GridView.RowsEventArgs>(grdBase_onDeleteDataRows);
             grdBase.onLoadDataGrid += new EventHandler<Control.GridView.DataBindArgs>(grdBase_onLoadDataGrid);
             grdBase.onCellFormatting += new EventHandler<DataGridViewCellFormattingEventArgs>(grdBase_onCellFormatting);
 
@@ -53,7 +45,7 @@ namespace POS.IN.ReceiveOrder
         {
             //hide the damn column
             grdBase.HiddenColumnName = new List<string>() { "tran_head_id" };
-            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHead();
+            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHeadReceiveOrder(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value, txtOrderNo.Text);
 
             if (ds.Tables.Count > 0)
             {
@@ -75,7 +67,6 @@ namespace POS.IN.ReceiveOrder
             grdBase.DataSourceDataSet = ds;
             grdBase.DataKeyName = new string[] { DataKeyName };
 
-
             //try to set its visibility 
             grdBase.btnDeleteEnable = false;
             grdBase.RearrangeButton();
@@ -83,31 +74,14 @@ namespace POS.IN.ReceiveOrder
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {
-            receiveOrder = new ReceiveOrder();
-            this.AddEditTab(string.Format(TabName.Add, programName), receiveOrder);
+            addEditReceiveOrder = new AddEditReceiveOrder();
+            this.AddEditTab(string.Format(TabName.Add, programName), addEditReceiveOrder);
         }
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            receiveOrder = new ReceiveOrder(dataKey[DataKeyName].ToString());
-            this.AddEditTab(string.Format(TabName.Edit, programName), receiveOrder);
-        }
-        public void grdBase_onDeleteDataRows(object sender, Control.GridView.RowsEventArgs e)
-        {
-            try
-            {
-                List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                List<TranHead> listTranHead = new List<TranHead>();
-                foreach (Dictionary<string, object> item in list)
-                {
-                    listTranHead.Add(new TranHead() { tran_head_id = Converts.ParseLong(item[DataKeyName].ToString()) });
-                }
-                ServiceProvider.TranHeadService.Delete(listTranHead);
-            }
-            catch (ValidationException ex)
-            {
-                base.formBase.ShowErrorMessage(ex);
-            }
+            addEditReceiveOrder = new AddEditReceiveOrder(dataKey[DataKeyName].ToString());
+            this.AddEditTab(string.Format(TabName.Edit, programName), addEditReceiveOrder);
         }
         public void grdBase_onCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -159,7 +133,7 @@ namespace POS.IN.ReceiveOrder
         }
 
         #region :: Private Function ::
-        private void AddEditTab(string TabTitle, ReceiveOrder controlAddEdit)
+        private void AddEditTab(string TabTitle, AddEditReceiveOrder controlAddEdit)
         {
             if (tabControl1.TabPages.Count == 1 || (tabControl1.TabPages.Count > 1 && base.formBase.ShowConfirmMessage(GeneralMessage.ConfirmNewTab, "Confirm")))
             {
@@ -179,32 +153,8 @@ namespace POS.IN.ReceiveOrder
             }
             tabControl1.SelectedTab = tabPageAddEdit;
         }
-
-        private void rdoItolerate_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (System.Windows.Forms.Control control in IntoleranceControl)
-            {
-                RadioButton clickedCb = sender as RadioButton;
-                if (clickedCb != null && control.Tag.ToString() == clickedCb.Name)
-                {
-                    control.Enabled = true;
-                }
-                else
-                    control.Enabled = false;
-            }
-        }
-
-        private void SetInitialControl()
-        {
-            ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID();
-            ddlSupplier.ValueMember = "Value";
-            ddlSupplier.DisplayMember = "Display";
-
-            ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
-            ddlWarehouse.ValueMember = "Value";
-            ddlWarehouse.DisplayMember = "Display";
-        }
         #endregion
+
 
     }
 }

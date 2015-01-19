@@ -473,6 +473,56 @@ namespace POS.BL
             }
         }
 
+        private static StockHeadService stockHeadService;
+        public static StockHeadService StockHeadService
+        {
+            get
+            {
+                if (stockHeadService == null)
+                {
+                    stockHeadService = new StockHeadService();
+                }
+                return stockHeadService;
+            }
+        }
+        private static StockDetailService stockDetailService;
+        public static StockDetailService StockDetailService
+        {
+            get
+            {
+                if (stockDetailService == null)
+                {
+                    stockDetailService = new StockDetailService();
+                }
+                return stockDetailService;
+            }
+        }
+
+        private static BFLogicalService bfLogicalService;
+        public static BFLogicalService BFLogicalService
+        {
+            get
+            {
+                if (bfLogicalService == null)
+                {
+                    bfLogicalService = new BFLogicalService();
+                }
+                return bfLogicalService;
+            }
+        }
+
+        private static BFPhysicalService bfPhysicalService;
+        public static BFPhysicalService BFPhysicalService
+        {
+            get
+            {
+                if (bfPhysicalService == null)
+                {
+                    bfPhysicalService = new BFPhysicalService();
+                }
+                return bfPhysicalService;
+            }
+        }
     }
     public sealed class UserAccount
     {

@@ -1,6 +1,6 @@
-﻿namespace POS.IN.ReceiveOrder
+﻿namespace POS.IN.StockCount
 {
-    partial class ucReceiveOrder
+    partial class ucStockCount
     {
         /// <summary> 
         /// Required designer variable.
@@ -36,11 +36,11 @@
             this.dpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dpDateTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblReferenceNo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblReason = new System.Windows.Forms.Label();
+            this.ddlPeriodGroup = new System.Windows.Forms.ComboBox();
             this.txtDocNo = new POS.Control.BaseTextBox();
-            this.txtOrderNo = new POS.Control.BaseTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelWrapGrid.SuspendLayout();
@@ -99,14 +99,14 @@
             // 
             // gbSearchPanel
             // 
+            this.gbSearchPanel.Controls.Add(this.label3);
             this.gbSearchPanel.Controls.Add(this.dpDateFrom);
             this.gbSearchPanel.Controls.Add(this.dpDateTo);
             this.gbSearchPanel.Controls.Add(this.label2);
-            this.gbSearchPanel.Controls.Add(this.lblReferenceNo);
             this.gbSearchPanel.Controls.Add(this.label1);
             this.gbSearchPanel.Controls.Add(this.lblReason);
+            this.gbSearchPanel.Controls.Add(this.ddlPeriodGroup);
             this.gbSearchPanel.Controls.Add(this.txtDocNo);
-            this.gbSearchPanel.Controls.Add(this.txtOrderNo);
             this.gbSearchPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.gbSearchPanel.Location = new System.Drawing.Point(6, 6);
             this.gbSearchPanel.Name = "gbSearchPanel";
@@ -139,16 +139,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Document Date From :";
             // 
-            // lblReferenceNo
-            // 
-            this.lblReferenceNo.AutoSize = true;
-            this.lblReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReferenceNo.Location = new System.Drawing.Point(40, 21);
-            this.lblReferenceNo.Name = "lblReferenceNo";
-            this.lblReferenceNo.Size = new System.Drawing.Size(70, 13);
-            this.lblReferenceNo.TabIndex = 1;
-            this.lblReferenceNo.Text = "Order No. :";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -163,36 +153,47 @@
             // 
             this.lblReason.AutoSize = true;
             this.lblReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReason.Location = new System.Drawing.Point(18, 48);
+            this.lblReason.Location = new System.Drawing.Point(18, 24);
             this.lblReason.Name = "lblReason";
             this.lblReason.Size = new System.Drawing.Size(92, 13);
             this.lblReason.TabIndex = 2;
             this.lblReason.Text = "Document No :";
             // 
+            // ddlPeriodGroup
+            // 
+            this.ddlPeriodGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ddlPeriodGroup.FormattingEnabled = true;
+            this.ddlPeriodGroup.Location = new System.Drawing.Point(121, 47);
+            this.ddlPeriodGroup.Name = "ddlPeriodGroup";
+            this.ddlPeriodGroup.Size = new System.Drawing.Size(163, 21);
+            this.ddlPeriodGroup.TabIndex = 25;
+            this.ddlPeriodGroup.Tag = "rdoSupplier";
+            // 
             // txtDocNo
             // 
             this.txtDocNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtDocNo.Location = new System.Drawing.Point(121, 49);
+            this.txtDocNo.Location = new System.Drawing.Point(121, 20);
             this.txtDocNo.MaxLength = 100;
             this.txtDocNo.Name = "txtDocNo";
             this.txtDocNo.Size = new System.Drawing.Size(163, 20);
             this.txtDocNo.TabIndex = 0;
             // 
-            // txtOrderNo
+            // label3
             // 
-            this.txtOrderNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOrderNo.Location = new System.Drawing.Point(121, 21);
-            this.txtOrderNo.MaxLength = 100;
-            this.txtOrderNo.Name = "txtOrderNo";
-            this.txtOrderNo.Size = new System.Drawing.Size(163, 20);
-            this.txtOrderNo.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(18, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Period Group :";
             // 
-            // ucReceiveOrder
+            // ucStockCount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Name = "ucReceiveOrder";
+            this.Name = "ucStockCount";
             this.Size = new System.Drawing.Size(976, 396);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -209,14 +210,14 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panelWrapGrid;
         private System.Windows.Forms.GroupBox gbSearchPanel;
-        private Control.BaseTextBox txtOrderNo;
+        private System.Windows.Forms.ComboBox ddlPeriodGroup;
         private Control.GridView.BaseGrid grdBase;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblReferenceNo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblReason;
         private System.Windows.Forms.DateTimePicker dpDateFrom;
         private System.Windows.Forms.DateTimePicker dpDateTo;
         private Control.BaseTextBox txtDocNo;
+        private System.Windows.Forms.Label label3;
     }
 }

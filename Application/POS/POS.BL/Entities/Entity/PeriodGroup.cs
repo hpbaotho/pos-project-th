@@ -13,11 +13,13 @@ namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
     [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.PeriodGroup, POS.BL", TableMapping = "in_period_group")]
-    public class PeriodGroup : EntityBase
+    public class PeriodGroup : EntityBase, IEntityMasterBase
     {
-        [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
+        [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
         public long period_group_id { get; set; }
+        [EntityScalarProperty(ComboBoxCode = true)]
         public string period_group_code { get; set; }
+        [EntityScalarProperty(ComboBoxDisplay = true)]
         public string period_group_name { get; set; }
         public string period_group_description { get; set; }
         public bool active { get; set; }

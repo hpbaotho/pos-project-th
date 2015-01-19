@@ -12,13 +12,17 @@ namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
     [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.Period, POS.BL", TableMapping = "in_period")]
-    public class Period : EntityBase
+    public class Period : EntityBase, IEntityMasterBase
     {
-        [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
+        [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
         public long period_id { get; set; }
-        public long? period_group_id { get; set; }
+        [EntityScalarProperty(ParentKey=true)]
+        public long period_group_id { get; set; }
+        [EntityScalarProperty(ComboBoxCode = true)]
         public string period_code { get; set; }
+        [EntityScalarProperty(ComboBoxDisplay = true)]
         public DateTime? period_date { get; set; }
+        public string period_status { get; set; }
         public bool active { get; set; }
 
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]

@@ -11,7 +11,7 @@ namespace POS.BL.Service.IN
 {
     public class LogLotService:ServiceBase<LogLot>
     {
-        public double GetBalanceQty(long material_id, long warehouse_id)
+        public decimal GetBalanceQty(long material_id, long warehouse_id)
         {
             StringBuilder SQL = new StringBuilder();
             SQL.AppendFormat(" SELECT bal_qty FROM {0} WHERE 1=1 ", base.EntityTableName);
@@ -22,7 +22,7 @@ namespace POS.BL.Service.IN
             DbParameter param2 = base.CreateParameter("warehouse_id", warehouse_id);
 
             object BalanceQtyObject = base.ExecuteScalar(SQL.ToString(), param1, param2);
-            double BalanceQty = BalanceQtyObject.ToDouble();
+            decimal BalanceQty = BalanceQtyObject.ToDecimal();
 
             return BalanceQty;
         }
