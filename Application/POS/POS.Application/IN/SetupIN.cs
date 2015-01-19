@@ -17,6 +17,7 @@ using POS.IN.CountStock;
 using POS.IN.IssueMaterialSold;
 using POS.IN.IssueMaterialWareHouseOther;
 using POS.IN.IssueMaterialWaste;
+using POS.IN.ReceiveOrder;
 
 namespace POS.IN
 {
@@ -60,7 +61,7 @@ namespace POS.IN
             }
             else if (selected == ProgramName.SetupINReceiveOrder)
             {
-                //pnlContent.Controls.Add(new ucIssueMaterial());
+                pnlContent.Controls.Add(new ucReceiveOrder());
             }
             else if (selected == ProgramName.SetupINIssueMaterialWarehouse)
             {

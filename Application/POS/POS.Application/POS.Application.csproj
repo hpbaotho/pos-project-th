@@ -114,6 +114,18 @@
     <Compile Include="IN\ReceiveMaterial\ucReceiveMaterial.Designer.cs">
       <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="IN\ReceiveOrder\ReceiveOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\ReceiveOrder\ReceiveOrder.Designer.cs">
+      <DependentUpon>ReceiveOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\ReceiveOrder\ucReceiveOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\ReceiveOrder\ucReceiveOrder.Designer.cs">
+      <DependentUpon>ucReceiveOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="IN\SetupIN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveMaterial\ucReceiveMaterial.resx">
       <DependentUpon>ucReceiveMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\ReceiveOrder\ReceiveOrder.resx">
+      <DependentUpon>ReceiveOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\ReceiveOrder\ucReceiveOrder.resx">
+      <DependentUpon>ucReceiveOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\SetupIN.resx">
       <DependentUpon>SetupIN.cs</DependentUpon>
@@ -1053,9 +1071,7 @@
   <ItemGroup>
     <None Include="Resources\image-not-found.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IN\ReceiveOrder\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
