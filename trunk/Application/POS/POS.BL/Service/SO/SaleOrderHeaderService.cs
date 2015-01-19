@@ -7,6 +7,8 @@ using POS.BL.DTO.SO;
 using System.Transactions;
 using Core.Standards.Validations;
 using System.Data.Common;
+using POS.BL.DTO;
+using POS.BL.Utilities;
 
 namespace POS.BL.Service.SO
 {
@@ -119,6 +121,31 @@ namespace POS.BL.Service.SO
                 }
             }
 
+        }
+
+        public List<ComboBoxDTO> GetAllCancelOrder()
+        {
+            StringBuilder SQL = new StringBuilder();
+            SQL.AppendLine(@"   SELECT 
+                                    * 
+                                FROM so_sales_order_head head
+                                WHERE EXISTS (
+		                                SELECT 
+			                                'x' 
+		                                FROM so_sales_order_detail detail 
+		                                WHERE detail.sales_order_head_id = head.sales_order_head_id
+			                                AND detail.is_cancel = 1) ");
+            List<SaleOrderHeader> listSaleOrderHeader = base.ExecuteQuery<SaleOrderHeader>(SQL.ToString()).ToList();
+            List<ComboBoxDTO> lstComboBox = new List<ComboBoxDTO>();
+            foreach (SaleOrderHeader entity in listSaleOrderHeader)
+            {
+                ComboBoxDTO dto = new ComboBoxDTO();
+                dto.Value = entity.sales_order_head_id.Value.ToString();
+                dto.Display = entity.order_no;
+                lstComboBox.Add(dto);
+            }
+            lstComboBox.SetPleaseSelect();
+            return lstComboBox;
         }
     }
 }

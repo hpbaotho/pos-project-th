@@ -87,8 +87,11 @@
             // grdBase
             // 
             this.grdBase.btnAddEnable = true;
+            this.grdBase.btnAddVisible = true;
             this.grdBase.btnDeleteEnable = true;
+            this.grdBase.btnDeleteVisible = true;
             this.grdBase.btnSearchEnable = true;
+            this.grdBase.btnSearchVisible = true;
             this.grdBase.DataKeyName = null;
             this.grdBase.DataKeyValue = null;
             this.grdBase.DataSourceDataSet = null;
@@ -121,7 +124,7 @@
             this.gbSearchPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.gbSearchPanel.Location = new System.Drawing.Point(6, 6);
             this.gbSearchPanel.Name = "gbSearchPanel";
-            this.gbSearchPanel.Size = new System.Drawing.Size(976, 148);
+            this.gbSearchPanel.Size = new System.Drawing.Size(956, 148);
             this.gbSearchPanel.TabIndex = 31;
             this.gbSearchPanel.TabStop = false;
             this.gbSearchPanel.Text = "Search Criteria";
@@ -144,11 +147,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(348, 24);
+            this.label2.Location = new System.Drawing.Point(304, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.Size = new System.Drawing.Size(134, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Date From :";
+            this.label2.Text = "Document Date From :";
             // 
             // lblReferenceNo
             // 
@@ -162,7 +165,6 @@
             // 
             // txtOther
             // 
-            this.txtOther.Description = "";
             this.txtOther.Enabled = false;
             this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtOther.Location = new System.Drawing.Point(224, 123);
@@ -176,11 +178,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(360, 51);
+            this.label1.Location = new System.Drawing.Point(316, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Date To :";
+            this.label1.Text = "Document Date To :";
             // 
             // ddlWarehouse
             // 
@@ -225,7 +227,6 @@
             // 
             // txtDocNo
             // 
-            this.txtDocNo.Description = "";
             this.txtDocNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtDocNo.Location = new System.Drawing.Point(121, 49);
             this.txtDocNo.MaxLength = 100;
@@ -235,7 +236,6 @@
             // 
             // txtReferenceNo
             // 
-            this.txtReferenceNo.Description = "";
             this.txtReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtReferenceNo.Location = new System.Drawing.Point(121, 21);
             this.txtReferenceNo.MaxLength = 100;

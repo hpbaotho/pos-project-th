@@ -13,10 +13,9 @@ using POS.BL;
 using Core.Standards.Converters;
 using POS.BL.Entities.Entity;
 using POS.IN.ReceiveMaterial;
-using POS.IN.CountStock;
-using POS.IN.IssueMaterialSold;
-using POS.IN.IssueMaterialWareHouseOther;
-using POS.IN.IssueMaterialWaste;
+using POS.IN.StockCount;
+using POS.IN.IssueMaterial;
+using POS.IN.IssueSold;
 using POS.IN.ReceiveOrder;
 
 namespace POS.IN
@@ -39,10 +38,9 @@ namespace POS.IN
             //---Add list Menu
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveMaterial });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveOrder });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterialWarehouse });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterialSold });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterialWaste });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINCountStock });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterial });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueSold });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINStockCount });
 
             listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Setting).Select(item => item.MenuName).ToList();
         }
@@ -63,21 +61,17 @@ namespace POS.IN
             {
                 pnlContent.Controls.Add(new ucReceiveOrder());
             }
-            else if (selected == ProgramName.SetupINIssueMaterialWarehouse)
+            else if (selected == ProgramName.SetupINIssueMaterial)
             {
-                pnlContent.Controls.Add(new ucIssueMaterialWareHouseOther());
+                pnlContent.Controls.Add(new ucIssueMaterial());
             }
-            else if (selected == ProgramName.SetupINIssueMaterialSold)
+            else if (selected == ProgramName.SetupINIssueSold)
             {
-                pnlContent.Controls.Add(new ucIssueMaterialSold());
+                pnlContent.Controls.Add(new ucIssueSold());
             }
-            else if (selected == ProgramName.SetupINIssueMaterialWaste)
+            else if (selected == ProgramName.SetupINStockCount)
             {
-                pnlContent.Controls.Add(new ucIssueMaterialWaste());
-            }    
-            else if (selected == ProgramName.SetupINCountStock)
-            {
-                pnlContent.Controls.Add(new ucCountStock());
+                pnlContent.Controls.Add(new ucStockCount());
             }
 
         }

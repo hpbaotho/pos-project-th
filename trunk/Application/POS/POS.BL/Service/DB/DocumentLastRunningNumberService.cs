@@ -19,6 +19,7 @@ namespace POS.BL.Service.DB
             DocumentLastRunningNumber entity = base.ExecuteQueryOne<DocumentLastRunningNumber>(sql.ToString(), param);
             if (entity == null || entity.document_last_running_number_id == 0)
             {
+                entity = new DocumentLastRunningNumber();
                 entity.document_last_running_number = 0;
                 entity.document_type_id = DocumentTypeID;
                 entity.document_number_value = "0";

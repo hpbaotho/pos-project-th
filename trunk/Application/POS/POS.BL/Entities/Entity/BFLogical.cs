@@ -8,17 +8,15 @@ using Core.Standards.Attributes;
 namespace POS.BL.Entities.Entity
 {
     [HasSelfValidation]
-    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.PhyLot, POS.BL", TableMapping = "[in_phy_lot]")]
+    [EntityMapping(EntityTypeName = "POS.BL.Entities.Entity.BFLogical, POS.BL", TableMapping = "in_bf_logical")]
 
-    public class PhyLot : EntityBase
+    public class BFLogical : EntityBase
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true)]
-        public long phy_lot_id { get; set; }
-        public long? warehouse_id { get; set; }
-        public decimal lot_no { get; set; }
-        public long? material_id { get; set; }
-        public DateTime? bf_date { get; set; }
-        public DateTime? expire_date { get; set; }
+        public long bf_logical_id { get; set; }
+        public long period_id { get; set; }
+        public long warehouse_id { get; set; }
+        public long material_id { get; set; }        
         public decimal bf_qty { get; set; }
         public decimal bal_qty { get; set; }
     }

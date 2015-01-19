@@ -155,10 +155,9 @@ namespace POS.BL.Utilities
         //---IN
         public const string SetupINReceiveMaterial = "Receive Material";
         public const string SetupINReceiveOrder = "Receive Order";
-        public const string SetupINIssueMaterialWarehouse = "Issue Material (Warehouse\\Other)";
-        public const string SetupINIssueMaterialSold = "Issue Material (Sold)";
-        public const string SetupINIssueMaterialWaste = "Issue Material (Waste)";
-        public const string SetupINCountStock = "Count Stock";
+        public const string SetupINIssueMaterial = "Issue Material (Warehouse/Waste/Other)";
+        public const string SetupINIssueSold = "Issue Material (Sold)";
+        public const string SetupINStockCount = "Stock Count";
 
         //---SO
         public const string MappingMenu = "Mapping Menu";
@@ -195,15 +194,20 @@ namespace POS.BL.Utilities
 
     #endregion
 
+    public struct INPeriodStatus
+    {
+        public const string Close = "C";
+        public const string Open = "O";
+    }
+
     public struct DocumentTypeCode
     {
         public struct IN
         {
             public const string ReceiveMaterial = "RM";
             public const string ReceiveOrder = "RO";
-            public const string IssueMaterialWarehouseOther = "IW";
-            public const string SoldMaterial = "SM";
-            public const string CancelSold = "CS";
+            public const string IssueMaterial = "IM";
+            public const string IssueSold = "IS";            
             public const string StockCount = "SC";
         }
     }

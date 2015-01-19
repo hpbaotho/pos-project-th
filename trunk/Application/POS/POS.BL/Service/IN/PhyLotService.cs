@@ -26,7 +26,7 @@ namespace POS.BL.Service.IN
             return LotNo;
         }
 
-        public PhyLot GetPhyLot(long material_id, long warehouse_id, double lot_no)
+        public PhyLot GetPhyLot(long material_id, long warehouse_id, decimal lot_no, bool IsCreateNew = true)
         {
             StringBuilder SQL = new StringBuilder();
             SQL.AppendFormat(" SELECT * FROM {0} WHERE 1=1 ", base.EntityTableName);
@@ -39,7 +39,7 @@ namespace POS.BL.Service.IN
             DbParameter param3 = base.CreateParameter("lot_no", lot_no);
 
             PhyLot entity = base.ExecuteQueryOne<PhyLot>(SQL.ToString(), param1, param2, param3);
-            if (entity == null || entity.phy_lot_id == 0)
+            if (IsCreateNew && (entity == null || entity.phy_lot_id == 0))
             {
                 entity = new PhyLot();
                 entity.created_by = "System";
@@ -56,12 +56,12 @@ namespace POS.BL.Service.IN
             return entity;
         }
 
-        public bool CheckLimitMaterial(long material_id, long warehouse_id, double quantity)
+        public bool CheckLimitMaterial(long material_id, long warehouse_id, decimal quantity)
         {
             Material entityMaterial = new Material() { material_id = material_id };
             entityMaterial = ServiceProvider.MaterialService.FindByKeys(entityMaterial, false);
 
-            double balanceQty = ServiceProvider.LogLotService.GetBalanceQty(material_id, warehouse_id);
+            decimal balanceQty = ServiceProvider.LogLotService.GetBalanceQty(material_id, warehouse_id);
 
             return (balanceQty + quantity) <= entityMaterial.max_stock;
         }

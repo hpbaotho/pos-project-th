@@ -29,5 +29,6 @@ namespace POS.BL.Entities.Entity
         public long? order_no_id { get; set; }
         public long? cancel_reason_id { get; set; }
         public string transaction_status { get; set; }
+        public bool? is_waste { get; set; }
     }
 }

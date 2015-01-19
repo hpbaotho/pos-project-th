@@ -15,17 +15,17 @@ using Core.Standards.Exceptions;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using POS.BL.DTO;
 
-namespace POS.IN.ReceiveOrder
+namespace POS.IN.IssueSold
 {
-    public partial class ReceiveOrder : BaseAddEditMaster
+    public partial class AddEditIssueSold : BaseAddEditMaster
     {
         #region :: Constructure ::
-        public ReceiveOrder()
+        public AddEditIssueSold()
         {
             base.FormMode = ObjectState.Add;
             InitializeComponent();
         }
-        public ReceiveOrder(string Code)
+        public AddEditIssueSold(string Code)
         {
             base.FormMode = ObjectState.Edit;
             base.FormKeyCode = Code;
@@ -36,7 +36,7 @@ namespace POS.IN.ReceiveOrder
         #region :: Properties ::
         string DataKeyName = "tran_detail_id";
         private long _documentTypeID { get; set; }
-        private string _documentTypeCode { get { return DocumentTypeCode.IN.ReceiveMaterial; } }
+        private string _documentTypeCode { get { return DocumentTypeCode.IN.IssueSold; } }
         private DataSet dsTranDetail { get; set; }
         private string _documentStatus { get; set; }
         #endregion :: Properties ::
@@ -51,7 +51,7 @@ namespace POS.IN.ReceiveOrder
                 entity.tran_head_id = Converts.ParseLong(base.FormKeyCode);
                 entity = ServiceProvider.TranHeadService.FindByKeys(entity, true);
 
-                ddlReferenceNo.Text = entity.reference_no;
+                txtReferenceNo.Text = entity.reference_no;
 
                 ddlReason.DataSource = ServiceProvider.ReasonService.GetReasonComboBoxDTOByDocumentTypeID(this._documentTypeID, entity.reason_id);
                 ddlReason.ValueMember = "Value";
@@ -59,27 +59,9 @@ namespace POS.IN.ReceiveOrder
 
                 ddlReason.SelectedValue = entity.reason_id.ToString();
 
-                if (entity.supplier_id != null)
+                if (entity.warehouse_id != null)
                 {
-                    //rdoSupplier.Checked = true;
-
-                    //ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID(new Supplier() { supplier_id = entity.supplier_id.Value });
-                    //ddlSupplier.ValueMember = "Value";
-                    //ddlSupplier.DisplayMember = "Display";
-
-                    //ddlSupplier.SelectedValue = entity.supplier_id.Value.ToString();
-
-                    ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
-                    ddlWarehouse.ValueMember = "Value";
-                    ddlWarehouse.DisplayMember = "Display";
-                }
-                else if (entity.warehouse_id != null)
-                {
-                    //rdoWarehouse.Checked = true;
-
-                    //ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID();
-                    //ddlSupplier.ValueMember = "Value";
-                    //ddlSupplier.DisplayMember = "Display";
+                    rdoWarehouse.Checked = true;
 
                     ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID(new WareHouse() { warehouse_id = entity.warehouse_id.Value });
                     ddlWarehouse.ValueMember = "Value";
@@ -87,43 +69,42 @@ namespace POS.IN.ReceiveOrder
 
                     ddlWarehouse.SelectedValue = entity.warehouse_id.Value.ToString();
                 }
+                else if (entity.is_waste != null && entity.is_waste.Value)
+                {
+                    rdoWaste.Checked = true;
+
+                    ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
+                    ddlWarehouse.ValueMember = "Value";
+                    ddlWarehouse.DisplayMember = "Display";
+                }
                 else if (!string.IsNullOrEmpty(entity.other_source))
                 {
-                    //rdoOther.Checked = true;
-
-                    //ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID();
-                    //ddlSupplier.ValueMember = "Value";
-                    //ddlSupplier.DisplayMember = "Display";
+                    rdoOther.Checked = true;
 
                     ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
                     ddlWarehouse.ValueMember = "Value";
                     ddlWarehouse.DisplayMember = "Display";
 
-                    //txtOther.Text = entity.other_source;
+                    txtOther.Text = entity.other_source;
                 }
 
                 txtRemark.Text = entity.remark;
                 lblDocumentNo.Text = entity.transaction_no;
                 lblDocumentDate.Text = entity.transaction_date.ConvertDateToDisplay();
-                //lblStatus.Text = (entity.transaction_status == TransactionStatus.IN.FinalCode) ? TransactionStatus.IN.FinalText : TransactionStatus.IN.NormalText;
+                lblStatus.Text = (entity.transaction_status == TransactionStatus.IN.FinalCode) ? TransactionStatus.IN.FinalText : TransactionStatus.IN.NormalText;
                 this._documentStatus = entity.transaction_status;
             }
             else
             {
-                ddlReferenceNo.Text = string.Empty;
+                txtReferenceNo.Text = string.Empty;
 
                 ddlReason.DataSource = ServiceProvider.ReasonService.GetReasonComboBoxDTOByDocumentTypeID(this._documentTypeID);
                 ddlReason.ValueMember = "Value";
                 ddlReason.DisplayMember = "Display";
 
-
-                //rdoSupplier.Checked = true;
-                //rdoWarehouse.Checked = false;
-                //rdoOther.Checked = false;
-
-                //ddlSupplier.DataSource = ServiceProvider.SupplierService.FindByActiveOrID();
-                //ddlSupplier.ValueMember = "Value";
-                //ddlSupplier.DisplayMember = "Display";
+                rdoWarehouse.Checked = true;
+                rdoWaste.Checked = false;
+                rdoOther.Checked = false;
 
                 ddlWarehouse.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
                 ddlWarehouse.ValueMember = "Value";
@@ -132,6 +113,7 @@ namespace POS.IN.ReceiveOrder
                 txtRemark.Text = string.Empty;
                 lblDocumentNo.Text = GeneralMessage.AutoRunningDocumentNo;
                 lblDocumentDate.Text = DateTime.Now.ConvertDateToDisplay();
+                lblStatus.Text = TransactionStatus.IN.NormalText;
             }
 
             InitialDetailData();
@@ -195,39 +177,36 @@ namespace POS.IN.ReceiveOrder
             this.baseGridDetail.btnSearchVisible = false;
 
             if (base.FormMode == ObjectState.Edit)
-            {
-                ddlReferenceNo.Enabled = false;
-                //this.btnLoadPortFolio.Visible = false;
+            {                
+                this.btnLoadPortFolio.Visible = false;
 
                 if (this._documentStatus == TransactionStatus.IN.NormalCode)
                 {
                     ddlReason.Enabled = true;
-                    //rdoSupplier.Enabled = true;
-                    //rdoWarehouse.Enabled = true;
-                    //rdoOther.Enabled = true;
-                    //ddlSupplier.Enabled = false;
+                    rdoWaste.Enabled = true;
+                    rdoWarehouse.Enabled = true;
+                    rdoOther.Enabled = true;
                     ddlWarehouse.Enabled = false;
-                    //txtOther.Enabled = false;
+                    txtOther.Enabled = false;
                     txtRemark.Enabled = true;
                     base.btnResetEnable = true;
                     base.btnSaveEnable = true;
-
-                    //if (rdoSupplier.Checked) { ddlSupplier.Enabled = true; }
-                    //if (rdoWarehouse.Checked) { ddlWarehouse.Enabled = true; }
-                    //if (rdoOther.Checked) { txtOther.Enabled = true; }
+                    
+                    if (rdoWarehouse.Checked) { ddlWarehouse.Enabled = true; }
+                    if (rdoOther.Checked) { txtOther.Enabled = true; }
 
                     this.baseGridDetail.btnAddEnable = true;
                     this.baseGridDetail.btnDeleteEnable = true;
                 }
                 else if (this._documentStatus == TransactionStatus.IN.FinalCode)
                 {
+                    txtReferenceNo.Enabled = false;
                     ddlReason.Enabled = false;
-                    //rdoSupplier.Enabled = false;
-                    //rdoWarehouse.Enabled = false;
-                    //rdoOther.Enabled = false;
-                    //ddlSupplier.Enabled = false;
+                    rdoWaste.Enabled = false;
+                    rdoWarehouse.Enabled = false;
+                    rdoOther.Enabled = false;
                     ddlWarehouse.Enabled = false;
-                    //txtOther.Enabled = false;
+                    txtOther.Enabled = false;
                     txtRemark.Enabled = false;
                     base.btnResetEnable = false;
                     base.btnSaveEnable = false;
@@ -238,20 +217,19 @@ namespace POS.IN.ReceiveOrder
             }
             else
             {
-                ddlReferenceNo.Enabled = true;
-                //rdoOther.Enabled = true;
-                //rdoSupplier.Enabled = true;
-                //rdoWarehouse.Enabled = true;
+                txtReferenceNo.Enabled = true;
+                rdoOther.Enabled = true;
+                rdoWaste.Enabled = true;
+                rdoWarehouse.Enabled = true;
                 ddlReason.Enabled = true;
                 txtRemark.Enabled = true;
-                //ddlSupplier.Enabled = true;
                 base.btnResetEnable = true;
                 base.btnSaveEnable = true;
 
                 this.baseGridDetail.btnAddEnable = true;
                 this.baseGridDetail.btnDeleteEnable = true;
 
-                //this.btnLoadPortFolio.Visible = true;
+                this.btnLoadPortFolio.Visible = true;
             }
         }
         private void EnableModeDetailEdit()
@@ -317,14 +295,14 @@ namespace POS.IN.ReceiveOrder
                 entity = ServiceProvider.TranHeadService.FindByKeys(entity, false);
             }
 
-            entity.reference_no = ddlReferenceNo.Text;
+            entity.reference_no = txtReferenceNo.Text;
             entity.transaction_date = DateTime.Now;
             entity.document_type_id = this._documentTypeID;
             entity.reason_id = Converts.ParseLong(ddlReason.SelectedValue.ToString());
 
-            //if (rdoSupplier.Checked) { entity.supplier_id = Converts.ParseLong(ddlSupplier.SelectedValue.ToString()); }
-            //else if (rdoWarehouse.Checked) { entity.warehouse_id = Converts.ParseLong(ddlWarehouse.SelectedValue.ToString()); }
-            //else if (rdoOther.Checked) { entity.other_source = txtOther.Text; }
+            if (rdoWaste.Checked) { entity.is_waste = true; entity.warehouse_id = null; entity.other_source = null; }
+            else if (rdoWarehouse.Checked) { entity.warehouse_id = Converts.ParseLong(ddlWarehouse.SelectedValue.ToString()); entity.is_waste = null; entity.other_source = null; }
+            else if (rdoOther.Checked) { entity.other_source = txtOther.Text; entity.warehouse_id = null; entity.is_waste = null; }
 
             entity.remark = txtRemark.Text;
             if (base.FormMode == ObjectState.Add)
@@ -346,8 +324,8 @@ namespace POS.IN.ReceiveOrder
             TranDetail entity = new TranDetail();
             entity.material_id = Converts.ParseLong(ddlMaterial.SelectedValue.ToString());
             entity.warehouse_id_dest = Converts.ParseLong(ddlWarehouseDetails.SelectedValue.ToString());
-            entity.lot_no = Converts.ParseDoubleNullable(txtLotNo.Text);
-            entity.quantity = Converts.ParseDoubleNullable(txtQuantity.Text);
+            entity.lot_no = Converts.ParseDecimalNullable(txtLotNo.Text);
+            entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
             entity.remark = txtRemarkDetails.Text;
 
             if (base.FormMode == ObjectState.Add)
@@ -362,43 +340,21 @@ namespace POS.IN.ReceiveOrder
         private void ValidationHead(TranHead entity)
         {
             ValidationResults results = new ValidationResults();
-            if (base.FormMode == ObjectState.Add)
-            {
-                if (string.IsNullOrEmpty(entity.reference_no))
-                {
-                    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Reference No."), this, string.Empty, string.Empty, null);
-                    results.AddResult(result);
-                }
-                else
-                {
-                    TranHead entityTranHead = ServiceProvider.TranHeadService.GetTransactionByReferenceNo(entity.reference_no);
-                    if (entityTranHead != null && entityTranHead.tran_head_id != 0)
-                    {
-                        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsDuplicate, "Reference No."), this, string.Empty, string.Empty, null);
-                        results.AddResult(result);
-                    }
-                }
-            }
             if (entity.reason_id == 0)
             {
                 ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Reason"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
-            //if (rdoSupplier.Checked && entity.supplier_id == 0)
-            //{
-            //    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Source Supllier"), this, string.Empty, string.Empty, null);
-            //    results.AddResult(result);
-            //}
-            //else if (rdoWarehouse.Checked && entity.warehouse_id == 0)
-            //{
-            //    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Source Warehouse"), this, string.Empty, string.Empty, null);
-            //    results.AddResult(result);
-            //}
-            //else if (rdoOther.Checked && string.IsNullOrEmpty(entity.other_source))
-            //{
-            //    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Source other"), this, string.Empty, string.Empty, null);
-            //    results.AddResult(result);
-            //}
+            if (rdoWarehouse.Checked && entity.warehouse_id == 0)
+            {
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Destination Warehouse"), this, string.Empty, string.Empty, null);
+                results.AddResult(result);
+            }
+            else if (rdoOther.Checked && string.IsNullOrEmpty(entity.other_source))
+            {
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Destination other"), this, string.Empty, string.Empty, null);
+                results.AddResult(result);
+            }
 
             if (!(this.dsTranDetail.Tables.Count > 0 && this.dsTranDetail.Tables[0].Rows.Count > 0))
             {
@@ -452,6 +408,24 @@ namespace POS.IN.ReceiveOrder
                 ValidationResult result = new ValidationResult(string.Format(ErrorMessage.CompareValueMore, "Lot No.", "0"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
+            else {
+                if (entity.material_id != 0 && entity.warehouse_id_dest != 0)
+                {
+                    PhyLot entityPhyLot = ServiceProvider.PhyLotService.GetPhyLot(entity.material_id, entity.warehouse_id_dest, entity.lot_no.Value, false);
+                    if (entityPhyLot == null || entityPhyLot.phy_lot_id == 0)
+                    {
+                        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.NotExistsField, "Lot No.", entity.lot_no.Value), this, string.Empty, string.Empty, null);
+                        results.AddResult(result);
+                    }
+                    else {
+                        if ((entityPhyLot.bal_qty - entity.quantity) < 0)
+                        {
+                            ValidationResult result = new ValidationResult(string.Format(ErrorMessage.CompareValueMore, "Quantity", "material in stock"), this, string.Empty, string.Empty, null);
+                            results.AddResult(result);
+                        }
+                    }
+                }
+            }
 
             if (string.IsNullOrEmpty(txtQuantity.Text))
             {
@@ -467,17 +441,6 @@ namespace POS.IN.ReceiveOrder
             {
                 ValidationResult result = new ValidationResult(string.Format(ErrorMessage.CompareValueMore, "Quantity", "0"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
-            }
-            else
-            {
-                if (entity.warehouse_id_dest != 0 && entity.material_id != 0)
-                {
-                    if (!ServiceProvider.PhyLotService.CheckLimitMaterial(entity.material_id, entity.warehouse_id_dest, entity.quantity.Value))
-                    {
-                        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.CompareValueLessOrEqual, "Quantity", "Max Stock"), this, string.Empty, string.Empty, null);
-                        results.AddResult(result);
-                    }
-                }                
             }
 
             if (results.Count > 0) { throw new ValidationException(results); }
@@ -524,9 +487,9 @@ namespace POS.IN.ReceiveOrder
                 {
                     entityDetail.material_id = dr["material_id"].ToLong();
                     entityDetail.warehouse_id_dest = dr["warehouse_id_dest"].ToLong();
-                    entityDetail.quantity = dr["Quantity"].ToDouble();
+                    entityDetail.quantity = dr["Quantity"].ToDecimal();
                     entityDetail.remark = dr["Remark"].ToStringNullable();
-                    entityDetail.lot_no = dr["Lot No."].ToDouble();
+                    entityDetail.lot_no = dr["Lot No."].ToDecimal();
                     entityDetail.tran_head_id = entityTranHead.tran_head_id;
 
                     ServiceProvider.TranDetailService.Insert(entityDetail);
@@ -542,13 +505,12 @@ namespace POS.IN.ReceiveOrder
 
             //update into in_phy_lot
             PhyLot entityPhyLot = ServiceProvider.PhyLotService.GetPhyLot(entityDetail.material_id, entityDetail.warehouse_id_dest, entityDetail.lot_no.Value);
-            entityPhyLot.bal_qty = (entityPhyLot.bal_qty + entityDetail.quantity.Value);
-            entityPhyLot.expire_date = entityTranHead.transaction_date.AddDays(entityMaterial.shelf_life);
+            entityPhyLot.bal_qty = (entityPhyLot.bal_qty - entityDetail.quantity.Value);
             ServiceProvider.PhyLotService.Update(entityPhyLot);
 
             //update into in_log_lot
             LogLot entityLogLot = ServiceProvider.LogLotService.GetLogLot(entityDetail.material_id, entityDetail.warehouse_id_dest);
-            entityLogLot.bal_qty = (entityLogLot.bal_qty + entityDetail.quantity.Value);
+            entityLogLot.bal_qty = (entityLogLot.bal_qty - entityDetail.quantity.Value);
             ServiceProvider.LogLotService.Update(entityLogLot);
         }
         private void AddNewTranDetail()
@@ -570,13 +532,13 @@ namespace POS.IN.ReceiveOrder
         #endregion
 
         #region :: Event Control ::
-        private void ReceiveOrder_Load(object sender, EventArgs e)
+        private void AddEditIssueSold_Load(object sender, EventArgs e)
         {
             this._documentTypeID = ServiceProvider.DocumentTypeService.GetDocumentTypeIDByDocumentTypeCode(this._documentTypeCode);
-            ddlReferenceNo.Focus();
+            txtReferenceNo.Focus();
             LoadHeadData();
         }
-        private void AddEditReceiveMaterial_saveHandler()
+        private void AddEditIssueSold_saveHandler()
         {
             TranHead entity = GetHeadData();
             try
@@ -596,27 +558,24 @@ namespace POS.IN.ReceiveOrder
                 throw ex;
             }
         }
-        private void AddEditReceiveMaterial_resetHandler()
+        private void AddEditIssueSold_resetHandler()
         {
             LoadHeadData();
         }
-        private void rdoSupplier_CheckedChanged(object sender, EventArgs e)
-        {
-            //this.ddlSupplier.Enabled = true;
+        private void rdoWaste_CheckedChanged(object sender, EventArgs e)
+        {            
             this.ddlWarehouse.Enabled = false;
-            //this.txtOther.Enabled = false;
+            this.txtOther.Enabled = false;
         }
         private void rdoWarehouse_CheckedChanged(object sender, EventArgs e)
         {
-            //this.ddlSupplier.Enabled = false;
             this.ddlWarehouse.Enabled = true;
-            //this.txtOther.Enabled = false;
+            this.txtOther.Enabled = false;
         }
         private void rdoOther_CheckedChanged(object sender, EventArgs e)
         {
-            //this.ddlSupplier.Enabled = false;
             this.ddlWarehouse.Enabled = false;
-            //this.txtOther.Enabled = true;
+            this.txtOther.Enabled = true;
         }
         public void baseGridDetail_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
@@ -767,50 +726,6 @@ namespace POS.IN.ReceiveOrder
             else if (baseGridDetail.FormMode == ObjectState.Add)
             {
                 this.ClearDataDetail();
-            }
-        }
-        private void ddlMaterial_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlMaterial.SelectedIndex != 0)
-            {
-                txtLotNo.Text = this.GetLastLotNo().ToString();
-                Material entityMaterial = new Material() { material_id = ddlMaterial.SelectedValue.ToLong() };
-                entityMaterial = ServiceProvider.MaterialService.FindByKeys(entityMaterial, false);
-                UOM entityUOM = new UOM() { uom_id = entityMaterial.uom_id_receive.Value };
-                entityUOM = ServiceProvider.UOMService.FindByKeys(entityUOM, false);
-
-                if (entityUOM != null)
-                    lblUOM.Text = entityUOM.uom_name;
-            }
-            else
-            {
-                txtLotNo.Text = "1";
-                lblUOM.Text = string.Empty;
-            }
-        }
-        private void ddlWarehouseDetails_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtLotNo.Text = this.GetLastLotNo().ToString();
-        }
-        private void ddlReferenceNo_Leave(object sender, EventArgs e)
-        {
-            if (base.FormMode == ObjectState.Add)
-            {
-                TranHead entityTranHead = ServiceProvider.TranHeadService.GetTransactionByReferenceNo(ddlReferenceNo.Text);
-                if (entityTranHead != null && entityTranHead.tran_head_id != 0)
-                {
-                    if (MessageBox.Show("This Reference No. are used in other transaction, would you like to get data or discard", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        base.FormMode = ObjectState.Edit;
-                        base.FormKeyCode = entityTranHead.tran_head_id.ToString();
-
-                        this.LoadHeadData();
-                    }
-                    else
-                    {
-                        ddlReferenceNo.Text = string.Empty;
-                    }
-                }
             }
         }
         #endregion :: Event Control ::

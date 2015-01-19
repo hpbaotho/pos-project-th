@@ -29,6 +29,7 @@ namespace POS.BL.Service.IN
                                 INNER JOIN db_warehouse warehouse ON warehouse.warehouse_id = tranDetail.warehouse_id_dest
                                 INNER JOIN in_phy_lot phy ON phy.warehouse_id = tranDetail.warehouse_id_dest
 	                                AND phy.material_id = tranDetail.material_id
+                                    AND tranDetail.lot_no = phy.lot_no
                                 INNER JOIN db_uom uom ON uom.uom_id = material.uom_id_receive
                                 WHERE 1=1 AND tranDetail.tran_head_id = @tran_head_id");
 
