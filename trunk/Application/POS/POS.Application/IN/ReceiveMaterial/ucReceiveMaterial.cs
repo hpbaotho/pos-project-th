@@ -53,7 +53,7 @@ namespace POS.IN.ReceiveMaterial
         {
             //hide the damn column
             grdBase.HiddenColumnName = new List<string>() { "tran_head_id" };
-            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHead(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
+            DataSet ds = ServiceProvider.TranHeadService.GetReceiveMaterial(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value
                 , txtReferenceNo.Text
                 , rdoWarehouse.Checked ? ddlWarehouse.SelectedValue.ToString() : string.Empty
                 , rdoSupplier.Checked ? ddlSupplier.SelectedValue.ToString() : string.Empty
