@@ -42,6 +42,9 @@ namespace POS.SU
             //---SO
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Sold, MenuName = ProgramName.MappingMenu });
 
+            //---IN
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Inventory, MenuName = ProgramName.SetupBillOfMaterial });
+
             btnManage_Click(btnSetting, null);
             btnSetting.Focus();
         }
@@ -86,6 +89,7 @@ namespace POS.SU
                 case ProgramName.SetupRole: break;
                 case ProgramName.SystemConfiguration: break;
                 case ProgramName.MappingMenu: pnlContent.Controls.Add(new ucMappingMenu()); break;
+                case ProgramName.SetupBillOfMaterial: pnlContent.Controls.Add(new IN.BillOfMaterial.ucBillOfMaterial()); break;
             }
         }
 

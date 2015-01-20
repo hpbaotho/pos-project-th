@@ -54,6 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IN\BillOfMaterial\AddEditBillOfMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\BillOfMaterial\AddEditBillOfMaterial.Designer.cs">
+      <DependentUpon>AddEditBillOfMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\BillOfMaterial\ucBillOfMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\BillOfMaterial\ucBillOfMaterial.Designer.cs">
+      <DependentUpon>ucBillOfMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="IN\ReceiveOrder\AddEditReceiveOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,6 +248,12 @@
     <Compile Include="SU\SetupEmployee\ucEmployee.Designer.cs">
       <DependentUpon>ucEmployee.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="IN\BillOfMaterial\AddEditBillOfMaterial.resx">
+      <DependentUpon>AddEditBillOfMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\BillOfMaterial\ucBillOfMaterial.resx">
+      <DependentUpon>ucBillOfMaterial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveOrder\AddEditReceiveOrder.resx">
       <DependentUpon>AddEditReceiveOrder.cs</DependentUpon>
     </EmbeddedResource>
