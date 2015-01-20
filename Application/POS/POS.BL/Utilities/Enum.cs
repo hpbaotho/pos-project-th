@@ -158,6 +158,7 @@ namespace POS.BL.Utilities
         public const string SetupINIssueMaterial = "Issue Material (Warehouse/Waste/Other)";
         public const string SetupINIssueSold = "Issue Material (Sold)";
         public const string SetupINStockCount = "Stock Count";
+        public const string SetupBillOfMaterial = "Setup Bill Of Material";
 
         //---SO
         public const string MappingMenu = "Mapping Menu";
