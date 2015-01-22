@@ -60,8 +60,8 @@ namespace POS.BL.DTO.SO
         //public int maxComboFreeItemQTY { get; set; }
         public long? ref_menu_dining_type_id { get; set; }
         public string menu_name { get; set; }
-        public decimal menu_price { get; set; }
-        public decimal TotalAmount { get { return this.order_amount * this.menu_price; } }
+        public decimal order_unit_price { get; set; }
+        public decimal TotalAmount { get { return this.order_amount * this.order_unit_price; } }
         public ObjectState OrderState { get; set; }
 
         public long? menu_dining_type_id { get; set; }

@@ -9,6 +9,7 @@ using Core.Standards.Validations;
 using System.Data.Common;
 using POS.BL.DTO;
 using POS.BL.Utilities;
+using POS.BL.DTO.IN;
 
 namespace POS.BL.Service.SO
 {
@@ -130,7 +131,10 @@ namespace POS.BL.Service.SO
 
             return result;
         }
-        public SaleOrderHeader GetOrdrtHeadByTable(string tableCode)
+        public SaleOrderHeader GetOrdrtHeadByTable(string tableCode) {
+            return this.GetOrdrtHeadByTable(tableCode, false, false);
+        }
+        public SaleOrderHeader GetOrdrtHeadByTable(string tableCode,bool? isCancel,bool? isPayProcress)
         {
             string sql = @"
                         SELECT TOP 1 so_sales_order_head.* 
@@ -139,7 +143,15 @@ namespace POS.BL.Service.SO
                         WHERE so_table.table_code=@tableCode
                     ";
             List<DbParameter> param = new List<DbParameter>();
-
+            if (isCancel.HasValue) {
+                sql += " AND so_sales_order_head.is_cancel=@Cancel";
+                param.Add(base.CreateParameter("@Cancel", isCancel));
+            }
+            if (isPayProcress.HasValue)
+            {
+                sql += " AND so_sales_order_head.is_payment_procress=@PayProcess";
+                param.Add(base.CreateParameter("@PayProcess", isPayProcress));
+            }
             param.Add(base.CreateParameter("@tableCode", tableCode));
             SaleOrderHeader orderHead = this.ExecuteQueryOne<SaleOrderHeader>(sql, param.ToArray());
             return orderHead;
@@ -177,6 +189,7 @@ namespace POS.BL.Service.SO
                 if (order != null)
                 {
                     order.is_cancel = true;
+                    ServiceProvider.LogLotService.Stock_CancelHeadOrder(order.sales_order_head_id.Value);
                     this.Update(order, ValidationRuleset.Update);
                 }
                 ServiceProvider.SOTableService.CancelBookTable(orderHead.TableCode);

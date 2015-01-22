@@ -17,6 +17,7 @@ namespace POS.BL.Entities.Entity
         public long? sales_order_head_id { get; set; }
         public long? menu_dining_type_id { get; set; }
         public int order_amount { get; set; }
+        public decimal? order_unit_price { get; set; }
         public bool is_print { get; set; }
         public bool is_cancel { get; set; }
         public int ChkNo { get; set; }
