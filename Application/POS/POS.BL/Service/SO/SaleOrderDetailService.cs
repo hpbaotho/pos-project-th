@@ -9,6 +9,7 @@ using Core.Standards.Validations;
 using System.Data.Common;
 using POS.BL.Utilities;
 using POS.BL.DTO;
+using POS.BL.DTO.IN;
 
 namespace POS.BL.Service.SO
 {
@@ -20,18 +21,43 @@ namespace POS.BL.Service.SO
             TransactionOptions tranOpt = new TransactionOptions() { IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted };
             using (var trans = new TransactionScope(TransactionScopeOption.Required, tranOpt))
             {
+                List<OrderDTO> MainMenu = orderDetail.Where(c => !c.condiment_of_order_detail_id.HasValue).ToList();
+
                 if (orderHeader != null && orderHeader.sales_order_head_id.HasValue)
                 {
-                    for (int i = 0; i < orderDetail.Count; i++)
+                    for (int i = 0; i < MainMenu.Count; i++)
                     {
-                        OrderDTO Saveitem = orderDetail[i];
+                        OrderDTO Saveitem = MainMenu[i];
                         Saveitem.sales_order_head_id = orderHeader.sales_order_head_id;
+                        List<OrderDTO> condiMentMenu = orderDetail.Where(c => c.condiment_of_order_detail_id == Saveitem.sales_order_detail_id).ToList();
+
                         Saveitem = this.SaveOrderDetailItem(Saveitem);
+
+                        #region :: Save Condiment ::
+                        if (condiMentMenu != null && condiMentMenu.Count > 0)
+                        {
+                            for (int c = 0; c < condiMentMenu.Count; c++)
+                            {
+                                OrderDTO CondimentSaveitem = condiMentMenu[c];
+                                CondimentSaveitem.sales_order_head_id = orderHeader.sales_order_head_id;
+                                CondimentSaveitem.condiment_of_order_detail_id = Saveitem.sales_order_detail_id;
+                                CondimentSaveitem = this.SaveOrderDetailItem(CondimentSaveitem);
+                                if (CondimentSaveitem == null)
+                                {
+                                    orderDetail.Remove(condiMentMenu[c]);
+                                }
+                            }
+                        }
+                        #endregion
+
+
                         if (Saveitem == null)
                         {
-                            orderDetail.RemoveAt(i);
+                            orderDetail.Remove(MainMenu[i]);
+                            MainMenu.RemoveAt(i);
                         }
                     }
+
                     trans.Complete();
 
                 }
@@ -52,6 +78,7 @@ namespace POS.BL.Service.SO
             detailSave.menu_dining_type_id = saveItem.menu_dining_type_id;
             detailSave.sales_order_head_id = saveItem.sales_order_head_id;
             detailSave.order_amount = saveItem.order_amount;
+            detailSave.order_unit_price = saveItem.order_unit_price;
             detailSave.is_cancel = saveItem.is_cancel;
             detailSave.Open_Condiment = saveItem.menu_name;
             detailSave.sales_order_detail_id = saveItem.sales_order_detail_id;
@@ -62,6 +89,10 @@ namespace POS.BL.Service.SO
             }
             else if (saveItem.OrderState == ObjectState.Edit)
             {
+                if (detailSave.is_cancel)
+                {
+                    ServiceProvider.LogLotService.Stock_CheckAvailable(new StockDTO() { sales_order_detail_id = detailSave.sales_order_detail_id.Value });
+                }
                 this.Update(detailSave, ValidationRuleset.Update);
             }
             else if (saveItem.OrderState == ObjectState.Delete)
@@ -101,15 +132,17 @@ namespace POS.BL.Service.SO
                     dtoItem.menu_name = item.Open_Condiment;
                     dtoItem.condiment_of_order_detail_id = item.condiment_of_order_detail_id;
                     dtoItem.IsCondiment = item.condiment_of_order_detail_id.HasValue;
-
+                    if (item.order_unit_price.HasValue)
+                    {
+                        dtoItem.order_unit_price = item.order_unit_price.Value;
+                    }
                     // Update Form Menu DiningType
                     MenuDiningType menuDiningType = new MenuDiningType();
                     menuDiningType.menu_dining_type_id = item.menu_dining_type_id;
                     menuDiningType = ServiceProvider.MenuDiningTypeService.FindByKeys(menuDiningType, false);
                     if (menuDiningType != null)
                     {
-
-                        dtoItem.menu_price = menuDiningType.menu_price;
+                       
                         dtoItem.ref_menu_dining_type_id = menuDiningType.ref_menu_dining_type_id;
                         dtoItem.dining_type_id = menuDiningType.dining_type_id;
 

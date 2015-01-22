@@ -396,7 +396,7 @@ namespace POS.SO
             OrderDTO OrderItem = new OrderDTO();
             OrderItem.sales_order_detail_id = orderDetailId;
             OrderItem.order_amount = menuCount;
-            OrderItem.menu_price = MenuItem.menu_price;
+            OrderItem.order_unit_price = MenuItem.order_unit_price;
             OrderItem.menu_id = MenuItem.menu_id;
             OrderItem.menu_dining_type_id = MenuItem.menu_dining_type_id;
             OrderItem.menu_name = MenuItem.menu_name;
@@ -661,6 +661,7 @@ namespace POS.SO
             if (orderHear != null)
             {
                 orderHear.is_payment_procress = true;
+                ServiceProvider.SOTableService.CancelBookTable(this.OrderHeads.TableCode);
                 ServiceProvider.SaleOrderHeaderService.Update(orderHear, ValidationRuleset.Update);
             }
             this.CloseScreen();

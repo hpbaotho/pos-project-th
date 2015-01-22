@@ -30,7 +30,7 @@ namespace POS.SO
             OrderDTO openCondiment = new OrderDTO();
             openCondiment.menu_name = txtMenuName.Text.Trim();
             openCondiment.order_amount = 1;
-            openCondiment.menu_price = Core.Standards.Converters.Converts.ParseDecimal(txtPrice.Text);
+            openCondiment.order_unit_price = Core.Standards.Converters.Converts.ParseDecimal(txtPrice.Text);
             openCondiment.ref_menu_dining_type_id = parentMenu.menu_dining_type_id;
             openCondiment.condiment_of_order_detail_id = parentMenu.sales_order_detail_id;
             openCondiment.IsCondiment = true;
