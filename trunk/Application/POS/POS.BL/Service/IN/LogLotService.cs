@@ -71,6 +71,11 @@ namespace POS.BL.Service.IN
 
         }
 
+        public void Stock_CancelHeadOrder(long sales_order_head_id)
+        {
+
+        }
+
         //Increase logical lot
         public void Stock_IncreaseLogical(StockDTO stockDTO)
         {
