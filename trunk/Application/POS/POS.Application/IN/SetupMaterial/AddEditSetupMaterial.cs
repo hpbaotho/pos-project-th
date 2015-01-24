@@ -15,6 +15,7 @@ using Core.Standards.Validations;
 using POS.BL.Utilities;
 using Core.Standards.Exceptions;
 using POS.BL.DTO;
+using Microsoft.Practices.EnterpriseLibrary.Validation;
 
 namespace POS.IN.SetupMaterial
 {
@@ -56,6 +57,7 @@ namespace POS.IN.SetupMaterial
                 txtMaterialCode.Text = entity.material_code;
                 txtMaterialName.Text = entity.material_name;
                 txtMaterialDescription.Text = entity.material_description;
+                cboMaterailGroup.SelectedValue = entity.material_group_id.ToString();
                 cboUOMReceive.SelectedValue = entity.uom_id_receive.ToString();
                 cboUOMCount.SelectedValue = entity.uom_id_count.ToString();
                 cboUOMUse.SelectedValue = entity.uom_id_use.ToString();
@@ -79,6 +81,7 @@ namespace POS.IN.SetupMaterial
                 txtMaterialCode.Text = String.Empty;
                 txtMaterialName.Text = String.Empty;
                 txtMaterialDescription.Text = String.Empty;
+                cboMaterailGroup.SelectedValue = String.Empty;
                 cboUOMReceive.SelectedValue = String.Empty;
                 cboUOMCount.SelectedValue = String.Empty;
                 cboUOMUse.SelectedValue = String.Empty;
@@ -107,7 +110,7 @@ namespace POS.IN.SetupMaterial
         {
             Material entity = new Material();
             entity.material_id = Converts.ParseLong(keyCode);
-            entity.material_group_id = 1;
+            entity.material_group_id = Converts.ParseLong(cboMaterailGroup.SelectedValue.ToString());
             entity.material_code = txtMaterialCode.Text;
             entity.material_name = txtMaterialName.Text;
             entity.material_description = txtMaterialDescription.Text;
@@ -124,10 +127,17 @@ namespace POS.IN.SetupMaterial
             entity.shelf_life = Converts.ParseDouble(txtShelfLife.Text);
             entity.material_cost = Converts.ParseDecimal(txtMaterialCost.Text);
             entity.acceptable_variance = Converts.ParseDouble(txtAcceptableVariance.Text);
-            MemoryStream ms = new MemoryStream();
-            picMaterial.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] buff = ms.GetBuffer();
-            entity.material_pic = buff;
+            if (picMaterial.Image != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                picMaterial.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] buff = ms.GetBuffer();
+                entity.material_pic = buff;
+            }
+            else
+            {
+                entity.material_pic = null;
+            }
             entity.created_by = "SYSTEM";
             entity.created_date = DateTime.Now;
             entity.updated_by = "SYSTEM";
@@ -193,6 +203,20 @@ namespace POS.IN.SetupMaterial
             cboUOMUse.DataSource = lstComboBoxDTOUOMUse;
             cboUOMUse.ValueMember = "Value";
             cboUOMUse.DisplayMember = "Display";
+
+            List<MaterialGroup> lstMatGroup = ServiceProvider.MaterialGroupService.FindAll(false).ToList();
+            List<ComboBoxDTO> lstComboBoxDTOMatGroup= new List<ComboBoxDTO>();
+            foreach (MaterialGroup matGroup in lstMatGroup)
+            {
+                ComboBoxDTO DTO = new ComboBoxDTO();
+                DTO.Value = matGroup.material_group_id.ToString();
+                DTO.Display = matGroup.material_group_name;
+                lstComboBoxDTOMatGroup.Add(DTO);
+            }
+            lstComboBoxDTOMatGroup.SetPleaseSelect();
+            cboMaterailGroup.DataSource = lstComboBoxDTOMatGroup;
+            cboMaterailGroup.ValueMember = "Value";
+            cboMaterailGroup.DisplayMember = "Display";
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

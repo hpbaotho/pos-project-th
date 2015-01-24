@@ -59,7 +59,8 @@ namespace POS
             //Application.Run(new TestGridControl());
             //Application.Run(new SO.OpenOrder());
             //Application.Run(new SO.SceenSetup());
-            Application.Run(new Login(true));
+            Application.Run(new IN.SetupIN());
+            //Application.Run(new Login(true));
         }
 
     }

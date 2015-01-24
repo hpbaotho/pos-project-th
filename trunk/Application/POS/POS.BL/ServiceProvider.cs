@@ -195,6 +195,18 @@ namespace POS.BL
             }
         }
 
+        private static MaterialGroupService materialGroupService;
+        public static MaterialGroupService MaterialGroupService
+        {
+            get
+            {
+                if (materialGroupService == null)
+                {
+                    materialGroupService = new MaterialGroupService();
+                }
+                return materialGroupService;
+            }
+        }
 
         private static PhyLotService phyLotService;
         public static PhyLotService PhyLotService
