@@ -132,6 +132,18 @@
     <Compile Include="IN\SetupIN.Designer.cs">
       <DependentUpon>SetupIN.cs</DependentUpon>
     </Compile>
+    <Compile Include="IN\SetupMaterial\AddEditSetupMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\SetupMaterial\AddEditSetupMaterial.Designer.cs">
+      <DependentUpon>AddEditSetupMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\SetupMaterial\ucSetupMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\SetupMaterial\ucSetupMaterial.Designer.cs">
+      <DependentUpon>ucSetupMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="KC\KCCommand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,6 +298,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IN\SetupIN.resx">
       <DependentUpon>SetupIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\SetupMaterial\AddEditSetupMaterial.resx">
+      <DependentUpon>AddEditSetupMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\SetupMaterial\ucSetupMaterial.resx">
+      <DependentUpon>ucSetupMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KC\KCCommand.resx">
       <DependentUpon>KCCommand.cs</DependentUpon>
