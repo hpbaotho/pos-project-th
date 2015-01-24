@@ -22,10 +22,10 @@ namespace POS.BL.Entities.Entity
         public long? uom_id_count { get; set; }
         public long? uom_id_use { get; set; }
         public long? period_group_id { get; set; }
-        public decimal phy_lot { get; set; }
-        public decimal log_lot { get; set; }
+        //public decimal phy_lot { get; set; }
+        //public decimal log_lot { get; set; }
         public bool active { get; set; }
-        public string material_pic_path { get; set; }
+        public byte[] material_pic { get; set; }
         public string status { get; set; }
         public long? material_group_id { get; set; }
         public decimal max_stock { get; set; }
