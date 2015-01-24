@@ -69,6 +69,7 @@
     <Compile Include="Entities\EntitiyBase.cs" />
     <Compile Include="Entities\Entity\BFLogical.cs" />
     <Compile Include="Entities\Entity\BFPhysical.cs" />
+    <Compile Include="Entities\Entity\MaterialGroup.cs" />
     <Compile Include="Entities\Entity\StockDetail.cs" />
     <Compile Include="Entities\Entity\MenuDiningType.cs" />
     <Compile Include="Entities\Entity\BillOfMaterialDetail.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Service\IN\BillOfMaterialHeadService.cs" />
     <Compile Include="Service\IN\BFPhysicalService.cs" />
     <Compile Include="Service\IN\BFLogicalService.cs" />
+    <Compile Include="Service\IN\MaterialGroupService.cs" />
     <Compile Include="Service\IN\StockDetailService.cs" />
     <Compile Include="Service\IN\LogLotService.cs" />
     <Compile Include="Service\IN\MaterialService.cs" />
