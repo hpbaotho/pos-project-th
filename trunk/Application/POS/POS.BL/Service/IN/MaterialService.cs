@@ -38,20 +38,22 @@ namespace POS.BL.Service.IN
 
         public DataSet GetGridMaterial(string materialCode, string materialName)
         {
+            //, ma.created_by AS [Created By], ma.created_date AS [Created Date]
+		    //, ma.updated_by AS [Updated By], ma.updated_date AS [Updated Date]  
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine(@" SELECT ma.material_id AS ID, ma.material_code AS [Material Code], ma.material_name AS [Material Name]
+            sql.AppendLine(@" SELECT  ma.material_id AS ID, ma.material_code AS [Material Code], ma.material_name AS [Material Name]
 		                            , ma.material_description AS [Material Description], uomRe.uom_name AS [UOM Receive]
 		                            , uomCount.uom_name AS [UOM Count], uomUse.uom_name AS [UOM Use], ma.active AS Active
-		                            , ma.created_by AS [Created By], ma.created_date AS [Created Date]
-		                            , ma.updated_by AS [Updated By], ma.updated_date AS [Updated Date]  
+
+
 		                            , ma.material_group_id AS [Group Id], ma.max_stock AS [Maximum Stock], ma.min_stock AS [Minimum Stock]
 		                            , ma.shelf_life AS [Shelf Life], ma.material_cost AS [Material Cost]
 		                            , ma.acceptable_variance AS [Acceptable Variance]
 		                            , ma.material_pic AS [Picture]
                               FROM in_material ma
                               LEFT JOIN db_uom uomRe on ma.uom_id_receive = uomRe.uom_id
-                              LEFT JOIN db_uom uomCount on ma.uom_id_count = uomRe.uom_id
-                              LEFT JOIN db_uom uomUse on ma.uom_id_use = uomRe.uom_id
+                              LEFT JOIN db_uom uomCount on ma.uom_id_count = uomCount.uom_id
+                              LEFT JOIN db_uom uomUse on ma.uom_id_use = uomUse.uom_id
                               WHERE 1 = 1 ");
 
             if (!string.IsNullOrEmpty(materialCode))
