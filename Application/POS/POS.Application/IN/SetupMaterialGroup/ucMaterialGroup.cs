@@ -8,23 +8,23 @@ using System.Text;
 using System.Windows.Forms;
 using POS.Control;
 using POS.BL.Utilities;
-using Core.Standards.Exceptions;
-using POS.BL;
 using POS.BL.Entities.Entity;
-using Core.Standards.Converters;
 using Core.Standards.Validations;
+using POS.BL;
+using Core.Standards.Exceptions;
+using Core.Standards.Converters;
 
-namespace POS.IN.SetupMaterial
+namespace POS.IN.SetupMaterialGroup
 {
-    public partial class ucSetupMaterial : BaseUserControl
+    public partial class ucMaterialGroup : BaseUserControl
     {
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "ID";
-        AddEditSetupMaterial addEditSetupMaterial = new AddEditSetupMaterial();
-        string programName = ProgramName.SetupINMaterial;
-        string tabName = "List Material";
+        AddEditMaterialGroup addEditMaterialGroup = new AddEditMaterialGroup();
+        string programName = ProgramName.SetupINMaterialGroup;
+        string tabName = "List Material Group";
 
-        public ucSetupMaterial()
+        public ucMaterialGroup()
         {
             InitializeComponent();
 
@@ -40,35 +40,34 @@ namespace POS.IN.SetupMaterial
             grdBase.LoadData();
         }
 
-
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
-            grdBase.DataSourceDataSet = ServiceProvider.MaterialService.GetGridMaterial(txtMaterialCode.Text, txtMaterialName.Text);
+            grdBase.DataSourceDataSet = ServiceProvider.MaterialGroupService.GetGridMaterialGroup(txtMaterialGroupCode.Text, txtMaterialGroupName.Text);
             grdBase.DataKeyName = new string[] { DataKeyName };
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {
-            addEditSetupMaterial = new AddEditSetupMaterial();
-            this.AddEditTab(string.Format(TabName.Add, programName), addEditSetupMaterial);
+            addEditMaterialGroup = new AddEditMaterialGroup();
+            this.AddEditTab(string.Format(TabName.Add, programName), addEditMaterialGroup);
         }
         public void grdBase_onSelectedDataRow(object sender, Control.GridView.RowEventArgs e)
         {
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            addEditSetupMaterial = new AddEditSetupMaterial(dataKey[DataKeyName].ToString());
-            this.AddEditTab(string.Format(TabName.Edit, programName), addEditSetupMaterial);
+            addEditMaterialGroup = new AddEditMaterialGroup(dataKey[DataKeyName].ToString());
+            this.AddEditTab(string.Format(TabName.Edit, programName), addEditMaterialGroup);
         }
         public void grdBase_onDeleteDataRows(object sender, Control.GridView.RowsEventArgs e)
         {
             try
             {
                 List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                List<Material> listMat = new List<Material>();
+                List<MaterialGroup> listMat = new List<MaterialGroup>();
                 foreach (Dictionary<string, object> item in list)
                 {
-                    listMat.Add(new Material() { material_id = Converts.ParseLong(item[DataKeyName].ToString()) });
+                    listMat.Add(new MaterialGroup() { material_group_id = Converts.ParseLong(item[DataKeyName].ToString()) });
                 }
-                ServiceProvider.MaterialService.Delete(listMat, new string[] { ValidationRuleset.Delete });
+                ServiceProvider.MaterialGroupService.Delete(listMat, new string[] { ValidationRuleset.Delete });
             }
             catch (ValidationException ex)
             {
@@ -141,7 +140,7 @@ namespace POS.IN.SetupMaterial
         }
 
         #region :: Private Function ::
-        private void AddEditTab(string TabTitle, AddEditSetupMaterial controlAddEdit)
+        private void AddEditTab(string TabTitle, AddEditMaterialGroup controlAddEdit)
         {
             if (tabControl1.TabPages.Count == 1 || (tabControl1.TabPages.Count > 1 && base.formBase.ShowConfirmMessage(GeneralMessage.ConfirmNewTab, "Confirm")))
             {

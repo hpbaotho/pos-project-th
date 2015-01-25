@@ -66,6 +66,18 @@
     <Compile Include="IN\BillOfMaterial\ucBillOfMaterial.Designer.cs">
       <DependentUpon>ucBillOfMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="IN\SetupMaterialGroup\AddEditMaterialGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\SetupMaterialGroup\AddEditMaterialGroup.Designer.cs">
+      <DependentUpon>AddEditMaterialGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IN\SetupMaterialGroup\ucMaterialGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IN\SetupMaterialGroup\ucMaterialGroup.Designer.cs">
+      <DependentUpon>ucMaterialGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="IN\ReceiveOrder\AddEditReceiveOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -265,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IN\BillOfMaterial\ucBillOfMaterial.resx">
       <DependentUpon>ucBillOfMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\SetupMaterialGroup\AddEditMaterialGroup.resx">
+      <DependentUpon>AddEditMaterialGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IN\SetupMaterialGroup\ucMaterialGroup.resx">
+      <DependentUpon>ucMaterialGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IN\ReceiveOrder\AddEditReceiveOrder.resx">
       <DependentUpon>AddEditReceiveOrder.cs</DependentUpon>

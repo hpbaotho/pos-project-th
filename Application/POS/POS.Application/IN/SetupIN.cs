@@ -18,6 +18,7 @@ using POS.IN.IssueMaterial;
 using POS.IN.IssueSold;
 using POS.IN.ReceiveOrder;
 using POS.IN.SetupMaterial;
+using POS.IN.SetupMaterialGroup;
 
 namespace POS.IN
 {
@@ -42,6 +43,7 @@ namespace POS.IN
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterial });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueSold });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINStockCount });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINMaterialGroup });
             listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINMaterial });
 
             listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Setting).Select(item => item.MenuName).ToList();
@@ -74,6 +76,10 @@ namespace POS.IN
             else if (selected == ProgramName.SetupINStockCount)
             {
                 pnlContent.Controls.Add(new ucStockCount());
+            }
+            else if (selected == ProgramName.SetupINMaterialGroup)
+            {
+                pnlContent.Controls.Add(new ucMaterialGroup());
             }
             else if (selected == ProgramName.SetupINMaterial)
             {
