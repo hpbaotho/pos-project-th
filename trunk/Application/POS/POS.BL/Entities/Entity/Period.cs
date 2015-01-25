@@ -7,6 +7,7 @@ using Core.Standards.Attributes;
 using Core.Standards.Validations;
 using POS.BL.Utilities;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
+using POS.BL.DTO;
 
 namespace POS.BL.Entities.Entity
 {
@@ -30,7 +31,7 @@ namespace POS.BL.Entities.Entity
         public void EntityValidation(ValidationResults results)
         {
             //--- Required
-            if (period_group_id == null)
+            if (period_group_id == 0)
             {
                 ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Period Group"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
@@ -49,15 +50,15 @@ namespace POS.BL.Entities.Entity
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         public void CheckDuplicateInsert(ValidationResults results)
         {
-            //List<DuplicateItemDTO> listDuplicateItemDTO = ServiceProvider.EmployeeService.IsDuplicationEmployee(this);
-            //if (listDuplicateItemDTO != null)
-            //{
-            //    if (listDuplicateItemDTO.Where(item => item.ColumnName == "Key").Select(item => item.isDuplicate).FirstOrDefault())
-            //    {
-            //        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsDuplicate, "Employee No"), this, string.Empty, string.Empty, null);
-            //        results.AddResult(result);
-            //    }
-            //}
+            List<DuplicateItemDTO> listDuplicateItemDTO = ServiceProvider.PeriodService.IsDuplicationPeriode(this);
+            if (listDuplicateItemDTO != null)
+            {
+                if (listDuplicateItemDTO.Where(item => item.ColumnName == "Key").Select(item => item.isDuplicate).FirstOrDefault())
+                {
+                    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsDuplicate, "Period Code"), this, string.Empty, string.Empty, null);
+                    results.AddResult(result);
+                }
+            }
         }
     }
 }

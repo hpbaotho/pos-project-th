@@ -43,15 +43,15 @@ namespace POS.BL.Entities.Entity
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         public void CheckDuplicateInsert(ValidationResults results)
         {
-            //List<DuplicateItemDTO> listDuplicateItemDTO = ServiceProvider.EmployeeService.IsDuplicationEmployee(this);
-            //if (listDuplicateItemDTO != null)
-            //{
-            //    if (listDuplicateItemDTO.Where(item => item.ColumnName == "Key").Select(item => item.isDuplicate).FirstOrDefault())
-            //    {
-            //        ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsDuplicate, "Employee No"), this, string.Empty, string.Empty, null);
-            //        results.AddResult(result);
-            //    }
-            //}
+            List<DuplicateItemDTO> listDuplicateItemDTO = ServiceProvider.PeriodGroupService.IsDuplicationPeriodeGroup(this);
+            if (listDuplicateItemDTO != null)
+            {
+                if (listDuplicateItemDTO.Where(item => item.ColumnName == "Key").Select(item => item.isDuplicate).FirstOrDefault())
+                {
+                    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsDuplicate, "Period Group Code"), this, string.Empty, string.Empty, null);
+                    results.AddResult(result);
+                }
+            }
         }
     }
 }

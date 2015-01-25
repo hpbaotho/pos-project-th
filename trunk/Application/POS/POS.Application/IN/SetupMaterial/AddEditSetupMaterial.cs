@@ -182,12 +182,15 @@ namespace POS.IN.SetupMaterial
             List<ComboBoxDTO> lstComboBoxDTOUOMUse = new List<ComboBoxDTO>();
             foreach (UOM uom in lstUOM)
             {
-                ComboBoxDTO DTO = new ComboBoxDTO();
-                DTO.Value = uom.uom_id.ToString();
-                DTO.Display = uom.uom_name;
-                lstComboBoxDTOUOMReceive.Add(DTO);
-                lstComboBoxDTOUOMCount.Add(DTO);
-                lstComboBoxDTOUOMUse.Add(DTO);
+                if (uom.active)
+                {
+                    ComboBoxDTO DTO = new ComboBoxDTO();
+                    DTO.Value = uom.uom_id.ToString();
+                    DTO.Display = uom.uom_name;
+                    lstComboBoxDTOUOMReceive.Add(DTO);
+                    lstComboBoxDTOUOMCount.Add(DTO);
+                    lstComboBoxDTOUOMUse.Add(DTO);
+                }
             }
             lstComboBoxDTOUOMReceive.SetPleaseSelect();
             cboUOMReceive.DataSource = lstComboBoxDTOUOMReceive;
@@ -208,10 +211,13 @@ namespace POS.IN.SetupMaterial
             List<ComboBoxDTO> lstComboBoxDTOMatGroup= new List<ComboBoxDTO>();
             foreach (MaterialGroup matGroup in lstMatGroup)
             {
-                ComboBoxDTO DTO = new ComboBoxDTO();
-                DTO.Value = matGroup.material_group_id.ToString();
-                DTO.Display = matGroup.material_group_name;
-                lstComboBoxDTOMatGroup.Add(DTO);
+                if (matGroup.active)
+                {
+                    ComboBoxDTO DTO = new ComboBoxDTO();
+                    DTO.Value = matGroup.material_group_id.ToString();
+                    DTO.Display = matGroup.material_group_name;
+                    lstComboBoxDTOMatGroup.Add(DTO);
+                }
             }
             lstComboBoxDTOMatGroup.SetPleaseSelect();
             cboMaterailGroup.DataSource = lstComboBoxDTOMatGroup;

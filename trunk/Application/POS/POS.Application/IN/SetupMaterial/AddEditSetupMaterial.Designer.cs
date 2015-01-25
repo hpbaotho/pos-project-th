@@ -211,6 +211,7 @@
             // 
             this.txtMaterialCode.Description = "";
             this.txtMaterialCode.Location = new System.Drawing.Point(149, 88);
+            this.txtMaterialCode.MaxLength = 20;
             this.txtMaterialCode.Name = "txtMaterialCode";
             this.txtMaterialCode.Size = new System.Drawing.Size(159, 20);
             this.txtMaterialCode.TabIndex = 14;
@@ -219,6 +220,7 @@
             // 
             this.txtMaterialName.Description = "";
             this.txtMaterialName.Location = new System.Drawing.Point(149, 114);
+            this.txtMaterialName.MaxLength = 200;
             this.txtMaterialName.Name = "txtMaterialName";
             this.txtMaterialName.Size = new System.Drawing.Size(159, 20);
             this.txtMaterialName.TabIndex = 17;
@@ -227,6 +229,7 @@
             // 
             this.txtMaterialDescription.Description = "";
             this.txtMaterialDescription.Location = new System.Drawing.Point(149, 138);
+            this.txtMaterialDescription.MaxLength = 100;
             this.txtMaterialDescription.Name = "txtMaterialDescription";
             this.txtMaterialDescription.Size = new System.Drawing.Size(159, 20);
             this.txtMaterialDescription.TabIndex = 19;
