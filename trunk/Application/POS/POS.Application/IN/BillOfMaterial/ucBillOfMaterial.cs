@@ -31,18 +31,23 @@ namespace POS.IN.BillOfMaterial
             this.Dock = DockStyle.Fill;
             tabPage1.Text = tabName;
 
+            //---DDL
+            ddlBOMGroup.DataSource = ServiceProvider.BillOfMaterialGroupService.GetBillOfMaterialGroupComboBoxDTO();
+            ddlBOMGroup.ValueMember = "Value";
+            ddlBOMGroup.DisplayMember = "Display";
+
+            //---Gridview
             grdBase.onAddNewRow += new EventHandler(grdBase_onAddNewRow);
             grdBase.onSelectedDataRow += new EventHandler<Control.GridView.RowEventArgs>(grdBase_onSelectedDataRow);
             grdBase.onDeleteDataRows += new EventHandler<Control.GridView.RowsEventArgs>(grdBase_onDeleteDataRows);
             grdBase.onLoadDataGrid += new EventHandler<Control.GridView.DataBindArgs>(grdBase_onLoadDataGrid);
             grdBase.onCellFormatting += new EventHandler<DataGridViewCellFormattingEventArgs>(grdBase_onCellFormatting);
-
             grdBase.LoadData();
         }
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
-            grdBase.DataSourceDataSet = ServiceProvider.MenuMappingService.GetGridMenuMapping(txtName.Text);
+            grdBase.DataSourceDataSet = ServiceProvider.BillOfMaterialHeadService.GetGridBOMHead(Converts.ParseLongNullable(ddlBOMGroup.SelectedValue.ToStringNullable()),txtBOMCode.Text,txtBOMName.Text);
             grdBase.DataKeyName = new string[] { DataKeyName };
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)

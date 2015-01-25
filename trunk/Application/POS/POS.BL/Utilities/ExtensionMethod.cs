@@ -18,7 +18,10 @@ namespace POS.BL.Utilities
         {
             lstDTO.Insert(0,new ComboBoxDTO() { Value = string.Empty, Display = GeneralMessage.PleaseSelect });
         }
-
+        public static void SetStringEmpty(this List<ComboBoxDTO> lstDTO)
+        {
+            lstDTO.Insert(0, new ComboBoxDTO() { Value = string.Empty, Display = string.Empty });
+        }
         public static string ConvertDateToDisplay(this DateTime dt)
         {
             return dt.ToString(Format.DateFormat);
