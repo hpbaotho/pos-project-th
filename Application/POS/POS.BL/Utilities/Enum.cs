@@ -161,6 +161,8 @@ namespace POS.BL.Utilities
         public const string SetupBillOfMaterial = "Setup Bill Of Material";
         public const string SetupINMaterial = "Material";
         public const string SetupINMaterialGroup = "Material Group";
+        public const string SetupINPeriodGroup = "Period Group";
+        public const string SetupINPeriod = "Period";
 
         //---SO
         public const string MappingMenu = "Mapping Menu";

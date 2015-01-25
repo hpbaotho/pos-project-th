@@ -6,60 +6,61 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using POS.Control;
 using POS.BL.Entities.Entity;
 using Core.Standards.Converters;
 using POS.BL;
 using Core.Standards.Validations;
 using POS.BL.Utilities;
 using Core.Standards.Exceptions;
+using POS.Control;
 
-namespace POS.IN.SetupMaterialGroup
+namespace POS.IN.SetupPeriodGroup
 {
-    public partial class AddEditMaterialGroup : BaseUserControl
+    public partial class AddEditSetupPeriodGroup : BaseUserControl
     {
         #region :: Properties ::
         private ObjectState mode { get; set; }
         private string keyCode { get; set; }
-        public AddEditMaterialGroup()
+        public AddEditSetupPeriodGroup()
         {
             mode = ObjectState.Add;
             InitializeComponent();
-            this.Load += new EventHandler(AddEditMaterialGroup_Load);
+            this.Load += new EventHandler(AddEditSetupPeriodGroup_Load);
         }
-        public AddEditMaterialGroup(string Code)
+        public AddEditSetupPeriodGroup(string Code)
         {
             mode = ObjectState.Edit;
             keyCode = Code;
             InitializeComponent();
-            this.Load += new EventHandler(AddEditMaterialGroup_Load);
+            this.Load += new EventHandler(AddEditSetupPeriodGroup_Load);
         }
         #endregion
 
+
         #region :: Private Function ::
-        private void AddEditMaterialGroup_Load(object sender, EventArgs e)
+        private void AddEditSetupPeriodGroup_Load(object sender, EventArgs e)
         {
             LoadData();
         }
 
         private void LoadData()
         {
-            MaterialGroup entity = new MaterialGroup();
+            PeriodGroup entity = new PeriodGroup();
             if (mode == ObjectState.Edit && !string.IsNullOrEmpty(keyCode))
             {
-                entity.material_group_id = Converts.ParseLong(keyCode);
-                entity = ServiceProvider.MaterialGroupService.FindByKeys(entity, true);
+                entity.period_group_id = Converts.ParseLong(keyCode);
+                entity = ServiceProvider.PeriodGroupService.FindByKeys(entity, true);
 
-                txtMatGroupCode.Text = entity.material_group_code;
-                txtMatGroupName.Text = entity.material_group_name;
-                txtMatGroupDesc.Text = entity.material_group_desc;
+                txtPeriodGrCode.Text = entity.period_group_code;
+                txtPeriodGrName.Text = entity.period_group_name;
+                txtPeriodGrDesc.Text = entity.period_group_description;
                 chkActive.Checked = entity.active;
             }
             else
             {
-                txtMatGroupCode.Text = String.Empty;
-                txtMatGroupName.Text = String.Empty;
-                txtMatGroupDesc.Text = String.Empty;
+                txtPeriodGrCode.Text = String.Empty;
+                txtPeriodGrName.Text = String.Empty;
+                txtPeriodGrDesc.Text = String.Empty;
                 chkActive.Checked = false;
             }
             EnableMode();
@@ -69,21 +70,21 @@ namespace POS.IN.SetupMaterialGroup
         {
             if (mode == ObjectState.Edit)
             {
-                txtMatGroupCode.Enabled = false;
+                txtPeriodGrCode.Enabled = false;
             }
             else
             {
-                txtMatGroupCode.Enabled = true;
+                txtPeriodGrCode.Enabled = true;
             }
         }
 
-        private MaterialGroup GetData()
+        private PeriodGroup GetData()
         {
-            MaterialGroup entity = new MaterialGroup();
-            entity.material_group_id = Converts.ParseLong(keyCode);
-            entity.material_group_code = txtMatGroupCode.Text;
-            entity.material_group_name = txtMatGroupName.Text;
-            entity.material_group_desc = txtMatGroupDesc.Text;
+            PeriodGroup entity = new PeriodGroup();
+            entity.period_group_id = Converts.ParseLong(keyCode);
+            entity.period_group_code = txtPeriodGrCode.Text;
+            entity.period_group_name = txtPeriodGrName.Text;
+            entity.period_group_description = txtPeriodGrDesc.Text;
             entity.active = chkActive.Checked;
 
             entity.created_by = "SYSTEM";
@@ -95,18 +96,18 @@ namespace POS.IN.SetupMaterialGroup
         #endregion
 
         #region :: Event Action ::
-        private void AddEditMaterialGroup_saveHandler()
+        private void AddEditSetupPeriodGroup_saveHandler()
         {
             try
             {
-                MaterialGroup entity = GetData();
+                PeriodGroup entity = GetData();
                 if (mode == ObjectState.Add)
                 {
-                    ServiceProvider.MaterialGroupService.Insert(entity, new string[] { ValidationRuleset.Insert });
+                    ServiceProvider.PeriodGroupService.Insert(entity, new string[] { ValidationRuleset.Insert });
                 }
                 else
                 {
-                    ServiceProvider.MaterialGroupService.Update(entity, new string[] { ValidationRuleset.Update });
+                    ServiceProvider.PeriodGroupService.Update(entity, new string[] { ValidationRuleset.Update });
                 }
                 base.formBase.ShowMessage(GeneralMessage.SaveComplete);
             }
@@ -116,11 +117,10 @@ namespace POS.IN.SetupMaterialGroup
             }
         }
 
-        private void AddEditMaterialGroup_resetHandler()
+        private void AddEditSetupPeriodGroup_resetHandler()
         {
             LoadData();
         }
         #endregion
-
     }
 }
