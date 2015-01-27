@@ -30,6 +30,9 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnReceive = new System.Windows.Forms.Button();
+            this.btnIssue = new System.Windows.Forms.Button();
+            this.btnStock = new System.Windows.Forms.Button();
             this.listMenu = new System.Windows.Forms.ListBox();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,11 +59,48 @@
             // pnlMenu
             // 
             this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMenu.Controls.Add(this.btnReceive);
+            this.pnlMenu.Controls.Add(this.btnIssue);
+            this.pnlMenu.Controls.Add(this.btnStock);
             this.pnlMenu.Controls.Add(this.listMenu);
             this.pnlMenu.Location = new System.Drawing.Point(3, 23);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(294, 704);
             this.pnlMenu.TabIndex = 0;
+            // 
+            // btnReceive
+            // 
+            this.btnReceive.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnReceive.Location = new System.Drawing.Point(0, 597);
+            this.btnReceive.Name = "btnReceive";
+            this.btnReceive.Size = new System.Drawing.Size(292, 35);
+            this.btnReceive.TabIndex = 6;
+            this.btnReceive.Text = "Receive";
+            this.btnReceive.UseVisualStyleBackColor = true;
+            this.btnReceive.Click += new System.EventHandler(this.btnManage_Click);
+            // 
+            // btnIssue
+            // 
+            this.btnIssue.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnIssue.Location = new System.Drawing.Point(0, 632);
+            this.btnIssue.Name = "btnIssue";
+            this.btnIssue.Size = new System.Drawing.Size(292, 35);
+            this.btnIssue.TabIndex = 5;
+            this.btnIssue.Text = "Issue";
+            this.btnIssue.UseVisualStyleBackColor = true;
+            this.btnIssue.Click += new System.EventHandler(this.btnManage_Click);
+            // 
+            // btnStock
+            // 
+            this.btnStock.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.Location = new System.Drawing.Point(0, 667);
+            this.btnStock.Name = "btnStock";
+            this.btnStock.Size = new System.Drawing.Size(292, 35);
+            this.btnStock.TabIndex = 4;
+            this.btnStock.Text = "Stock";
+            this.btnStock.UseVisualStyleBackColor = true;
+            this.btnStock.Click += new System.EventHandler(this.btnManage_Click);
             // 
             // listMenu
             // 
@@ -102,6 +142,9 @@
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.ListBox listMenu;
         private System.Windows.Forms.Panel pnlContent;
+        private System.Windows.Forms.Button btnReceive;
+        private System.Windows.Forms.Button btnIssue;
+        private System.Windows.Forms.Button btnStock;
 
     }
 }

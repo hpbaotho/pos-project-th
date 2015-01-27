@@ -142,6 +142,11 @@ namespace POS.BL.Utilities
         public const string Inventory = "Inventory";
         public const string Sold = "Sold";
         public const string Kitchen = "KC";
+
+        //---Inventory Transaction
+        public const string INReceive = "Receive";
+        public const string INIssue = "Issue";
+        public const string INStock = "Stock";
     }
     public struct ProgramName
     {

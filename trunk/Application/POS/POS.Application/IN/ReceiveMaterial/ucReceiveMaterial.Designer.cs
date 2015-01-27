@@ -165,6 +165,7 @@
             // 
             // txtOther
             // 
+            this.txtOther.Description = "";
             this.txtOther.Enabled = false;
             this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtOther.Location = new System.Drawing.Point(224, 123);
@@ -227,6 +228,7 @@
             // 
             // txtDocNo
             // 
+            this.txtDocNo.Description = "";
             this.txtDocNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtDocNo.Location = new System.Drawing.Point(121, 49);
             this.txtDocNo.MaxLength = 100;
@@ -236,6 +238,7 @@
             // 
             // txtReferenceNo
             // 
+            this.txtReferenceNo.Description = "";
             this.txtReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtReferenceNo.Location = new System.Drawing.Point(121, 21);
             this.txtReferenceNo.MaxLength = 100;
