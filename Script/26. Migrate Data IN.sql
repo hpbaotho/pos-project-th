@@ -1,64 +1,85 @@
-INSERT INTO [POS].[dbo].[db_uom]
-           ([uom_code]
+DELETE [in_material]
+DELETE [in_period_group]
+DELETE [in_material_group]
+DELETE [db_uom]
+
+
+SET IDENTITY_INSERT [db_uom] ON
+INSERT INTO [db_uom]
+           ([uom_id]
+		   ,[uom_code]
            ,[uom_name]
            ,[active])
      VALUES
-           ('001','กิโลกรัม',1),
-           ('002','กรัม',1),
-           ('003','ลิตร',1),
-           ('004','มิลลิลิตร',1),
-           ('005','โหล',1),
-           ('006','ใบ',1),
-           ('007','อัน',1),
-           ('008','เครื่อง',1),
-           ('009','ชุด',1),
-           ('010','แพ็ค',1),
-           ('011','ชิ้น',1),
-           ('012','ม้วน',1),
-           ('013','แกลลอน',1),
-           ('014','แผ่น',1),
-           ('015','เล่ม',1),
-           ('016','ตัว',1),
-           ('017','ถัง',1),
-           ('018','ลัง',1),
-           ('019','ถุง',1),
-           ('020','กล่อง',1),
-           ('021','ดอก',1),
-           ('022','ลูก',1),
-           ('023','กระป๋อง',1),
-           ('024','ขวด',1),
-           ('025','ซอง',1),
-           ('026','ปิ๊ป',1),
-           ('027','หวี',1),
-           ('028','ด้าม',1),
-           ('029','ก้อน',1), 
-           ('030','ฟอง',1) , 
-           ('031','ช้อน',1)             
+           (1,'001','กิโลกรัม',1),
+           (2,'002','กรัม',1),
+           (3,'003','ลิตร',1),
+           (4,'004','มิลลิลิตร',1),
+           (5,'005','โหล',1),
+           (6,'006','ใบ',1),
+           (7,'007','อัน',1),
+           (8,'008','เครื่อง',1),
+           (9,'009','ชุด',1),
+           (10,'010','แพ็ค',1),
+           (11,'011','ชิ้น',1),
+           (12,'012','ม้วน',1),
+           (13,'013','แกลลอน',1),
+           (14,'014','แผ่น',1),
+           (15,'015','เล่ม',1),
+           (16,'016','ตัว',1),
+           (17,'017','ถัง',1),
+           (18,'018','ลัง',1),
+           (19,'019','ถุง',1),
+           (20,'020','กล่อง',1),
+           (21,'021','ดอก',1),
+           (22,'022','ลูก',1),
+           (23,'023','กระป๋อง',1),
+           (24,'024','ขวด',1),
+           (25,'025','ซอง',1),
+           (26,'026','ปิ๊ป',1),
+           (27,'027','หวี',1),
+           (28,'028','ด้าม',1),
+           (29,'029','ก้อน',1), 
+           (30,'030','ฟอง',1) , 
+           (31,'031','ช้อน',1)             
+
+DBCC CHECKIDENT ([db_uom], RESEED, 31)
+SET IDENTITY_INSERT [db_uom] OFF
 GO
 
-
-INSERT INTO [POS].[dbo].[in_material_group]
-           ([material_group_code]
+SET IDENTITY_INSERT [in_material_group] ON
+INSERT INTO [in_material_group]
+           ([material_group_id]
+		   ,[material_group_code]
            ,[material_group_name]
            ,[active])
      VALUES
-           ('1','FOOD',1)
-           ,('4','PACKING',1)
-           ,('6','OTHER',1)
+           (1,'1','FOOD',1)
+           ,(4,'4','PACKING',1)
+           ,(6,'6','OTHER',1)
+
+DBCC CHECKIDENT ([in_material_group], RESEED, 6)
+SET IDENTITY_INSERT [in_material_group] OFF
 GO
 
-INSERT INTO [POS].[dbo].[in_period_group]
-           ([period_group_code]
+SET IDENTITY_INSERT [in_period_group] ON
+INSERT INTO [in_period_group]
+           ([period_group_id]
+		   ,[period_group_code]
            ,[period_group_name]
            ,[active])
      VALUES
-           ('1','UNCOUNT',1),
-           ('2','Monthly',1),
-           ('3','Daily',1),
-           ('4','Weekly',1)
+           (1,'1','UNCOUNT',1),
+           (2,'2','Monthly',1),
+           (3,'3','Daily',1),
+           (4,'4','Weekly',1)
+
+DBCC CHECKIDENT ([in_period_group], RESEED, 4)
+SET IDENTITY_INSERT [in_period_group] OFF
 GO
 
-INSERT INTO [POS].[dbo].[in_material]
+DBCC CHECKIDENT ([in_material], RESEED, 0)
+INSERT INTO [in_material]
            ([material_code]
            ,[material_name]
            
@@ -80,6 +101,7 @@ INSERT INTO [POS].[dbo].[in_material]
 		   ,[active])
      VALUES
            ('1','น้ำ',1,1,1,1,1,1,1000,2,1,0,1),
+
            ('01-0001','มีดสเต็ก',4,2,1,5,12,28,1,28,1,25,1),
            ('01-0002','ช้อนซุป',4,2,1,5,12,28,1,28,1,25,1),
            ('01-0003','ช้อน',4,2,1,5,12,28,1,28,1,20,1),
