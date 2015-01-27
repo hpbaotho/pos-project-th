@@ -40,17 +40,34 @@ namespace POS.IN
             tableLayoutPanel1.SetColumnSpan(toolStrip, 3);
 
             //---Add list Menu
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveMaterial });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINReceiveOrder });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueMaterial });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINIssueSold });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINStockCount });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINMaterialGroup });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINMaterial });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINPeriodGroup });
-            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.Setting, MenuName = ProgramName.SetupINPeriod });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.INReceive, MenuName = ProgramName.SetupINReceiveMaterial });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.INReceive, MenuName = ProgramName.SetupINReceiveOrder });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.INIssue, MenuName = ProgramName.SetupINIssueMaterial });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.INIssue, MenuName = ProgramName.SetupINIssueSold });
+            listMenuDTO.Add(new ListMenuDTO() { Module = ModuleName.INStock, MenuName = ProgramName.SetupINStockCount });
+            
+            btnManage_Click(btnReceive, null);
+            btnReceive.Focus();
+        }
 
-            listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.Setting).Select(item => item.MenuName).ToList();
+        private void btnManage_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            if (btn.Name == "btnReceive")
+            {
+                listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.INReceive).Select(item => item.MenuName).ToList();
+            }
+            else if (btn.Name == "btnIssue")
+            {
+                listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.INIssue).Select(item => item.MenuName).ToList();
+            }
+            else if (btn.Name == "btnStock")
+            {
+                listMenu.DataSource = listMenuDTO.Where(item => item.Module == ModuleName.INStock).Select(item => item.MenuName).ToList();
+            }
+
+            listMenu.ClearSelected();
         }
 
         private void listMenu_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,42 +78,15 @@ namespace POS.IN
 
             pnlContent.Controls.Clear();
 
-            if (selected == ProgramName.SetupINReceiveMaterial)
+            switch (selected)
             {
-                pnlContent.Controls.Add(new ucReceiveMaterial());
+                case ProgramName.SetupINReceiveMaterial: pnlContent.Controls.Add(new ucReceiveMaterial()); break;
+                case ProgramName.SetupINReceiveOrder: pnlContent.Controls.Add(new ucReceiveOrder()); break;
+                case ProgramName.SetupINIssueMaterial: pnlContent.Controls.Add(new ucIssueMaterial()); break;
+                case ProgramName.SetupINIssueSold: pnlContent.Controls.Add(new ucIssueSold()); break;
+                case ProgramName.SetupINStockCount: pnlContent.Controls.Add(new ucStockCount()); break;
             }
-            else if (selected == ProgramName.SetupINReceiveOrder)
-            {
-                pnlContent.Controls.Add(new ucReceiveOrder());
-            }
-            else if (selected == ProgramName.SetupINIssueMaterial)
-            {
-                pnlContent.Controls.Add(new ucIssueMaterial());
-            }
-            else if (selected == ProgramName.SetupINIssueSold)
-            {
-                pnlContent.Controls.Add(new ucIssueSold());
-            }
-            else if (selected == ProgramName.SetupINStockCount)
-            {
-                pnlContent.Controls.Add(new ucStockCount());
-            }
-            else if (selected == ProgramName.SetupINMaterialGroup)
-            {
-                pnlContent.Controls.Add(new ucMaterialGroup());
-            }
-            else if (selected == ProgramName.SetupINMaterial)
-            {
-                pnlContent.Controls.Add(new ucSetupMaterial());
-            }
-            else if (selected == ProgramName.SetupINPeriodGroup)
-            {
-                pnlContent.Controls.Add(new ucSetupPeriodGroup());
-            }
-            else if (selected == ProgramName.SetupINPeriod)
-            {
-                pnlContent.Controls.Add(new ucSetupPeriod());
-            }
+
         }
 
     }

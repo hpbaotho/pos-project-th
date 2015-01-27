@@ -7,6 +7,6 @@ namespace POS.BL.DTO.IN
 {
     public class StockDTO
     {
-        public long sales_order_detail_id { get; set; }
+        public long sales_order_detail_id { get; set; }        
     }
 }
