@@ -1,0 +1,2 @@
+ALTER TABLE dbo.in_bill_of_material_detail
+ALTER COLUMN bill_of_material_head_id_sub bigint NULL
