@@ -22,6 +22,9 @@ namespace POS.BL.Entities.Entity
         public decimal? amount { get; set; }
         public int? lost_factor { get; set; }
 
+        [EntityScalarProperty(PersistenceIgnorance = true)]
+        public bool IsCheckedMaterial { get; set; }
+
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         [SelfValidation(Ruleset = ValidationRuleset.Update)]
         public void EntityValidation(ValidationResults results)
@@ -32,9 +35,14 @@ namespace POS.BL.Entities.Entity
                 ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill Of Material Head"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
-            if (bill_of_material_head_id_sub == null)
+            if (IsCheckedMaterial && material_id == null)
             {
-                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Bill of Material Head Sub"), this, string.Empty, string.Empty, null);
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Material"), this, string.Empty, string.Empty, null);
+                results.AddResult(result);
+            }
+            else if (!IsCheckedMaterial && bill_of_material_head_id_sub == null)
+            {
+                ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "BOM"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
             if (amount == null)
