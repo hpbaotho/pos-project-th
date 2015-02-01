@@ -6,6 +6,7 @@ using POS.BL.Entities.Entity;
 using System.Data;
 using System.Data.Common;
 using POS.BL.DTO;
+using POS.BL.Utilities;
 
 namespace POS.BL.Service.IN
 {
@@ -95,6 +96,26 @@ namespace POS.BL.Service.IN
             //param.Add(base.CreateParameter("employee_id", material.material_id));
 
             return this.ExecuteQuery<DuplicateItemDTO>(strSql.ToString(), param.ToArray()).ToList();
+        }
+
+        public List<ComboBoxDTO> GetMaterialComboBoxDTO()
+        {
+
+            List<Material> lstEntity = new List<Material>();
+            List<ComboBoxDTO> lstComboBoxDTO = new List<ComboBoxDTO>();
+            lstComboBoxDTO.SetPleaseSelect();
+
+            lstEntity = base.FindAll(false).ToList();
+
+            foreach (Material child in lstEntity)
+            {
+                ComboBoxDTO DTO = new ComboBoxDTO();
+                DTO.Value = child.material_id.ToString();
+                DTO.Display = child.material_code + ":" + child.material_name;
+                lstComboBoxDTO.Add(DTO);
+            }
+
+            return lstComboBoxDTO;
         }
     }
 }

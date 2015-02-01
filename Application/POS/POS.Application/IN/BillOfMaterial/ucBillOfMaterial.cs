@@ -21,7 +21,7 @@ namespace POS.IN.BillOfMaterial
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "ID";
         AddEditBillOfMaterial addEditBillOfMaterial = new AddEditBillOfMaterial();
-        string programName = ProgramName.MappingMenu;
+        string programName = ProgramName.SetupBillOfMaterial;
         string tabName = "List Bill Of Material";
 
         public ucBillOfMaterial()
@@ -65,14 +65,14 @@ namespace POS.IN.BillOfMaterial
         {
             try
             {
-                List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                List<SOMenu> listEntity = new List<SOMenu>();
-                foreach (Dictionary<string, object> item in list)
-                {
-                    listEntity.Add(new SOMenu() { menu_id = Converts.ParseLong(item[DataKeyName].ToString()) });
-                }
+                //List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
+                //List<SOMenu> listEntity = new List<SOMenu>();
+                //foreach (Dictionary<string, object> item in list)
+                //{
+                //    listEntity.Add(new SOMenu() { menu_id = Converts.ParseLong(item[DataKeyName].ToString()) });
+                //}
 
-                ServiceProvider.MenuService.DeleteSOMenuAndMappingMenu(listEntity);
+                //ServiceProvider.MenuService.DeleteSOMenuAndMappingMenu(listEntity);
             }
             catch (ValidationException ex)
             {

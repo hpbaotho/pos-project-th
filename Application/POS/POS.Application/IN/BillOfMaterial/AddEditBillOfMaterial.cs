@@ -49,28 +49,38 @@ namespace POS.IN.BillOfMaterial
         {
             EnableMode();
 
-            SOMenu entity = new SOMenu();
+            BillOfMaterialHead entity = new BillOfMaterialHead();
             if (modeHead == ObjectState.Edit && !string.IsNullOrEmpty(keyCode))
             {
-                //---Header
-                entity.menu_id = Converts.ParseLong(keyCode);
-                entity = ServiceProvider.MenuService.FindByKeys(entity, true);
-                txtMenuCode.Text = entity.menu_code;
-                txtMenuName.Text = entity.menu_name;
-                txtMenuDescription.Text = entity.menu_description;
-                chkActive.Checked = entity.active;
+                ddlBOMGroup.DataSource = ServiceProvider.BillOfMaterialGroupService.GetBillOfMaterialGroupComboBoxDTO();
+                ddlBOMGroup.ValueMember = "Value";
+                ddlBOMGroup.DisplayMember = "Display";
 
-                //---Detail
-                modeDetail = ObjectState.Add;
-                InitialGridDetail();
-                LoadDataDetail(0);
+                //---Header
+                entity.bill_of_material_head_id = Converts.ParseLong(keyCode);
+                entity = ServiceProvider.BillOfMaterialHeadService.FindByKeys(entity, true);
+
+                if (entity != null)
+                {
+                    ddlBOMGroup.SelectedValue = entity.bill_of_material_group_id.ToString();
+                    txtBOMHeadCode.Text = entity.bill_of_material_head_code;
+                    txtBOMHeadName.Text = entity.bill_of_material_head_name;
+                    txtBOMHeadDescription.Text = entity.bill_of_material_head_description;
+                    txtRemark.Text = entity.remark;
+
+                    //---Detail
+                    modeDetail = ObjectState.Add;
+                    InitialGridDetail();
+                    LoadDataDetail(0);
+                }
             }
             else
             {
-                txtMenuCode.Text = string.Empty;
-                txtMenuName.Text = string.Empty;
-                txtMenuDescription.Text = string.Empty;
-                chkActive.Checked = true;
+                ddlBOMGroup.SelectedIndex = 0;
+                txtBOMHeadCode.Text = string.Empty;
+                txtBOMHeadName.Text = string.Empty;
+                txtBOMHeadDescription.Text = string.Empty;
+                txtRemark.Text = string.Empty;
             }
 
         }
@@ -78,24 +88,24 @@ namespace POS.IN.BillOfMaterial
         {
             if (modeHead == ObjectState.Edit)
             {
-                txtMenuCode.Enabled = false;
+                ddlBOMGroup.Enabled = false;
                 pnlDetail.Visible = true;
             }
             else
             {
-                txtMenuCode.Enabled = true;
+                ddlBOMGroup.Enabled = true;
                 pnlDetail.Visible = false;
             }
         }
-        private SOMenu GetData()
+        private BillOfMaterialHead GetData()
         {
-            SOMenu entity = new SOMenu();
-            entity.menu_id = Converts.ParseLong(keyCode);
-            entity.menu_code = txtMenuCode.Text;
-            entity.menu_name = txtMenuName.Text;
-            entity.menu_description = txtMenuDescription.Text;
-            entity.menu_reference_id = null;
-            entity.active = chkActive.Checked;
+            BillOfMaterialHead entity = new BillOfMaterialHead();
+            entity.bill_of_material_group_id = Converts.ParseLong(ddlBOMGroup.SelectedValue.ToStringNullable());
+            entity.bill_of_material_head_id = Converts.ParseLong(keyCode);
+            entity.bill_of_material_head_code = txtBOMHeadCode.Text;
+            entity.bill_of_material_head_name = txtBOMHeadName.Text;
+            entity.bill_of_material_head_description = txtBOMHeadDescription.Text;
+            entity.remark = txtRemark.Text;
             entity.created_by = "SYSTEM";
             entity.created_date = DateTime.Now;
             entity.updated_by = "SYSTEM";
@@ -110,10 +120,10 @@ namespace POS.IN.BillOfMaterial
         {
             try
             {
-                SOMenu entity = GetData();
+                BillOfMaterialHead entity = GetData();
                 if (modeHead == ObjectState.Add)
                 {
-                    int menuID = ServiceProvider.MenuService.Insert<int>(entity, new string[] { ValidationRuleset.Insert });
+                    int menuID = ServiceProvider.BillOfMaterialHeadService.Insert<int>(entity, new string[] { ValidationRuleset.Insert });
 
                     keyCode = menuID.ToString();
                     modeHead = ObjectState.Edit;
@@ -121,7 +131,7 @@ namespace POS.IN.BillOfMaterial
                 }
                 else
                 {
-                    ServiceProvider.MenuService.Update(entity, new string[] { ValidationRuleset.Update });
+                    ServiceProvider.BillOfMaterialHeadService.Update(entity, new string[] { ValidationRuleset.Update });
                     LoadData();
                 }
                 base.formBase.ShowMessage(GeneralMessage.SaveComplete);
@@ -142,7 +152,7 @@ namespace POS.IN.BillOfMaterial
         #region :: Event Gridview ::
         public void grdDetail_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
-            grdDetail.DataSourceDataSet = ServiceProvider.MenuMappingService.GetGridMenuMappingDetail(Converts.ParseLong(keyCode));
+            grdDetail.DataSourceDataSet = ServiceProvider.BillOfMaterialDetailService.GetGridBillOfMaterialDetail(Converts.ParseLong(keyCode));
             grdDetail.DataKeyName = new string[] { DataKeyName };
         }
         public void grdDetail_onAddNewRow(object sender, EventArgs e)
@@ -154,20 +164,20 @@ namespace POS.IN.BillOfMaterial
         {
             modeDetail = ObjectState.Edit;
             Dictionary<string, object> dataKey = (Dictionary<string, object>)sender;
-            long menuMappingID = Converts.ParseLong(dataKey[DataKeyName].ToString());
-            LoadDataDetail(menuMappingID);
+            long ID = Converts.ParseLong(dataKey[DataKeyName].ToString());
+            LoadDataDetail(ID);
         }
         public void grdDetail_onDeleteDataRows(object sender, Control.GridView.RowsEventArgs e)
         {
             try
             {
                 List<Dictionary<string, object>> list = (List<Dictionary<string, object>>)sender;
-                List<MenuMapping> listEntity = new List<MenuMapping>();
+                List<BillOfMaterialDetail> listEntity = new List<BillOfMaterialDetail>();
                 foreach (Dictionary<string, object> item in list)
                 {
-                    listEntity.Add(new MenuMapping() { menu_mapping_id = Converts.ParseLong(item[DataKeyName].ToString()) });
+                    listEntity.Add(new BillOfMaterialDetail() { bill_of_material_detail_id = Converts.ParseLong(item[DataKeyName].ToString()) });
                 }
-                ServiceProvider.MenuMappingService.Delete(listEntity, new string[] { ValidationRuleset.Delete });
+                ServiceProvider.BillOfMaterialDetailService.Delete(listEntity, new string[] { ValidationRuleset.Delete });
             }
             catch (ValidationException ex)
             {
@@ -219,46 +229,79 @@ namespace POS.IN.BillOfMaterial
 
             grdDetail.LoadData();
         }
-        private void LoadDataDetail(long menuMappingID)
+        private void LoadDataDetail(long BOMDetailID)
         {
-            ddlBomHead.DataSource = ServiceProvider.BillOfMaterialHeadService.GetBillOfMaterialHeadComboBoxDTOByID(null);
-            ddlBomHead.ValueMember = "Value";
-            ddlBomHead.DisplayMember = "Display";
+            ddlMaterial.DataSource = ServiceProvider.MaterialService.GetMaterialComboBoxDTO();
+            ddlMaterial.ValueMember = "Value";
+            ddlMaterial.DisplayMember = "Display";
 
-            MenuMapping entity = new MenuMapping();
-            if (modeDetail == ObjectState.Edit && menuMappingID != 0)
+            ddlBOMDetail.DataSource = ServiceProvider.BillOfMaterialHeadService.GetBillOfMaterialHeadComboBoxDTOByID(null);
+            ddlBOMDetail.ValueMember = "Value";
+            ddlBOMDetail.DisplayMember = "Display";
+
+            BillOfMaterialDetail entity = new BillOfMaterialDetail();
+            if (modeDetail == ObjectState.Edit && BOMDetailID != 0)
             {
                 //---Detail
-                entity.menu_mapping_id = menuMappingID;
-                entity = ServiceProvider.MenuMappingService.FindByKeys(entity, true);
+                entity.bill_of_material_detail_id = BOMDetailID;
+                entity = ServiceProvider.BillOfMaterialDetailService.FindByKeys(entity, true);
                 if (entity != null)
                 {
-                    ddlBomHead.SelectedValue = entity.bill_of_material_head_id.ToString();
-                    txtQuantity.Text = string.Format(Format.IntegerNumberFormatNoZero, entity.quantity);
+                    if (entity.material_id != null)
+                    {
+                        rdbMaterial.Checked = true;
+                        rdbBOM.Checked = false;
+                        ddlMaterial.Enabled = true;
+                        ddlBOMDetail.Enabled = false;
 
-                    keyCodeDetail = entity.menu_mapping_id;
+                        ddlMaterial.SelectedValue = entity.material_id.ToString();
+                        GetUOM();
+                    }
+                    else
+                    {
+                        rdbMaterial.Checked = false;
+                        rdbBOM.Checked = true;
+                        ddlMaterial.Enabled = false;
+                        ddlBOMDetail.Enabled = true;
+
+                        ddlBOMDetail.SelectedValue = entity.bill_of_material_head_id_sub.ToString();
+                    }
+                    txtAmount.Text = string.Format(Format.IntegerNumberFormatNoZero, entity.amount);
+                   
+                    keyCodeDetail = entity.bill_of_material_detail_id;
                 }
             }
             else
             {
                 keyCodeDetail = 0;
 
-                ddlBomHead.SelectedIndex = 0;
-                txtQuantity.Text = string.Empty;
+                rdbMaterial.Checked = true;
+                rdbBOM.Checked = false;
+
+                ddlMaterial.Enabled = true;
+                ddlBOMDetail.Enabled = false;
+
+                ddlMaterial.SelectedIndex = 0;
+                txtUOM.Text = string.Empty;
+                ddlBOMDetail.SelectedIndex = 0;
+                txtAmount.Text = string.Empty;
             }
 
             grdDetail.LoadData();
         }
-        private MenuMapping GetDataDetail()
+        private BillOfMaterialDetail GetDataDetail()
         {
-            MenuMapping entity = new MenuMapping();
-            entity.menu_mapping_id = keyCodeDetail;
-            entity.menu_id = Converts.ParseLong(keyCode);
+            BillOfMaterialDetail entity = new BillOfMaterialDetail();
+            entity.bill_of_material_detail_id = keyCodeDetail;
+            entity.bill_of_material_head_id = Converts.ParseLong(keyCode);
 
             if (modeDetail == ObjectState.Add)
             {
-                entity.bill_of_material_head_id = Converts.ParseLongNullable(ddlBomHead.SelectedValue.ToString());
-                entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
+                entity.material_id = Converts.ParseLongNullable(ddlMaterial.SelectedValue.ToString());
+                entity.bill_of_material_head_id_sub = Converts.ParseLongNullable(ddlBOMDetail.SelectedValue.ToString());
+                entity.amount = Converts.ParseDecimalNullable(txtAmount.Text);
+                entity.IsCheckedMaterial = rdbMaterial.Checked;
+                entity.lost_factor = 0;
                 entity.created_by = "SYSTEM";
                 entity.created_date = DateTime.Now;
                 entity.updated_by = "SYSTEM";
@@ -266,11 +309,13 @@ namespace POS.IN.BillOfMaterial
             }
             else
             {
-                entity = ServiceProvider.MenuMappingService.FindByKeys(entity, false);
+                entity = ServiceProvider.BillOfMaterialDetailService.FindByKeys(entity, false);
                 if (entity != null)
                 {
-                    entity.bill_of_material_head_id = Converts.ParseLongNullable(ddlBomHead.SelectedValue.ToString());
-                    entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
+                    entity.material_id = Converts.ParseLongNullable(ddlMaterial.SelectedValue.ToString());
+                    entity.bill_of_material_head_id_sub = Converts.ParseLongNullable(ddlBOMDetail.SelectedValue.ToString());
+                    entity.amount = Converts.ParseDecimalNullable(txtAmount.Text);
+                    entity.IsCheckedMaterial = rdbMaterial.Checked;
                     entity.updated_by = "SYSTEM";
                     entity.updated_date = DateTime.Now;
                 }
@@ -278,7 +323,7 @@ namespace POS.IN.BillOfMaterial
 
             return entity;
         }
-        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
                 (e.KeyChar != '.'))
@@ -303,14 +348,14 @@ namespace POS.IN.BillOfMaterial
         {
             try
             {
-                MenuMapping entity = entity = GetDataDetail();
+                BillOfMaterialDetail entity = entity = GetDataDetail();
                 if (modeDetail == ObjectState.Add)
                 {
-                    ServiceProvider.MenuMappingService.Insert(entity, new string[] { ValidationRuleset.Insert });
+                    ServiceProvider.BillOfMaterialDetailService.Insert(entity, new string[] { ValidationRuleset.Insert });
                 }
                 else
                 {
-                    ServiceProvider.MenuMappingService.Update(entity, new string[] { ValidationRuleset.Update });
+                    ServiceProvider.BillOfMaterialDetailService.Update(entity, new string[] { ValidationRuleset.Update });
                 }
                 modeDetail = ObjectState.Add;
                 LoadDataDetail(0);
@@ -328,7 +373,43 @@ namespace POS.IN.BillOfMaterial
         }
         #endregion
 
+        private void rdbMaterial_MouseClick(object sender, MouseEventArgs e)
+        {
+            ddlMaterial.Enabled = true;
+            ddlBOMDetail.SelectedIndex = 0;
+            ddlBOMDetail.Enabled = false;
+        }
+
         #endregion
 
+        private void rdbBOM_MouseClick(object sender, MouseEventArgs e)
+        {
+            ddlBOMDetail.Enabled = true;
+            ddlMaterial.SelectedIndex = 0;
+            ddlMaterial.Enabled = false;
+        }
+
+        private void ddlMaterial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetUOM();
+        }
+
+        private void GetUOM()
+        {
+            if (ddlMaterial.SelectedIndex != 0)
+            {
+                Material material = ServiceProvider.MaterialService.FindByKeys(new Material() { material_id = Converts.ParseLong(ddlMaterial.SelectedValue.ToString()) }, false);
+                if (material != null)
+                {
+                    UOM uom = ServiceProvider.UOMService.FindByKeys(new UOM() { uom_id = material.uom_id_use.Value }, false);
+
+                    txtUOM.Text = uom != null ? uom.uom_name : string.Empty;
+                }
+            }
+            else
+            {
+                txtUOM.Text = string.Empty;
+            }
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace POS.BL.Entities.Entity
         public string bill_of_material_head_code { get; set; }
         public string bill_of_material_head_name { get; set; }
         public string bill_of_material_head_description { get; set; }
+        public string remark { get; set; }
 
         [SelfValidation(Ruleset = ValidationRuleset.Insert)]
         [SelfValidation(Ruleset = ValidationRuleset.Update)]
