@@ -19,7 +19,7 @@ namespace POS.BL.Entities.Entity
         public long period_id { get; set; }
         [EntityScalarProperty(ParentKey=true)]
         public long period_group_id { get; set; }
-        [EntityScalarProperty(ComboBoxCode = true)]
+        [EntityScalarProperty(DataCode = true)]
         public string period_code { get; set; }
         [EntityScalarProperty(ComboBoxDisplay = true)]
         public DateTime? period_date { get; set; }

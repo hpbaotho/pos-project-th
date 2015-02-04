@@ -33,6 +33,7 @@
             this.panelWrapGrid = new System.Windows.Forms.Panel();
             this.grdBase = new POS.Control.GridView.BaseGrid();
             this.gbSearchPanel = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.dpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dpDateTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.lblReason = new System.Windows.Forms.Label();
             this.ddlPeriodGroup = new System.Windows.Forms.ComboBox();
             this.txtDocNo = new POS.Control.BaseTextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelWrapGrid.SuspendLayout();
@@ -72,7 +72,7 @@
             // panelWrapGrid
             // 
             this.panelWrapGrid.Controls.Add(this.grdBase);
-            this.panelWrapGrid.Location = new System.Drawing.Point(6, 160);
+            this.panelWrapGrid.Location = new System.Drawing.Point(6, 98);
             this.panelWrapGrid.Name = "panelWrapGrid";
             this.panelWrapGrid.Size = new System.Drawing.Size(976, 293);
             this.panelWrapGrid.TabIndex = 0;
@@ -110,10 +110,20 @@
             this.gbSearchPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.gbSearchPanel.Location = new System.Drawing.Point(6, 6);
             this.gbSearchPanel.Name = "gbSearchPanel";
-            this.gbSearchPanel.Size = new System.Drawing.Size(956, 148);
+            this.gbSearchPanel.Size = new System.Drawing.Size(956, 86);
             this.gbSearchPanel.TabIndex = 31;
             this.gbSearchPanel.TabStop = false;
             this.gbSearchPanel.Text = "Search Criteria";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(21, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Period Group :";
             // 
             // dpDateFrom
             // 
@@ -171,22 +181,13 @@
             // 
             // txtDocNo
             // 
+            this.txtDocNo.Description = "";
             this.txtDocNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtDocNo.Location = new System.Drawing.Point(121, 20);
             this.txtDocNo.MaxLength = 100;
             this.txtDocNo.Name = "txtDocNo";
             this.txtDocNo.Size = new System.Drawing.Size(163, 20);
             this.txtDocNo.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(18, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "Period Group :";
             // 
             // ucStockCount
             // 

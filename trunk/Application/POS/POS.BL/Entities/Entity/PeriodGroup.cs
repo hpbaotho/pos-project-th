@@ -17,7 +17,7 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
         public long period_group_id { get; set; }
-        [EntityScalarProperty(ComboBoxCode = true)]
+        [EntityScalarProperty(DataCode = true)]
         public string period_group_code { get; set; }
         [EntityScalarProperty(ComboBoxDisplay = true)]
         public string period_group_name { get; set; }

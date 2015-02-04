@@ -39,7 +39,7 @@ namespace Core.Standards.Attributes
 
         public bool ComboBoxDisplay { get; set; }
         public bool ComboBoxValue { get; set; }
-        public bool ComboBoxCode { get; set; }
+        public bool DataCode { get; set; }
 
         public bool ParentKey { get; set; }
         /*======= Property UpdateBy,UpdateDate */

@@ -37,40 +37,49 @@ namespace POS.BL.Service.IN
             return base.ExecuteQuery(SQL.ToString(), param);
         }
 
-        public DataSet GetGridMaterial(string materialCode, string materialName)
+        public DataSet GetGridMaterial(Material entity)
         {
             //, ma.created_by AS [Created By], ma.created_date AS [Created Date]
-		    //, ma.updated_by AS [Updated By], ma.updated_date AS [Updated Date]  
+            //, ma.updated_by AS [Updated By], ma.updated_date AS [Updated Date]  
             StringBuilder sql = new StringBuilder();
             sql.AppendLine(@" SELECT  ma.material_id AS ID, ma.material_code AS [Material Code], ma.material_name AS [Material Name]
 		                            , ma.material_description AS [Material Description], uomRe.uom_name AS [UOM Receive]
 		                            , uomCount.uom_name AS [UOM Count], uomUse.uom_name AS [UOM Use], ma.active AS Active
-
-
 		                            , ma.material_group_id AS [Group Id], ma.max_stock AS [Maximum Stock], ma.min_stock AS [Minimum Stock]
 		                            , ma.shelf_life AS [Shelf Life], ma.material_cost AS [Material Cost]
 		                            , ma.acceptable_variance AS [Acceptable Variance]
 		                            , ma.material_pic AS [Picture]
+                                    , mg.material_group_name AS [Material Group]
                               FROM in_material ma
+                              INNER JOIN in_material_group mg ON mg.material_group_id = ma.material_group_id
                               LEFT JOIN db_uom uomRe on ma.uom_id_receive = uomRe.uom_id
                               LEFT JOIN db_uom uomCount on ma.uom_id_count = uomCount.uom_id
                               LEFT JOIN db_uom uomUse on ma.uom_id_use = uomUse.uom_id
                               WHERE 1 = 1 ");
 
-            if (!string.IsNullOrEmpty(materialCode))
+            List<DbParameter> param = new List<DbParameter>();
+
+            if (!string.IsNullOrEmpty(entity.material_code))
             {
                 sql.AppendLine(@" AND CHARINDEX(@MaterialCode, ma.material_code) > 0 ");
+                param.Add(this.CreateParameter("@MaterialCode", entity.material_code));                
             }
-            if (!string.IsNullOrEmpty(materialName))
+            if (!string.IsNullOrEmpty(entity.material_name))
             {
-                sql.AppendLine(@" AND ( CHARINDEX(@MaterialName, ma.material_name) > 0
-		                                OR CHARINDEX(@MaterialName, ma.material_description) > 0
-	                                  ) ");
+                sql.AppendLine(@" AND CHARINDEX(@MaterialName, ma.material_name) > 0 ");
+                param.Add(this.CreateParameter("@MaterialName", entity.material_name));
             }
-            List<DbParameter> param = new List<DbParameter>();
-            param.Add(this.CreateParameter("@MaterialCode", materialCode));
-            param.Add(this.CreateParameter("@MaterialName", materialName));
-
+            if (!string.IsNullOrEmpty(entity.material_description))
+            {
+                sql.AppendLine(@" AND CHARINDEX(@MaterialDesc, ma.material_description) > 0 ");
+                param.Add(this.CreateParameter("@MaterialDesc", entity.material_description));
+            }
+            if (entity.material_group_id!=null)
+            {
+                sql.AppendLine(@" AND ma.material_group_id = @MaterialGroupID ");
+                param.Add(this.CreateParameter("@MaterialGroupID", entity.material_group_id));
+            }            
+            
             return base.ExecuteQuery(sql.ToString(), param.ToArray());
         }
 

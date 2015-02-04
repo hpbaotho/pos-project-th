@@ -97,9 +97,9 @@ namespace POS.Control.GridView
                 if (HiddenColumnName != null && HiddenColumnName.Where(x => x == header.Name).Count() > 0)
                     header.Visible = false;
 
-                header.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);
+                //header.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                //header.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //header.HeaderCell.Style.Font = new Font(DefaultFontControl.FontName, DefaultFontControl.FontSizeM, (FontStyle)DefaultFontControl.FontStyle);
             }
 
         }

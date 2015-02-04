@@ -327,6 +327,13 @@ namespace Core.Standards.Service
                 return typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("EntityKey", true, true);
             }
         }
+        protected IList<PropertyInfo> EntityCodeProperties
+        {
+            get
+            {
+                return typeof(TEntity).GetTaggedPropertyInfos<EntityScalarPropertyAttribute>("DataCode", true, true);
+            }
+        }
         protected IList<PropertyInfo> EntityIdentityKeyProperties
         {
             get
@@ -413,9 +420,19 @@ namespace Core.Standards.Service
                 return null;
             }
         }
-
-
-
+        public TEntity FindByCode(TEntity objKeyCriteria, bool locked)
+        {
+            DbCommand command = this.GetSqlQueryCommandCode(objKeyCriteria, locked);
+            DataSet ds = dbManager.ExecuteDataSet(command);
+            if ((ds != null) && (ds.Tables.Count > 0) && (ds.Tables[0] != null))
+            {
+                return ds.Tables[0].AsEnumerable<TEntity>().FirstOrDefault();
+            }
+            else
+            {
+                return null;
+            }
+        }
         public IEnumerable<TEntity> FindAll(bool locked)
         {
             DbCommand command = this.GetSqlQueryCommand(null, locked);
@@ -429,7 +446,6 @@ namespace Core.Standards.Service
                 return null;
             }
         }
-
         public DataSet FindDataSetByParentKey(TEntity Entity, bool locked = false)
         {
             DbCommand command = this.GetSqlQueryCommandParentKey(Entity, locked);
@@ -443,7 +459,6 @@ namespace Core.Standards.Service
                 return null;
             }
         }
-
         public DataSet FindAllDataSet(bool locked)
         {
             DbCommand command = this.GetSqlQueryCommand(null, locked);
@@ -457,7 +472,6 @@ namespace Core.Standards.Service
                 return null;
             }
         }
-
         private DbCommand GetSqlQueryCommandParentKey(TEntity objKeyCriteria, bool locked)
         {
             StringBuilder sql = new StringBuilder();
@@ -493,7 +507,39 @@ namespace Core.Standards.Service
 
             return command;
         }
+        private DbCommand GetSqlQueryCommandCode(TEntity objKeyCriteria, bool locked)
+        {
+            StringBuilder sql = new StringBuilder();
+            IList<DbParameter> parameters = new List<DbParameter>();
+            sql.AppendLine(" SELECT * ");
+            sql.AppendFormat(" FROM {0} ", this.EntityTableName);
+            if (!locked)
+            {
+                sql.Append(" WITH(NOLOCK) ");
+            }
 
+            if (objKeyCriteria != null)
+            {
+                sql.AppendLine(" WHERE 1 = 1 ");
+                PropertyInfo[] properties = objKeyCriteria.GetType().GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    if (this.EntityCodeProperties.Where(p => p.Name == property.Name).Count() != 0)
+                    {
+                        sql.AppendFormat(" AND [{0}] = @{0} ", property.Name);
+                        parameters.Add(this.CreateParameter(property.Name, property.GetValue(objKeyCriteria, null)));
+                    }
+                }
+            }
+
+            DbCommand command = dbManager.GetSqlStringCommand(sql.ToString());
+            if (parameters.Count > 0)
+            {
+                command.Parameters.AddRange(parameters.ToArray());
+            }
+
+            return command;
+        }
         private DbCommand GetSqlQueryCommand(TEntity objKeyCriteria, bool locked)
         {
             StringBuilder sql = new StringBuilder();

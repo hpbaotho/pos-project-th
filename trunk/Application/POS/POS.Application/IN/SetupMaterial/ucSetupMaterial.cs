@@ -40,11 +40,13 @@ namespace POS.IN.SetupMaterial
             grdBase.LoadData();
         }
 
-
         #region :: Event Gridview ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
-            grdBase.DataSourceDataSet = ServiceProvider.MaterialService.GetGridMaterial(txtMaterialCode.Text, txtMaterialName.Text);
+            Material entity = new Material();
+            entity.material_code = txtMaterialCode.Text;
+            entity.material_name = txtMaterialName.Text;
+            grdBase.DataSourceDataSet = ServiceProvider.MaterialService.GetGridMaterial(entity);
             grdBase.DataKeyName = new string[] { DataKeyName };
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)

@@ -535,6 +535,32 @@ namespace POS.BL
                 return bfPhysicalService;
             }
         }
+
+        private static PortfolioDetailService portfolioDetailService;
+        public static PortfolioDetailService PortfolioDetailService
+        {
+            get
+            {
+                if (portfolioDetailService == null)
+                {
+                    portfolioDetailService = new PortfolioDetailService();
+                }
+                return portfolioDetailService;
+            }
+        }
+
+        private static PortfolioHeadService portfolioHeadService;
+        public static PortfolioHeadService PortfolioHeadService
+        {
+            get
+            {
+                if (portfolioHeadService == null)
+                {
+                    portfolioHeadService = new PortfolioHeadService();
+                }
+                return portfolioHeadService;
+            }
+        }
     }
     public sealed class UserAccount
     {

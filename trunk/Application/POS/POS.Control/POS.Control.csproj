@@ -140,6 +140,9 @@
     <EmbeddedResource Include="BaseTextBox.resx">
       <DependentUpon>BaseTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaseUserContorl.resx">
+      <DependentUpon>BaseUserContorl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CoreMessageBox.resx">
       <DependentUpon>CoreMessageBox.cs</DependentUpon>
     </EmbeddedResource>

@@ -292,11 +292,6 @@ namespace POS.IN.ReceiveOrder
             ValidationResults results = new ValidationResults();
             if (base.FormMode == ObjectState.Add)
             {
-                if (entity.order_no_id != null)
-                {
-                    ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Order No."), this, string.Empty, string.Empty, null);
-                    results.AddResult(result);
-                }
                 if (ddlMenu.SelectedIndex == 0)
                 {
                     ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Menu"), this, string.Empty, string.Empty, null);
