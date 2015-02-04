@@ -47,6 +47,7 @@
             this.txtReferenceNo = new POS.Control.BaseTextBox();
             this.rdoWarehouse = new System.Windows.Forms.RadioButton();
             this.rdoOther = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelWrapGrid.SuspendLayout();
@@ -78,7 +79,7 @@
             // panelWrapGrid
             // 
             this.panelWrapGrid.Controls.Add(this.grdBase);
-            this.panelWrapGrid.Location = new System.Drawing.Point(6, 160);
+            this.panelWrapGrid.Location = new System.Drawing.Point(6, 188);
             this.panelWrapGrid.Name = "panelWrapGrid";
             this.panelWrapGrid.Size = new System.Drawing.Size(976, 293);
             this.panelWrapGrid.TabIndex = 0;
@@ -105,6 +106,7 @@
             // 
             // gbSearchPanel
             // 
+            this.gbSearchPanel.Controls.Add(this.radioButton1);
             this.gbSearchPanel.Controls.Add(this.rdoWaste);
             this.gbSearchPanel.Controls.Add(this.dpDateFrom);
             this.gbSearchPanel.Controls.Add(this.dpDateTo);
@@ -122,7 +124,7 @@
             this.gbSearchPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.gbSearchPanel.Location = new System.Drawing.Point(6, 6);
             this.gbSearchPanel.Name = "gbSearchPanel";
-            this.gbSearchPanel.Size = new System.Drawing.Size(956, 148);
+            this.gbSearchPanel.Size = new System.Drawing.Size(956, 176);
             this.gbSearchPanel.TabIndex = 31;
             this.gbSearchPanel.TabStop = false;
             this.gbSearchPanel.Text = "Search Criteria";
@@ -131,7 +133,7 @@
             // 
             this.rdoWaste.AutoSize = true;
             this.rdoWaste.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoWaste.Location = new System.Drawing.Point(121, 98);
+            this.rdoWaste.Location = new System.Drawing.Point(121, 123);
             this.rdoWaste.Name = "rdoWaste";
             this.rdoWaste.Size = new System.Drawing.Size(56, 17);
             this.rdoWaste.TabIndex = 34;
@@ -174,9 +176,10 @@
             // 
             // txtOther
             // 
+            this.txtOther.Description = "";
             this.txtOther.Enabled = false;
             this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOther.Location = new System.Drawing.Point(224, 123);
+            this.txtOther.Location = new System.Drawing.Point(224, 148);
             this.txtOther.MaxLength = 1000;
             this.txtOther.Name = "txtOther";
             this.txtOther.Size = new System.Drawing.Size(305, 20);
@@ -197,7 +200,7 @@
             // 
             this.ddlWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouse.FormattingEnabled = true;
-            this.ddlWarehouse.Location = new System.Drawing.Point(224, 73);
+            this.ddlWarehouse.Location = new System.Drawing.Point(224, 98);
             this.ddlWarehouse.Name = "ddlWarehouse";
             this.ddlWarehouse.Size = new System.Drawing.Size(305, 21);
             this.ddlWarehouse.TabIndex = 26;
@@ -225,6 +228,7 @@
             // 
             // txtDocNo
             // 
+            this.txtDocNo.Description = "";
             this.txtDocNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtDocNo.Location = new System.Drawing.Point(121, 49);
             this.txtDocNo.MaxLength = 100;
@@ -234,6 +238,7 @@
             // 
             // txtReferenceNo
             // 
+            this.txtReferenceNo.Description = "";
             this.txtReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtReferenceNo.Location = new System.Drawing.Point(121, 21);
             this.txtReferenceNo.MaxLength = 100;
@@ -244,13 +249,11 @@
             // rdoWarehouse
             // 
             this.rdoWarehouse.AutoSize = true;
-            this.rdoWarehouse.Checked = true;
             this.rdoWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoWarehouse.Location = new System.Drawing.Point(121, 75);
+            this.rdoWarehouse.Location = new System.Drawing.Point(121, 100);
             this.rdoWarehouse.Name = "rdoWarehouse";
             this.rdoWarehouse.Size = new System.Drawing.Size(80, 17);
             this.rdoWarehouse.TabIndex = 4;
-            this.rdoWarehouse.TabStop = true;
             this.rdoWarehouse.Text = "Warehouse";
             this.rdoWarehouse.UseVisualStyleBackColor = true;
             this.rdoWarehouse.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
@@ -259,13 +262,26 @@
             // 
             this.rdoOther.AutoSize = true;
             this.rdoOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoOther.Location = new System.Drawing.Point(121, 123);
+            this.rdoOther.Location = new System.Drawing.Point(121, 148);
             this.rdoOther.Name = "rdoOther";
             this.rdoOther.Size = new System.Drawing.Size(51, 17);
             this.rdoOther.TabIndex = 6;
             this.rdoOther.Text = "Other";
             this.rdoOther.UseVisualStyleBackColor = true;
             this.rdoOther.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.radioButton1.Location = new System.Drawing.Point(121, 77);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(36, 17);
+            this.radioButton1.TabIndex = 38;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "All";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // ucIssueMaterial
             // 
@@ -304,5 +320,6 @@
         private System.Windows.Forms.DateTimePicker dpDateTo;
         private Control.BaseTextBox txtDocNo;
         private System.Windows.Forms.RadioButton rdoWaste;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

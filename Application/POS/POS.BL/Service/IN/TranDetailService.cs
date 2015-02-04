@@ -19,6 +19,7 @@ namespace POS.BL.Service.IN
 	                                tranDetail.material_id,
 	                                tranDetail.warehouse_id_dest,
 	                                material.material_name AS Material,
+                                    material.material_code,
 	                                warehouse.warehouse_name AS Warehouse,
 	                                phy.lot_no AS [Lot No.],
 	                                tranDetail.quantity AS Quantity,

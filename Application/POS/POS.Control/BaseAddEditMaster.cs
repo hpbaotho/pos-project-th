@@ -13,7 +13,7 @@ namespace POS.Control
     public partial class BaseAddEditMaster : BaseUserControl
     {
         protected ObjectState FormMode { get; set; }
-        protected string FormKeyCode { get; set; }
+        public string FormKeyCode { get; set; }
 
         public delegate void SaveHandler();
         public event SaveHandler saveHandler;
@@ -81,5 +81,28 @@ namespace POS.Control
         public bool btnSaveVisible { get { return btnSave.Visible; } set { btnSave.Visible = value; } }
         public bool btnResetVisible { get { return btnReset.Visible; } set { btnReset.Visible = value; } }
         public bool btnBackVisible { get { return btnBack.Visible; } set { btnBack.Visible = value; } }
+
+        protected PopupBase form;
+        public object OpenPopup<T>() where T : PopupBase
+        {
+            return OpenPopup<T>(null);
+        }
+        public object OpenPopup<T>(object popupCriteria) where T : PopupBase
+        {
+            object popupresult = null;
+            Type type = typeof(T);
+            form = (PopupBase)Activator.CreateInstance(type);
+
+            form.popupDataSource = popupCriteria;
+
+            DialogResult result = form.ShowDialog();
+            
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                popupresult = form.popupResult;
+            }
+
+            return popupresult;
+        }
     }
 }

@@ -33,6 +33,7 @@
             this.panelWrapGrid = new System.Windows.Forms.Panel();
             this.grdBase = new POS.Control.GridView.BaseGrid();
             this.gbSearchPanel = new System.Windows.Forms.GroupBox();
+            this.rdoAll = new System.Windows.Forms.RadioButton();
             this.dpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dpDateTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,7 +62,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(976, 396);
+            this.tabControl1.Size = new System.Drawing.Size(976, 519);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -71,7 +72,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(968, 370);
+            this.tabPage1.Size = new System.Drawing.Size(968, 493);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -79,9 +80,9 @@
             // panelWrapGrid
             // 
             this.panelWrapGrid.Controls.Add(this.grdBase);
-            this.panelWrapGrid.Location = new System.Drawing.Point(6, 160);
+            this.panelWrapGrid.Location = new System.Drawing.Point(6, 181);
             this.panelWrapGrid.Name = "panelWrapGrid";
-            this.panelWrapGrid.Size = new System.Drawing.Size(976, 293);
+            this.panelWrapGrid.Size = new System.Drawing.Size(956, 306);
             this.panelWrapGrid.TabIndex = 0;
             // 
             // grdBase
@@ -101,11 +102,12 @@
             this.grdBase.HiddenColumnName = null;
             this.grdBase.Location = new System.Drawing.Point(0, 0);
             this.grdBase.Name = "grdBase";
-            this.grdBase.Size = new System.Drawing.Size(976, 293);
+            this.grdBase.Size = new System.Drawing.Size(956, 306);
             this.grdBase.TabIndex = 3;
             // 
             // gbSearchPanel
             // 
+            this.gbSearchPanel.Controls.Add(this.rdoAll);
             this.gbSearchPanel.Controls.Add(this.dpDateFrom);
             this.gbSearchPanel.Controls.Add(this.dpDateTo);
             this.gbSearchPanel.Controls.Add(this.label2);
@@ -124,21 +126,35 @@
             this.gbSearchPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.gbSearchPanel.Location = new System.Drawing.Point(6, 6);
             this.gbSearchPanel.Name = "gbSearchPanel";
-            this.gbSearchPanel.Size = new System.Drawing.Size(956, 148);
+            this.gbSearchPanel.Size = new System.Drawing.Size(956, 171);
             this.gbSearchPanel.TabIndex = 31;
             this.gbSearchPanel.TabStop = false;
             this.gbSearchPanel.Text = "Search Criteria";
             // 
+            // rdoAll
+            // 
+            this.rdoAll.AutoSize = true;
+            this.rdoAll.Checked = true;
+            this.rdoAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.rdoAll.Location = new System.Drawing.Point(121, 77);
+            this.rdoAll.Name = "rdoAll";
+            this.rdoAll.Size = new System.Drawing.Size(36, 17);
+            this.rdoAll.TabIndex = 34;
+            this.rdoAll.TabStop = true;
+            this.rdoAll.Text = "All";
+            this.rdoAll.UseVisualStyleBackColor = true;
+            this.rdoAll.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
+            // 
             // dpDateFrom
             // 
-            this.dpDateFrom.Location = new System.Drawing.Point(444, 21);
+            this.dpDateFrom.Location = new System.Drawing.Point(466, 22);
             this.dpDateFrom.Name = "dpDateFrom";
             this.dpDateFrom.Size = new System.Drawing.Size(222, 20);
             this.dpDateFrom.TabIndex = 30;
             // 
             // dpDateTo
             // 
-            this.dpDateTo.Location = new System.Drawing.Point(444, 49);
+            this.dpDateTo.Location = new System.Drawing.Point(466, 50);
             this.dpDateTo.Name = "dpDateTo";
             this.dpDateTo.Size = new System.Drawing.Size(222, 20);
             this.dpDateTo.TabIndex = 30;
@@ -147,7 +163,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(304, 24);
+            this.label2.Location = new System.Drawing.Point(326, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(134, 13);
             this.label2.TabIndex = 1;
@@ -168,10 +184,10 @@
             this.txtOther.Description = "";
             this.txtOther.Enabled = false;
             this.txtOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtOther.Location = new System.Drawing.Point(224, 123);
+            this.txtOther.Location = new System.Drawing.Point(202, 144);
             this.txtOther.MaxLength = 1000;
             this.txtOther.Name = "txtOther";
-            this.txtOther.Size = new System.Drawing.Size(305, 20);
+            this.txtOther.Size = new System.Drawing.Size(200, 20);
             this.txtOther.TabIndex = 27;
             this.txtOther.Tag = "rdoOther";
             // 
@@ -179,7 +195,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(316, 51);
+            this.label1.Location = new System.Drawing.Point(338, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 2;
@@ -190,9 +206,9 @@
             this.ddlWarehouse.Enabled = false;
             this.ddlWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouse.FormattingEnabled = true;
-            this.ddlWarehouse.Location = new System.Drawing.Point(224, 99);
+            this.ddlWarehouse.Location = new System.Drawing.Point(202, 120);
             this.ddlWarehouse.Name = "ddlWarehouse";
-            this.ddlWarehouse.Size = new System.Drawing.Size(305, 21);
+            this.ddlWarehouse.Size = new System.Drawing.Size(200, 21);
             this.ddlWarehouse.TabIndex = 26;
             this.ddlWarehouse.Tag = "rdoWarehouse";
             // 
@@ -208,11 +224,12 @@
             // 
             // ddlSupplier
             // 
+            this.ddlSupplier.Enabled = false;
             this.ddlSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlSupplier.FormattingEnabled = true;
-            this.ddlSupplier.Location = new System.Drawing.Point(224, 74);
+            this.ddlSupplier.Location = new System.Drawing.Point(202, 95);
             this.ddlSupplier.Name = "ddlSupplier";
-            this.ddlSupplier.Size = new System.Drawing.Size(305, 21);
+            this.ddlSupplier.Size = new System.Drawing.Size(200, 21);
             this.ddlSupplier.TabIndex = 25;
             this.ddlSupplier.Tag = "rdoSupplier";
             // 
@@ -233,7 +250,7 @@
             this.txtDocNo.Location = new System.Drawing.Point(121, 49);
             this.txtDocNo.MaxLength = 100;
             this.txtDocNo.Name = "txtDocNo";
-            this.txtDocNo.Size = new System.Drawing.Size(163, 20);
+            this.txtDocNo.Size = new System.Drawing.Size(200, 20);
             this.txtDocNo.TabIndex = 0;
             // 
             // txtReferenceNo
@@ -243,19 +260,17 @@
             this.txtReferenceNo.Location = new System.Drawing.Point(121, 21);
             this.txtReferenceNo.MaxLength = 100;
             this.txtReferenceNo.Name = "txtReferenceNo";
-            this.txtReferenceNo.Size = new System.Drawing.Size(163, 20);
+            this.txtReferenceNo.Size = new System.Drawing.Size(200, 20);
             this.txtReferenceNo.TabIndex = 0;
             // 
             // rdoSupplier
             // 
             this.rdoSupplier.AutoSize = true;
-            this.rdoSupplier.Checked = true;
             this.rdoSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoSupplier.Location = new System.Drawing.Point(121, 77);
+            this.rdoSupplier.Location = new System.Drawing.Point(121, 99);
             this.rdoSupplier.Name = "rdoSupplier";
             this.rdoSupplier.Size = new System.Drawing.Size(63, 17);
             this.rdoSupplier.TabIndex = 2;
-            this.rdoSupplier.TabStop = true;
             this.rdoSupplier.Text = "Supplier";
             this.rdoSupplier.UseVisualStyleBackColor = true;
             this.rdoSupplier.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
@@ -264,7 +279,7 @@
             // 
             this.rdoWarehouse.AutoSize = true;
             this.rdoWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoWarehouse.Location = new System.Drawing.Point(121, 100);
+            this.rdoWarehouse.Location = new System.Drawing.Point(121, 122);
             this.rdoWarehouse.Name = "rdoWarehouse";
             this.rdoWarehouse.Size = new System.Drawing.Size(80, 17);
             this.rdoWarehouse.TabIndex = 4;
@@ -276,7 +291,7 @@
             // 
             this.rdoOther.AutoSize = true;
             this.rdoOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.rdoOther.Location = new System.Drawing.Point(121, 123);
+            this.rdoOther.Location = new System.Drawing.Point(121, 145);
             this.rdoOther.Name = "rdoOther";
             this.rdoOther.Size = new System.Drawing.Size(51, 17);
             this.rdoOther.TabIndex = 6;
@@ -290,7 +305,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Name = "ucReceiveMaterial";
-            this.Size = new System.Drawing.Size(976, 396);
+            this.Size = new System.Drawing.Size(976, 519);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panelWrapGrid.ResumeLayout(false);
@@ -322,5 +337,6 @@
         private System.Windows.Forms.DateTimePicker dpDateFrom;
         private System.Windows.Forms.DateTimePicker dpDateTo;
         private Control.BaseTextBox txtDocNo;
+        private System.Windows.Forms.RadioButton rdoAll;
     }
 }

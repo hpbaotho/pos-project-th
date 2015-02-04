@@ -6,6 +6,7 @@ using POS.BL.Entities.Entity;
 using POS.BL.DTO;
 using System.Data.Common;
 using System.Data;
+using POS.BL.Utilities;
 
 namespace POS.BL.Service.IN
 {

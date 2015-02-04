@@ -19,6 +19,7 @@ namespace POS.IN.ReceiveMaterial
 {
     public partial class ucReceiveMaterial : BaseUserControl
     {
+        #region :: Properties ::
         TabPage tabPageAddEdit = new TabPage();
         string DataKeyName = "tran_head_id";
         AddEditReceiveMaterial addEditReceiveMaterial = new AddEditReceiveMaterial();
@@ -30,7 +31,9 @@ namespace POS.IN.ReceiveMaterial
         /// all the controls that cannot tolerate each other
         /// </summary>
         List<System.Windows.Forms.Control> IntoleranceControl;
+        #endregion :: Properties ::
 
+        #region :: Constructor ::
         public ucReceiveMaterial()
         {
             InitializeComponent();
@@ -50,7 +53,9 @@ namespace POS.IN.ReceiveMaterial
 
             grdBase.LoadData();
         }
-        #region :: Event Gridview ::
+        #endregion :: Constructor ::
+
+        #region :: Event ::
         public void grdBase_onLoadDataGrid(object sender, POS.Control.GridView.DataBindArgs e)
         {
             //hide the damn column
@@ -85,7 +90,7 @@ namespace POS.IN.ReceiveMaterial
             grdBase.DataKeyName = new string[] { DataKeyName };
 
             //try to set its visibility 
-            grdBase.btnDeleteEnable = false;
+            grdBase.btnDeleteVisible = false;
             grdBase.RearrangeButton();
 
         }
@@ -146,9 +151,6 @@ namespace POS.IN.ReceiveMaterial
                 }
             }
         }
-
-        #endregion
-
         protected void NotifyReturnEvent(object param)
         {
             if (param != null)
@@ -165,6 +167,7 @@ namespace POS.IN.ReceiveMaterial
                 tabControl1.SelectedTab = tabPage1;
             }
         }
+        #endregion
 
         #region :: Private Function ::
         private void AddEditTab(string TabTitle, AddEditReceiveMaterial controlAddEdit)
@@ -231,7 +234,6 @@ namespace POS.IN.ReceiveMaterial
             ddlWarehouse.DisplayMember = "Display";
         }
         #endregion
-
 
     }
 }

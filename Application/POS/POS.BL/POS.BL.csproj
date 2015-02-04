@@ -62,6 +62,7 @@
     <Compile Include="DTO\ComboBoxDTO.cs" />
     <Compile Include="DTO\DuplicateItemDTO.cs" />
     <Compile Include="DTO\IN\StockDTO.cs" />
+    <Compile Include="DTO\LOVDTO.cs" />
     <Compile Include="DTO\SO\CustromControlPropertyDTO.cs" />
     <Compile Include="DTO\SO\OrderDTO.cs" />
     <Compile Include="DTO\SU\ListMenuDTO.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="Entities\EntitiyBase.cs" />
     <Compile Include="Entities\Entity\BFLogical.cs" />
     <Compile Include="Entities\Entity\BFPhysical.cs" />
+    <Compile Include="Entities\Entity\PortfolioDetail.cs" />
+    <Compile Include="Entities\Entity\PortfolioHead.cs" />
     <Compile Include="Entities\Entity\MaterialGroup.cs" />
     <Compile Include="Entities\Entity\StockDetail.cs" />
     <Compile Include="Entities\Entity\MenuDiningType.cs" />
@@ -124,6 +127,8 @@
     <Compile Include="Service\IN\BillOfMaterialHeadService.cs" />
     <Compile Include="Service\IN\BFPhysicalService.cs" />
     <Compile Include="Service\IN\BFLogicalService.cs" />
+    <Compile Include="Service\IN\PortfolioDetailService.cs" />
+    <Compile Include="Service\IN\PortfolioHeadService.cs" />
     <Compile Include="Service\IN\MaterialGroupService.cs" />
     <Compile Include="Service\IN\StockDetailService.cs" />
     <Compile Include="Service\IN\LogLotService.cs" />

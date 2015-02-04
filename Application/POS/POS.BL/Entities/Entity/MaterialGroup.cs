@@ -18,6 +18,7 @@ namespace POS.BL.Entities.Entity
     {
         [EntityScalarProperty(EntityKey = true, IdentityKey = true, ComboBoxValue = true)]
         public long material_group_id { get; set; }
+        [EntityScalarProperty(DataCode = true)]
         public string material_group_code { get; set; }
         [EntityScalarProperty(ComboBoxDisplay = true)]
         public string material_group_name { get; set; }

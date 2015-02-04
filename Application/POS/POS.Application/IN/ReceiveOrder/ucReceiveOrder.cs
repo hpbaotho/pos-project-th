@@ -45,7 +45,7 @@ namespace POS.IN.ReceiveOrder
         {
             //hide the damn column
             grdBase.HiddenColumnName = new List<string>() { "tran_head_id" };
-            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHeadReceiveOrder(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value, txtOrderNo.Text);
+            DataSet ds = ServiceProvider.TranHeadService.GetGridTranHeadReceiveOrder(txtDocNo.Text, dpDateFrom.Value, dpDateTo.Value, "");
 
             if (ds.Tables.Count > 0)
             {
@@ -70,7 +70,6 @@ namespace POS.IN.ReceiveOrder
             //try to set its visibility 
             grdBase.btnDeleteEnable = false;
             grdBase.RearrangeButton();
-
         }
         public void grdBase_onAddNewRow(object sender, EventArgs e)
         {

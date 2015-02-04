@@ -26,9 +26,10 @@ namespace POS.BL.Entities.Entity
         public string other_source { get; set; }
         public string remark { get; set; }
         public bool is_cancel_order { get; set; }
-        public long? order_no_id { get; set; }
         public long? cancel_reason_id { get; set; }
         public string transaction_status { get; set; }
         public bool? is_waste { get; set; }
+        public long? sales_order_detail_id { get; set; }
+        public long? reference_tran_head_id { get; set; }
     }
 }

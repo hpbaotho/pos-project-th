@@ -35,8 +35,8 @@ namespace POS.Control
         private Panel Control_contanner = null;
 
 
-        protected object popupDataSource = null;
-        protected object popupResult = null;
+        public object popupDataSource = null;
+        public object popupResult = null;
         #endregion
         //====================================================================
         #region :: Construtor ::
