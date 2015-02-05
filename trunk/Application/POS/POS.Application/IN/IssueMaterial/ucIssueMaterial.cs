@@ -221,7 +221,5 @@ namespace POS.IN.IssueMaterial
             ddlWarehouse.DisplayMember = "Display";
         }
         #endregion
-
-
     }
 }

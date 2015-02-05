@@ -14,6 +14,7 @@ using Core.Standards.Converters;
 using Core.Standards.Exceptions;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using POS.BL.DTO;
+using POS.LOV;
 
 namespace POS.IN.ReceiveOrder
 {
@@ -39,9 +40,16 @@ namespace POS.IN.ReceiveOrder
         private string _documentTypeCode { get { return DocumentTypeCode.IN.ReceiveOrder; } }
         private DataSet dsTranDetail { get; set; }
         private string _documentStatus { get; set; }
+        private string _originalMaterialCode { get; set; }
+        public long CurrentPeriodID { get; set; }
+        public long CurrentOrderDetailID { get; set; }
         #endregion :: Properties ::
 
         #region :: Private Function ::
+        private void GetTranDetail()
+        {
+            this.dsTranDetail = ServiceProvider.MaterialService.GetMaterialFromMenuOrder(ddlMenu.SelectedValue.ToLong());
+        }
         private void LoadHeadData()
         {
             TranHead entity = new TranHead();
@@ -72,9 +80,9 @@ namespace POS.IN.ReceiveOrder
             }
             else
             {
-                ddlOrderNo.DataSource = ServiceProvider.SaleOrderHeaderService.GetAllCancelOrder();
-                ddlOrderNo.ValueMember = "Value";
-                ddlOrderNo.DisplayMember = "Display";
+                ddlPeriod.DataSource = ServiceProvider.SaleOrderHeaderService.GetAllCancelOrder();
+                ddlPeriod.ValueMember = "Value";
+                ddlPeriod.DisplayMember = "Display";
 
                 ddlReason.DataSource = ServiceProvider.ReasonService.GetReasonComboBoxDTOByDocumentTypeID(this._documentTypeID);
                 ddlReason.ValueMember = "Value";
@@ -104,7 +112,8 @@ namespace POS.IN.ReceiveOrder
         {
             DataRow dr = this.GetDataRowDetail(baseGridDetail.DataKeyValue[1].ToLong(), baseGridDetail.DataKeyValue[2].ToLong()).First();
 
-            this.ddlMaterial.SelectedValue = dr["material_id"].ToString();
+            this.txtMaterialCode.Text = dr["material_code"].ToString();
+            this.txtMaterialName.Text = dr["Material"].ToString();
 
             string lotNo = dr["Lot No."].ToStringNullable();
             if (!string.IsNullOrEmpty(lotNo)) { lotNo = string.Format(Format.DecimalNumberFormat, lotNo.ToDouble()); }
@@ -123,7 +132,8 @@ namespace POS.IN.ReceiveOrder
             {
                 baseAddEditMasterDetail.btnSaveEnable = false;
                 baseAddEditMasterDetail.btnResetEnable = false;
-                ddlMaterial.Enabled = false;
+                txtMaterialCode.Enabled = false;
+                btnLOV.Enabled = false;
                 txtLotNo.Enabled = false;
                 txtQuantity.Enabled = false;
                 txtRemarkDetails.Enabled = false;
@@ -131,10 +141,6 @@ namespace POS.IN.ReceiveOrder
         }
         private void InitialDetailData()
         {
-            this.ddlMaterial.DataSource = ServiceProvider.MaterialService.FindByActiveOrID();
-            this.ddlMaterial.ValueMember = "Value";
-            this.ddlMaterial.DisplayMember = "Display";
-
             lblUOM.Text = string.Empty;
 
             baseAddEditMasterDetail.btnBackVisible = false;
@@ -152,7 +158,7 @@ namespace POS.IN.ReceiveOrder
 
             if (base.FormMode == ObjectState.Edit)
             {
-                ddlOrderNo.Enabled = false;
+                ddlPeriod.Enabled = false;
 
                 if (this._documentStatus == TransactionStatus.IN.NormalCode)
                 {
@@ -179,7 +185,7 @@ namespace POS.IN.ReceiveOrder
             }
             else
             {
-                ddlOrderNo.Enabled = true;
+                ddlPeriod.Enabled = true;
                 ddlReason.Enabled = true;
                 txtRemark.Enabled = true;
                 base.btnResetEnable = true;
@@ -193,11 +199,13 @@ namespace POS.IN.ReceiveOrder
         {
             if (baseGridDetail.FormMode == ObjectState.Edit)
             {
-                ddlMaterial.Enabled = false;
+                txtMaterialCode.Enabled = false;
+                btnLOV.Enabled = false;
             }
             else
             {
-                ddlMaterial.Enabled = true;
+                txtMaterialCode.Enabled = true;
+                btnLOV.Enabled = true;
                 txtLotNo.Enabled = true;
                 txtQuantity.Enabled = true;
                 txtRemarkDetails.Enabled = true;
@@ -211,7 +219,8 @@ namespace POS.IN.ReceiveOrder
             {
                 if (this._documentStatus == TransactionStatus.IN.NormalCode)
                 {
-                    ddlMaterial.Enabled = true;
+                    txtMaterialCode.Enabled = true;
+                    btnLOV.Enabled = true;
                     txtLotNo.Enabled = true;
                     txtQuantity.Enabled = true;
                     txtRemarkDetails.Enabled = true;
@@ -220,7 +229,8 @@ namespace POS.IN.ReceiveOrder
                 }
                 else if (this._documentStatus == TransactionStatus.IN.FinalCode)
                 {
-                    ddlMaterial.Enabled = false;
+                    txtMaterialCode.Enabled = false;
+                    btnLOV.Enabled = false;
                     txtLotNo.Enabled = false;
                     txtQuantity.Enabled = false;
                     txtRemarkDetails.Enabled = false;
@@ -230,7 +240,8 @@ namespace POS.IN.ReceiveOrder
             }
             else if (base.FormMode == ObjectState.Add)
             {
-                ddlMaterial.Enabled = false;
+                txtMaterialCode.Enabled = false;
+                btnLOV.Enabled = false;
                 txtLotNo.Enabled = false;
                 txtQuantity.Enabled = false;
                 txtRemarkDetails.Enabled = true;
@@ -272,8 +283,8 @@ namespace POS.IN.ReceiveOrder
         }
         private TranDetail GetDetailData()
         {
-            TranDetail entity = new TranDetail();
-            entity.material_id = Converts.ParseLong(ddlMaterial.SelectedValue.ToString());
+            TranDetail entity = new TranDetail();            
+            entity.material_id = Converts.ParseLong(txtMaterialCode.Text.ToString());
             entity.lot_no = Converts.ParseDecimalNullable(txtLotNo.Text);
             entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
             entity.remark = txtRemarkDetails.Text;
@@ -393,7 +404,7 @@ namespace POS.IN.ReceiveOrder
         }
         private void ClearDataDetail()
         {
-            ddlMaterial.SelectedIndex = 0;
+            txtMaterialCode.Text = string.Empty;
             txtLotNo.Text = "1";
             txtQuantity.Text = string.Empty;
             txtRemarkDetails.Text = string.Empty;
@@ -458,13 +469,22 @@ namespace POS.IN.ReceiveOrder
                             select row).ToArray<DataRow>();
             return dr;
         }
+        private void ChangeDDLMenu()
+        {
+            if (ddlPeriod.SelectedIndex != 0)
+            {
+                ddlMenu.DataSource = ServiceProvider.SaleOrderDetailService.GetCancelMenu(ddlPeriod.SelectedValue.ToLong());
+                ddlMenu.ValueMember = "Value";
+                ddlMenu.DisplayMember = "Display";
+            }
+        }
         #endregion
 
         #region :: Event Control ::
         private void AddEditReceiveOrder_Load(object sender, EventArgs e)
         {
             this._documentTypeID = ServiceProvider.DocumentTypeService.GetDocumentTypeIDByDocumentTypeCode(this._documentTypeCode);
-            ddlOrderNo.Focus();
+            ddlPeriod.Focus();
             LoadHeadData();
         }
         private void AddEditReceiveOrder_saveHandler()
@@ -522,7 +542,8 @@ namespace POS.IN.ReceiveOrder
             baseGridDetail.FormMode = ObjectState.Edit;
             baseGridDetail.DataKeyValue = new string[] { null, dataKey["material_id"].ToString() };
             this.LoadDetailData();
-            ddlMaterial.Enabled = false;
+            txtMaterialCode.Enabled = false;
+            btnLOV.Enabled = false;
             EnableModeDetailEdit();
         }
         public void baseGridDetail_onCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -581,17 +602,17 @@ namespace POS.IN.ReceiveOrder
                         dr["tran_head_id"] = base.FormKeyCode.ToLong();
                     }
 
-                    dr["material_id"] = ddlMaterial.SelectedValue.ToLong();
+                    dr["material_id"] = txtMaterialCode.Text.ToLong();
                     dr["Quantity"] = quantity;
                     dr["Remark"] = txtRemarkDetails.Text;
-                    dr["Material"] = ddlMaterial.Text.Substring(ddlMaterial.Text.LastIndexOf(":") + 1);
+                    dr["Material"] = txtMaterialName.Text;
                     dr["Lot No."] = lotNo;
                     dr["UOM"] = lblUOM.Text;
                     this.dsTranDetail.Tables[0].Rows.Add(dr);
                 }
 
                 this.ClearDataDetail();
-                ddlMaterial.Focus();
+                txtMaterialCode.Focus();
                 baseGridDetail.FormMode = ObjectState.Add;
                 baseGridDetail.DataKeyValue = null;
                 EnableModeDetailEdit();
@@ -612,19 +633,102 @@ namespace POS.IN.ReceiveOrder
                 this.ClearDataDetail();
             }
         }
+        #endregion :: Event Control 
+
         private void ddlMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.dsTranDetail = ServiceProvider.MaterialService.GetMaterialFromMenuOrder(ddlMenu.SelectedValue.ToLong());
-        }
-        #endregion :: Event Control ::
-
-        private void ddlOrderNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlOrderNo.SelectedIndex != 0)
+            if (this.dsTranDetail.Tables.Count > 0 && this.dsTranDetail.Tables[0].Rows.Count > 0)
             {
-                ddlMenu.DataSource = ServiceProvider.SaleOrderDetailService.GetCancelMenu(ddlOrderNo.SelectedValue.ToLong());
-                ddlMenu.ValueMember = "Value";
-                ddlMenu.DisplayMember = "Display";
+                if (MessageBox.Show("If you change period, all detail will be clear. Would you like to change ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                {
+                    this.ddlMenu.SelectedValue = this.CurrentOrderDetailID;
+                }
+                else
+                {
+                    this.ClearDataDetail();
+                    this.dsTranDetail.Tables[0].Rows.Clear();
+                    this.baseGridDetail.LoadData();
+                    this.GetTranDetail();
+                }
+            }
+            else
+            {
+                this.GetTranDetail();
+            }
+        }
+
+        private void ddlPeriod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.dsTranDetail.Tables.Count > 0 && this.dsTranDetail.Tables[0].Rows.Count > 0)
+            {
+                if (MessageBox.Show("If you change period, all detail will be clear. Would you like to change ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                {
+                    this.ddlPeriod.SelectedValue = this.CurrentPeriodID;
+                }
+                else
+                {
+                    this.ClearDataDetail();
+                    this.dsTranDetail.Tables[0].Rows.Clear();
+                    this.baseGridDetail.LoadData();
+                    this.ChangeDDLMenu();
+                }
+            }
+            else
+            {
+                this.ChangeDDLMenu();
+            }
+        }
+
+        private void btnLOV_Click(object sender, EventArgs e)
+        {
+            if (ddlPeriod.SelectedIndex != 0)
+            {
+                object result = base.OpenPopup<InMaterial>();
+                if (result != null)
+                {
+                    Material entity = (Material)result;
+                    txtMaterialCode.Text = entity.material_code.ToString();
+                    txtMaterialName.Text = entity.material_name.ToString();
+                    baseAddEditMasterDetail.FormKeyCode = entity.material_id.ToString();
+
+                    UOM entityUOM = new UOM() { uom_id = entity.uom_id_receive.Value };
+                    entityUOM = ServiceProvider.UOMService.FindByKeys(entityUOM, false);
+
+                    if (entityUOM != null)
+                        lblUOM.Text = entityUOM.uom_name;
+                }
+            }
+            else { 
+                //Error
+            }
+        }
+
+        private void txtMaterialCode_Leave(object sender, EventArgs e)
+        {
+            if (_originalMaterialCode != txtMaterialCode.Text)
+            {
+                Material entity = new Material();
+                entity.material_code = txtMaterialCode.Text;
+                entity = ServiceProvider.MaterialService.FindByCode(entity, false);
+                if (entity != null)
+                {
+                    txtMaterialName.Text = entity.material_name;
+
+                    //txtLotNo.Text = this.GetLastLotNo().ToString();
+
+                    UOM entityUOM = new UOM() { uom_id = entity.uom_id_receive.Value };
+                    entityUOM = ServiceProvider.UOMService.FindByKeys(entityUOM, false);
+
+                    if (entityUOM != null)
+                        lblUOM.Text = entityUOM.uom_name;
+                }
+                else
+                {
+                    txtMaterialName.Text = string.Empty;
+                    txtMaterialCode.Text = string.Empty;
+                    lblUOM.Text = string.Empty;
+                }
+                _originalMaterialCode = txtMaterialCode.Text;
             }
         }
     }
