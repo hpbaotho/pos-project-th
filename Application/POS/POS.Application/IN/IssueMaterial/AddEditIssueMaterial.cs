@@ -14,6 +14,7 @@ using Core.Standards.Converters;
 using Core.Standards.Exceptions;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using POS.BL.DTO;
+using POS.LOV;
 
 namespace POS.IN.IssueMaterial
 {
@@ -39,6 +40,7 @@ namespace POS.IN.IssueMaterial
         private string _documentTypeCode { get { return DocumentTypeCode.IN.IssueMaterial; } }
         private DataSet dsTranDetail { get; set; }
         private string _documentStatus { get; set; }
+        private string _originalMaterialCode { get; set; }
         #endregion :: Properties ::
 
         #region :: Private Function ::
@@ -124,7 +126,8 @@ namespace POS.IN.IssueMaterial
         {
             DataRow dr = this.GetDataRowDetail(baseGridDetail.DataKeyValue[1].ToLong(), baseGridDetail.DataKeyValue[2].ToLong()).First();
 
-            this.ddlMaterial.SelectedValue = dr["material_id"].ToString();
+            this.txtMaterialCode.Text = dr["material_code"].ToString();
+            this.txtMaterialName.Text = dr["Material"].ToString();
             this.ddlWarehouseDetails.SelectedValue = dr["warehouse_id_dest"].ToString();
 
             string lotNo = dr["Lot No."].ToStringNullable();
@@ -144,7 +147,8 @@ namespace POS.IN.IssueMaterial
             {
                 baseAddEditMasterDetail.btnSaveEnable = false;
                 baseAddEditMasterDetail.btnResetEnable = false;
-                ddlMaterial.Enabled = false;
+                txtMaterialCode.Enabled = false;
+                btnLOV.Enabled = false;
                 ddlWarehouseDetails.Enabled = false;
                 txtLotNo.Enabled = false;
                 txtQuantity.Enabled = false;
@@ -153,10 +157,6 @@ namespace POS.IN.IssueMaterial
         }
         private void InitialDetailData()
         {
-            this.ddlMaterial.DataSource = ServiceProvider.MaterialService.FindByActiveOrID();
-            this.ddlMaterial.ValueMember = "Value";
-            this.ddlMaterial.DisplayMember = "Display";
-
             this.ddlWarehouseDetails.DataSource = ServiceProvider.WareHouseService.FindByActiveOrID();
             this.ddlWarehouseDetails.ValueMember = "Value";
             this.ddlWarehouseDetails.DisplayMember = "Display";
@@ -236,12 +236,14 @@ namespace POS.IN.IssueMaterial
         {
             if (baseGridDetail.FormMode == ObjectState.Edit)
             {
-                ddlMaterial.Enabled = false;
+                txtMaterialCode.Enabled = false;
+                btnLOV.Enabled = false;
                 ddlWarehouseDetails.Enabled = false;
             }
             else
             {
-                ddlMaterial.Enabled = true;
+                txtMaterialCode.Enabled = true;
+                btnLOV.Enabled = true;
                 ddlWarehouseDetails.Enabled = true;
                 txtLotNo.Enabled = true;
                 txtQuantity.Enabled = true;
@@ -256,7 +258,8 @@ namespace POS.IN.IssueMaterial
             {
                 if (this._documentStatus == TransactionStatus.IN.NormalCode)
                 {
-                    ddlMaterial.Enabled = true;
+                    txtMaterialCode.Enabled = true;
+                    btnLOV.Enabled = true;
                     ddlWarehouseDetails.Enabled = true;
                     txtLotNo.Enabled = true;
                     txtQuantity.Enabled = true;
@@ -266,7 +269,8 @@ namespace POS.IN.IssueMaterial
                 }
                 else if (this._documentStatus == TransactionStatus.IN.FinalCode)
                 {
-                    ddlMaterial.Enabled = false;
+                    txtMaterialCode.Enabled = false;
+                    btnLOV.Enabled = false;
                     ddlWarehouseDetails.Enabled = false;
                     txtLotNo.Enabled = false;
                     txtQuantity.Enabled = false;
@@ -277,7 +281,8 @@ namespace POS.IN.IssueMaterial
             }
             else if (base.FormMode == ObjectState.Add)
             {
-                ddlMaterial.Enabled = true;
+                txtMaterialCode.Enabled = true;
+                btnLOV.Enabled = true;
                 ddlWarehouseDetails.Enabled = true;
                 txtLotNo.Enabled = true;
                 txtQuantity.Enabled = true;
@@ -322,7 +327,7 @@ namespace POS.IN.IssueMaterial
         private TranDetail GetDetailData()
         {
             TranDetail entity = new TranDetail();
-            entity.material_id = Converts.ParseLong(ddlMaterial.SelectedValue.ToString());
+            entity.material_id = ServiceProvider.MaterialService.GetIDByCode(txtMaterialCode.Text).ToLong();
             entity.warehouse_id_dest = Converts.ParseLong(ddlWarehouseDetails.SelectedValue.ToString());
             entity.lot_no = Converts.ParseDecimalNullable(txtLotNo.Text);
             entity.quantity = Converts.ParseDecimalNullable(txtQuantity.Text);
@@ -447,7 +452,8 @@ namespace POS.IN.IssueMaterial
         }
         private void ClearDataDetail()
         {
-            ddlMaterial.SelectedIndex = 0;
+            txtMaterialCode.Text = string.Empty;
+            txtMaterialName.Text = string.Empty;
             ddlWarehouseDetails.SelectedIndex = 0;
             txtLotNo.Text = "1";
             txtQuantity.Text = string.Empty;
@@ -456,9 +462,9 @@ namespace POS.IN.IssueMaterial
         }
         private double GetLastLotNo()
         {
-            if (ddlMaterial.SelectedIndex != 0 && ddlWarehouseDetails.SelectedIndex != 0)
+            if (!string.IsNullOrEmpty(baseAddEditMasterDetail.FormKeyCode) && ddlWarehouseDetails.SelectedIndex != 0)
             {
-                PhyLot entity = new PhyLot() { warehouse_id = ddlWarehouseDetails.SelectedValue.ToLong(), material_id = ddlMaterial.SelectedValue.ToLong() };
+                PhyLot entity = new PhyLot() { warehouse_id = ddlWarehouseDetails.SelectedValue.ToLong(), material_id = baseAddEditMasterDetail.FormKeyCode.ToLong() };
                 return ServiceProvider.PhyLotService.GetCurrentLotNo(entity) + 1;
             }
             return 1;
@@ -516,7 +522,7 @@ namespace POS.IN.IssueMaterial
         private void AddNewTranDetail()
         {
             this.ClearDataDetail();
-            ddlMaterial.Focus();
+            txtMaterialCode.Focus();
             baseGridDetail.FormMode = ObjectState.Add;
             baseGridDetail.DataKeyValue = null;
             EnableModeDetailEdit();
@@ -532,6 +538,86 @@ namespace POS.IN.IssueMaterial
         #endregion
 
         #region :: Event Control ::
+        private void btnLOV_Click(object sender, EventArgs e)
+        {
+            object result = base.OpenPopup<InMaterial>();
+            if (result != null)
+            {
+                Material entity = (Material)result;
+                txtMaterialCode.Text = entity.material_code.ToString();
+                txtMaterialName.Text = entity.material_name.ToString();
+                baseAddEditMasterDetail.FormKeyCode = entity.material_id.ToString();
+
+                UOM entityUOM = new UOM() { uom_id = entity.uom_id_receive.Value };
+                entityUOM = ServiceProvider.UOMService.FindByKeys(entityUOM, false);
+
+                if (entityUOM != null)
+                    lblUOM.Text = entityUOM.uom_name;
+            }
+        }
+        private void txtMaterialCode_Leave(object sender, EventArgs e)
+        {
+            if (_originalMaterialCode != txtMaterialCode.Text)
+            {
+                Material entity = new Material();
+                entity.material_code = txtMaterialCode.Text;
+                entity = ServiceProvider.MaterialService.FindByCode(entity, false);
+                if (entity != null)
+                {
+                    txtMaterialName.Text = entity.material_name;
+
+                    txtLotNo.Text = this.GetLastLotNo().ToString();
+
+                    UOM entityUOM = new UOM() { uom_id = entity.uom_id_receive.Value };
+                    entityUOM = ServiceProvider.UOMService.FindByKeys(entityUOM, false);
+
+                    if (entityUOM != null)
+                        lblUOM.Text = entityUOM.uom_name;
+                }
+                else
+                {
+                    txtMaterialName.Text = string.Empty;
+                    txtMaterialCode.Text = string.Empty;
+                    lblUOM.Text = string.Empty;
+                }
+                _originalMaterialCode = txtMaterialCode.Text;
+            }
+        }
+        private void btnLoadPortFolio_Click(object sender, EventArgs e)
+        {
+            object result = base.OpenPopup<InPortfolio>();
+            if (result != null)
+            {
+                DataSet dsPortfolioDetail = (DataSet)result;
+
+                if (dsPortfolioDetail.Tables.Count > 0)
+                {
+                    foreach (DataRow dr in dsPortfolioDetail.Tables[0].Rows)
+                    {
+                        DataRow newRow = this.dsTranDetail.Tables[0].NewRow();
+                        if (!string.IsNullOrEmpty(base.FormKeyCode))
+                        {
+                            newRow["tran_head_id"] = base.FormKeyCode.ToLong();
+                        }
+                        newRow["material_code"] = dr["material_code"];
+                        newRow["material_id"] = dr["material_id"];
+                        newRow["warehouse_id_dest"] = dr["warehouse_id"];
+                        newRow["Quantity"] = 0;
+                        newRow["Remark"] = "";
+                        newRow["Material"] = dr["material_name"];
+                        newRow["warehouse_id_dest"] = dr["warehouse_id"];
+                        newRow["Warehouse"] = dr["warehouse_name"];
+
+                        PhyLot entityPhyLot = new PhyLot() { warehouse_id = newRow["warehouse_id_dest"].ToLong(), material_id = newRow["material_id"].ToLong() };
+                        newRow["Lot No."] = (ServiceProvider.PhyLotService.GetCurrentLotNo(entityPhyLot) + 1);
+                        newRow["UOM"] = dr["uom_name"];
+                        this.dsTranDetail.Tables[0].Rows.Add(newRow);
+                    }
+
+                    baseGridDetail.LoadData();
+                }
+            }
+        }
         private void AddEditIssueMaterial_Load(object sender, EventArgs e)
         {
             this._documentTypeID = ServiceProvider.DocumentTypeService.GetDocumentTypeIDByDocumentTypeCode(this._documentTypeCode);
@@ -612,7 +698,8 @@ namespace POS.IN.IssueMaterial
             baseGridDetail.FormMode = ObjectState.Edit;
             baseGridDetail.DataKeyValue = new string[] { null, dataKey["material_id"].ToString(), dataKey["warehouse_id_dest"].ToString() };
             this.LoadDetailData();
-            ddlMaterial.Enabled = false;
+            txtMaterialCode.Enabled = false;
+            btnLOV.Enabled = false;
             ddlWarehouseDetails.Enabled = false;
             EnableModeDetailEdit();
         }
@@ -694,12 +781,12 @@ namespace POS.IN.IssueMaterial
                     {
                         dr["tran_head_id"] = base.FormKeyCode.ToLong();
                     }
-
-                    dr["material_id"] = ddlMaterial.SelectedValue.ToLong();
+                    dr["material_code"] = txtMaterialCode.Text;
+                    dr["material_id"] = baseAddEditMasterDetail.FormKeyCode.ToLong();
                     dr["warehouse_id_dest"] = ddlWarehouseDetails.SelectedValue.ToLong();
                     dr["Quantity"] = quantity;
                     dr["Remark"] = txtRemarkDetails.Text;
-                    dr["Material"] = ddlMaterial.Text.Substring(ddlMaterial.Text.LastIndexOf(":") + 1);
+                    dr["Material"] = txtMaterialName.Text;
                     dr["Warehouse"] = ddlWarehouseDetails.Text.Substring(ddlWarehouseDetails.Text.LastIndexOf(":") + 1);
                     dr["Lot No."] = lotNo;
                     dr["UOM"] = lblUOM.Text;
@@ -707,7 +794,7 @@ namespace POS.IN.IssueMaterial
                 }
 
                 this.ClearDataDetail();
-                ddlMaterial.Focus();
+                txtMaterialCode.Focus();
                 baseGridDetail.FormMode = ObjectState.Add;
                 baseGridDetail.DataKeyValue = null;
                 EnableModeDetailEdit();

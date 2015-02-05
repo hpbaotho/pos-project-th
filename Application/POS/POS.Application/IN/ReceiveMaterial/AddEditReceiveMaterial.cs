@@ -406,6 +406,23 @@ namespace POS.IN.ReceiveMaterial
                 ValidationResult result = new ValidationResult(string.Format(ErrorMessage.IsRequired, "Details"), this, string.Empty, string.Empty, null);
                 results.AddResult(result);
             }
+            else
+            {
+                //foreach (DataRow dr in this.dsTranDetail.Tables[0].Rows)
+                //{
+                //    if (!string.IsNullOrEmpty(base.FormKeyCode))
+                //    {
+                //        dr["tran_head_id"] = base.FormKeyCode.ToLong();
+                //    }
+                //    TranDetail entityTranDetail = new TranDetail();
+                //    entityTranDetail.material_id = dr["material_id"].ToLong();
+                //    entityTranDetail.warehouse_id_dest = dr["warehouse_id_dest"].ToLong();
+                //    entityTranDetail.quantity = dr["Quantity"].ToDecimal();
+                //    entityTranDetail.remark = dr["Remark"].ToString();
+                //    entityTranDetail.lot_no = dr["Lot No."].ToDecimal();
+                //    this.ValidationDetail(entityTranDetail);
+                //}
+            }
             if (results.Count > 0) { throw new ValidationException(results); }
         }
         private void ValidationDetail(TranDetail entity)
@@ -603,6 +620,7 @@ namespace POS.IN.ReceiveMaterial
             {
                 using (System.Transactions.TransactionScope ts = new System.Transactions.TransactionScope())
                 {
+
                     this.ValidationHead(entity);
 
                     entity = this.SaveTransactionHead(entity);
@@ -861,7 +879,7 @@ namespace POS.IN.ReceiveMaterial
                         newRow["material_code"] = dr["material_code"];
                         newRow["material_id"] = dr["material_id"];
                         newRow["warehouse_id_dest"] = dr["warehouse_id"];
-                        newRow["Quantity"] = 1;
+                        newRow["Quantity"] = 0;
                         newRow["Remark"] = "";
                         newRow["Material"] = dr["material_name"];
                         newRow["warehouse_id_dest"] = dr["warehouse_id"];
@@ -877,6 +895,6 @@ namespace POS.IN.ReceiveMaterial
                 }
             }
         }
-        #endregion :: Event Control ::        
+        #endregion :: Event Control ::
     }
 }

@@ -39,7 +39,7 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ddlOrderNo = new System.Windows.Forms.ComboBox();
+            this.ddlPeriod = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.ddlWarehouse = new System.Windows.Forms.ComboBox();
@@ -51,13 +51,16 @@
             this.ddlMenu = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtMaterialName = new POS.Control.BaseTextBox();
+            this.btnLOV = new System.Windows.Forms.Button();
+            this.txtMaterialCode = new POS.Control.BaseTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblUOM = new System.Windows.Forms.Label();
             this.baseAddEditMasterDetail = new POS.Control.BaseAddEditMaster();
             this.pictureBoxMaterial = new System.Windows.Forms.PictureBox();
             this.baseGridDetail = new POS.Control.GridView.BaseGrid();
             this.label10 = new System.Windows.Forms.Label();
-            this.ddlMaterial = new System.Windows.Forms.ComboBox();
             this.txtLotNo = new POS.Control.BaseTextBox();
             this.txtQuantity = new POS.Control.BaseTextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
@@ -83,11 +86,11 @@
             // 
             this.lblReferenceNo.AutoSize = true;
             this.lblReferenceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lblReferenceNo.Location = new System.Drawing.Point(40, 21);
+            this.lblReferenceNo.Location = new System.Drawing.Point(59, 21);
             this.lblReferenceNo.Name = "lblReferenceNo";
-            this.lblReferenceNo.Size = new System.Drawing.Size(70, 13);
+            this.lblReferenceNo.Size = new System.Drawing.Size(51, 13);
             this.lblReferenceNo.TabIndex = 1;
-            this.lblReferenceNo.Text = "Order No. :";
+            this.lblReferenceNo.Text = "Period :";
             // 
             // lblReason
             // 
@@ -161,7 +164,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ddlOrderNo);
+            this.groupBox1.Controls.Add(this.ddlPeriod);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblStatus);
             this.groupBox1.Controls.Add(this.ddlWarehouse);
@@ -184,20 +187,20 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox1.Location = new System.Drawing.Point(1, 56);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1020, 188);
+            this.groupBox1.Size = new System.Drawing.Size(1020, 178);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Head";
             // 
-            // ddlOrderNo
+            // ddlPeriod
             // 
-            this.ddlOrderNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ddlOrderNo.FormattingEnabled = true;
-            this.ddlOrderNo.Location = new System.Drawing.Point(121, 17);
-            this.ddlOrderNo.Name = "ddlOrderNo";
-            this.ddlOrderNo.Size = new System.Drawing.Size(481, 21);
-            this.ddlOrderNo.TabIndex = 46;
-            this.ddlOrderNo.SelectedIndexChanged += new System.EventHandler(this.ddlOrderNo_SelectedIndexChanged);
+            this.ddlPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ddlPeriod.FormattingEnabled = true;
+            this.ddlPeriod.Location = new System.Drawing.Point(121, 17);
+            this.ddlPeriod.Name = "ddlPeriod";
+            this.ddlPeriod.Size = new System.Drawing.Size(481, 21);
+            this.ddlPeriod.TabIndex = 46;
+            this.ddlPeriod.SelectedIndexChanged += new System.EventHandler(this.ddlPeriod_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -300,13 +303,16 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtMaterialName);
+            this.groupBox2.Controls.Add(this.btnLOV);
+            this.groupBox2.Controls.Add(this.txtMaterialCode);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.lblUOM);
             this.groupBox2.Controls.Add(this.baseAddEditMasterDetail);
             this.groupBox2.Controls.Add(this.pictureBoxMaterial);
             this.groupBox2.Controls.Add(this.baseGridDetail);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.ddlMaterial);
             this.groupBox2.Controls.Add(this.txtLotNo);
             this.groupBox2.Controls.Add(this.txtQuantity);
             this.groupBox2.Controls.Add(this.lblQuantity);
@@ -315,12 +321,55 @@
             this.groupBox2.Controls.Add(this.txtRemarkDetails);
             this.groupBox2.Controls.Add(this.lblRemarkDetails);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox2.Location = new System.Drawing.Point(1, 253);
+            this.groupBox2.Location = new System.Drawing.Point(1, 238);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1020, 600);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(608, 95);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(12, 13);
+            this.label12.TabIndex = 53;
+            this.label12.Text = "*";
+            // 
+            // txtMaterialName
+            // 
+            this.txtMaterialName.Description = "";
+            this.txtMaterialName.Enabled = false;
+            this.txtMaterialName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtMaterialName.Location = new System.Drawing.Point(244, 66);
+            this.txtMaterialName.MaxLength = 20;
+            this.txtMaterialName.Name = "txtMaterialName";
+            this.txtMaterialName.Size = new System.Drawing.Size(358, 20);
+            this.txtMaterialName.TabIndex = 52;
+            // 
+            // btnLOV
+            // 
+            this.btnLOV.Location = new System.Drawing.Point(207, 65);
+            this.btnLOV.Name = "btnLOV";
+            this.btnLOV.Size = new System.Drawing.Size(31, 23);
+            this.btnLOV.TabIndex = 51;
+            this.btnLOV.Text = "...";
+            this.btnLOV.UseVisualStyleBackColor = true;
+            this.btnLOV.Click += new System.EventHandler(this.btnLOV_Click);
+            // 
+            // txtMaterialCode
+            // 
+            this.txtMaterialCode.Description = "";
+            this.txtMaterialCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.txtMaterialCode.Location = new System.Drawing.Point(120, 66);
+            this.txtMaterialCode.MaxLength = 20;
+            this.txtMaterialCode.Name = "txtMaterialCode";
+            this.txtMaterialCode.Size = new System.Drawing.Size(81, 20);
+            this.txtMaterialCode.TabIndex = 50;
+            this.txtMaterialCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMaterialCode.Leave += new System.EventHandler(this.txtMaterialCode_Leave);
             // 
             // label5
             // 
@@ -351,6 +400,7 @@
             this.baseAddEditMasterDetail.btnResetVisible = true;
             this.baseAddEditMasterDetail.btnSaveEnable = true;
             this.baseAddEditMasterDetail.btnSaveVisible = true;
+            this.baseAddEditMasterDetail.FormKeyCode = null;
             this.baseAddEditMasterDetail.Location = new System.Drawing.Point(6, 14);
             this.baseAddEditMasterDetail.Name = "baseAddEditMasterDetail";
             this.baseAddEditMasterDetail.Size = new System.Drawing.Size(166, 51);
@@ -383,7 +433,7 @@
             this.baseGridDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.baseGridDetail.FormMode = ObjectState.Nothing;
             this.baseGridDetail.HiddenColumnName = null;
-            this.baseGridDetail.Location = new System.Drawing.Point(19, 222);
+            this.baseGridDetail.Location = new System.Drawing.Point(19, 204);
             this.baseGridDetail.Name = "baseGridDetail";
             this.baseGridDetail.Size = new System.Drawing.Size(976, 218);
             this.baseGridDetail.TabIndex = 25;
@@ -398,19 +448,11 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "*";
             // 
-            // ddlMaterial
-            // 
-            this.ddlMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ddlMaterial.FormattingEnabled = true;
-            this.ddlMaterial.Location = new System.Drawing.Point(121, 67);
-            this.ddlMaterial.Name = "ddlMaterial";
-            this.ddlMaterial.Size = new System.Drawing.Size(481, 21);
-            this.ddlMaterial.TabIndex = 24;
-            // 
             // txtLotNo
             // 
+            this.txtLotNo.Description = "";
             this.txtLotNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtLotNo.Location = new System.Drawing.Point(121, 92);
+            this.txtLotNo.Location = new System.Drawing.Point(120, 92);
             this.txtLotNo.MaxLength = 20;
             this.txtLotNo.Name = "txtLotNo";
             this.txtLotNo.Size = new System.Drawing.Size(481, 20);
@@ -418,8 +460,9 @@
             // 
             // txtQuantity
             // 
+            this.txtQuantity.Description = "";
             this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtQuantity.Location = new System.Drawing.Point(121, 121);
+            this.txtQuantity.Location = new System.Drawing.Point(120, 121);
             this.txtQuantity.MaxLength = 20;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(148, 20);
@@ -458,7 +501,7 @@
             // txtRemarkDetails
             // 
             this.txtRemarkDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.txtRemarkDetails.Location = new System.Drawing.Point(123, 149);
+            this.txtRemarkDetails.Location = new System.Drawing.Point(120, 149);
             this.txtRemarkDetails.MaxLength = 1000;
             this.txtRemarkDetails.Multiline = true;
             this.txtRemarkDetails.Name = "txtRemarkDetails";
@@ -514,7 +557,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBoxMaterial;
         private Control.GridView.BaseGrid baseGridDetail;
-        private System.Windows.Forms.ComboBox ddlMaterial;
         private Control.BaseTextBox txtLotNo;
         private Control.BaseTextBox txtQuantity;
         private System.Windows.Forms.Label lblQuantity;
@@ -534,7 +576,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox ddlMenu;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox ddlOrderNo;
+        private System.Windows.Forms.ComboBox ddlPeriod;
+        private Control.BaseTextBox txtMaterialName;
+        private System.Windows.Forms.Button btnLOV;
+        private Control.BaseTextBox txtMaterialCode;
+        private System.Windows.Forms.Label label12;
 
     }
 }

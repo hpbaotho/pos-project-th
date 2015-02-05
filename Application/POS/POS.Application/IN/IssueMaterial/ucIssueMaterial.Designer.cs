@@ -33,6 +33,7 @@
             this.panelWrapGrid = new System.Windows.Forms.Panel();
             this.grdBase = new POS.Control.GridView.BaseGrid();
             this.gbSearchPanel = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.rdoWaste = new System.Windows.Forms.RadioButton();
             this.dpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dpDateTo = new System.Windows.Forms.DateTimePicker();
@@ -47,7 +48,6 @@
             this.txtReferenceNo = new POS.Control.BaseTextBox();
             this.rdoWarehouse = new System.Windows.Forms.RadioButton();
             this.rdoOther = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panelWrapGrid.SuspendLayout();
@@ -129,6 +129,20 @@
             this.gbSearchPanel.TabStop = false;
             this.gbSearchPanel.Text = "Search Criteria";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.radioButton1.Location = new System.Drawing.Point(121, 77);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(36, 17);
+            this.radioButton1.TabIndex = 38;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "All";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
+            // 
             // rdoWaste
             // 
             this.rdoWaste.AutoSize = true;
@@ -139,6 +153,7 @@
             this.rdoWaste.TabIndex = 34;
             this.rdoWaste.Text = "Waste";
             this.rdoWaste.UseVisualStyleBackColor = true;
+            this.rdoWaste.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
             // 
             // dpDateFrom
             // 
@@ -198,6 +213,7 @@
             // 
             // ddlWarehouse
             // 
+            this.ddlWarehouse.Enabled = false;
             this.ddlWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.ddlWarehouse.FormattingEnabled = true;
             this.ddlWarehouse.Location = new System.Drawing.Point(224, 98);
@@ -269,19 +285,6 @@
             this.rdoOther.Text = "Other";
             this.rdoOther.UseVisualStyleBackColor = true;
             this.rdoOther.CheckedChanged += new System.EventHandler(this.rdoItolerate_CheckedChanged);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.radioButton1.Location = new System.Drawing.Point(121, 77);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(36, 17);
-            this.radioButton1.TabIndex = 38;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "All";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // ucIssueMaterial
             // 

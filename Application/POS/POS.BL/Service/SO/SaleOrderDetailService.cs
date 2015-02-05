@@ -161,23 +161,25 @@ namespace POS.BL.Service.SO
 
             return result;
         }
-        public List<ComboBoxDTO> GetCancelMenu(long SalesOrderHeadID)
+        public List<ComboBoxDTO> GetCancelMenu(long PeriodID)
         {
             StringBuilder SQL = new StringBuilder();
             SQL.AppendLine(@"   SELECT 
                                      detail.sales_order_detail_id AS Value
 	                                 , menu.menu_code + ':' + menu.menu_name AS Display
                                 FROM so_sales_order_detail detail
+                                INNER JOIN so_sales_order_head head
+                                    ON head.sales_order_head_id = detail.sales_order_head_id
                                 INNER JOIN so_menu_dining_type dining
 	                                ON dining.menu_dining_type_id = detail.menu_dining_type_id
                                 INNER JOIN so_menu menu
 	                                ON menu.menu_id = dining.menu_id
                                 WHERE 1=1
                                     AND detail.is_cancel = 1 
-                                    AND detail.sales_order_head_id = @SalesOrderHeadID
+                                    AND head.period_id = @PeriodID
                                 ");
 
-            DbParameter param = base.CreateParameter("SalesOrderHeadID", "SalesOrderHeadID");
+            DbParameter param = base.CreateParameter("PeriodID", PeriodID);
             List<ComboBoxDTO> lstComboBox = base.ExecuteQuery<ComboBoxDTO>(SQL.ToString(), param).ToList();
             lstComboBox.SetPleaseSelect();
             return lstComboBox;
