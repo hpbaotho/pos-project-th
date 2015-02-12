@@ -29,6 +29,11 @@ SET Scripts[22]=24. Migrate Table.sql
 SET Scripts[23]=25. Invent Table.sql
 SET Scripts[24]=26. Migrate Data IN.sql
 SET Scripts[25]=27. Add is_payment_process.sql
+SET Scripts[26]=28 Add so_sales_order_detail.sql
+SET Scripts[27]=29 Alter Table in_bill_of_material_detail.sql
+SET Scripts[28]=30. Migrate Portfolio.sql
+SET Scripts[29]=31. Alter table IN.sql
+SET Scripts[30]=32. Migrate Data IN_Period and Period_Group.sql
 
 SET "count=0"
 FOR /F "tokens=2 delims==" %%s in ('set Scripts[') do (
